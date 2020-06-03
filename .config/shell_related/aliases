@@ -1,0 +1,121 @@
+# Listar directorio
+alias ls='ls --color=auto'
+alias ll='ls -lahp --color=auto'
+
+# Shorcuts to used directories
+alias cds='cd ~/.local/scripts'
+alias cdc='cd ~/.config'
+alias cdpp='cd ~/programitas/python_projects'
+alias cdda='cd /data'
+
+# Calcu
+alias bc='bc -ql'
+
+# xdg-open
+alias o='xdg-open'
+# Para ver recursos de memoria
+alias free='free -hwt'
+
+# Almanaque
+alias cal='cal -3 --color=auto'
+
+# Agrgarle colores a diff
+alias diff='colordiff'              # requires colordiff package
+
+# Color al grep
+alias grep='grep --color=auto'
+
+alias more='less'
+
+
+alias df='df -h'
+alias du='du -c -h'
+
+# Para que se creen los parent directories
+alias mkdir='mkdir -p -v'
+
+alias ping='ping -c 1'
+
+alias dmesg='dmesg -HL'
+
+# Safety features
+alias sudo='sudo '
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -I'
+alias ln='ln -i'
+
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+
+alias cls='echo -ne "\033c"'
+
+# wlan presentar SSID
+alias ssid='sudo iw dev wlp1s0 scan | grep -i ssid'
+
+alias subtitulos="qnapi --console --lang eng --show-list"
+
+# Actualizar los mirrors de pacman a los 100 más nuevos y más rápidos.
+alias reflector='sudo reflector --latest 100 --age 24 --verbose --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
+
+
+# Pasa los mp3 a menor calidad
+alias superlame64='{ for f in *; do lame --mp3input -b 64 "$f" tmp && \mv tmp "$f"; done; }'
+alias superlame128='{ for f in *; do lame --mp3input -b 128 "$f" tmp && \mv tmp "$f"; done; }'
+alias superlame192='{ for f in *; do lame --mp3input -b 192 "$f" tmp && \mv tmp "$f"; done; }'
+
+alias abook='com.github.geigi.cozy'
+
+#Bluetoothcontrol
+alias bl='bluetoothctl'
+
+alias firefox='TZ=UTC firefox'
+
+# transmission-torrent
+alias trc='transmission-remote-cli'
+
+# PACCACHE, borra los paquetes de programas que no están
+# instalados y deja solo la última versión de los paquetes
+# que sí lo están.
+alias limpiarpaquetes="sudo paccache -rk1"
+
+# EXPAC, muestra los últimos paquetes instalados
+alias ultimospaquetes="expac --timefmt=%s '%l\t%n' | sort -n"
+
+# espeak in spanish
+alias espeak="espeak -ves-la"
+
+# Para el bare git repository
+alias bkp="/usr/bin/git --git-dir=/home/test/dotfiles/ --work-tree=/home/test"
+
+# MEGA
+alias megals="megals --human --header --long --config=$HOME_CONFIG/megarc"
+alias megarm="megarm --config=$HOME_CONFIG/megarc"
+alias megaput="megaput --config=$HOME_CONFIG/megarc"
+alias megaget="megaget --config=$HOME_CONFIG/megarc"
+
+# VIM --> NVIM
+alias vim="nvim"
+
+# La platita
+alias guitarra="python ~/programitas/python_projects/guita/main.py"
+
+# Funciones muy útiles:
+# Abrir un archivo de mi home directory con el neovim
+vf(){ find $HOME -type f | fzf | xargs -r -I % $EDITOR %; }
+# Abrir sesiones de mi home directory con el neovim
+vs(){ find $HOME -name "*.vim" | fzf | xargs -r -I % $EDITOR -S %; }
+# REMOVE VIM SWAP FILES
+rvs(){ find $HOME -name "*.swp" | fzf | xargs -r -I % rm %; dustify -r 112 "Se eliminó la swap"; }
+
+# Ps que tanto uso
+alias pies="pstree -apC age | grep $1"
+
+# youtube-dl audio
+alias yt="youtube-dl --add-metadata -i"
+alias yta="yt -x -f bestaudio/best"
+
+# Corona Curl
+alias corona="curl -s https://corona-stats.online/{us,ar,es,it,nz,cn,ca,br,cl,in,tw,kr,jp}?minimal=true | grep -A1 Rank > ~/corona && grep -v \"\-\-\" ~/corona && \mv ~/corona /tmp"
+
