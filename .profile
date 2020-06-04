@@ -62,4 +62,3 @@ export PATH="/usr/lib/jvm/java-13-openjdk/bin/:$PATH"
 
 # Less file history
 export LESSHISTFILE="/dev/null"
-

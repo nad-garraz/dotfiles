@@ -88,6 +88,8 @@ alias espeak="espeak -ves-la"
 
 # Para el bare git repository
 alias bkp="/usr/bin/git --git-dir=/home/test/dotfiles/ --work-tree=/home/test"
+alias bkpc="bkp commit -m"
+alias bkpa="bkp add"
 
 # MEGA
 alias megals="megals --human --header --long --config=$HOME_CONFIG/megarc"
