@@ -1,0 +1,42 @@
+# Default show hidden files. zh -> HOTKEY
+set hidden
+set preview true
+set icons true
+
+map cds cd ~/.local/scripts
+map cddoc cd ~/documents
+map cdpa cd ~/paquetes
+map cdpp cd ~/programitas/python_projects
+
+# Custom Functions
+cmd open ${{
+    case $(file --mime-type "$f" -bL) in
+        text/*|application/json) $EDITOR "$f";;
+        video/*|image/*/application/pdf) xdg-open "$f" & disown;;
+        *) xdg-open "$f" ;;
+    esac
+}}
+
+# Crear nuevo directorio
+cmd mkdir ${{
+  printf "Directory Name: "
+  read ans
+  mkdir $ans
+}}
+
+# Crear nuevo archivo de texto
+cmd mkfile ${{
+  printf "File Name: "
+  read ans
+  $EDITOR $ans
+}}
+
+# Para previewer
+map - $/path/to/draw_img.sh $f
+
+cmd video_preview ${{
+    CACHE=$(mktemp /tmp/thumb_cache.XXXXX)
+    ffmpegthumbnailer -i "$f" -o $CACHE -s 0
+    /path/to/draw_img.sh $CACHE && rm $CACHE
+}}
+map + :video_preview

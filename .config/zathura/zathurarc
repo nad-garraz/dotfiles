@@ -1,0 +1,5 @@
+# Invertir colores en zathura
+map i recolor
+
+# Zoom out
+map _ zoom out

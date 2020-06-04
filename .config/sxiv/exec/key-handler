@@ -1,0 +1,24 @@
+#!/bin/sh
+
+make_trash () {
+	[ ! -d /tmp/trash ] && mkdir /tmp/trash && notify-send "Se generó:" "/tmp/trash"
+}
+
+while read file
+do
+	case "$1" in
+		"C-d")
+			make_trash;
+			mv "$file" /tmp/trash
+			notify-send "$file --> /tmp/trash";;
+		"C-r")
+			convert -rotate 90 "$file" "$file" ;;
+		"C-c")
+			# Copia el nombre del archivo al clipboard
+			echo -n "$file" | xclip -selection clipboard && notify-send "Se copio: $(basename -- $file)" "al clipboard";;
+		"C-w")
+			xwallpaper --center "$file" ;;
+		"C-s")
+			cp "$file" /tmp/"$file" ;;
+	esac
+done

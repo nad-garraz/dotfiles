@@ -1,0 +1,19 @@
+[Default Applications]
+x-scheme-handler/discord-464069837237518357=discord-464069837237518357.desktop
+application/x-magnet=torrent.desktop;
+application/x-bittorrent=torrent.desktop;
+
+application/pdf=pdf.desktop;
+application/postscript=pdf.desktop;
+
+image/jpeg=img.desktop;
+image/png=img.desktop;
+image/gif=img.desktop;
+
+video/x-matroska=video.desktop
+video/mpg=video.desktop
+
+text/plain=text.desktop
+text/x-tex=text.desktop
+
+inode/directory=file.desktop

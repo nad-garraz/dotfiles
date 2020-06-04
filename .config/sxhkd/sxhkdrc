@@ -1,0 +1,73 @@
+#		  _   _       _   _  __
+#		 | | | | ___ | |_| |/ /___ _   _ ___
+#		 | |_| |/ _ \| __| ' // _ \ | | / __|
+#		 |  _  | (_) | |_| . \  __/ |_| \__ \
+#		 |_| |_|\___/ \__|_|\_\___|\__, |___/
+#					   |___/
+
+# Open a terminal emulator
+super + t
+	$TERMINAL
+
+# MPC dmenu
+super + m
+	mpc_dmenu
+
+# Dual Monitor: Output
+super + o
+	monitor_dmenu
+
+# Emoticones
+alt + shift + e
+	emoticones
+
+# Apagar, reiniciar, killx
+super + q
+	apagar_dmenu
+
+# Volumen control
+super + {Up,Down}
+	{volume +,volume -}
+
+# Restart dwmbar
+shift + super + r
+	restart_dmenu
+
+# Dmenu calculator
+super + c
+	calc_dmenu
+
+# Dmenu bluetoothctl
+alt + shift + b
+	bl_dmenu
+
+# Gui apps, browser, calculator, downlords, steam
+alt + shift + o ; {b,c,e,g}
+	{$BROWSER,speedcrunch,calibre,gimp}
+
+# Gui apps, browser, calculator, downlords, steam
+alt + shift + g ; {d,s,r}
+	{downlords-faf-client,steam,retroarch}
+
+# Terminal apps, ncmpcpp, lf, wyrd
+alt + shift + t ; {m,f,w,n,v}
+	{tx ncmpcpp, tx lf, tx wyrd, tx notes, tx pulsemixer}
+
+# FFMPEG related:
+
+# Webcam
+alt + shift + w ; {1,2,3,4,m}
+	{webcam_toggle 1, webcam_toggle 2, webcam_toggle 3, webcam_toggle 4, webcam_dmenu}
+
+# Capture Screen, Take ScreenShot
+Print
+	capture_screen
+
+# Killall ffmpeg
+control + F8
+	killall ffmpeg && notify-send "Se mató el ffmpeg"
+
+
+##Change layout: Estoy usando el IBUS por el momento
+##super + ctrl + i
+##layout_toggle

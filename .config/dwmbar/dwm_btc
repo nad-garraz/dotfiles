@@ -1,0 +1,6 @@
+#!/bin/sh
+
+BTC=$(printf "%.0f" "$(curl -s rate.sx/1BTC)" )
+EOS=$(printf "%.2f" "$(curl -s rate.sx/1EOS)" )
+
+printf "%sBTC:%s,EOS:%s%s" "$SEP1" "$BTC" "$EOS" "$SEP2"

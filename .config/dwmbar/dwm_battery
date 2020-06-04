@@ -1,0 +1,16 @@
+#!/bin/sh
+
+dwm_battery () {
+	# Battery percentage
+	CHARGE=$(cat /sys/class/power_supply/BAT1/capacity)
+	# Charging status
+	STATUS=$(cat /sys/class/power_supply/BAT1/status)
+	printf "%s" "$SEP1"
+	if [ "$STATUS" = "Charging" ]; then
+		printf "AC %s%%" "$CHARGE"
+	else
+		printf "BAT %s%%" "$CHARGE"
+	fi
+	printf "%s" "$SEP2"
+}
+dwm_battery

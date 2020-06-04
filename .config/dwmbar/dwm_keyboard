@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Dependencies: xorg-setxkbmap
+
+dwm_keyboard () {
+LAYOUT=$(setxkbmap -query | awk '/layout/{print $2}')
+        printf "%s%s%s" "$SEP1" "$LAYOUT" "$SEP2"
+}
+
+dwm_keyboard
