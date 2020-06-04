@@ -1,4 +1,17 @@
-set show-all-if-ambiguous on
+# Color files by types
+# Note that this may cause completion text blink in some terminals (e.g. xterm).
+set colored-stats On
+# Append char to indicate type
+set visible-stats On
+# Mark symlinked directories
+set mark-symlinked-directories On
+# Color the common prefix
+set colored-completion-prefix On
+# Color the common prefix in menu-complete
+set menu-complete-display-prefix On
 
-# Swaping Caps <--> Esc
-setxkbmap -option caps:swapescape
+# Que al apretar ctrl+C no tire ^C
+set echo-control-characters off
+
+# Autocomplete faster
+set show-all-if-ambiguous on

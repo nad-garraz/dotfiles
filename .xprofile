@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+
+# Call the wallpaper script
+[ -e $HOME_SCRIPTS/wallpaper ] && $HOME_SCRIPTS/wallpaper 2> $LOGS/wallpaper.log &
+
+# Status Bar
+#[ -e $HOME_SCRIPTS/dwm_bar.sh ] && dwm_bar.sh 1> /dev/null 2> $LOGS/dwm_bar.log  &
+dwmblocks &
+
+# Notificaciones
+dunst &
+
+# Battery Notifications
+[ -e $HOME_SCRIPTS/battery_notifications ] && battery_notifications 2> $LOGS/battery_notification.log 1> /dev/null &
+
+# Hotkeys
+sxhkd 2> $LOGS/sxhkd.log &1 > /dev/null &
+
+# Transparency
+xcompmgr &
+
+# REDSHIFT
+redshift 1> /dev/null 2> $LOGS/redshift.log &
+
+# Automontar discos
+udiskie --no-notify &
+
+# Para escribir en chino con el IBUS
+ibus-daemon -drx &
+
+# Swaping Caps <--> Esc
+setxkbmap -option caps:swapescape
