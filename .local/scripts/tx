@@ -1,17 +1,3 @@
 #!/bin/sh
 
 $TERMINAL -e $1
-
-
-#case $1 in
-	#ncmpcpp) $TERMINAL -e ncmpcpp
-		#;;
-	#lf) $TERMINAL -e lf
-		#;;
-	#ranger) $TERMINAL -e ranger
-		#;;
-	#wyrd) $TERMINAL -e wyrd
-		#;;
-	#pulsemixer) $TERMINAL -e pulsemixer
-		#;;
-#esac
