@@ -1,9 +1,0 @@
-.config/nvim/bundle/*
-.config/nvim/plugin-custom-path/*
-.config/dwmbar/wallpaper/wall.png
-.config/dwmbar/wallpaper/wall_croped
-.config/mpd/state
-.config/mpd/pid
-.config/mpd/database.db
-!.gitignore
-
