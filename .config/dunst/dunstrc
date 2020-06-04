@@ -190,18 +190,18 @@ history = ctrl+grave
 # Context menu.
 context = ctrl+shift+grave
 
-[urgency_low]
 # IMPORTANT: colors have to be defined in quotation marks.
 # Otherwise the "#" and following would be interpreted as a comment.
+[urgency_low]
 frame_color = "#3B7C87"
 foreground = "#3B7C87"
 background = "#191311"
 timeout = 3
 
 [urgency_normal]
-frame_color = "#5B8234"
-foreground = "#5B8234"
-background = "#191311"
+frame_color = "#444444"
+foreground = "#767676"
+background = "#000000"
 timeout = 4
 
 [urgency_critical]
@@ -231,16 +231,17 @@ timeout = 5
 # to find fitting options for rules.
 
 #[espeak]
-    #summary = "*"
-    #script = dunst_espeak.sh
+#summary = "*"
+#script = dunst_espeak.sh
 
 [low-bat]
-	summary = "Carga: *"
-	script = dunst_espeak.sh
+summary = "Carga: *"
+script = dunst_espeak.sh
 
 [countdown]
-    summary = "Se termina en ..."
-    script = dunst_espeak.sh
+summary = "Se termina en ..."
+script = dunst_espeak.sh
+urgency = critical
 
 #[script-test]
 #    summary = "*script*"
