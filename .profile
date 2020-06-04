@@ -59,3 +59,7 @@ export HISTFILESIZE=10000
 
 # PARA QUE EL FAF LEVANTE LA VERSION CORRECTA DE JAVA
 export PATH="/usr/lib/jvm/java-13-openjdk/bin/:$PATH"
+
+# Less file history
+export LESSHISTFILE="/dev/null"
+
