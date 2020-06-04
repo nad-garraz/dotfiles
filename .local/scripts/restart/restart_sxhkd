@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+
+pkill sxhkd > $LOGS/sxhkd.log 2>&1 && dunstify -r 321 "pkill sxhkd" "succeed"
+
+setsid sxhkd > $LOGS/sxhkd.log 2>&1 &

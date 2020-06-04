@@ -1,0 +1,14 @@
+#!/bin/sh
+
+
+PERCENTAGE="5%"
+
+case $1 in
+	-) amixer set Master $PERCENTAGE- &> $LOGS/volume.log
+		;;
+	+) amixer set Master $PERCENTAGE+ &> $LOGS/volume.log
+		;;
+esac
+
+#$HOME_SCRIPTS/restart/restart_dwmbar
+pkill -RTMIN+10 dwmblocks

@@ -1,0 +1,50 @@
+#
+#!/bin/bash
+#
+
+# DEFINO EL DIRECTORIO DE APUNTE
+DIRECTORIO="/home/nad/documents/clases_CBC/formulas_de_ayuda";
+
+# DEFINO FORMATOS DE COSAS QUE NO QUIERO BACKUP
+ARCHIVOSFEOS="-name "*.out" -o -name "*.aux" -o -name "*.log" -o -name "*.backup" -o -name "*.dvi" -o -name "*.gz" -o -name "*.swp""
+
+# DEFINO NOMBRE DE ARCHIVO QUE VOY A SUBIR
+BACKUP="bkp-$( date '+%d-%m' ).tar.gz"
+
+############################################################
+############################################################
+# BUSCO ARCHIVOS QUE NO QUEIRO BACKUP
+find $DIRECTORIO \( $ARCHIVOSFEOS \);    
+
+read -p "¿Borro todos estos archivos? " -n 1 -r
+if [[ $REPLY =~ ^[Yy]$ ]]
+then	
+	# BORRO ARCHIVOS QUE NO QUIERO BACKUP
+	find $DIRECTORIO \( $ARCHIVOSFEOS \) -delete
+	printf "\ntodo borrado\n...comprimiendo...";
+
+	# COMPRIMO EL DIRECTORIO Y CREO UN ARCHIVO CON FECHA DEL DIA
+	tar -cz --file /tmp/$BACKUP $DIRECTORIO;
+
+	printf "el comprimido hecho!\nSubiendo archivo:";
+	
+	# SUBO LOS ARCHIVOS CON MEGATOOLS Y LOS PRESENTO
+	megaput --config=$HOME/.config/megarc --path /Root/bkp-apuntes/$BACKUP /tmp/$BACKUP;
+	megals --config=$HOME/.config/megarc -hnl --header /Root/bkp-apuntes/
+
+	printf "\n...subido...\n"
+	
+	# BORRO EL ARCHIVO CREADO?
+	read -p "¿Borro el archivo que acabo de crear: /tmp/\"$BACKUP\"?" -n 1 -r
+	if [[ $REPLY =~ ^[Yy]$ ]]
+	    then
+		rm /tmp/$BACKUP;
+		printf "\n...borrado...\n"
+	    else
+		printf "\nQueda en /tmp/$BACKUP\n"
+fi
+
+else
+	# SALGO DEL PROGRAMA SIN HACER NADA
+	printf "\n...abortando..!\n"
+fi

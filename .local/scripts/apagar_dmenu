@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+FUENTE="monospace 16"
+
+# PROMPS A DMENU MENU ASKING TO SHUTDOWN
+
+first_choice=`echo -e "Kill X\nReiniciar\nApagar" | dmenu -fn "$FUENTE"  -i -p "¿Qué querés hacer?"`
+
+case $first_choice in
+	"Reiniciar") systemctl -i reboot
+		;;
+	"Apagar") systemctl -i poweroff
+		;;
+	"Kill X") killall xinit
+		;;
+esac

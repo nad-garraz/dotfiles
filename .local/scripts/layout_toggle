@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+function toggle_layout() {
+	actual_layout="$(setxkbmap -query | awk '/layout/ { printf $2}')"
+	if [ $actual_layout = us ]; then
+		setxkbmap -layout latam > /dev/null
+	else
+		setxkbmap -layout us > /dev/null
+	fi
+}
+
+pkill -RTMIN+11 dwmblocks
+toggle_layout
+
+#$HOME_SCRIPTS/restart/restart_dwmbar

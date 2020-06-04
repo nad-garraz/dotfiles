@@ -1,0 +1,4 @@
+#!/bin/sh
+
+pidof dunst && killall dunst
+dunst 2> /dev/null &

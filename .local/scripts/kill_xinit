@@ -1,0 +1,22 @@
+#!/bin/sh
+
+
+# PARA TERMINAR LA SESION O APAGAR LA COMPU
+
+FUENTE="monospace 16"
+
+FIRST_CHOICE=`echo -e "Restart dwm\nKill xinit" | dmenu -fn "$FUENTE" -i -p "¿Qué querés hacer?"`
+
+case $FIRST_CHOICE in
+	"Restart dwm") SECOND_CHOICE=$(echo -e "¡Sí!\nCancelar" | dmenu -fn "$FUENTE" -i -p '¿Seguro?')
+		;;
+	"Kill xinit") SECOND_CHOICE=$(echo -e "¡Chau!\nCancelar" | dmenu -fn "$FUENTE" -i -p '¿Seguro?')
+		;;
+esac
+
+case $SECOND_CHOICE in
+	"¡Sí!") tiempo=$LOOP_TIME; kill $(ps a | grep "sleep $tiempo" | grep -v grep | awk '{ print $1}')
+		;;
+	"¡Chau!") killall xinit
+		;;
+esac

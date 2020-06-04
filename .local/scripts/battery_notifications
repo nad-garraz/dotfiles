@@ -1,0 +1,28 @@
+#!/bin/sh
+
+while true
+do
+# Battery percentage
+CHARGE=$(cat /sys/class/power_supply/BAT1/capacity)
+# Charging status
+STATUS=$(cat /sys/class/power_supply/BAT1/status)
+
+if [ "$STATUS" = "Charging" ]; then
+	if [ $CHARGE -ge 90 ] && [ $(expr $CHARGE % 2) -eq 0 ];then
+		dunstify -r 1234 "Batería al $CHARGE%" "Desconectar cargador"
+	elif [ $CHARGE -ge 96 ] && [ $(expr $CHARGE % 2) -eq 0 ];then
+		dunstify -r 1234 "Carga: $CHARGE%" "Desconectar cargador"
+	fi
+else
+	if [ $CHARGE -le 40 ] && [ $CHARGE -ge 20 ] && [ $(expr $CHARGE % 10) -eq 0 ]; then
+		dunstify -r 1234 "Batería al $CHARGE%" "Conectar cargador"
+	elif [ $CHARGE -le 15 ] && [ $(expr $CHARGE % 5) -eq 0 ]; then
+		dunstify -r 1234 "Carga: $CHARGE%" "Conectar cargador"
+	elif [ $CHARGE -eq 4 ]; then
+		dunstify -r 1234 "Carga: $CHARGE%" "¡Se suspenderá en instantes!"
+	elif [ $CHARGE -le 3 ]; then
+		systemctl -i suspend
+	fi
+fi
+sleep 90
+done

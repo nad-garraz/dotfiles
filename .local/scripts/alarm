@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+i=${1:-60}
+
+convert (){
+	long=$(echo "${#i}-1" | bc -ql) # saco el número
+	numero="${i: 0:$long}"
+	if [ "$(echo "${i: -1}")" = "m" ];
+	then
+		let i=$(echo "$numero"*60 | bc -ql)
+	fi
+}
+
+convert
+while [ $i -gt 0 ];
+do
+	[ $i -gt 0 ] && [ $i -le 10 ] && dunstify -r 12 "$i"
+	let i=$(echo "$i-1" | bc -ql) 1> /dev/null
+	sleep 1
+done
+
+dunstify -t 10000 "Fin de los $1 segundos" &
+mpv $HOME/.reminders/sonidos/spoon.mp3

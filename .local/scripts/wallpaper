@@ -1,0 +1,12 @@
+#!/bin/sh
+
+FILENAME="$DWMBAR/wallpaper/wall.png"
+CROPPED="$DWMBAR/wallpaper/wall_croped"
+
+# Border white pixels
+XPIXEL=5
+YPIXEL=8
+
+# This will create a PNG file
+python $DWMBAR/wallpaper/random_walk_wallpaper.py 1> /dev/null 2> $LOGS/random.log
+convert -bordercolor "black" $FILENAME -crop "1920x1080+$XPIXEL-$YPIXEL" $CROPPED 1> /dev/null 2> $LOGS/convert_wall.log && xwallpaper --center $CROPPED

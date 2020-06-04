@@ -1,0 +1,6 @@
+#
+#!/bin/sh
+#
+
+# Mata el Loop de dwmbar y hace un refresh de todo
+pkill -f "sleep $LOOP_TIME"

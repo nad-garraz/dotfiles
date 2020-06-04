@@ -1,0 +1,16 @@
+#
+#!/usr/bin/env bash
+#
+
+# Screen-shot, capture-screen
+
+# Variables:
+TIMESTAMP="$(date +%d-%m-%Y-%H:%M)"
+TARGETBASE="/data/pictures/screenshots"
+SHUTTER="/data/music/sounds/shutter.mp3"
+# Crea el directorio si no lo encuentra:
+[ -d $TARGETBASE ] || mkdir -p $TARGETBASE
+
+# Comando:
+import -window root $TARGETBASE/$TIMESTAMP.png && dunstify -r 1234 "Screenshot guardada en:" "$TARGETBASE/$TIMESTAMP.png"
+[ ! -z "$SHUTTER" ] && mpv $SHUTTER &

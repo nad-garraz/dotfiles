@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+
+# PROMPS A DMENU MENU FOR MPC
+
+FUENTE="monospace 16"
+
+FIRST_CHOICE=`echo -e "Play\\Pause\nNext\nPrev\nPlaylists\nPick Song\nShuffle\nRepeat" | dmenu -i -fn "$FUENTE" -p "MINIMAL MPC"`
+
+case $FIRST_CHOICE in
+	Play\\Pause) mpc toggle > /dev/null
+		;;
+	Next) mpc next > /dev/null
+		;;
+	Prev) mpc prev > /dev/null
+		;;
+	Playlists) SECOND_CHOICE="`mpc lsplaylists | dmenu -i -l 10 -fn "$FUENTE" -p "CHOOSE PLAYLIST"`"
+		;;
+	"Pick Song") PLAY_SONG="`mpc playlist | dmenu -i -l 15 -fn "$FUENTE" -p "CHOOSE SONG"`"
+		;;
+	Shuffle) mpc random > /dev/null
+		;;
+	Repeat) mpc repeat > /dev/null
+esac
+
+
+# IF THE SECOND_CHOICE IS NON EMPTY, CLEAR PLAYLIST --> LOAD SECOND_CHOICE PLAYLIST
+# AND START PLAYING
+
+[ ! -z "$SECOND_CHOICE" ] && mpc clear > /dev/null && mpc load "$SECOND_CHOICE" > /dev/null && mpc play > /dev/null
+
+if [ ! -z "$PLAY_SONG" ]; then
+	ARTIST=$(echo "$PLAY_SONG" | awk -F' - ' '{ printf "%s", $1}')
+	TITLE=$(echo "$PLAY_SONG" | awk -F' - ' '{ printf "%s", $2}')
+	echo "$ARTIST\n$TITLE"
+	[ ! -z "$ARTIST" ] && [ ! -z "$TITLE" ] && mpc searchplay artist "$ARTIST" title "$TITLE" 1> /dev/null 2> $LOGS/dwm_demu.log
+
+fi
+
+#$HOME_SCRIPTS/restart/restart_dwmbar
+pkill -RTMIN+12 dwmblocks

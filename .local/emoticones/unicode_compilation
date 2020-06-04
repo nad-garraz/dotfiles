@@ -1,0 +1,1940 @@
+#  _____                 _   _
+# | ____|_ __ ___   ___ | |_(_) ___ ___  _ __   ___  ___
+# |  _| | '_ ` _ \ / _ \| __| |/ __/ _ \| '_ \ / _ \/ __|
+# | |___| | | | | | (_) | |_| | (_| (_) | | | |  __/\__ \
+# |_____|_| |_| |_|\___/ \__|_|\___\___/|_| |_|\___||___/
+# =======================================================
+# =======================================================
+#
+#     _        _   _       _     _           _
+#    / \   ___| |_(_)_   _(_) __| | __ _  __| | ___  ___
+#   / _ \ / __| __| \ \ / / |/ _` |/ _` |/ _` |/ _ \/ __|
+#  / ___ \ (__| |_| |\ V /| | (_| | (_| | (_| |  __/\__ \
+# /_/   \_\___|\__|_| \_/ |_|\__,_|\__,_|\__,_|\___||___/
+# =======================================================
+#
+🕴   ---    Person in Suit Levitating
+🧗   ---    Person Climbing
+🧗‍♂️   ---   Man Climbing
+🧗‍♀️   ---   Woman Climbing
+🏇   ---    Horse Racing
+⛷   ---    Skier
+🏂   ---    Snowboarder
+🏌   ---    Person Golfing
+🏌️‍♂️   ---   Man Golfing
+🏌️‍♀️   ---   Woman Golfing
+🏄   ---    Person Surfing
+🏄‍♂️   ---   Man Surfing
+🏄‍♀️   ---   Woman Surfing
+🚣 Person Rowing Boat
+🚣‍♂️   ---   Man Rowing Boat
+🚣‍♀️   ---   Woman Rowing Boat
+🏊   ---    Person Swimming
+🏊‍♂️   ---   Man Swimming
+🏊‍♀️   ---   Woman Swimming
+⛹   ---    Person Bouncing Ball
+⛹️‍♂️   ---   Man Bouncing Ball
+⛹️‍♀️   ---   Woman Bouncing Ball
+🏋   ---    Person Lifting Weights
+🏋️‍♂️   ---   Man Lifting Weights
+🏋️‍♀️   ---   Woman Lifting Weights
+🚴   ---    Person Biking
+🚴‍♂️   ---   Man Biking
+🚴‍♀️   ---   Woman Biking
+🚵   ---    Person Mountain Biking
+🚵‍♂️   ---   Man Mountain Biking
+🚵‍♀️   ---   Woman Mountain Biking
+🤸   ---    Person Cartwheeling
+🤸‍♂️   ---   Man Cartwheeling
+🤸‍♀️   ---   Woman Cartwheeling
+🤼   ---    People Wrestling
+🤼‍♂️   ---   Men Wrestling
+🤼‍♀️   ---   Women Wrestling
+🤽   ---    Person Playing Water Polo
+🤽‍♂️   ---   Man Playing Water Polo
+🤽‍♀️   ---   Woman Playing Water Polo
+🤾   ---    Person Playing Handball
+🤾‍♂️   ---   Man Playing Handball
+🤾‍♀️   ---   Woman Playing Handball
+🤹   ---    Person Juggling
+🤹‍♂️   ---   Man Juggling
+🤹‍♀️   ---   Woman Juggling
+🧘   ---    Person in Lotus Position
+🧘‍♂️   ---   Man in Lotus Position
+🧘‍♀️   ---   Woman in Lotus Position
+🎪   ---    Circus Tent
+🛹   ---    Skateboard
+🎗   ---    Reminder Ribbon
+🎟   ---    Admission Tickets
+🎫   ---    Ticket
+🎖   ---    Military Medal
+🏆   ---    Trophy
+🏅   ---    Sports Medal
+🥇   ---    1st Place Medal
+🥈   ---    2nd Place Medal
+🥉   ---    3rd Place Medal
+⚽   ---    Soccer Ball
+⚾   ---    Baseball
+🥎   ---    Softball
+🏀   ---    Basketball
+🏐   ---    Volleyball
+🏈   ---    American Football
+🏉   ---    Rugby Football
+🎾   ---    Tennis
+🥏   ---    Flying Disc
+🎳   ---    Bowling
+🏏   ---    Cricket Game
+🏑   ---    Field Hockey
+🏒   ---    Ice Hockey
+🥍   ---    Lacrosse
+🏓   ---    Ping Pong
+🏸   ---    Badminton
+🥊   ---    Boxing Glove
+🥋   ---    Martial Arts Uniform
+⛳   ---    Flag in Hole
+⛸   ---    Ice Skate
+🎣   ---    Fishing Pole
+🎽   ---    Running Shirt
+🎿   ---    Skis
+🛷   ---    Sled
+🥌   ---    Curling Stone
+🎯   ---    Direct Hit
+🎱   ---    Pool 8 Ball
+🎮   ---    Video Game
+🎰   ---    Slot Machine
+🎲   ---    Game Die
+🧩   ---    Puzzle Piece
+♟   ---    Chess Pawn
+🎭   ---    Performing Arts
+🎨   ---    Artist Palette
+🧵   ---    Thread
+🧶   ---    Yarn
+🎼   ---    Musical Score
+🎤   ---    Microphone
+🎧   ---    Headphone
+🎷   ---    Saxophone
+🎸   ---    Guitar
+🎹   ---    Musical Keyboard
+🎺   ---    Trumpet
+🎻   ---    Violin
+🥁   ---    Drum
+🎬   ---    Clapper Board
+🏹   ---    Bow and Arrow
+#
+#  ____            _ _                                  _
+# / ___| _ __ ___ (_) | ___ _   _ ___    __ _ _ __   __| |
+# \___ \| '_ ` _ \| | |/ _ \ | | / __|  / _` | '_ \ / _` |
+#  ___) | | | | | | | |  __/ |_| \__ \ | (_| | | | | (_| |
+# |____/|_| |_| |_|_|_|\___|\__, |___/  \__,_|_| |_|\__,_|
+#                           |___/
+#  ____                  _
+# |  _ \ ___  ___  _ __ | | ___
+# | |_) / _ \/ _ \| '_ \| |/ _ \
+# |  __/  __/ (_) | |_) | |  __/
+# |_|   \___|\___/| .__/|_|\___|
+#                 |_|
+# ==========================================================
+#
+😀   ---    Grinning Face
+😃   ---    Grinning Face with Big Eyes
+😄   ---    Grinning Face with Smiling Eyes
+😁   ---    Beaming Face with Smiling Eyes
+😆   ---    Grinning Squinting Face
+😅   ---    Grinning Face with Sweat
+🤣   ---    Rolling on the Floor Laughing
+😂   ---    Face with Tears of Joy
+🙂   ---    Slightly Smiling Face
+🙃   ---    Upside-Down Face
+😉   ---    Winking Face
+😊   ---    Smiling Face with Smiling Eyes
+😇   ---    Smiling Face with Halo
+🥰   ---    Smiling Face with Hearts
+😍   ---    Smiling Face with Heart-Eyes
+🤩   ---    Star-Struck
+😘   ---    Face Blowing a Kiss
+😗   ---    Kissing Face
+☺   ---    Smiling Face
+😚   ---    Kissing Face with Closed Eyes
+😙   ---    Kissing Face with Smiling Eyes
+😋   ---    Face Savoring Food
+😛   ---    Face with Tongue
+😜   ---    Winking Face with Tongue
+🤪   ---    Zany Face, loco, crazy
+😝   ---    Squinting Face with Tongue
+🤑   ---    Money-Mouth Face
+🤗   ---    Hugging Face
+🤭   ---    Face with Hand Over Mouth
+🤫   ---    Shushing Face
+🤔   ---    Thinking Face
+🤐   ---    Zipper-Mouth Face
+🤨   ---    Face with Raised Eyebrow
+😐   ---    Neutral Face
+😑   ---    Expressionless Face
+😶   ---    Face Without Mouth
+😏   ---    Smirking Face
+😒   ---    Unamused Face
+🙄   ---    Face with Rolling Eyes
+😬   ---    Grimacing Face
+🤥   ---    Lying Face
+😌   ---    Relieved Face
+😔   ---    Pensive Face
+😪   ---    Sleepy Face
+🤤   ---    Drooling Face
+😴   ---    Sleeping Face
+😷   ---    Face with Medical Mask
+🤒   ---    Face with Thermometer
+🤕   ---    Face with Head-Bandage
+🤢   ---    Nauseated Face
+🤮   ---    Face Vomiting
+🤧   ---    Sneezing Face
+🥵   ---    Hot Face
+🥶   ---    Cold Face
+🥴   ---    Woozy Face
+😵   ---    Dizzy Face
+🤯   ---    Exploding Head
+🤠   ---    Cowboy Hat Face
+🥳   ---    Partying Face
+😎   ---    Smiling Face with Sunglasses
+🤓   ---    Nerd Face
+🧐   ---    Face with Monocle
+😕   ---    Confused Face
+😟   ---    Worried Face
+🙁   ---    Slightly Frowning Face
+☹   ---    Frowning Face
+😮   ---    Face with Open Mouth
+😯   ---    Hushed Face
+😲   ---    Astonished Face
+😳   ---    Flushed Face
+🥺   ---    Pleading Face
+😦   ---    Frowning Face with Open Mouth
+😧   ---    Anguished Face
+😨   ---    Fearful Face
+😰   ---    Anxious Face with Sweat
+😥   ---    Sad but Relieved Face
+😢   ---    Crying Face
+😭   ---    Loudly Crying Face
+😱   ---    Face Screaming in Fear
+😖   ---    Confounded Face
+😣   ---    Persevering Face
+😞   ---    Disappointed Face
+😓   ---    Downcast Face with Sweat
+😩   ---    Weary Face
+😫   ---    Tired Face
+🥱   ---    Yawning Face
+😤   ---    Face with Steam From Nose
+😡   ---    Pouting Face
+😠   ---    Angry Face
+🤬   ---    Face with Symbols on Mouth
+😈   ---    Smiling Face with Horns
+👿   ---    Angry Face with Horns
+💀   ---    Skull
+☠   ---    Skull and Crossbones
+💩   ---    Pile of Poo
+🤡   ---    Clown Face
+👹   ---    Ogre
+👺   ---    Goblin
+👻   ---    Ghost
+👽   ---    Alien
+👾   ---    Alien Monster
+🤖   ---    Robot
+😺   ---    Grinning Cat
+😸   ---    Grinning Cat with Smiling Eyes
+😹   ---    Cat with Tears of Joy
+😻   ---    Smiling Cat with Heart-Eyes
+😼   ---    Cat with Wry Smile
+😽   ---    Kissing Cat
+🙀   ---    Weary Cat
+😿   ---    Crying Cat
+😾   ---    Pouting Cat
+💋   ---    Kiss Mark
+👋   ---    Waving Hand
+🤚   ---    Raised Back of Hand
+🖐   ---    Hand with Fingers Splayed
+✋   ---    Raised Hand
+🖖   ---    Vulcan Salute
+👌   ---    OK Hand
+🤏   ---    Pinching Hand
+✌   ---    Victory Hand
+🤞   ---    Crossed Fingers
+🤟   ---    Love-You Gesture
+🤘   ---    Sign of the Horns
+🤙   ---    Call Me Hand
+👈   ---    Backhand Index Pointing Left
+👉   ---    Backhand Index Pointing Right
+👆   ---    Backhand Index Pointing Up
+🖕🏻   ---   1 Middle Finger, fakiu
+🖕   ---    Middle Finger
+👇   ---    Backhand Index Pointing Down
+☝   ---    Index Pointing Up
+👍   ---    Thumbs Up
+👎   ---    Thumbs Down
+✊   ---    Raised Fist
+👊   ---    Oncoming Fist
+🤛   ---    Left-Facing Fist
+🤜   ---    Right-Facing Fist
+👏   ---    Clapping Hands
+🙌   ---    Raising Hands
+👐   ---    Open Hands
+🤲   ---    Palms Up Together
+🤝   ---    Handshake
+🙏   ---    Folded Hands
+✍   ---    Writing Hand
+💅   ---    Nail Polish
+🤳   ---    Selfie
+💪   ---    Flexed Biceps
+🦾   ---    Mechanical Arm
+🦿   ---    Mechanical Leg
+🦵   ---    Leg
+🦶   ---    Foot
+👂   ---    Ear
+🦻   ---    Ear with Hearing Aid
+👃   ---    Nose
+🧠   ---    Brain
+🦷   ---    Tooth
+🦴   ---    Bone
+👀   ---    Eyes
+👁   ---    Eye
+👅   ---    Tongue
+👄   ---    Mouth
+👶   ---    Baby
+🧒   ---    Child
+👦   ---    Boy
+👧   ---    Girl
+🧑   ---    Person
+👱   ---    Person: Blond Hair
+👨   ---    Man
+🧔   ---    Man: Beard
+👨‍🦰   ---   Man: Red Hair
+👨‍🦱   ---   Man: Curly Hair
+👨‍🦳   ---   Man: White Hair
+👨‍🦲   ---   Man: Bald
+👩   ---    Woman
+👩‍🦰   ---   Woman: Red Hair
+🧑‍🦰   ---   Person: Red Hair
+👩‍🦱   ---   Woman: Curly Hair
+🧑‍🦱   ---   Person: Curly Hair
+👩‍🦳   ---   Woman: White Hair
+🧑‍🦳   ---   Person: White Hair
+👩‍🦲   ---   Woman: Bald
+🧑‍🦲   ---   Person: Bald
+👱‍♀️   ---   Woman: Blond Hair
+👱‍♂️   ---   Man: Blond Hair
+🧓   ---    Older Person
+👴   ---    Old Man
+👵   ---    Old Woman
+🙍   ---    Person Frowning
+🙍‍♂️   ---   Man Frowning
+🙍‍♀️   ---   Woman Frowning
+🙎   ---    Person Pouting
+🙎‍♂️   ---   Man Pouting
+🙎‍♀️   ---   Woman Pouting
+🙅   ---    Person Gesturing No
+🙅‍♂️   ---   Man Gesturing No
+🙅‍♀️   ---   Woman Gesturing No
+🙆   ---    Person Gesturing OK
+🙆‍♂️   ---   Man Gesturing OK
+🙆‍♀️   ---   Woman Gesturing OK
+💁   ---    Person Tipping Hand
+💁‍♂️   ---   Man Tipping Hand
+💁‍♀️   ---   Woman Tipping Hand
+🙋   ---    Person Raising Hand
+🙋‍♂️   ---   Man Raising Hand
+🙋🏻‍♂️   ---   1 Man Raising Hand, chau
+🙋‍♀️   ---   Woman Raising Hand
+🧏   ---    Deaf Person
+🧏‍♂️   ---   Deaf Man
+🧏‍♀️   ---   Deaf Woman
+🙇   ---    Person Bowing
+🙇‍♂️   ---   Man Bowing
+🙇‍♀️   ---   Woman Bowing
+🤦   ---    Person Facepalming
+🤦‍♂️   ---   Man Facepalming
+🤦‍♀️   ---   Woman Facepalming
+🤷🏻‍♂️   ---   1 Man Shrugging
+🤷   ---    Person Shrugging
+🤷‍♂️   ---   Man Shrugging
+🤷‍♀️   ---   Woman Shrugging
+🧑‍⚕️   ---   Health Worker
+👨‍⚕️   ---   Man Health Worker
+👩‍⚕️   ---   Woman Health Worker
+👨🏻‍🎓   ---   1 Student
+🧑‍🎓   ---   Student
+👨‍🎓   ---   Man Student
+👩‍🎓   ---   Woman Student
+🧑‍🏫   ---   Teacher
+👨‍🏫   ---   Man Teacher
+👩‍🏫   ---   Woman Teacher
+🧑‍⚖️   ---   Judge
+👨‍⚖️   ---   Man Judge
+👩‍⚖️   ---   Woman Judge
+🧑‍🌾   ---   Farmer
+👨‍🌾   ---   Man Farmer
+👩‍🌾   ---   Woman Farmer
+🧑‍🍳   ---   Cook
+👨‍🍳   ---   Man Cook
+👩‍🍳   ---   Woman Cook
+🧑‍🔧   ---   Mechanic
+👨‍🔧   ---   Man Mechanic
+👩‍🔧   ---   Woman Mechanic
+🧑‍🏭   ---   Factory Worker
+👨‍🏭   ---   Man Factory Worker
+👩‍🏭   ---   Woman Factory Worker
+🧑‍💼   ---   Office Worker
+👨‍💼   ---   Man Office Worker
+👩‍💼   ---   Woman Office Worker
+🧑‍🔬   ---   Scientist
+👨‍🔬   ---   Man Scientist
+👩‍🔬   ---   Woman Scientist
+🧑‍💻   ---   Technologist
+👨‍💻   ---   Man Technologist
+👩‍💻   ---   Woman Technologist
+🧑‍🎤   ---   Singer
+👨‍🎤   ---   Man Singer
+👩‍🎤   ---   Woman Singer
+🧑‍🎨   ---   Artist
+👨‍🎨   ---   Man Artist
+👩‍🎨   ---   Woman Artist
+🧑‍✈️   ---   Pilot
+👨‍✈️   ---   Man Pilot
+👩‍✈️   ---   Woman Pilot
+🧑‍🚀   ---   Astronaut
+👨‍🚀   ---   Man Astronaut
+👩‍🚀   ---   Woman Astronaut
+🧑‍🚒   ---   Firefighter
+👨‍🚒   ---   Man Firefighter
+👩‍🚒   ---   Woman Firefighter
+👮   ---    Police Officer
+👮‍♂️   ---   Man Police Officer
+👮‍♀️   ---   Woman Police Officer
+🕵   ---    Detective
+🕵️‍♂️   ---   Man Detective
+🕵️‍♀️   ---   Woman Detective
+💂   ---    Guard
+💂‍♂️   ---   Man Guard
+💂‍♀️   ---   Woman Guard
+👷   ---    Construction Worker
+👷‍♂️   ---   Man Construction Worker
+👷‍♀️   ---   Woman Construction Worker
+🤴   ---    Prince
+👸   ---    Princess
+👳   ---    Person Wearing Turban
+👳‍♂️   ---   Man Wearing Turban
+👳‍♀️   ---   Woman Wearing Turban
+👲   ---    Person With Skullcap
+🧕   ---    Woman with Headscarf
+🤵   ---    Person in Tuxedo
+👰   ---    Person With Veil
+🤰   ---    Pregnant Woman
+🤱   ---    Breast-Feeding
+🧑‍🍼   ---   Person Feeding Baby
+👼   ---    Baby Angel
+🎅   ---    Santa Claus
+🤶   ---    Mrs. Claus
+🦸   ---    Superhero
+🦸‍♂️   ---   Man Superhero
+🦸‍♀️   ---   Woman Superhero
+🦹   ---    Supervillain
+🦹‍♂️   ---   Man Supervillain
+🦹‍♀️   ---   Woman Supervillain
+🧙   ---    Mage
+🧙‍♂️   ---   Man Mage
+🧙‍♀️   ---   Woman Mage
+🧚   ---    Fairy
+🧚‍♂️   ---   Man Fairy
+🧚‍♀️   ---   Woman Fairy
+🧛   ---    Vampire
+🧛‍♂️   ---   Man Vampire
+🧛‍♀️   ---   Woman Vampire
+🧜   ---    Merperson
+🧜‍♂️   ---   Merman
+🧜‍♀️   ---   Mermaid
+🧝   ---    Elf
+🧝‍♂️   ---   Man Elf
+🧝‍♀️   ---   Woman Elf
+🧞   ---    Genie
+🧞‍♂️   ---   Man Genie
+🧞‍♀️   ---   Woman Genie
+🧟‍♂️   ---   1 Man Zombie
+🧟   ---    Zombie
+🧟‍♀️   ---   Woman Zombie
+💆   ---    Person Getting Massage
+💆‍♂️   ---   Man Getting Massage
+💆‍♀️   ---   Woman Getting Massage
+💇   ---    Person Getting Haircut
+💇‍♂️   ---   Man Getting Haircut
+💇‍♀️   ---   Woman Getting Haircut
+🚶   ---    Person Walking
+🚶‍♂️   ---   Man Walking
+🚶‍♀️   ---   Woman Walking
+🧍   ---    Person Standing
+🧍‍♂️   ---   Man Standing
+🧍‍♀️   ---   Woman Standing
+🧎   ---    Person Kneeling
+🧎‍♂️   ---   Man Kneeling
+🧎‍♀️   ---   Woman Kneeling
+🧑‍🦯   ---   Person with White Cane
+👨‍🦯   ---   Man with White Cane
+👩‍🦯   ---   Woman with White Cane
+🧑‍🦼   ---   Person in Motorized Wheelchair
+👨‍🦼   ---   Man in Motorized Wheelchair
+👩‍🦼   ---   Woman in Motorized Wheelchair
+🧑‍🦽   ---   Person in Manual Wheelchair
+👨‍🦽   ---   Man in Manual Wheelchair
+👩‍🦽   ---   Woman in Manual Wheelchair
+🏃   ---    Person Running
+🏃‍♂️    ---   Man Running
+🏃‍♀️   ---   Woman Running
+💃   ---    Woman Dancing
+🕺   ---    Man Dancing
+🕴   ---    Person in Suit Levitating
+👯   ---    People with Bunny Ears
+👯‍♂️   ---   Men with Bunny Ears
+👯‍♀️   ---   Women with Bunny Ears
+🧖   ---    Person in Steamy Room
+🧖‍♂️   ---   Man in Steamy Room
+🧖‍♀️   ---   Woman in Steamy Room
+🧘   ---    Person in Lotus Position
+🧑‍🤝‍🧑   ---   People Holding Hands
+👭   ---    Women Holding Hands
+👫   ---    Woman and Man Holding Hands
+👬   ---    Men Holding Hands
+💏   ---    Kiss
+👨‍❤️‍💋‍👨   ---    Kiss: Man, Man
+👩‍❤️‍💋‍👩   ---    Kiss: Woman, Woman
+💑   ---    Couple with Heart
+👨‍❤️‍👨   ---    Couple with Heart: Man, Man
+👩‍❤️‍👩   ---    Couple with Heart: Woman, Woman
+👪   ---    Family
+👨‍👩‍👦   ---    Family: Man, Woman, Boy
+👨‍👩‍👧   ---    Family: Man, Woman, Girl
+👨‍👩‍👧‍👦   ---    Family: Man, Woman, Girl, Boy
+👨‍👩‍👦‍👦   ---    Family: Man, Woman, Boy, Boy
+👨‍👩‍👧‍👧   ---    Family: Man, Woman, Girl, Girl
+👨‍👨‍👦   ---    Family: Man, Man, Boy
+👨‍👨‍👧   ---    Family: Man, Man, Girl
+👨‍👨‍👧‍👦   ---    Family: Man, Man, Girl, Boy
+👨‍👨‍👦‍👦   ---    Family: Man, Man, Boy, Boy
+👨‍👨‍👧‍👧   ---    Family: Man, Man, Girl, Girl
+👩‍👩‍👦   ---    Family: Woman, Woman, Boy
+👩‍👩‍👧   ---    Family: Woman, Woman, Girl
+👩‍👩‍👧‍👦   ---    Family: Woman, Woman, Girl, Boy
+👩‍👩‍👦‍👦   ---    Family: Woman, Woman, Boy, Boy
+👩‍👩‍👧‍👧   ---    Family: Woman, Woman, Girl, Girl
+👨‍👦   ---    Family: Man, Boy
+👨‍👦‍👦   ---    Family: Man, Boy, Boy
+👨‍👧   ---    Family: Man, Girl
+👨‍👧‍👦   ---    Family: Man, Girl, Boy
+👨‍👧‍👧   ---    Family: Man, Girl, Girl
+👩‍👦   ---    Family: Woman, Boy
+👩‍👦‍👦   ---    Family: Woman, Boy, Boy
+👩‍👧   ---    Family: Woman, Girl
+👩‍👧‍👦   ---    Family: Woman, Girl, Boy
+👩‍👧‍👧   ---    Family: Woman, Girl, Girl
+🗣   ---    Speaking Hea, grito
+👤   ---    Bust in Silhouette
+👥   ---    Busts in Silhouette
+👣   ---    Footprints
+#
+#
+#
+#   ___  _     _      _
+#  / _ \| |__ (_) ___| |_ ___  ___
+# | | | | '_ \| |/ _ \ __/ _ \/ __|
+# | |_| | |_) | |  __/ || (_) \__ \
+#  \___/|_.__// |\___|\__\___/|___/
+#           |__/
+# ===================================
+#
+🧳   ---    Luggage
+🌂   ---    Closed Umbrella
+☂   ---    Umbrella
+🧵   ---    Thread
+🧶   ---   Yarn
+👓   ---    Glasses
+🕶   ---    Sunglasses
+🥽   ---    Goggles
+🥼   ---    Lab Coat
+🦺   ---    Safety Vest
+👔   ---    Necktie
+👕   ---    T-Shirt
+👖   ---    Jeans
+🧣   ---    Scarf
+🧤   ---    Gloves
+🧥   ---    Coat
+🧦   ---    Socks
+👗   ---    Dress
+👘   ---    Kimono
+🥻   ---    Sari
+🩱   ---    One-Piece Swimsuit
+🩲   ---    Briefs
+🩳   ---    Shorts
+👙   ---    Bikini
+👚   ---    Woman’s Clothes
+👛   ---    Purse
+👜   ---    Handbag
+👝   ---    Clutch Bag
+🎒   ---    Backpack
+👞   ---    Man’s Shoe
+👟   ---    Running Shoe
+🥾   ---    Hiking Boot
+🥿   ---    Flat Shoe
+👠   ---    High-Heeled Shoe
+👡   ---    Woman’s Sandal
+🩰   ---    Ballet Shoes
+👢   ---    Woman’s Boot
+👑   ---    Crown
+👒   ---    Woman’s Hat
+🎩   ---    Top Hat
+🎓   ---    Graduation Cap
+🧢   ---    Billed Cap
+⛑   ---    Rescue Worker’s Helmet
+💄   ---    Lipstick
+💍   ---    Ring
+💼   ---    Briefcase
+🚣   ---   Person Rowing Boat
+🗾   ---   Map of Japan
+🏔   ---    Snow-Capped Mountain
+⛰   ---   Mountain
+🌋   ---   Volcano
+🗻   ---   Mount Fuji
+🏕   ---   Camping
+🏖   ---   Beach with Umbrella
+🏜   ---   Desert
+🏝   ---   Desert Island
+🏞   ---   National Park
+🏟   ---   Stadium
+🏛   ---   Classical Building
+🏗   ---   Building Construction
+🏘   ---   Houses
+🏚   ---   Derelict House
+🏠   ---   House
+🏡   ---   House with Garden
+🏢   ---   Office Building
+🏣   ---   Japanese Post Office
+🏤   ---   Post Office
+🏥   ---   Hospital
+🏦   ---   Bank
+🏨   ---   Hotel
+🏩   ---   Love Hotel
+🏪   ---   Convenience Store
+🏫   ---   School
+🏬   ---   Department Store
+🏭   ---   Factory
+🏯   ---   Japanese Castle
+🏰   ---   Castle
+💒   ---   Wedding
+🗼   ---   Tokyo Tower
+🗽   ---   Statue of Liberty
+⛪   ---   Church
+🕌   ---   Mosque
+🛕   ---   Hindu Temple
+🕍   ---   Synagogue
+⛩   ---   Shinto Shrine
+🕋   ---   Kaaba
+⛲   ---   Fountain
+⛺   ---   Tent
+🌁   ---   Foggy
+🌃   ---   Night with Stars
+🏙   ---    Cityscape
+🌄   ---   Sunrise Over Mountains
+🌅   ---   Sunrise
+🌆   ---   Cityscape at Dusk
+🌇   ---   Sunset
+🌉   ---   Bridge at Night
+🎠   ---   Carousel Horse
+🎡   ---   Ferris Wheel
+🎢   ---   Roller Coaster
+🚂   ---   Locomotive
+🚃   ---   Railway Car
+🚄   ---   High-Speed Train
+🚅   ---   Bullet Train
+🚆   ---   Train
+🚇   ---   Metro
+🚈   ---   Light Rail
+🚉   ---   Station
+🚊   ---   Tram
+🚝   ---   Monorail
+🚞   ---   Mountain Railway
+🚋   ---   Tram Car
+🚌   ---   Bus
+🚍   ---   Oncoming Bus
+🚎   ---   Trolleybus
+🚐   ---   Minibus
+🚑   ---   Ambulance
+🚒   ---   Fire Engine
+🚓   ---   Police Car
+🚔   ---   Oncoming Police Car
+🚕   ---   Taxi
+🚖   ---   Oncoming Taxi
+🚗   ---   Automobile
+🚘   ---   Oncoming Automobile
+🚚   ---   Delivery Truck
+🚛   ---   Articulated Lorry
+🚜   ---   Tractor
+🏎   ---    Racing Car
+🏍   ---    Motorcycle
+🛵   ---   Motor Scooter
+🛺   ---   Auto Rickshaw
+🚲   ---   Bicycle
+🛴   ---   Kick Scooter
+🚏   ---   Bus Stop
+🛤   ---    Railway Track
+⛽   ---   Fuel Pump
+🚨   ---   Police Car Light
+🚥   ---   Horizontal Traffic Light
+🚦   ---   Vertical Traffic Light
+🚧   ---   Construction
+⚓   ---   Anchor
+⛵   ---   Sailboat
+🚤   ---   Speedboat
+🛳   ---    Passenger Ship
+⛴   ---   Ferry
+🛥   ---    Motor Boat
+🚢   ---   Ship
+✈   ---   Airplane
+🛩   ---    Small Airplane
+🛫   ---   Airplane Departure
+🛬   ---   Airplane Arrival
+🪂   ---   Parachute
+💺   ---   Seat
+🚁   ---   Helicopter
+🚟   ---   Suspension Railway
+🚠   ---   Mountain Cableway
+🚡   ---   Aerial Tramway
+🛰   ---    Satellite
+🚀   ---   Rocket
+🛸   ---   Flying Saucer
+🪐   ---   Ringed Planet
+🌠   ---   Shooting Star
+🌌   ---   Milky Way
+⛱   ---   Umbrella on Ground
+🎆   ---   Fireworks
+🎇   ---   Sparkler
+🎑   ---   Moon Viewing Ceremony
+💴   ---   Yen Banknote
+💵   ---   Dollar Banknote
+💶   ---   Euro Banknote
+💷   ---   Pound Banknote
+🗿   ---   Moai
+🛂   ---   Passport Control
+🛃   ---   Customs
+🛄   ---   Baggage Claim
+🛅   ---   Left Luggage
+#
+#   ____                _     _
+#  / ___|___  _ __ ___ (_) __| | __ _
+# | |   / _ \| '_ ` _ \| |/ _` |/ _` |
+# | |__| (_) | | | | | | | (_| | (_| |
+#  \____\___/|_| |_| |_|_|\__,_|\__,_|
+#
+#
+🍇   ---   Grapes
+🍈   ---   Melon
+🍉   ---   Watermelon
+🍊   ---   Tangerine
+🍋   ---   Lemon
+🍌   ---   Banana
+🍍   ---   Pineapple
+🥭   ---   Mango
+🍎   ---   Red Apple
+🍏   ---   Green Apple
+🍐   ---   Pear
+🍑   ---   Peach
+🍒   ---   Cherries
+🍓   ---   Strawberry
+🥝   ---   Kiwi Fruit
+🍅   ---   Tomato
+🥥   ---   Coconut
+🥑   ---   Avocado
+🍆   ---   Eggplant
+🥔   ---   Potato
+🥕   ---   Carrot
+🌽   ---   Ear of Corn
+🌶   ---    Hot Pepper
+🥒   ---   Cucumber
+🥬   ---   Leafy Green
+🥦   ---   Broccoli
+🧄   ---   Garlic
+🧅   ---   Onion
+🍄   ---   Mushroom
+🥜   ---   Peanuts
+🌰   ---   Chestnut
+🍞   ---   Bread
+🥐   ---   Croissant
+🥖   ---   Baguette Bread
+🥨   ---   Pretzel
+🥯   ---   Bagel
+🥞   ---   Pancakes
+🧇   ---   Waffle
+🧀   ---   Cheese Wedge
+🍖   ---   Meat on Bone
+🍗   ---   Poultry Leg
+🥩   ---   Cut of Meat
+🥓   ---   Bacon
+🍔   ---   Hamburger
+🍟   ---   French Fries
+🍕   ---   Pizza
+🌭   ---   Hot Dog
+🥪   ---   Sandwich
+🌮   ---   Taco
+🌯   ---   Burrito
+🥙   ---   Stuffed Flatbread
+🧆   ---   Falafel
+🍳   ---   Cooking
+🥘   ---   Shallow Pan of Food
+🍲   ---   Pot of Food
+🥣   ---   Bowl with Spoon
+🥗   ---   Green Salad
+🍿   ---   Popcorn
+🧈   ---   Butter
+🧂   ---   Salt
+🥫   ---   Canned Food
+🍱   ---   Bento Box
+🍘   ---   Rice Cracker
+🍙   ---   Rice Ball
+🍚   ---   Cooked Rice
+🍛   ---   Curry Rice
+🍜   ---   Steaming Bowl
+🍝   ---   Spaghetti
+🍠   ---   Roasted Sweet Potato
+🍢   ---   Oden
+🍣   ---   Sushi
+🍤   ---   Fried Shrimp
+🍥   ---   Fish Cake with Swirl
+🥮   ---   Moon Cake
+🍡   ---   Dango
+🥟   ---   Dumpling
+🥠   ---   Fortune Cookie
+🥡   ---   Takeout Box
+🦪   ---   Oyster
+🍦   ---   Soft Ice Cream
+🍧   ---   Shaved Ice
+🍨   ---   Ice Cream
+🍩   ---   Doughnut
+🍪   ---   Cookie
+🎂   ---   Birthday Cake
+🍰   ---   Shortcake
+🧁   ---   Cupcake
+🥧   ---   Pie
+🍫   ---   Chocolate Bar
+🍬   ---   Candy
+🍭   ---   Lollipop
+🍮   ---   Custard
+🍯   ---   Honey Pot
+🍼   ---   Baby Bottle
+🥛   ---   Glass of Milk
+☕   ---   Hot Beverage
+🍵   ---   Teacup Without Handle
+🍶   ---   Sake
+🍾   ---   Bottle with Popping Cork
+🍷   ---   Wine Glass
+🍸   ---   Cocktail Glass
+🍹   ---   Tropical Drink
+🍺   ---   Beer Mug
+🍻   ---   Clinking Beer Mugs
+🥂   ---   Clinking Glasses
+🥃   ---   Tumbler Glass
+🥤   ---   Cup with Straw
+🧃   ---   Beverage Box
+🧉   ---   Mate
+🧊   ---   Ice
+🥢   ---   Chopsticks
+🍽   ---    Fork and Knife with Plate
+🍴   ---   Fork and Knife
+🥄   ---   Spoon
+#
+#  ____              _
+# |  _ \ ___  _ __  (_) __ _ ___
+# | |_) / _ \| '_ \ | |/ _` / __|
+# |  __/ (_) | | | || | (_| \__ \
+# |_|   \___/|_| |_|/ |\__,_|___/
+#                 |__/
+#
+,=,e   ---   Turtle, tortuga
+ᘛ⁐̤ᕐᐷ◅   ---   Rata, mouse, rat
+(╯°□ °)╯︵ X∩NI˥   ---   Flipping Linux
+( ͠° ͟ʖ ͡°)=Ε/̵͇̿̿/’̿̿ ̿ ̿ ̿     ---   Pistol, kill, shoot
+=Ε/̵͇̿̿/’̿̿ ̿ ̿ ̿  ( T ʖ̯ T)   ---   kill me, suicide, matenme
+(☞⌐▀͡ ͜ʖ͡▀ )☞   ---   You got it, esa!, right, my man
+^_^   ---   Overjoyed
+[¬º-°]¬   ---   Zombie
+-_-;   ---   Anime Sweat Drop
+(ToT)   ---   Crying
+(っ^‿^)っ   ---   Kirby
+(//_^)   ---   Emo
+^-^   ---   Happy
+(>_<)   ---   Painful
+(=^_^=)   ---   Bunny
+(^_^)   ---   Laughing
+ಠ_ಠ   ---   Disapproval
+(╯°□°)╯︵┻━┻   ---   Flipping Table
+ᒄ₍⁽ˆ⁰ˆ⁾₎ᒃ♪♬   ---   Frosty the Snowman
+V=(°°)=V   ---   Crab
+ლ(ಠ益ಠ)ლ   ---   Anger
+༼༎ຶ෴༎ຶ༽   ---   Distraught
+༼つ◕_◕༽つ   ---   Take my energy
+(°ʖ̯°)   ---   Disgruntled
+^o^   ---   Mog
+（/｡＼)   ---   Shy
+T.T   ---   Sad
+♪┏(・o･)┛♪   ---   Dancing
+>.<   ---   Upset
+^^   ---   Blissful
+Q('.'Q)   ---   Put Em Up
+<_<   ---   Looking
+(o^-^o)   ---   Pikachu
+(^‿◕)   ---   Winking
+(^o^)   ---   Singing
+(°ʖ°)   ---   Smiling
+^_^;   ---   Guilty
+(◣_◢)   ---   Angry, enojo
+<(^oo^)>   ---   Pig
+^_^/   ---   High Five
+(♥_♥)   ---   In Love
+(#^.^#)   ---   Embarrassed
+¬.¬   ---   Whatever
+（。々°）   ---   Herp Derp
+ლ(ಠ益ಠლ)   ---   But At What Cost, odio, bronca
+(◢д◣)   ---   Depressed
+(＾▽＾)   ---   Cheerful
+◖ර◞ʖ◟ර◗   ---   Grandma
+꒡ᘦ̲꒡   ---   Sleeping
+◦°˚\☺/˚°◦   ---   Playing in the snow
+(－‸ლ)   ---   Whoops
+＼(＾O＾)／   ---   Celebrate
+(°̥̥̥̥̥̥̥̥ᴗ°̥̥̥̥̥̥̥̥)   ---   Happy crying
+(•∀•)っθΘʘ   ---   Hiding Easter eggs
+/|\(;,;)/|\   ---   Bat
+(ू˃̣̣̣̣̣̣︿˂̣̣̣̣̣̣p;ू)   ---   Sobbing
+⊙▂⊙   ---   Shocked
+|∴めϖめ∴|   ---   SpongeBob SquarePants
+(●∈∋●)   ---   Bird
+(((༼•̫͡•༽)))   ---   Ghost
+U＾ェ＾U   ---   Puppy
+＿〆(。。)   ---   Writing
+U=･x･=U   ---   Rabbit
+ϵ('Θ')϶   ---   Fish
+ヽ(★ω★)ノ   ---   Pumped up
+(∿°○°)∿︵ǝʌol   ---   Heartbroken
+(=^･ｪ･^=)   ---   Kitty
+(￣┏∞┓￣)   ---   Fu Manchu Man
+（　＾＾）人（＾＾　）   ---   Best Buds
+(╯_╰)   ---   Bummed out
+└@(･ｪ･)@┐   ---   Beefcake
+⊂((・▽・))⊃   ---   Hug me
+o(^▽^)o   ---   Pumped
+(づ￣³￣)づ   ---   Smooch
+┗(●-﹏｀｡)づ   ---   Hurt
+(p_-)   ---   Thinking
+⋟^≏^⋞   ---   Kitty Cat
+(─‿‿─)   ---   Pleased
+(•_•)O°Q(•_•)   ---   Playing Ping Pong
+{♥‿♥}   ---   Lovestruck
+(￣┏＿┓￣)   ---   Mustache
+๏-)   ---   Cyclops
+-{'''|'''|'''|''']=[]   ---   Syringe, vacuna, inyeccion
+(╯˘-˘)╯   ---   Praying
+(╯°□°）╯︵┻━┻   ---   Flipping table, fuck it
+(ง•̀ゝ•́)ง   ---   Fighting
+uwu   ---   Happy Anime Face
+(¬_¬")   ---   Annoyed
+-_-*   ---   Frustrated
+(-_-)#   ---   Girl
+[-_-]~   ---   Ninja
+d(^_^)b   ---   Listening to Music
+8(>_<)8   ---   Jealous
+\m/d(^_^)b\m/   ---   Rocking Out
+✌(◕‿-)✌   ---   Peace
+(ò_ó)   ---   Furious
+d^_^b   ---   DJ
+(≧∇≦)/   ---   Joyful
+（￣□￣；）   ---   Surprised
+(´╹〽╹`)   ---   Worried
+(*￣m￣)   ---   Dissatisfied
+(*°∀°)=3   ---   Infatuated
+(^_^)／   ---   Waving
+＼（＾＾）／   ---   Glad
+(シ__)シ   ---   Apology
+ε=┏(>_<)┛   ---   Running
+o(^_-)O   ---   Boxer
+(^^)//   ---   Applause
+(`_)?(_')   ---   Dueling
+(´~`)   ---   Weary
+¯\(°_o)/¯   ---   Confused
+d-(^.^)z   ---   Thumbs Up
+o(><)o⌒*   ---   Mad
+v(^_^)v   ---   Victory
+(z_z~.)   ---   Tired
+Ｃ:。ミ   ---   Octopus
+ʕ•ᴥ•ʔ   ---   Koala
+ε-(´・｀)ﾌ   ---   Phew
+┬┴┬┴┤(･_├┬┴┬┴   ---   Snooper, violin, creep
+[^._.^]ﾉ彡   ---   Nyan Cat
+¯\_(ツ)_/¯   ---   Shrugging
+⊆☉ᴥ☉⊇   ---   Bear
+(ﾉ__)ﾉ   ---   Surrender
+(-_-)旦~   ---   Drinking
+＼(^o)(^0^)(o^)／   ---   Caroling
+＼(-_-)   ---   Thank You
+＝(^o^)ノ___ｏ   ---   Bowling
+[•.•ิ]   ---   Huh
+ヽ(ﾟДﾟ)ﾉ   ---   Freak Out
+(ﾉﾟ0ﾟ)ﾉ~   ---   Yoo-Hoo
+ᶘᵒᴥᵒᶅ   ---   Seal
+◯０o。(ー。ー)y   ---   Smoking
+(＊☉౪⊙｡)ﾉ   ---   Imbecile
+<(･ｪ-)<}   ---   Bow and Arrow
+(｀o´)_θ☆   ---   Kicking
+(◐‿◑)   ---   Crazy
+{{|└(>o<)┘|}}   ---   Up In Arms
+ಠᴗಠ   ---   Scheming
+(っ˘ڡ˘ς)   ---   Yummy
+┬─┬ノ(º_ºノ)   ---   Putting Table Back
+(o￣∇￣)=◯)`ν゜)･   ---   Punching
+♪～(￣ε￣；)   ---   Whistling
+ಠ_ರೃ   ---   Monocle
+:-{-__-:   ---   Stinky
+(；一_一)   ---   Ashamed
+o(´^｀)o   ---   Reluctant
+.∵･(ﾟДﾟ)   ---   Scared
+（つД｀）   ---   Wiping Tears
+(´>_●)メ(●_<｀)   ---   Sword Fighting
+(;´Д`)   ---   Giving Up
+(o´・Υ・)ﾉ･   ---   Help
+(￣▼￣)   ---   Big Grin
+ᕦ(ò_óˇ)ᕤ   ---   Flexing
+(#×_×)   ---   Dead
+(｡･ˇдˇ･｡)   ---   Pompous
+(。･_･)ノ”【】   ---   Painting
+(*・_・)ノ⌒*   ---   Throwing Away
+(´∪`*)   ---   Friendly
+|д･)   ---   Hiding
+(●´ﾉω`)ｺ   ---   Whispering
+（￢з￢）σ   ---   Pointing
+（・д・）｝   ---   On The Phone
+(。_°)☆   ---   Punched
+（人’∀’）   ---   Precious
+┗(･ω･;)┛   ---   How Should I Know
+(о＾ω＾о)   ---   Giggling
+(´ー｀)┌ﾌｯ   ---   Golf Clap
+(″･ิ_･ิ)っ   ---   Wait
+ಥ_ಥ   ---   Bawling
+(ʘ‿ʘ)   ---   Smile
+◔̯◔   ---   Rolling Eyes
+(ಥ﹏ಥ)   ---   Devastated
+(__)..ooOO   ---   Dreaming
+٩◔̯◔۶   ---   Eye Roll With Hands Up
+♥‿♥   ---   Enamored
+「(°ヘ°)   ---   Puzzled
+\\(<.<|>.>)//   ---   Panicking
+^(#｀∀´)_Ψ   ---   Demon
+(っ⌒‿⌒)っ   ---   Hug
+(☉__☉”)   ---   Yikes
+(•͡.•͡)   ---   Skeptical
+ƪ(˘▽˘ƪ)   ---   Worshiping
+(╯‵Д′)╯   ---   Scary
+(-□-)︵*   ---   Blowing a Kiss
+(-_ゞ   ---   Groggy
+<(;￣･￣)   ---   Scratching
+（´Д゜）/゜⌒。   ---   Discarding
+(╬☉Д⊙ฺ)   ---   Cyborg
+ヾ(｀ε´)ﾉ   ---   Booing
+(⓪益⓪)   ---   Staring
+^;;^   ---   Spider
+(☄ฺ◣д◢)☄ฺ   ---   Scaring
+m(ﾟ皿ﾟ)m★━━   ---   Laser
+(´-ω･)︻┻┳══━一   ---   Sniper
+L(´□｀L)   ---   Oh No!
+(;´ρ`)   ---   Yawning
+^)_(^   ---   Chubby
+⨌⨀_⨀⨌   ---   Benjamin Franklin
+㐈⦁ཽし⦁ཽ㐈   ---   Larry David
+ᡊ|◔じ◔|ᡊ   ---   Woody Allen
+⎰≀.☮-☮≀⎰   ---   John Lennon
+✌(გ_㇁გ)✌   ---   Ringo Starr
+༼ঢ_㇁ঢ༽   ---   Bad hair day
+◤◡ᴥ◡◥   ---   Dog
+⊂(◜ᴥ◝)つ   ---   Teddy Bear
+╹﹏╹   ---   Cold
+-ˆωˆ-   ---   Kitten
+☉ϖ☉   ---   Lobster
+∊♡_ᴥ_♡∍   ---   Puppy Love
+⪿ↂ˒̫̮ↂ⫀   ---   Elton John
+◖㈠ω㈠◗   ---   Panda
+◖⎚∠⎚◗   ---   Geek
+(.〜◍`皿′◍〜.)   ---   Livid
+∊ಠ_ಠ∍   ---   Distressed
+(╯ნ_㇁ნ)╯   ---   Defeated
+ᕦ◉▿◉ᕤ   ---   Owl
+ᕦ❍ᴗ❍ᕤ   ---   Muscular Person
+♫.(◠౪◠).♫   ---   Jamming to music
+(⌒&nbsp;͜ʖ⌒)b   ---   Attentive
+⊂•͡˘∠•͡˘⊃   ---   Suspicious
+(•ᴥ•)́`́'́`́'́⻍   ---   Porcupine
+˙ ͜ʟ˙   ---   Content
+(ɔ˘з˘)ɔ   ---   Romantic
+ʕ•́؈•̀)   ---   Winnie the Pooh
+(V)(°,,,,°)(V)   ---   Zoidberg
+(∩｀-´)⊃━☆ﾟ.*･｡ﾟ   ---   Wizard
+(óì_í)=óò=(ì_íò)   ---   Bro Pound
+(=^ェ^=)   ---   Cat
+|̲̅̅●̲̅̅|̲̅̅=̲̅̅|̲̅̅●̲̅̅|   ---   Stereo
+ʘ‿ʘ   ---   Eager
+(-o-)zzZ☽   ---   Sleepy
+┳┻┳°   ---   Ping Pong table
+⫷°⧭°⫸   ---   Clown
+:(¦)   ---   Frog
+（　＾）／占~~~   ---   Banksy
+ʕʔ   ---   Bread
+¤\(`⌂´)/¤   ---   Lifting weights
+(`_)乂(_')   ---   Arm wrestle
+❆❅❉   ---   Snowing
+(;´༎ຶД༎ຶ`)   ---   Weeping
+(°ᴗ°)~ð   ---   Proposal
+ʕ•͡ᴥ•ʔ   ---   Polar bear
+(:3っ)っ   ---   Walrus
+ᕕ(ᐛ)ᕗ   ---   Celebrating
+（＿ε＿）   ---   Kiss my butt
+～゜・_・゜～   ---   Raving
+༼ঢ_༽ঢ༽   ---   Perplexed
+(๑╹ڡ╹๑)   ---   Tasty
+(¬_¬)   ---   Neglected
+｡◕‿◕｡   ---   Gleeful
+ʕु•̫͡•ʔु   ---   Bear cub
+<コ:彡   ---   Squid
+┌|°з°|┘   ---   Cutting a rug
+(⊙_◎)   ---   Crazed
+(⊃‿⊂)   ---   Anticipation
+└(^o^)┐   ---   Grooving
+(✖╭╮✖)   ---   Deceased
+←～（o｀▽´)oΨ   ---   Satan
+(｡♥‿♥｡)   ---   Smitten
+(ง•̀_•́)ง   ---   Feisty
+V●ᴥ●V   ---   Doggy
+ヘ（。□°）ヘ   ---   Psycho
+(*^o^)人(^o^*)   ---   Buddies
+(>^_^)><(^o^<)   ---   Hugging
+(‾ʖ̫‾)   ---   Lethargic
+＿φ(°-°)/   ---   Doing Homework
+(๑´•.̫•`๑)   ---   Blushing
+ヽ(⌐■_■)ノ♪♬   ---   Boogie down
+(-ε-)   ---   Pucker up
+（￣～￣）   ---   Unimpressed
+(*≧m≦*)   ---   Enraged
+└(^o^)Ｘ(^o^)┘   ---   Best buddies
+(／。＼)   ---   Frightened
+ヽ(★ω★)ノ   ---   Excited
+੯ू•́ू໒꒱⁼³₌₃   ---   Sonic the Hedgehog
+ε=ε=ε=┌(๑ʘ∀ʘ)┘   ---   Sprinting
+（＾～＾）   ---   Meh
+(˘³˘)♥   ---   Kiss me
+੯ू‵ू໒꒱   ---   Poodle
+@(o･ω･)@   ---   Monkey
+＿φ(°-°=)   ---   Doing homework
+ᘛ⁐̤ᕐᐷ   ---   Chameleon
+⊂(^(工)^)⊃   ---   Teddy bear
+(¬‿¬)   ---   Cunning
+ƪ(˘⌣˘)ʃ   ---   Raise the roof
+(ɔˆ³(ˆ⌣ˆc)   ---   Loving couple
+✖‿✖   ---   Dead person
+(*’(OO)’*)   ---   Piggy
+:-Þ   ---   Teasing
+(;-_-)ノ   ---   Giving up
+___ψ(‥)   ---   Studying
+(▰˘◡˘▰)   ---   Satisfied
+（。_°☆＼(-–)   ---   Punch
+(╯°□°)╯︵ʞooqǝɔɐɟ   ---   Flipping Facebook
+─=≡Σ(([⊐•̀⌂•́]⊐   ---   Superhero
+(∩｀-´)⊃━☆ﾟ.*･｡ﾟ   ---   Magic Attack
+:þ   ---   Playful
+(*▿▿*ƪ)   ---   Vampire
+(▀̿Ĺ̯▀̿)   ---   Deal with it
+༼つ◕_◕༽つ   ---   Gimme
+¯(°_o)/¯   ---   Confused shrug
+(¬､¬)   ---   Shifty
+’̿’\̵͇̿̿\З=( ͠° ͟ʖ ͡°)=Ε/̵͇̿̿/’̿̿ ̿ ̿ ̿ ̿ ̿   ---   Outlaw
+¥[*.*]¥   ---   Robot
+O(<>'<>)O   ---   Aang
+Ƹ̵̡Ӝ̵̨̄Ʒ   ---   Butterfly
+(`_^)   ---   Wink
+(´･ω･`)   ---   Snubbing
+ヽ（´ー｀）┌   ---   Mellow
+(^_^)/~~   ---   Goodbye
+（￣へ￣）   ---   Discontent
+o(^^o)(o^^)o   ---   Hopeful
+＼（～Ｏ～）／   ---   Good Morning
+▼o･_･o▼   ---   Hello
+♪(●′▽`)ﾉ   ---   Good Night
+(*@_＊#)   ---   Beaten Up
+---(o_　_)o   ---   Tripping
+ε=┌(^-^)┘   ---   Skipping
+ε=┌(≧▽)┘   ---   Elated
+∋(°O°)∈   ---   Blowfish
+(((((^_^)   ---   Teleporting
+／人◕‿‿◕人＼   ---   Kyubey
+(~_(]=--Z(◡˘)   ---   Pie Fight
+(*^^)^*)   ---   Kiss
+((((((^_^;)   ---   Evading
+[±_±]   ---   Sick
+＼(｀0´)／   ---   Fed Up
+且_(ﾟ◇ﾟ；)ノﾞ   ---   Waiter
+(*・)σσ(*゜O゜)   ---   Poking
+(／o^)/°⊥＼(^o＼)   ---   Volleyball
+ლ(´ڡ`ლ)   ---   Licking
+/(＿0＿)￣θ☆≡≡○   ---   Scissor Kick
+((＿＿)☆≡〇   ---   Header
+(★▼▼)o┳*--   ---   Shooting
+•:_:•   ---   Nagato
+ヽ(´Д｀ヽミノ´Д｀)ノ   ---   Frantic
+ヾ(*￣O￣)ツ   ---   Yelling
+(；^＿^)ッ☆(　゜o゜)   ---   Slapping
+(*￣)(￣*)   ---   Kissing
+(。。;)＼(-_-)   ---   Comforting
+(￣ー￣)//””   ---   Clapping
+\＿(´▽｀)♪＿/   ---   Bathtub
+[]゛７(∀゜*）   ---   Dialing
+(｀皿´)｡ﾐ/   ---   Hitting
+（*・)｢｣｢｣   ---   Magic Casting
+(ﾉ-o-)ﾉ中   ---   Olympic Hammer Throw
+(/ω･＼)   ---   Peering
+(○｀д´)ﾉｼΣ(っﾟДﾟ)っ   ---   Chasing
+(´・ω・)っ由   ---   Gift
+┬─┬﻿︵/(.□.)╯   ---   Table Flips You
+(￣ー￣（＿　＿（   ---   Nodding
+†_(ﾟｰﾟ*)β   ---   Exorcism
+(｡▼皿▼)   ---   Darth Vader
+(((☎)))   ---   Phone
+∋∞(●ﾟvﾟ)∞∈   ---   Pigtails
+‎(>o<)ρミ┳┷┳゜   ---   Table Tennis
+(--)/==卍   ---   Ninja Star
+〜〜(／￣▽)／　〜ф   ---   Chasing A Butterfly
+(๑≖ิิ益≖ิ๑)   ---   Evil Laugh
+(+.+)(-.-)(__)   ---   Falling Asleep
+(+[__]∙:∙)   ---   PlayStation Portable
+ε=(☉_☉)   ---   Accidental farting
+(ˇ෴ˇ)   ---   Hipster
+#
+#
+# TODO
+#
+#
+☀   ---   Black sun with rays
+☁   ---   Cloud
+☃   ---   Snowman
+☄   ---   Comet
+★   ---   Black star
+☆   ---   White star
+☇   ---   Lightning
+☈   ---   Thunderstorm
+☉   ---   Sun
+☊   ---   Ascending node
+☋   ---   Descending node
+☌   ---   Conjunction
+☍   ---   Opposition
+☎   ---   Black telephone
+☏   ---   White telephone
+☐   ---   Ballot box
+☑   ---   Ballot box with check
+☒   ---   Ballot box with X
+☓   ---   Saltire
+☔   ---   Umbrella with raindrops
+☕   ---   Hot beverage
+☖   ---   White shogi piece
+☗   ---   Black shogi piece
+☘   ---   Shamrock
+☙   ---   Reversed rotated floral heart bullet
+☚   ---   Black left pointing index
+☛   ---   Black right pointing index
+☜   ---   White left pointing index, izquierda
+☝   ---   White up pointing index, arriba
+☞   ---   White right pointing index, derecha
+☟   ---   White down pointing index, abajo
+☠   ---   Skull, peligro, pirata, veneno, poison
+☡   ---   Caution sign
+☢   ---   Radioactive sign, radioactivo
+☣   ---   Biohazard sign
+☤   ---   Caduceus
+☥   ---   Ankh
+☦   ---   Orthodox cross
+☧   ---   Chi Rho
+☨   ---   Cross of Lorraine
+☩   ---   Cross of Jerusalem
+☪   ---   Star and crescent
+☫   ---   Farsi symbol
+☬   ---   Adi shakti
+☭   ---   Hammer and sickle, comunista
+☮   ---   Peace symbol
+☯   ---   Yin yang
+☰   ---   Trigram for Heaven
+☱   ---   Trigram for Lake
+☲   ---   Trigram for Fire
+☳   ---   Trigram for Thunder
+☴   ---   Trigram for Wind
+☵   ---   Trigram for Water
+☶   ---   Trigram for Mountain
+☷   ---   Trigram for Earth
+☸   ---   Wheel of Dharma
+☹   ---   White frowning face
+☺   ---   White smiling face
+☻   ---   Black smiling face
+☼   ---   White sun with rays
+☽   ---   First quarter moon
+☾   ---   Last quarter moon
+☿   ---   Mercury
+♀   ---   Venus
+♁   ---   Earth
+♂   ---   Mars
+♃   ---   Jupiter
+♄   ---   Saturn
+♅   ---   Uranus
+♆   ---   Neptune
+♇   ---   Pluto
+♔   ---   White chess king
+♕   ---   White chess queen
+♖   ---   White chess rook
+♗   ---   White chess bishop
+♘   ---   White chess knight
+♙   ---   White chess pawn
+♚   ---   Black chess king
+♛   ---   Black chess queen
+♜   ---   Black chess rook
+♝   ---   Black chess bishop
+♞   ---   Black chess knight
+♟   ---   Black chess pawn
+♠   ---   Black spade suit
+♡   ---   White heart suit
+♢   ---   White diamond suit
+♣   ---   Black club suit
+♤   ---   White spade suit
+♥   ---   Black heart suit
+♦   ---   Black diamond suit
+♧   ---   White club suit
+♨   ---   Hot springs
+♩   ---   Quarter note, cuarta
+♪   ---   Eighth note, octava
+♫   ---   Beamed eighth notes
+♬   ---   Beamed sixteenth notes
+🎶   ---    Musical Notes
+♭   ---   Music flat sign
+♮   ---   Music natural sign
+♯   ---   Music sharp sign
+♰   ---   West Syriac cross
+♱   ---   East Syriac cross
+♲   ---   Universal recycling symbol
+♳   ---   Recycling symbol for type-1 plastics
+♴   ---   Recycling symbol for type-2 plastics
+♵   ---   Recycling symbol for type-3 plastics
+♶   ---   Recycling symbol for type-4 plastics
+♷   ---   Recycling symbol for type-5 plastics
+♸   ---   Recycling symbol for type-6 plastics
+♹   ---   Recycling symbol for type-7 plastics
+♺   ---   Recycling symbol for generic materials
+♻   ---   Black universal recycling symbol
+♼   ---   Recycled paper symbol
+♽   ---   Partially-recycled paper symbol
+♾   ---   Permanent paper sign
+♿   ---   Wheelchair symbol, disca
+⚀   ---   Die face-1, dado
+⚁   ---   Die face-2, dado
+⚂   ---   Die face-3, dado
+⚃   ---   Die face-4, dado
+⚄   ---   Die face-5, dado
+⚅   ---   Die face-6, dado
+⚆   ---   White circle with dot right
+⚇   ---   White circle with two dots
+⚈   ---   Black circle with white dot right
+⚉   ---   Black circle with two white dots
+⚊   ---   Monogram for yang
+⚋   ---   Monogram for yin
+⚌   ---   Digram for greater yang
+⚍   ---   Digram for lesser yin
+⚎   ---   Digram for lesser yang
+⚏   ---   Digram for greater yin
+⚐   ---   White flag
+⚑   ---   Black flag
+⚒   ---   Hammer and pick
+⚓   ---   Anchor
+⚔   ---   Crossed swords
+⚕   ---   Rod of Asclepius
+⚖   ---   Scales, balanza
+⚗   ---   Alembic
+⚘   ---   Flower
+⚙   ---   Gear
+⚚   ---   Staff of Hermes
+⚛   ---   Atom symbol, átomo
+⚜   ---   Fleur-de-lis
+⚝   ---   Outlined white star
+⚞   ---   Three lines converging right
+⚟   ---   Three lines converging left
+⚠   ---   Warning sign, advertencia, atención
+⚡   ---   High voltage sign, rayo
+⚢   ---   Doubled female sign
+⚣   ---   Doubled male sign
+⚤   ---   Interlocked female and male sign
+⚥   ---   Male and female sign
+⚦   ---   Male with stroke sign
+⚧   ---   Male with stroke and male and female sign
+⚨   ---   Vertical male with stroke sign
+⚩   ---   Horizontal male with stroke sign
+⚪   ---   Medium white circle
+⚫   ---   Medium black circle
+⚬   ---   Medium small white circle
+⚭   ---   Marriage symbol
+⚮   ---   Divorce symbol
+⚯   ---   Unmarried partnership symbol
+⚰   ---   Coffin
+⚱   ---   Funeral urn
+⚲   ---   Neuter
+⚳   ---   Ceres
+⚴   ---   Pallas
+⚵   ---   Juno
+⚶   ---   Vesta
+⚷   ---   Chiron
+⚸   ---   Black moon Lilith
+⚹   ---   Sextile
+⚺   ---   Semisextile
+⚻   ---   Quincunx
+⚼   ---   Sesquiquadrate
+⚽   ---   Football, pelota, fútbol
+⚾   ---   Baseball
+⚿   ---   Squared key
+⛀   ---   White draughts man
+⛁   ---   White draughts king
+⛂   ---   Black draughts man
+⛃   ---   Black draughts king
+⛄   ---   Snowman without snow
+⛅   ---   Sun behind cloud
+⛆   ---   Rain
+⛇   ---   Black snowman
+⛈   ---   Thunder cloud and rain
+⛉   ---   Turned white shogi piece
+⛊   ---   Turned black shogi piece
+⛋   ---   White diamond in square
+⛌   ---   Crossing lanes
+⛍   ---   Disabled car
+⛎   ---   Ophiuchus
+⛏   ---   Pick
+⛐   ---   Car sliding
+⛑   ---   Helmet with white cross
+⛒   ---   Circled crossing lanes
+⛓   ---   Chains
+⛔   ---   No entry
+⛕   ---   Alternate one-way left way traffic
+⛖   ---   Black two-way left way traffic
+⛗   ---   White two-way left way traffic
+⛘   ---   Black left lane merge
+⛙   ---   White left lane merge
+⛚   ---   Drive slow sign
+⛛   ---   Heavy white down-pointing triangle
+⛜   ---   Left closed entry
+⛝   ---   Squared saltire
+⛞   ---   Falling diagonal in white circle in black square
+⛟   ---   Black truck
+⛠   ---   Restricted left entry-1
+⛡   ---   Restricted left entry-2
+⛢   ---   Astronomical symbol for Uranus
+⛣   ---   Heavy circle with stroke and two dots above
+⛤   ---   Pentagram
+⛥   ---   Right-handed interlaced pentagram
+⛦   ---   Left-handed interlaced pentagram
+⛧   ---   Inverted pentagram
+⛨   ---   Black cross on shield
+⛩   ---   Shinto shrine
+⛪   ---   Church
+⛫   ---   Castle
+⛬   ---   Historic site
+⛭   ---   Gear without hub
+⛮   ---   Gear with handles
+⛯   ---   Map symbol for lighthouse
+⛰   ---   Mountain
+⛱   ---   Umbrella on ground
+⛲   ---   Fountain
+⛳   ---   Flag in hole
+⛴   ---   Ferry
+⛵   ---   Sailboat
+⛶   ---   Square four corners
+⛷   ---   Skier
+⛸   ---   Ice skate
+⛹   ---   Person with ball
+⛺   ---   Tent
+⛻   ---   Japanese bank symbol
+⛼   ---   Headstone graveyard symbol
+⛽   ---   Fuel pump
+⛾   ---   Cup on black square
+⛿   ---   White flag with horizontal middle black stripe
+💘   ---    Heart with Arrow
+💝   ---    Heart with Ribbon
+💖   ---    Sparkling Heart
+💗   ---    Growing Heart
+💓   ---    Beating Heart
+💞   ---    Revolving Hearts
+💕   ---    Two Hearts
+💟   ---    Heart Decoration
+❣   ---    Heart Exclamation
+💔   ---    Broken Heart
+❤   ---    Red Heart
+🧡   ---    Orange Heart
+💛   ---    Yellow Heart
+💚   ---    Green Heart
+💙   ---    Blue Heart
+💜   ---    Purple Heart
+🤎   ---    Brown Heart
+🖤   ---    Black Heart
+🤍   ---    White Heart
+💯   ---    Hundred Points
+💢   ---    Anger Symbol
+💬   ---    Speech Balloon
+👁️ ‍🗨️     ---   Eye in Speech Bubble
+🗯   ---    Right Anger Bubble
+💭   ---    Thought Balloon
+💤   ---    Zzz
+💮   ---    White Flower
+♨   ---    Hot Springs
+💈   ---    Barber Pole
+🛑   ---    Stop Sign
+🕛   ---    Twelve O’Clock
+🕧   ---    Twelve-Thirty
+🕐   ---    One O’Clock
+🕜   ---    One-Thirty
+🕑   ---    Two O’Clock
+🕝   ---    Two-Thirty
+🕒   ---    Three O’Clock
+🕞   ---    Three-Thirty
+🕓   ---    Four O’Clock
+🕟   ---    Four-Thirty
+🕔   ---    Five O’Clock
+🕠   ---    Five-Thirty
+🕕   ---    Six O’Clock
+🕡   ---    Six-Thirty
+🕖   ---    Seven O’Clock
+🕢   ---    Seven-Thirty
+🕗   ---    Eight O’Clock
+🕣   ---    Eight-Thirty
+🕘   ---    Nine O’Clock
+🕤   ---    Nine-Thirty
+🕙   ---    Ten O’Clock
+🕥   ---    Ten-Thirty
+🕚   ---    Eleven O’Clock
+🕦   ---    Eleven-Thirty
+🌀   ---    Cyclone
+🃏   ---    Joker
+🀄   ---    Mahjong Red Dragon
+🎴   ---    Flower Playing Cards
+🔇   ---    Muted Speaker
+🔈   ---    Speaker Low Volume
+🔉   ---    Speaker Medium Volume
+🔊   ---    Speaker High Volume
+📢   ---    Loudspeaker
+📣   ---    Megaphone
+📯   ---    Postal Horn
+🔔   ---    Bell
+🔕   ---    Bell with Slash
+🏧   ---    ATM Sign
+🚮   ---    Litter in Bin Sign
+🚰   ---    Potable Water
+♿   ---    Wheelchair Symbol
+🚹   ---    Men’s Room
+🚺   ---    Women’s Room
+🚻   ---    Restroom
+🚼   ---    Baby Symbol
+🚾   ---    Water Closet
+🚸   ---    Children Crossing
+🚫   ---    Prohibited
+🚳   ---    No Bicycles
+🚭   ---    No Smoking
+🚯   ---    No Littering
+🚱   ---    Non-Potable Water
+🚷   ---    No Pedestrians
+🔞   ---    No One Under Eighteen
+☢   ---    Radioactive
+☣   ---    Biohazard
+⬆   ---    Up Arrow
+↗   ---    Up-Right Arrow
+➡   ---    Right Arrow
+↘   ---    Down-Right Arrow
+⬇   ---    Down Arrow
+↙   ---    Down-Left Arrow
+⬅   ---    Left Arrow
+↖   ---    Up-Left Arrow
+↕   ---    Up-Down Arrow
+↔   ---    Left-Right Arrow
+↩   ---    Right Arrow Curving Left
+↪   ---    Left Arrow Curving Right
+⤴   ---    Right Arrow Curving Up
+⤵   ---    Right rrow Curving Down
+🔃   ---    Clockwise Vertical Arrows
+🔄   ---    Counterclockwise Arrows Button
+🔙   ---    Back Arrow
+🔚   ---    End Arrow
+🔛   ---    On! Arrow
+🔜   ---    Soon Arrow
+🔝   ---    Top Arrow
+🛐   ---    Place of Worship
+⚛   ---    Atom Symbol
+🕉   ---    Om
+✡   ---    Star of David
+☸   ---    Wheel of Dharma
+☯   ---    Yin Yang
+✝   ---    Latin Cross
+☦   ---    Orthodox Cross
+☪   ---    Star and Crescent
+☮   ---    Peace Symbol
+🕎   ---    Menorah
+🔯   ---    Dotted Six-Pointed Star
+♈   ---    Aries
+♉   ---    Taurus
+♊   ---    Gemini
+♋   ---    Cancer
+♌   ---    Leo
+♍   ---    Virgo
+♎   ---    Libra
+♏   ---    Scorpio
+♐   ---    Sagittarius
+♑   ---    Capricorn
+♒   ---    Aquarius
+♓   ---    Pisces
+⛎   ---    Ophiuchus
+🔀   ---    Shuffle Tracks Button
+🔁   ---    Repeat Button
+🔂   ---    Repeat Single Button
+▶   ---    Play Button
+⏩   ---    Fast-Forward Button
+◀   ---    Reverse Button
+⏪   ---    Fast Reverse Button
+🔼   ---    Upwards Button
+⏫   ---    Fast Up Button
+🔽   ---    Downwards Button
+⏬   ---    Fast Down Button
+⏹   ---    Stop Button
+⏏   ---    Eject Button
+🎦   ---    Cinema
+🔅   ---    Dim Button
+🔆   ---    Bright Button
+📶   ---    Antenna Bars
+📳   ---    Vibration Mode
+📴   ---    Mobile Phone Off
+✖   ---    Multiply
+➕   ---    Plus
+➖   ---    Minus
+➗   ---    Divide
+♾   ---    Infinity
+‼   ---    Double Exclamation Mark
+⁉   ---    Exclamation Question Mark
+❓   ---    Question Mark
+❔   ---    White Question Mark
+❕   ---    White Exclamation Mark
+❗   ---    Exclamation Mark
+♻   ---    Recycling Symbol
+🔱   ---    Trident Emblem
+📛   ---    Name Badge
+🔰   ---    Japanese Symbol for Beginner
+⭕   ---    Hollow Red Circle
+✅   ---    Check Mark Button
+☑   ---    Check Box with Check
+✔   ---    Check Mark
+❌   ---    Cross Mark
+❎   ---    Cross Mark Button
+➰   ---    Curly Loop
+➿   ---    Double Curly Loop
+〽   ---    Part Alternation Mark
+✳   ---    Eight-Spoked Asterisk
+✴   ---    Eight-Pointed Star
+❇   ---    Sparkle
+©   ---    Copyright
+®   ---    Registered
+™   ---    Trade Mark
+#️⃣   ---    Keycap Number Sign
+0️⃣   ---    Keycap Digit Zero
+1️⃣   ---    Keycap Digit One
+2️⃣   ---    Keycap Digit Two
+3️⃣   ---    Keycap Digit Three
+4️⃣   ---    Keycap Digit Four
+5️⃣   ---    Keycap Digit Five
+6️⃣   ---    Keycap Digit Six
+7️⃣   ---    Keycap Digit Seven
+8️⃣   ---    Keycap Digit Eight
+9️⃣   ---    Keycap Digit Nine
+🔟   ---    Keycap: 10
+🔠   ---    Input Latin Uppercase
+🔡    ---   Input Latin Lowercase
+🔢   ---    Input Numbers
+🔣   ---    Input Symbols
+🔤   ---    Input Latin Letters
+🅰   ---    A Button (Blood Type)
+🆎   ---    AB Button (Blood Type)
+🅱   ---    B Button (Blood Type)
+🆑   ---    CL Button
+🆒   ---    Cool Button
+🆓   ---    Free Button
+ℹ   ---    Information
+🆔   ---    ID Button
+Ⓜ   ---    Circled M
+🆕   ---    New Button
+🆖   ---    NG Button
+🅾   ---    O Button (Blood Type)
+🆗   ---    OK Button
+🅿   ---    P Button
+🆘   ---    SOS Button
+🆙   ---    Up! Button
+🆚   ---    Vs Button
+🈁   ---    Japanese “Here” Button
+🈂   ---    Japanese “Service Charge” Button
+🈷   ---    Japanese “Monthly Amount” Button
+🈶   ---    Japanese “Not Free of Charge” Button
+🈯   ---    Japanese “Reserved” Button
+🉐   ---    Japanese “Bargain” Button
+🈹   ---    Japanese “Discount” Button
+🈚   ---    Japanese “Free of Charge” Button
+🈲   ---    Japanese “Prohibited” Button
+🉑   ---    Japanese “Acceptable” Button
+🈸   ---    Japanese “Application” Button
+🈴   ---    Japanese “Passing Grade” Button
+🈳   ---    Japanese “Vacancy” Button
+㊗   ---    Japanese “Congratulations” Button
+㊙   ---    Japanese “Secret” Button
+🈺   ---    Japanese “Open for Business” Button
+🈵   ---    Japanese “No Vacancy” Button
+🔴   ---    Red Circle
+🟠   ---    Orange Circle
+🟡   ---    Yellow Circle
+🟢   ---    Green Circle
+🔵   ---    Blue Circle
+🟣   ---    Purple Circle
+🟤   ---    Brown Circle
+⚫   ---    Black Circle
+⚪   ---    White Circle
+🟥   ---    Red Square
+🟧   ---    Orange Square
+🟨   ---    Yellow Square
+🟩   ---    Green Square
+🟦   ---    Blue Square
+🟪   ---    Purple Square
+🟫   ---    Brown Square
+⬛   ---    Black Large Square
+⬜   ---    White Large Square
+◼   ---    Black Medium Square
+◻   ---    White Medium Square
+◾   ---    Black Medium-Small Square
+◽   ---    White Medium-Small Square
+▪   ---    Black Small Square
+▫   ---    White Small Square
+🔶   ---    Large Orange Diamond
+🔷   ---    Large Blue Diamond
+🔸   ---    Small Orange Diamond
+🔹   ---    Small Blue Diamond
+🔺   ---    Red Triangle Pointed Up
+🔻   ---    Red Triangle Pointed Down
+💠   ---    Diamond with a Dot
+🔳   ---    White Square Button
+🔲   ---    Black Square Button
+💌   ---    Love Letter
+🕳   ---    Hole
+💣   ---    Bomb
+🛀   ---    Person Taking Bath
+🛌   ---    Person in Bed
+🔪   ---    Kitchen Knife
+🏺   ---    Amphora
+🗺   ---    World Map
+🧭   ---    Compass
+🧱   ---    Brick
+💈   ---    Barber Pole
+🦽   ---    Manual Wheelchair
+🦼   ---    Motorized Wheelchair
+🛢   ---    Oil Drum
+🛎   ---    Bellhop Bell
+🧳   ---    Luggage
+⌛   ---    Hourglass Done
+⏳   ---    Hourglass Not Done
+⌚   ---    Watch
+⏰   ---    Alarm Clock
+⏱   ---    Stopwatch
+⏲   ---    Timer Clock
+🕰   ---    Mantelpiece Clock
+🌡   ---    Thermometer
+⛱   ---    Umbrella on Ground
+🧨   ---    Firecracker
+🎈   ---    Balloon
+🎉   ---    Party Popper
+🎊   ---    Confetti Ball
+🎎   ---    Japanese Dolls
+🎏   ---    Carp Streamer
+🎐   ---    Wind Chime
+🧧   ---    Red Envelope
+🎀   ---    Ribbon
+🎁   ---    Wrapped Gift
+🤿   ---    Diving Mask
+🪀   ---    Yo-Yo
+🪁   ---    Kite
+🔮   ---    Crystal Ball
+🧿   ---    Nazar Amulet
+🕹   ---    Joystick
+🧸   ---    Teddy Bear
+🖼   ---    Framed Picture
+🧵   ---    Thread
+🧶   ---    Yarn
+🛍   ---    Shopping Bags
+📿   ---    Prayer Beads
+💎   ---    Gem Stone
+📯   ---    Postal Horn
+🎙   ---    Studio Microphone
+🎚   ---    Level Slider
+🎛   ---    Control Knobs
+📻   ---    Radio
+🪕   ---    Banjo
+📱   ---    Mobile Phone
+📲   ---    Mobile Phone with Arrow
+☎   ---    Telephone
+📞   ---    Telephone Receiver
+📟   ---    Pager
+📠   ---    Fax Machine
+🔋   ---    Battery
+🔌   ---    Electric Plug
+💻   ---    Laptop
+🖥   ---    Desktop Computer
+🖨   ---    Printer
+⌨   ---    Keyboard
+🖱   ---    Computer Mouse
+🖲   ---    Trackball
+💽   ---    Computer Disk
+💾   ---    Floppy Disk
+💿   ---    Optical Disk
+📀   ---    DVD
+🧮   ---    Abacus
+🎥   ---    Movie Camera
+🎞   ---    Film Frames
+📽   ---    Film Projector
+📺   ---    Television
+📷   ---    Camera
+📸   ---    Camera with Flash
+📹   ---    Video Camera
+📼   ---    Videocassette
+🔍   ---    Magnifying Glass Tilted Left
+🔎   ---    Magnifying Glass Tilted Right
+🕯   ---    Candle
+💡   ---    Light Bulb
+🔦   ---    Flashlight
+🏮   ---    Red Paper Lantern
+🪔   ---    Diya Lamp
+📔   ---    Notebook with Decorative Cover
+📕   ---    Closed Book
+📖   ---    Open Book
+📗   ---    Green Book
+📘   ---    Blue Book
+📙   ---    Orange Book
+📚   ---    Books
+📓   ---    Notebook
+📃   ---    Page with Curl
+📜   ---    Scroll
+📄   ---    Page Facing Up
+📰   ---    Newspaper
+🗞   ---    Rolled-Up Newspaper
+📑   ---    Bookmark Tabs
+🔖   ---    Bookmark
+🏷   ---    Label
+💰   ---    Money Bag
+💴   ---    Yen Banknote
+💵   ---    Dollar Banknote
+💶   ---    Euro Banknote
+💷   ---    Pound Banknote
+💸   ---    Money with Wings
+💳   ---    Credit Card
+🧾   ---    Receipt
+✉   ---    Envelope
+📧   ---    E-Mail
+📨   ---    Incoming Envelope
+📩   ---    Envelope with Arrow
+📤   ---    Outbox Tray
+📥   ---    Inbox Tray
+📦   ---    Package
+📫   ---    Closed Mailbox with Raised Flag
+📪   ---    Closed Mailbox with Lowered Flag
+📬   ---    Open Mailbox with Raised Flag
+📭   ---    Open Mailbox with Lowered Flag
+📮   ---    Postbox
+🗳   ---    Ballot Box with Ballot
+✏   ---    Pencil
+✒   ---    Black Nib
+🖋   ---    Fountain Pen
+🖊   ---    Pen
+🖌   ---    Paintbrush
+🖍   ---    Crayon
+📝   ---    Memo
+📁   ---    File Folder
+📂   ---    Open File Folder
+🗂   ---    Card Index Dividers
+📅   ---    Calendar
+📆   ---    Tear-Off Calendar
+🗒   ---    Spiral Notepad
+🗓   ---    Spiral Calendar
+📇   ---    Card Index
+📈   ---    Chart Increasing
+📉   ---    Chart Decreasing
+📊   ---    Bar Chart
+📋   ---    Clipboard
+📌   ---    Pushpin
+📍   ---    Round Pushpin
+📎   ---    Paperclip
+🖇   ---    Linked Paperclips
+📏   ---    Straight Ruler
+📐   ---    Triangular Ruler
+✂   ---    Scissors
+🗃   ---    Card File Box
+🗄   ---    File Cabinet
+🗑   ---    Wastebasket
+🔒   ---    Locked
+🔓   ---    Unlocked
+🔏   ---    Locked with Pen
+🔐   ---    Locked with Key
+🔑   ---    Key
+🗝   ---    Old Key
+🔨   ---    Hammer
+🪓   ---    Axe
+⛏   ---    Pick
+⚒   ---    Hammer and Pick
+🛠   ---    Hammer and Wrench
+🗡   ---    Dagger
+⚔   ---    Crossed Swords
+🔫   ---    Pistol
+🛡   ---    Shield
+🔧   ---    Wrench
+🔩   ---    Nut and Bolt
+⚙   ---    Gear
+🗜   ---    Clamp
+⚖   ---    Balance Scale
+🦯   ---    White Cane
+🔗   ---    Link
+🧰   ---    Toolbox
+🧲   ---    Magnet
+⚗   ---    Alembic
+🧪   ---    Test Tube
+🧫   ---    Petri Dish
+🧬   ---    DNA
+🔬   ---    Microscope
+🔭   ---    Telescope
+📡   ---    Satellite Antenna
+💉   ---    Syringe
+🩸   ---    Drop of Blood
+💊   ---    Pill
+🩹   ---    Adhesive Bandage
+🩺   ---    Stethoscope
+🚪   ---    Door
+🛏   ---    Bed
+🛋   ---    Couch and Lamp
+🪑   ---    Chair
+🚽   ---    Toilet
+🚿   ---    Shower
+🛁   ---    Bathtub
+🪒   ---    Razor
+🧴   ---    Lotion Bottle
+🧷   ---    Safety Pin
+🧹   ---    Broom
+🧺   ---    Basket
+🧻   ---    Roll of Paper
+🧼   ---    Soap
+🧽   ---    Sponge
+🧯   ---    Fire Extinguisher
+🚬   ---    Cigarette
+⚰   ---    Coffin
+⚱   ---    Funeral Urn
+🗿   ---    Moai
+🚰   ---    Potable Water

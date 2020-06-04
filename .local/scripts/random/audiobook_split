@@ -1,0 +1,62 @@
+#!/bin/sh
+
+# separa audio en las pistas que tiene según la información
+# que se le dé con el archivo.
+# El uso es "separador audio_file info_file"
+
+
+read -p "Nombre del libro: " -r BOOKTITLE
+read -p "Nombre del autor: " -r AUTHOR
+read -p "Idioma del libro: " -r LANGUAGE
+read -p "Formato audio [mp3/opus]: " -r ext
+[[ $ext =~ [mp3|opus] ]] && ext="mp3"
+
+inputaudio=$1
+
+# Extención del archivo
+ext=opus
+
+DIRECTORY="$(pwd)/$(echo -e "$AUTHOR-$BOOKTITLE" | tr '[:upper:]' '[:lower:]' | sed 's/\ /_/g')"
+
+# Directorio donde poner el los capitulos
+mkdir -p $DIRECTORY
+
+# Defino la variable track 0 por default
+read -p "Primera track ¿0 o 1?: " -r TRACK
+
+# Defino start
+start="00:00:00"
+
+echo -e "El libro estará en:\n${BLUE}$DIRECTORY${NC}"
+
+TOTAL=$(cat $2 | wc -l)
+# Loop starts
+while read -r x
+do
+end=$(echo $x | cut -d" " -f1)
+NAME=$(echo $x | cut -d" " -f2-)
+name=$(echo $NAME | tr [:upper:] [:lower:] | tr " " "_")
+
+# Nombre del archivo creado en el loop
+OUTPUTFILE="$DIRECTORY/$TRACK-$name.$ext"
+echo -e "\nSplitting from $start to $end...\nChapter: $TRACK - $NAME"
+
+case $ext in
+	opus) ffmpeg -nostdin -y -loglevel -8 -i $inputaudio -ss $start -to $end -vn "$OUTPUTFILE"
+		# Defino las tags para ponerle a los nuevos archivos
+		TITLE=$NAME
+		opustags -i "$OUTPUTFILE" -D
+		opustags -i "$OUTPUTFILE" -a chapter="$TRACK" -a title="$NAME ($TRACK/$TOTAL)" -a track="$TRACK" -a author="$AUTHOR" -a booktitle="$BOOKTITLE" -a language="$LANGUAGE" -a artist="$AUTHOR" -a album="$BOOKTITLE" -a genre="Audiobook"
+		opustags "$OUTPUTFILE"
+		;;
+	mp3) ffmpeg -nostdin -y -loglevel -8 -i "$inputaudio" -ss "$start" -to "$end" -vn -ar 44100 -ac 2 -b:a 128k "$OUTPUTFILE"
+		;;
+esac
+
+# Sumo un numero para el loop
+TRACK=$(( $TRACK + 1))
+# El último final es el siguiente principio
+start=$end
+done < $2
+echo -e "$GREEN DONE ${CYAN}✅✅✅ $NC"
+

@@ -1,0 +1,5 @@
+#!/usr/bin/sh
+
+killall dunst > $LOGS/dunst.log 2>&1 && dunstify -r 321 "killall dunst" "succeed" || echo "caca"
+
+dunst >> $LOGS/dunst.log 2>&1 &

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Comienza a grabar audio y video
+# de la webcam.
+
+# Variables:
+TIMESTAMP="webcam-$(date "+%d-%m-%Y-%H:%M").mkv"
+TARGETBASE="/data/ffmpeg"
+[ -d $TARGETBASE ] || mkdir -p $TARGETBASE
+
+# Comando:
+	dunstify -r 234 "Grabando desde Webcam:" "$TARGETBASE/$TIMESTAMP" &&\
+ffmpeg -f alsa -i pulse:1 -f video4linux2 -i /dev/video0 $TARGETBASE/$TIMESTAMP 2> $LOGS/webcam_record
