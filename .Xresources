@@ -1,0 +1,31 @@
+xterm*faceName: Inconsolata:size=12:antialias=true:autohint=true
+
+xterm*foreground: rgb:FF/GG/FF
+xterm*background: rgb:00/00/00
+xterm*color0: rgb:AA/AA/AA
+xterm*color1: rgb:ff/00/00
+xterm*color2: rgb:00/ff/00
+xterm*color3: rgb:a8/54/00
+xterm*color4: rgb:55/44/a8
+xterm*color5: rgb:a8/00/a8
+xterm*color6: rgb:00/a8/ff
+xterm*color7: rgb:a8/a8/a8
+xterm*color8: rgb:54/54/54
+xterm*color9: rgb:fc/54/54
+
+xterm*locale: true
+xterm*metaSendsEscape: true
+
+xterm*colorULMode: true
+xterm*colorUL: rgb:e4/e4/e4
+
+! GRABAR HASTA 8192 LINEAS
+xterm*vt100.saveLines: 8192
+
+! SALTAR HASTA ARRIBA DE todo Y PARA ABAJO CON SHIFT+HOME Y SHIFT+END
+xterm*vt100.translations: #override \n\
+		Shift <Key>Home: scroll-back(5000) \n\
+		Shift <Key>End: scroll-forw(5000)
+
+		! NO SCROLLEAR CON NUEVO OUTPUT
+		xterm*vt100.scrollTtyOutput: false
