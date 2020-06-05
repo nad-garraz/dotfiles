@@ -38,6 +38,7 @@ export XORGCONFIG="$HOME_LOCAL/share/xorg"
 
 export XDG_DATA_HOME="$HOME_LOCAL/share"
 export XDG_CONFIG_HOME="$HOME_CONFIG"
+export XDG_CACHE_HOME="$HOME_LOCAL/cache"
 # Directorio con MIME info, para que abra el torrent por ejemplo.
 # Me rompío la cabeza no entender que el xdg-open necesita muchos
 # tipos, no solo los que definí en .local/share/applications.

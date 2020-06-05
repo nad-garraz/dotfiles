@@ -121,3 +121,5 @@ alias yta="yt -x -f bestaudio/best"
 # Corona Curl
 alias corona="curl -s https://corona-stats.online/{us,ar,es,it,nz,cn,ca,br,cl,in,tw,kr,jp}?minimal=true | grep -A1 Rank > ~/corona && grep -v \"\-\-\" ~/corona && \mv ~/corona /tmp"
 
+# Para ver la cantidad de filas que hay en el directorio
+alias filas="ls -a | awk '{rows++} END {print \"Archivos: \" rows }'"
