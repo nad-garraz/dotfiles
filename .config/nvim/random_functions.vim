@@ -42,17 +42,17 @@ endfunction
 " Initialize toggleVariable
 let g:TILDESOn=0
 " Toggle functionality
-function! ToggleTILDES()
+function! ToggleTildes()
 	if !g:TILDESOn
-		call TILDES()
+		call Tildes()
 	else
-		call TILDESOFF()
+		call TildesOff()
 	endif
 endfunction
 
 " Mapping keys
-function! TILDES()
-	echo "TILDES macros activated"
+function! Tildes()
+	echo "Tildes macros activated"
 	let g:TILDESOn=1
 	inoremap [a á
 	inoremap [A Á
@@ -72,7 +72,7 @@ function! TILDES()
 endfunction
 
 "Unmapping keys
-function! TILDESOFF()
+function! TildesOff()
 	echo "TILDES macros deactivated"
 	let g:TILDESOn=0
 	iunmap [a

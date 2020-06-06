@@ -54,8 +54,6 @@ alias cls='echo -ne "\033c"'
 # wlan presentar SSID
 alias ssid='sudo iw dev wlp1s0 scan | grep -i ssid'
 
-alias subtitulos="qnapi --console --lang eng --show-list"
-
 # Actualizar los mirrors de pacman a los 100 más nuevos y más rápidos.
 alias reflector='sudo reflector --latest 100 --age 24 --verbose --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 
@@ -64,8 +62,6 @@ alias reflector='sudo reflector --latest 100 --age 24 --verbose --protocol http 
 alias superlame64='{ for f in *; do lame --mp3input -b 64 "$f" tmp && \mv tmp "$f"; done; }'
 alias superlame128='{ for f in *; do lame --mp3input -b 128 "$f" tmp && \mv tmp "$f"; done; }'
 alias superlame192='{ for f in *; do lame --mp3input -b 192 "$f" tmp && \mv tmp "$f"; done; }'
-
-alias abook='com.github.geigi.cozy'
 
 #Bluetoothcontrol
 alias bl='bluetoothctl'
@@ -87,7 +83,7 @@ alias ultimospaquetes="expac --timefmt=%s '%l\t%n' | sort -n"
 alias espeak="espeak -ves-la"
 
 # Para el bare git repository
-alias bkp="/usr/bin/git --git-dir=/home/test/dotfiles/ --work-tree=/home/test"
+alias bkp="/usr/bin/git --git-dir=/home/test/dotfiles/ --work-tree=/home/test" # prefijo
 alias bkpc="bkp commit -m"
 alias bkpa="bkp add"
 alias bkps="bkp status"

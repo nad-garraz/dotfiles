@@ -38,7 +38,7 @@ super + c
 	calc_dmenu
 
 # Dmenu bluetoothctl
-alt + shift + b
+super + b
 	bl_dmenu
 
 # Gui apps, browser, calculator, downlords, steam

@@ -45,7 +45,8 @@ map <leader>spa :setlocal spell! spelllang=es_ar<CR>
 nmap <Leader>al ggVG=<CR>
 
 " Call TILDES
-imap <Leader>ti <Esc>:call ToggleTILDES()<CR>a
+imap <Leader>ti <Esc>:call ToggleTildes()<CR>a
+call ToggleTildes()
 
 " Call ToggleSideNumbers
 noremap <Leader>nu <Esc>:call ToggleSideNumbers()<CR>
