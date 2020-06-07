@@ -4,23 +4,23 @@
 # que se le dé con el archivo.
 # El uso es "separador audio_file info_file"
 
-
+cr=`echo $'\n> '`
 # Preguntas para el formato
-read -p "Nombre del libro: " -r
+read -p "Nombre del libro:$cr" -r
 BOOKTITLE="$(echo $REPLY | iconv -cf UTF-8 -t ASCII//TRANSLIT | tr -d '[:punct:]')"
-read -p "Nombre del autor: " -r
+read -p "Nombre del autor:$cr" -r
 AUTHOR="$(echo $REPLY | iconv -cf UTF-8 -t ASCII//TRANSLIT | tr -d '[:punct:]')"
-read -p "Idioma del libro: " -r
+read -p "Idioma del libro:$cr" -r
 LANGUAGE="$(echo $REPLY | iconv -cf UTF-8 -t ASCII//TRANSLIT | tr -d '[:punct:]')"
-read -p "Genero del libro: " -r GENERO
-read -p "Año: " -r YEAR
+read -p "Genero del libro:$cr" -r GENERO
+read -p "Año:$cr" -r YEAR
 
 # Extención del archivo
-read -p "Formato audio [${RED}mp3${NC}/opus]: " -r ext
+read -p "Formato audio [${RED}mp3${NC}/opus]:$cr" -r ext
 [[ $ext =~ ^[mo]*$ ]] && ext="mp3" && echo -e "Formato = \".$ext\""
 
 # Defino la variable track 0 por default
-read -p "Primera track ¿${RED}0${NC} o 1?: " -r TRACK
+read -p "Primera track ¿${RED}0${NC} o 1?:$cr" -r TRACK
 case $TRACK in
 	1) TRACK=1 && echo -e "Primera track \"$TRACK\"" ;;
 	0) TRACK=0 && echo -e "Primera track \"$TRACK\"" ;;

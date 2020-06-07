@@ -42,7 +42,7 @@ map <leader>eng :setlocal spell! spelllang=en_us<CR>
 map <leader>spa :setlocal spell! spelllang=es_ar<CR>
 
 " Align all, indentation
-nmap <Leader>al ggVG=<CR>
+nmap <Leader>al ggVG=``zz<CR>
 
 " Call TILDES
 imap <Leader>ti <Esc>:call ToggleTildes()<CR>a
