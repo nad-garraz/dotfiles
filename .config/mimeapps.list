@@ -12,6 +12,8 @@ image/gif=img.desktop;
 
 video/x-matroska=video.desktop
 video/mpg=video.desktop
+audio/mpeg=audio.desktop
+audio/x-opus+ogg.xml=audio.desktop
 
 text/plain=text.desktop
 text/x-tex=text.desktop

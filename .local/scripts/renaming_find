@@ -1,28 +1,13 @@
 #!/bin/sh
 
-# Comandos para reemplazar nombres con fing
-
+# Comandos para reemplazar nombres con find
 # USAGE: ""find . -maxdepth 1 -name "..." -exec renaming {} \;""
 
+## Cambiar espacios por "_" y de mayúsculas a minúsculas
+mv "$1" "$(echo "$1" | tr " " "_" | tr [:upper:] [:lower:])"
 
-## Renames 'XX - ' to '' , cambia espacio a "_" y pasa a minúsculas
-mv "$1" "$(echo "$1" | sed -r "s/^([0-9]{4}[ab]-)//g" | sed -r "s/([A-Z])/\l\1/g" | tr " " "_")"
-#mv "$1" "$(echo "$1" | sed -r "s/^[0-9]{2}-//g")"
+#mv "$1" "$(echo "$1" | sed -r "s/^([0-9]{1,2} - )*//g")"
 
+## Cambiar "(" --> "_" y ")" --> ""   NO PARENTESIS
+#mv "$1" "$(echo "$1" | tr "(" "_" | tr -d ")")"
 
-## Renames 'XX_ and XX. ' to '' , cambia espacio a "_" y pasa a minúsculas
-#mv "$1" "$(echo "$1" | sed -r "s/[0-9]{2}[-\.]?//g"  | sed -r "s/([A-Z])/\l\1/g" | tr " " "_")"
-
-#mv "$1" "$(echo "$1" | sed -r "s/^\.\/_//1")"
-
-
-## Cambiar espacios por "_"
-#mv "$1" "$(echo "$1" | tr " " "_")"
-
-
-## Cambiar a minúsculas
-#mv "$1" "$(echo "$1" | sed -r "s/([A-Z])/\l\1/g ")"
-
-
-## Rename 'XX' to ''
-#mv "$1" "$(echo "$1" | sed -r "s/[0-9]{2}_//g ")"
