@@ -81,7 +81,8 @@ alias ultimospaquetes="expac --timefmt=%s '%l\t%n' | sort -n"
 alias espeak="espeak -ves-la"
 
 # Para el bare git repository
-alias bkp="/usr/bin/git --git-dir=/home/test/dotfiles/ --work-tree=/home/test" # prefijo
+#alias bkp="/usr/bin/git --git-dir=/home/test/dotfiles/ --work-tree=/home/test" # prefijo
+alias bkp="/usr/bin/git --git-dir=/home/test/repos/dotfiles/ --work-tree=/home/test/" # prefijo
 alias bkpc="bkp commit -m"
 alias bkpa="bkp add"
 alias bkps="bkp status"

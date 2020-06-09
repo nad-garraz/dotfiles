@@ -49,6 +49,7 @@ source /usr/share/doc/pkgfile/command-not-found.bash
 
 # Change directory without cd command
 shopt -s autocd
+
 # Append to history
 shopt -s histappend
 
