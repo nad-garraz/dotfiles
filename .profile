@@ -42,11 +42,11 @@ export XDG_CACHE_HOME="$HOME_LOCAL/cache"
 # Directorio con MIME info, para que abra el torrent por ejemplo.
 # Me rompío la cabeza no entender que el xdg-open necesita muchos
 # tipos, no solo los que definí en .local/share/applications.
-# Esta variable es muy importante para mi saludo mental
-export XDG_DATA_DIRS="$XDG_DATA_HOME:$XDG_DATA_DIRS:/usr/share"
+export XDG_DATA_DIRS=/usr/share/:/usr/local/share:$HOME_LOCAL/share:$HOME_LOCAL
+#export XDG_DATA_DIRS="/home/test/.local/share/:/usr/local/:"
 export XDG_CONFIG_DIRS="/etc/xdg"
 
-# NeoVim realted
+# NeoVim related
 export EDITOR="$HOME/.local/bin/nvim"
 export VIMRUNTIME="$HOME/.local/share/nvim/runtime"
 

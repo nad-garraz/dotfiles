@@ -69,5 +69,5 @@ control + F8
 
 
 ##Change layout: Estoy usando el IBUS por el momento
-##super + ctrl + i
-##layout_toggle
+#control + shift + i
+	#layout_toggle

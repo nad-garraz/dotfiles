@@ -52,7 +52,6 @@ endfunction
 
 " Mapping keys
 function! Tildes()
-	echo "Tildes macros activated"
 	let g:TILDESOn=1
 	inoremap [a á
 	inoremap [A Á
@@ -73,7 +72,6 @@ endfunction
 
 "Unmapping keys
 function! TildesOff()
-	echo "TILDES macros deactivated"
 	let g:TILDESOn=0
 	iunmap [a
 	iunmap [A
