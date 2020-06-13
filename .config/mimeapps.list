@@ -1,6 +1,7 @@
 [Default Applications]
 x-scheme-handler/discord-464069837237518357=discord-464069837237518357.desktop
-application/x-magnet=torrent.desktop;
+
+application/x-magnet=torrent.desktop
 application/x-bittorrent=torrent.desktop;
 
 application/pdf=pdf.desktop;
@@ -12,6 +13,7 @@ image/gif=img.desktop;
 
 video/x-matroska=video.desktop
 video/mpg=video.desktop
+
 audio/mpeg=audio.desktop
 audio/x-opus+ogg.xml=audio.desktop
 

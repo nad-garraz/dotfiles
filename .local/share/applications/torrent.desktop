@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Bittorrent
+Exec=/home/test/.local/scripts/torrentsadd %u
+MimeType=application/x-bittorrent;application/x-torrent;x-scheme-handler/magnet;
+Patterns=magnet*;magnet:*;

@@ -1,0 +1,5 @@
+[MIME Cache]
+application/x-bittorrent=torrent.desktop;
+application/x-torrent=torrent.desktop;
+x-scheme-handler/discord-464069837237518357=discord-464069837237518357.desktop;
+x-scheme-handler/magnet=torrent.desktop;

@@ -1,0 +1,4 @@
+[Desktop Entry]
+Type=Audio
+Name=mp3-player
+Exec=mpv %u
