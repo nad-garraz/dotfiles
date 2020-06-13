@@ -11,9 +11,7 @@ FIRST_CHOICE=`echo -e "Restart dwmbar\nRestart dwm\nKill xinit" | dmenu -fn "$FU
 
 #
 case $FIRST_CHOICE in
-	"Restart dwmbar") restart_dwmbar
-	"Restart dwm") killall dwm
-		;;
-	"Kill xinit") killall xinit
-		;;
+	"Restart dwmbar") restart_dwmbar;;
+	"Restart dwm") /usr/bin/killall dwm;;
+	"Kill xinit") /usr/bin/killall xinit;;
 esac

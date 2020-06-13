@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# Get info of rfkill
+bl="$(/usr/bin/rfkill | awk '/bluetooth/ { print $1 }')"
+blStatus="$(/usr/bin/rfkill | awk '/bluetooth/ { print $4 }')"
+# Unblock if blocked
+[ $blStatus = "blocked" ] && sudo /usr/bin/rfkill unblock $bl
+
 
 MACADD="$(bluetoothctl list | cut -d" " -f2)"
 IS_ON="$(bluetoothctl show "$MACADD" | grep -i powered | cut -d: -f2 | tr -d " ")"
@@ -8,11 +14,10 @@ FUENTE="monospace 16"
 bl_toggle () {
 	if [ "$IS_ON" = "yes" ];
 	then
-		bluetoothctl power off &&\
+		bluetoothctl power off;
 		notify-send "Bluetooth off"
 	else
-		bluetoothctl power on &&\
-		notify-send "Bluetooth on"
+		bluetoothctl power on && notify-send "Bluetooth on"
 fi
 }
 

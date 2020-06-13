@@ -8,6 +8,9 @@ alias cdc='cd ~/.config'
 alias cdpp='cd ~/programitas/python_projects'
 alias cdda='cd /data'
 
+# MPV embeded
+alias mpv="mpv --wid=$WINDOWID"
+
 # Calcu
 alias bc='bc -ql'
 
@@ -81,11 +84,8 @@ alias ultimospaquetes="expac --timefmt=%s '%l\t%n' | sort -n"
 alias espeak="espeak -ves-la"
 
 # Para el bare git repository
-#alias bkp="/usr/bin/git --git-dir=/home/test/dotfiles/ --work-tree=/home/test" # prefijo
 alias bkp="/usr/bin/git --git-dir=/home/test/repos/dotfiles/ --work-tree=/home/test/" # prefijo
-alias bkpc="bkp commit -m"
-alias bkpa="bkp add"
-alias bkps="bkp status"
+alias dwmbkp="/usr/bin/git --git-dir=/home/test/repos/dwm/ --work-tree=/home/test/paquetes/dwm" # prefijo
 
 # MEGA
 alias megals="megals --human --header --long --config=$HOME_CONFIG/megarc"
@@ -119,3 +119,6 @@ alias corona="curl -s https://corona-stats.online/{us,ar,es,it,nz,cn,ca,br,cl,in
 
 # Para ver la cantidad de filas que hay en el directorio
 alias archivos="ls -a | awk '{rows++} END {print \"Archivos: \" rows }'"
+
+# Refresh inet connection
+alias reconectar="sudo netctl restart $(netctl list | grep '^*' | cut -d" " -f2-)"
