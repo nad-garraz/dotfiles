@@ -7,4 +7,7 @@
 # TR_TORRENT_ID
 # TR_TORRENT_NAME
 
+SOUND="/data/music/sounds/beep.mp3"
+
+mpv --quiet $SOUND > /dev/null
 dunstify -r 1234 "Torrent Done:" "$TR_TORRENT_NAME" 2> $LOGS/torrentdone.log

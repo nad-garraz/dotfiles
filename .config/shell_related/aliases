@@ -8,9 +8,6 @@ alias cdc='cd ~/.config'
 alias cdpp='cd ~/programitas/python_projects'
 alias cdda='cd /data'
 
-# MPV embeded
-alias mpv="mpv --wid=$WINDOWID"
-
 # Calcu
 alias bc='bc -ql'
 
