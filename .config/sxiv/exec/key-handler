@@ -10,7 +10,7 @@ do
 		"C-d")
 			make_trash;
 			mv "$file" /tmp/trash
-			notify-send "$file --> /tmp/trash";;
+			notify-send "Borrando archivo: " "$file --> /tmp/trash";;
 		"C-r")
 			convert -rotate 90 "$file" "$file" ;;
 		"C-c")
@@ -19,6 +19,6 @@ do
 		"C-w")
 			xwallpaper --center "$file" ;;
 		"C-s")
-			cp "$file" /tmp/"$file" ;;
+			cp "$file" /tmp/"$(basename -- $file)" ;;
 	esac
 done

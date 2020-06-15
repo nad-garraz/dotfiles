@@ -83,6 +83,7 @@ alias espeak="espeak -ves-la"
 # Para el bare git repository
 alias bkp="/usr/bin/git --git-dir=/home/test/repos/dotfiles/ --work-tree=/home/test/" # prefijo
 alias dwmbkp="/usr/bin/git --git-dir=/home/test/repos/dwm/ --work-tree=/home/test/paquetes/dwm" # prefijo
+alias dbbkp="/usr/bin/git --git-dir=/home/test/repos/dwmblocks/ --work-tree=/home/test/paquetes/dwmblocks" # prefijo
 
 # MEGA
 alias megals="megals --human --header --long --config=$HOME_CONFIG/megarc"

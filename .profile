@@ -2,7 +2,11 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 [[ -d ~/.local/bin ]] && PATH="$HOME/.local/bin:$PATH"
-[[ -d ~/.local/scripts ]] && PATH="$(du "/home/test/.local/scripts" | cut -f2 | tr '\n' ':' | sed 's/:*$//'):$PATH"
+[[ -d ~/.local/scripts ]] && PATH="$(du "/home/test/.local/scripts" | cut -f2 | tr '\n' ':' | sed 's/:*$//'):/usr/lib/jvm/java-11-openjdk/bin/:$PATH"
+
+
+## PARA QUE EL FAF LEVANTE LA VERSION CORRECTA DE JAVA
+#export PATH="/usr/lib/jvm/java-13-openjdk/bin/:$PATH"
 
 # Terminal
 export TERMINAL="alacritty"
@@ -56,9 +60,6 @@ export LOOP_TIME="10"
 export HISTCONTROL="ignoredups:erasedups"
 export HISTSIZE=10000
 export HISTFILESIZE=10000
-
-# PARA QUE EL FAF LEVANTE LA VERSION CORRECTA DE JAVA
-export PATH="/usr/lib/jvm/java-13-openjdk/bin/:$PATH"
 
 # Less file history
 export LESSHISTFILE="/dev/null"
