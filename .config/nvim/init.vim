@@ -33,7 +33,7 @@ autocmd BufWritePost *dunstrc !/home/test/.local/scripts/restart/restart_dunst
 autocmd BufWritePost ~/paquetes/dwm/config.h !cd ~/paquetes/dwm ; make clean install; killall dwm
 
 " MAKE CLEAN INSTALL FOR DWMBLOCKS is saved
-autocmd BufWritePost ~paquetes/dwmblocks/blocks.h !cd ~/paquetes/dwmblocks; make clean install && { killall -q dwmblocks; setsid dwmblocks & }
+autocmd BufWritePost ~/paquetes/dwmblocks/blocks.h !cd ~/paquetes/dwmblocks; make clean install && { killall -q dwmblocks; setsid dwmblocks & }
 
 " Spell-check English
 map <leader>eng :setlocal spell! spelllang=en_us<CR>

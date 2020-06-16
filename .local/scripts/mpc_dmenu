@@ -3,7 +3,8 @@
 
 # PROMPS A DMENU MENU FOR MPC
 
-FUENTE="monospace 16"
+FUENTE="ArcadeClassic"
+#FUENTE="monospace 16"
 
 FIRST_CHOICE=`echo -e "Play\\Pause\nNext\nPrev\nPlaylists\nPick Song\nShuffle\nRepeat" | dmenu -i -fn "$FUENTE" -p "MINIMAL MPC"`
 
