@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-FUENTE="monospace 16"
+FUENTE="monospace"
 
 # PROMPS A DMENU MENU ASKING TO SHUTDOWN
 

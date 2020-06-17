@@ -9,7 +9,7 @@ blStatus="$(/usr/bin/rfkill | awk '/bluetooth/ { print $4 }')"
 
 MACADD="$(bluetoothctl list | cut -d" " -f2)"
 IS_ON="$(bluetoothctl show "$MACADD" | grep -i powered | cut -d: -f2 | tr -d " ")"
-FUENTE="monospace 16"
+FUENTE="monospace"
 
 bl_toggle () {
 	if [ "$IS_ON" = "yes" ];

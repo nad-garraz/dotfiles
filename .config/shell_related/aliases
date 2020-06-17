@@ -1,5 +1,6 @@
 # Listar directorio
 alias ls='ls --color=auto'
+alias la='ls -ahp --color=auto'
 alias ll='ls -lahp --color=auto'
 
 # Shorcuts to used directories
@@ -82,8 +83,8 @@ alias espeak="espeak -ves-la"
 
 # Para el bare git repository
 alias bkp="/usr/bin/git --git-dir=/home/test/repos/dotfiles/ --work-tree=/home/test/" # prefijo
-alias dwmbkp="/usr/bin/git --git-dir=/home/test/repos/dwm/ --work-tree=/home/test/paquetes/dwm" # prefijo
-alias dbbkp="/usr/bin/git --git-dir=/home/test/repos/dwmblocks/ --work-tree=/home/test/paquetes/dwmblocks" # prefijo
+alias dwmbkp="/usr/bin/git --git-dir=/home/test/repos/dwm/ --work-tree=$HOME_LOCAL/src/dwm" # prefijo
+alias dbbkp="/usr/bin/git --git-dir=/home/test/repos/dwmblocks/ --work-tree=$HOME_LOCAL/src/dwmblocks" # prefijo
 
 # MEGA
 alias megals="megals --human --header --long --config=$HOME_CONFIG/megarc"
