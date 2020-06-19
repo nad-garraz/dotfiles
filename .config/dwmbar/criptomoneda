@@ -39,8 +39,9 @@ getprices() { # The command to get the desired prices
 printprices() { # Print/format all prices
 	for x in "$dir"/*; do
 		[ -f "$x" ] || break
-		info="$(cut -d';' -f-2 --output-delimiter=' ' "$x")"
-		printf "%s" "$info"
+		info="$(cut -d';' -f-2 --output-delimiter=':' "$x")"
+		#info="$(cut -d';' -f-2 "$x")"
+		printf "%s " "$info"
 	done | sed 's/ $/\n/'
 	}
 
@@ -52,9 +53,9 @@ printprices() { # Print/format all prices
 
 case $BUTTON in
 	1) uptime="$(date -d "$(stat -c %x "$dir")" '+%D at %T' | sed "s|$(date '+%D')|Today|")"
-		notify-send -t 10000 "Exact prices in USD" "$(awk -F';' '{print $1, $4 ":\n\t$" $3}' "$dir"/*)
+		notify-send -t 15000 "Exact prices in USD" "$(awk -F';' '{print $1, $4 ":\n$" $3}' "$dir"/*)
 <b>Last updated:</b>
-	$uptime" ;;
+$uptime" ;;
 	2) getprices ;;
 	3) notify-send "💸 Crypto-currency module" "\- Left click for exact prices.
 - Middle click to update.

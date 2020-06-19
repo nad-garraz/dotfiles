@@ -1,16 +1,22 @@
 #!/bin/sh
 
-dwm_battery () {
-	# Battery percentage
-	CHARGE=$(cat /sys/class/power_supply/BAT1/capacity)
-	# Charging status
-	STATUS=$(cat /sys/class/power_supply/BAT1/status)
-	printf "%s" "$SEP1"
-	if [ "$STATUS" = "Charging" ]; then
-		printf "AC %s%%" "$CHARGE"
-	else
-		printf "BAT %s%%" "$CHARGE"
-	fi
-	printf "%s" "$SEP2"
-}
-dwm_battery
+# Battery percentage
+CHARGE=$(cat /sys/class/power_supply/BAT1/capacity)
+# Charging status
+STATUS=$(cat /sys/class/power_supply/BAT1/status)
+if [ "$STATUS" = "Charging" ]; then
+	printf "🔌:%s%% " "$CHARGE"
+else
+	printf "🔋:%s%% " "$CHARGE"
+fi
+
+info=$(acpi -V | sed '2q;d')
+
+case $BUTTON in
+	1) notify-send -t 15000 "Info batería 🔋" "Estado: $STATUS
+Carga: $CHARGE%
+Time: $(acpi | cut -d"," -f3 | sed 's/^ //')
+Utilidad: $(echo $info | cut -d" " -f13 | tr -d " ")"
+	;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac

@@ -154,7 +154,7 @@ max_icon_size = 80
 icon_path = /usr/share/icons/Paper/16x16/mimetypes/:/usr/share/icons/Paper/48x48/status/:/usr/share/icons/Paper/16x16/devices/:/usr/share/icons/Paper/48x48/notifications/:/usr/share/icons/Paper/48x48/emblems/:/home/test/.local/icons/
 
 frame_width = 3
-frame_color = "#111111"
+frame_color = "#1144fa"
 
 ### mouse
 
@@ -196,19 +196,19 @@ context = ctrl+shift+grave
 frame_color = "#3B7C87"
 foreground = "#3B7C87"
 background = "#191311"
-timeout = 3
+timeout = 10
 
 [urgency_normal]
-frame_color = "#444444"
-foreground = "#767676"
+frame_color = "#4444ba"
+foreground = "#6644ba"
 background = "#000000"
-timeout = 4
+timeout = 10
 
 [urgency_critical]
 frame_color = "#B7472A"
 foreground = "#B7472A"
 background = "#191311"
-timeout = 5
+timeout = 3
 
 
 # Every section that isn't one of the above is interpreted as a rules to
@@ -237,6 +237,8 @@ timeout = 5
 [low-bat]
 summary = "Carga: *"
 script = dunst_espeak.sh
+timeout = 2
+urgency = critical
 
 [countdown]
 summary = "Se termina en ..."

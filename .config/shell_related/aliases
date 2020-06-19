@@ -3,6 +3,7 @@ alias ls='ls --color=auto'
 alias la='ls -ahp --color=auto'
 alias ll='ls -lahp --color=auto'
 
+
 # Shorcuts to used directories
 alias cds='cd ~/.local/scripts'
 alias cdc='cd ~/.config'
