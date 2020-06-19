@@ -1,3 +1,4 @@
+# Colores
 color listnormal cyan default
 color listfocus black yellow standout bold
 color listnormal_unread blue default

@@ -4,7 +4,9 @@
 # USAGE: ""find . -maxdepth 1 -name "..." -exec renaming {} \;""
 
 ## Cambiar espacios por "_" y de mayúsculas a minúsculas
-mv "$1" "$(echo "$1" | tr " " "_" | tr [:upper:] [:lower:])"
+#mv "$1" "$(echo "$1" | tr " " "_" | tr [:upper:] [:lower:])"
+
+mv "$1" "$(echo "$1"| sed -r 's/dwm_//g')"
 
 #mv "$1" "$(echo "$1" | sed -r "s/^([0-9]{1,2} - )*//g")"
 

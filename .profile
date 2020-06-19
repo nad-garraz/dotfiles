@@ -53,9 +53,6 @@ export XDG_CONFIG_DIRS="/etc/xdg"
 export EDITOR="$HOME/.local/bin/nvim"
 export VIMRUNTIME="$HOME/.local/share/nvim/runtime"
 
-# Tiempo de loop
-export LOOP_TIME="10"
-
 #VARIABLES PARA EL HISTORIAL
 export HISTCONTROL="ignoredups:erasedups"
 export HISTSIZE=10000

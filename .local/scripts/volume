@@ -3,6 +3,7 @@
 
 PERCENTAGE="5%"
 
+
 case $1 in
 	-) amixer set Master $PERCENTAGE- &> $LOGS/volume.log
 		;;
@@ -10,5 +11,4 @@ case $1 in
 		;;
 esac
 
-#$HOME_SCRIPTS/restart/restart_dwmbar
-pkill -RTMIN+10 dwmblocks
+pkill -RTMIN+19 dwmblocks
