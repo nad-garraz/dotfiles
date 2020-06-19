@@ -1,0 +1,25 @@
+#!/bin/sh
+
+dwm_resources () {
+	# Porcentaje de RAM usada
+	tot="`\free | grep "Mem" | sed -r "s/ +/,/g" | cut -d"," -f2`"
+	used="`\free | grep "Mem" | sed -r "s/ +/,/g" | cut -d"," -f3`"
+	MEM=$(echo $used/$tot*100 | bc -l)
+
+	# CPU temperature
+	TEMP=$(sensors | grep edge | cut -d" " -f10 | tr -d "+" | sed 's|\.[0-9]||')
+
+	# CPUs Load
+	CPUS=$(lscpu | awk '/^CPU\(s\)/ { print $2 }')
+	LOAD=$(uptime | grep -oE "[0-9]{1}\.[0-9]{2}" | head -1)
+	CPU=$(echo $LOAD/$CPUS*100 | bc -l)
+
+	# Used and total storage in /home (rounded to 1024B)
+	HOME_USED=$(du -hs --exclude="*.pyc" "$HOME" /data | cut -f1 | tail -1)
+	printf "%s" "$SEP1"
+		printf "MEM:%.0f%% CPU:%.0f%%,%s STO:%s" "$MEM" "$CPU" "$TEMP" "$HOME_USED"
+	printf "%s" "$SEP2"
+}
+
+dwm_resources
+
