@@ -8,7 +8,7 @@ do
 	STATUS=$(cat /sys/class/power_supply/BAT1/status)
 
 	if [ "$STATUS" = "Charging" ]; then
-		if [ $CHARGE -ge 90 ] && [ $CHARGE -lt 96] && [ $(expr $CHARGE % 2) -eq 0 ];then
+		if [ $CHARGE -ge 90 ] && [ $CHARGE -lt 96 ] && [ $(expr $CHARGE % 2) -eq 0 ];then
 			dunstify -u low -r 1234 "Cargando al $CHARGE%" "Desconectar cargador"
 		elif [ $CHARGE -ge 96 ] && [ $(expr $CHARGE % 2) -eq 0 ];then
 			dunstify -u critical -r 1234 "Carga: $CHARGE%" "Desconectar cargador"

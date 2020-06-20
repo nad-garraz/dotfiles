@@ -200,7 +200,7 @@ timeout = 10
 
 [urgency_normal]
 frame_color = "#4444ba"
-foreground = "#6644ba"
+foreground = "#aa77ba"
 background = "#000000"
 timeout = 10
 

@@ -1,9 +1,9 @@
 #!/bin/sh
 
-# Prints the current volume or 🔇 if muted.
+confTerminal="$XDG_CONFIG_HOME/alacritty/alacritty-floating.yml"
 
 case $BUTTON in
-	1) setsid -f "$TERMINAL" -e pulsemixer ;;
+	1) setsid -f "$TERMINAL" --config-file "$confTerminal" -e pulsemixer ;;
 	2) pamixer -t ;;
 	4) pamixer --allow-boost -i 1 ;;
 	5) pamixer --allow-boost -d 1 ;;
@@ -17,10 +17,8 @@ esac
 
 vol="$(pamixer --get-volume)"
 
-if [ "$vol" -gt "70" ]; then
-	icon="🔊"
-elif [ "$vol" -lt "30" ]; then
-	icon="🔈"
+if [ "$vol" -gt "70" ]; then icon="🔊"
+elif [ "$vol" -lt "30" ]; then icon="🔈"
 else
 	icon="🔉"
 fi

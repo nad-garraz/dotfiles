@@ -1,25 +1,22 @@
 #!/bin/sh
 
-# If we have internet, get a weather report from wttr.in and store it locally.
-# You could set up a shell alias to view the full file in a pager in the
-# terminal if desired. This function will only be run once a day when needed.
+confTerminal="$XDG_CONFIG_HOME/alacritty/alacritty-floating.yml"
+
 weatherreport="${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport"
 getforecast() {
 	curl -sf "wttr.in/$LOCATION" > "$weatherreport" || exit 1 ;
 }
 
-# Some very particular and terse stream manipulation. We get the maximum
-# precipication chance and the daily high and low from the downloaded file and
-# display them with coresponding emojis.
 showweather() {
 	printf "%s " "$(sed '16q;d' "$weatherreport" |
 		grep -wo "[0-9]*%" | sort -rn | sed "s/^/☔:/g;1q" | tr -d '\n')"
-			sed '13q;d' "$weatherreport" | grep -o "m\\([-+]\\)*[0-9]\\+" | sort -n -t 'm' -k 2n | sed -e 1b -e '$!d' | tr '\n|m' ' ' | awk '{print "🥶:"$1 "°","🌞:"$2 "°"}' ;}
+			sed '13q;d' "$weatherreport" | grep -o "m\\([-+]\\)*[0-9]\\+" | sort -n -t 'm' -k 2n | sed -e 1b -e '$!d' | tr '\n|m' ' ' | awk '{print "🥶:"$1"°""🌞:"$2"°"}' ;}
 
 			case $BUTTON in
-				1) alacritty --class float,term --position 200 50  --dimensions 130 39 -e less -Srf "$weatherreport"
+				1) setsid -f $TERMINAL --config-file "$confTerminal" -e less -Srf "$weatherreport"
 					;;
-				2) getforecast && showweather # Refresh
+				2) notify-send "⛅ Refreshing...";
+					getforecast && showweather
 					;;
 				3) notify-send "🌈 Weather module" "Temperatura: $(curl -s wttr.in/$LOCATION?format=1 | sed "s/^. \+\?//g")"
 					;;

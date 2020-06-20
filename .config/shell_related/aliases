@@ -122,3 +122,6 @@ alias archivos="ls -a | awk '{rows++} END {print \"Archivos: \" rows }'"
 
 # Refresh inet connection
 alias reconectar="sudo netctl restart $(netctl list | grep '^*' | cut -d" " -f2-)"
+
+# NCDU tuneado
+alias ncdu="ncdu --color dark"
