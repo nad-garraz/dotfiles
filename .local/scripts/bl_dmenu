@@ -1,5 +1,7 @@
 #!/bin/sh
 
+icon="🦷"
+
 # Get info of rfkill
 bl="$(/usr/bin/rfkill | awk '/bluetooth/ { print $1 }')"
 blStatus="$(/usr/bin/rfkill | awk '/bluetooth/ { print $4 }')"
@@ -15,9 +17,9 @@ bl_toggle () {
 	if [ "$IS_ON" = "yes" ];
 	then
 		bluetoothctl power off;
-		notify-send "Bluetooth off"
+		notify-send "$icon Bluetooth off"
 	else
-		bluetoothctl power on && notify-send "Bluetooth on"
+		bluetoothctl power on && notify-send "$icon Bluetooth on"
 fi
 }
 
@@ -28,7 +30,7 @@ bl_connect () {
 	# Prompt para elegir el device
 	CHOICE=$(bluetoothctl devices | cut -d" " -f3- | dmenu -fn "$FUENTE" -i -l 10 -p "¿Cuál?")
 	MAC=$(bluetoothctl devices | grep -i "$CHOICE" | cut -d" " -f2 | tr -d " ")
-	bluetoothctl connect $MAC && notify-send "Connectado a: " "$CHOICE"
+	bluetoothctl connect $MAC && notify-send "$icon Connectado a: " "$CHOICE"
 
 }
 

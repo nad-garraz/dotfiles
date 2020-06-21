@@ -1,8 +1,0 @@
-#!/usr/bin/sh
-
-
-MESPASADO=$(LANG=es_AR.UTF-8 cal "1 month ago" -1m)
-ESTEMES=$(LANG=es_AR.UTF-8 cal -1m)
-PROXIMOMES=$(LANG=es_AR.UTF-8 cal "+1month" -1m)
-
-dunstify -t 60000 "$(printf "%s\n%s\n%s" "$MESPASADO" "$ESTEMES" "$PROXIMOMES")"

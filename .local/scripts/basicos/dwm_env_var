@@ -1,3 +1,0 @@
-#!/bin/sh
-export SEP1='['
-export SEP2=']'

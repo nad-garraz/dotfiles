@@ -1,13 +1,21 @@
 #!/bin/sh
 
-dwm_date () {
-	printf "%s" "$SEP1"
-		printf "%s" "$(date "+%a %-d/%-m %-H:%M")"
-	printf "%s\n" "$SEP2"
+
+calendar="${XDG_DATA_HOME:-$HOME/.local/share}/calendar"
+
+# Calendario anual, lunes primer día.
+getCalendar () {
+	LANG=es_AR.UTF-8 \cal -y -m --color=always > "$calendar"
 }
 
-dwm_date
-
 case $BUTTON in
-	2) ~/.local/scripts/basicos/horarios ;; # Triple click
+	3) notify-send -t 3000 "♻  Loading..." && $HOME_SCRIPTS/basicos/horarios;;
+	2) notify-send "🗓  Calendario actualizado" && getCalendar;;
+	1) setsid -f falacritty less -Srf "$calendar";;
+	6) "$TERMINAL" -e "$EDITOR" "$0";;
 esac
+
+printf "📅%s " "$(date "+%a %-d/%-m %-H:%M")"
+
+[ "$(stat -c %y "$calendar" 2> /dev/null | cut -d' ' -f1)" = "$(date '+%Y-%m-%d')" ] ||
+	getCalendar

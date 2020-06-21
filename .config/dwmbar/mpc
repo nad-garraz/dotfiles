@@ -1,14 +1,47 @@
 #!/bin/sh
 
-dwm_mpc () {
-	if ps -C mpd > /dev/null; then
-		ARTIST=$(mpc current -f %artist%)
-		TRACK=$(mpc current -f %title%)
-		POSITION=$(mpc status | grep -E "%)" | awk '{ print $4 }' | awk -F/ '{ print $1 }' | tr -d " ")
-		DURATION=$(mpc current -f %time%)
-		STATUS=$(mpc status | sed -n 2p | awk '{print $1;}')
-		[ "$STATUS" = "[playing]" ] &&	printf "%s%s-%s %s%s" "$SEP1" "$ARTIST" "$TRACK" "$POSITION" "$SEP2"
+musicOn () {
+	i=$(date "+%S")
+	if [ $(expr $i % 3 ) -eq 0 ]; then
+		echo "🎶♫ "
+	else
+		echo "♫🎶 "
 	fi
 }
 
-dwm_mpc
+dancingMan () {
+	if [ $(expr $1 % 2 ) -eq 0 ]; then
+		echo -E "    ♪╔(・o･)╝♪♫  ♩♩♫~(◠o◠)~♫\n==================================="
+
+	else
+		echo "  ♫♪ ╚(･o・)╗ ♪  ♩~(◠0◠)~♫ ♩♫\n------------------------------------"
+	fi
+}
+
+if ps -C mpd > /dev/null; then
+	ARTIST=$(mpc current -f %artist%)
+	TRACK=$(mpc current -f %title%)
+	STATUS=$(mpc status | sed -n 2p | awk '{print $1;}')
+	NEXT=$(mpc queued)
+	[ "$STATUS" = "[playing]" ] &&	musicOn
+fi
+
+notifyInfo () {
+	i=10
+	while [ $i -gt 0 ];do
+		read now <<< $(mpc status | awk '/^\[/ { printf $3 "\t" $4}')
+		dunstify -r 1 "🎶 $ARTIST
+$TRACK" "$now
+$(dancingMan $i)
+===================================
+Next song: $NEXT "
+		let i=$(echo "$i-1" | bc -ql) 1> /dev/null
+		sleep 1
+	done
+}
+
+
+case $BUTTON in
+	1) notifyInfo;;
+	6) "$TERMINAL" -e "$EDITOR" "$0"
+esac
