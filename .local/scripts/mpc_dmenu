@@ -5,14 +5,14 @@
 
 FUENTE="monospace"
 
-FIRST_CHOICE=`echo -e "Play\\Pause\nNext\nPrev\nPlaylists\nPick Song\nShuffle\nRepeat" | dmenu -i -fn "$FUENTE" -p "MINIMAL MPC"`
+FIRST_CHOICE=$(printf "Play\\Pause\nNext\nPrev\nPlaylists\nPick Song\nShuffle\nRepeat" | dmenu -i -fn "$FUENTE" -p "MINIMAL MPC")
 
 case $FIRST_CHOICE in
-	Play\\Pause) mpc toggle > /dev/null
+	Play\\Pause) mpc toggle &> /dev/null
 		;;
-	Next) mpc next > /dev/null
+	Next) mpc next &> /dev/null
 		;;
-	Prev) mpc prev > /dev/null
+	Prev) mpc prev &> /dev/null
 		;;
 	Playlists) SECOND_CHOICE="`mpc lsplaylists | dmenu -i -l 20 -fn "$FUENTE" -p "CHOOSE PLAYLIST"`"
 		;;
@@ -36,6 +36,3 @@ if [ ! -z "$PLAY_SONG" ]; then
 	[ ! -z "$ARTIST" ] && [ ! -z "$TITLE" ] && mpc searchplay artist "$ARTIST" title "$TITLE" 1> /dev/null 2> $LOGS/dwm_demu.log
 
 fi
-
-#$HOME_SCRIPTS/restart/restart_dwmbar
-pkill -RTMIN+12 dwmblocks
