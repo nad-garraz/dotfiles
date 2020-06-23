@@ -11,4 +11,4 @@ case $1 in
 		;;
 esac
 
-pkill -RTMIN+19 dwmblocks
+pkill -RTMIN+6 dwmblocks

@@ -11,14 +11,14 @@ showweather() {
 			sed '13q;d' "$weatherreport" | grep -o "m\\([-+]\\)*[0-9]\\+" | sort -n -t 'm' -k 2n | sed -e 1b -e '$!d' | tr '\n|m' ' ' | awk '{print "🥶:"$1"°""🌞:"$2"°"}' ;}
 
 			case $BUTTON in
-				1) setsid -f falacritty less -Srf "$weatherreport"
+				1) setsid -f alacritty --class float,term -d 125 39 -e less -Srf "$weatherreport"
 					;;
 				2) notify-send "⛅ Refreshing...";
 					getforecast && showweather
 					;;
 				3) notify-send "🌈 Weather module" "Temperatura: $(curl -s wttr.in/$LOCATION?format=1 | sed "s/^. \+\?//g")"
 					;;
-				6) "$TERMINAL" -e "$EDITOR" "$0"
+				6) setsid -f "$TERMINAL" -e "$EDITOR" "$0"
 					;;
 			esac
 

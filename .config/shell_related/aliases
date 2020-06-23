@@ -69,7 +69,7 @@ alias bl='bluetoothctl'
 alias firefox='TZ=UTC firefox'
 
 # transmission-torrent
-alias trc='transmission-remote-cli'
+alias torrentinfo='transmission-remote -l'
 
 # PACCACHE, borra los paquetes de programas que no están
 # instalados y deja solo la última versión de los paquetes

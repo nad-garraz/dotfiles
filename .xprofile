@@ -2,7 +2,7 @@
 
 
 # Call the wallpaper script
-#[ -e $HOME_SCRIPTS/wallpaper ] && $HOME_SCRIPTS/wallpaper 2> $LOGS/wallpaper.log &
+[ -e $HOME_SCRIPTS/wallpaper ] && $HOME_SCRIPTS/wallpaper 2> $LOGS/wallpaper.log &
 
 # Status Bar
 dwmblocks &

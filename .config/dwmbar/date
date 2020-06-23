@@ -12,7 +12,7 @@ case $BUTTON in
 	3) notify-send -t 3000 "♻  Loading..." && $HOME_SCRIPTS/basicos/horarios;;
 	2) notify-send "🗓  Calendario actualizado" && getCalendar;;
 	1) setsid -f falacritty less -Srf "$calendar";;
-	6) "$TERMINAL" -e "$EDITOR" "$0";;
+	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0";;
 esac
 
 printf "📅%s " "$(date "+%a %-d/%-m %-H:%M")"
