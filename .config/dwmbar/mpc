@@ -11,10 +11,10 @@ musicOn () {
 
 dancingMan () {
 	if [ $(expr $1 % 2 ) -eq 0 ]; then
-		echo "    ♪╔(・o･)╝♪♫  ♩♩♫~(◠o◠)~♫ \n======================================"
+		parallel echo ::: "    ♪╔(・o･)╝♪♫  ♩♩♫~(◠o◠)~♫ " "======================================"
 
 	else
-		echo "  ♫♪ ╚(･o・)╗ ♪  ♩~(◠0◠)~♫ ♩♫\n--------------------------------------"
+		parallel echo ::: "  ♫♪ ╚(･o・)╗ ♪  ♩~(◠0◠)~♫ ♩♫" "--------------------------------------"
 	fi
 }
 
@@ -40,5 +40,5 @@ Next song: $NEXT "
 
 case $BUTTON in
 	1) notifyInfo;;
-	6) "$TERMINAL" -e "$EDITOR" "$0"
+	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0"
 esac

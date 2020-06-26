@@ -14,4 +14,4 @@ set menu-complete-display-prefix On
 set echo-control-characters off
 
 # Autocomplete faster
-set show-all-if-ambiguous on
+set show-all-if-ambiguous off

@@ -13,6 +13,9 @@ alias cdda='cd /data'
 # Calcu
 alias bc='bc -ql'
 
+# MPV
+alias mpv='mpv --wid=${WINDOWID}'
+
 # xdg-open
 alias o='xdg-open'
 # Para ver recursos de memoria
@@ -59,9 +62,6 @@ alias ssid='sudo iw dev wlp1s0 scan | grep -i ssid'
 alias reflector='sudo reflector --latest 100 --age 24 --verbose --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 
 # Pasa los mp3 a menor calidad
-alias superlame64='{ for f in *; do lame --mp3input -b 64 "$f" tmp && \mv tmp "$f"; done; }'
-alias superlame128='{ for f in *; do lame --mp3input -b 128 "$f" tmp && \mv tmp "$f"; done; }'
-alias superlame192='{ for f in *; do lame --mp3input -b 192 "$f" tmp && \mv tmp "$f"; done; }'
 
 #Bluetoothcontrol
 alias bl='bluetoothctl'
@@ -99,14 +99,6 @@ alias vim="nvim"
 # La platita
 alias guitarra="python ~/programitas/python_projects/guita/main.py"
 
-# Funciones muy útiles:
-# Abrir un archivo de mi home directory con el neovim
-vf(){ find $HOME -type f | fzf | xargs -r -I % $EDITOR %; }
-# Abrir sesiones de mi home directory con el neovim
-vs(){ find $HOME -name "*.vim" | fzf | xargs -r -I % $EDITOR -S %; }
-# REMOVE VIM SWAP FILES
-rvs(){ find $HOME -name "*.swp" | fzf | xargs -r -I % rm %; dustify -r 112 "Se eliminó la swap"; }
-
 # Ps que tanto uso
 alias pies="pstree -apC age | grep $1"
 
@@ -125,3 +117,4 @@ alias reconectar="sudo netctl restart $(netctl list | grep '^*' | cut -d" " -f2-
 
 # NCDU tuneado
 alias ncdu="ncdu --color dark"
+

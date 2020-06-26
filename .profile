@@ -12,10 +12,6 @@
 export TERMINAL="alacritty"
 export BROWSER="brave"
 
-# dwmbar
-export SEP1='['
-export SEP2=']'
-
 # Colores
 export BOLD="$(tput bold)"
 export RED="$(tput setaf 1)"

@@ -29,6 +29,10 @@ super + q
 super + {Up,Down}
 	{volume +,volume -}
 
+# Volumen control
+super + {Right,Down}
+	{mpc next,mpc prev}
+
 # Restart dwmbar
 shift + super + r
 	restart_dmenu
@@ -40,6 +44,10 @@ super + c
 # Dmenu bluetoothctl
 super + b
 	bl_dmenu
+
+# Newsboat
+super + n
+	tx newsboat
 
 # Gui apps, browser, calculator, downlords, steam
 alt + shift + o ; {b,c,e,g}

@@ -1,21 +1,31 @@
 #!/bin/sh
 
-
+# Creo el archivo con el calendario
 calendar="${XDG_DATA_HOME:-$HOME/.local/share}/calendar"
-
 # Calendario anual, lunes primer día.
 getCalendar () {
+	printf "🗘"
+	{
 	LANG=es_AR.UTF-8 \cal -y -m --color=always > "$calendar"
+	if [ -e "$calendar" ];then
+		notify-send "Alo" "fiera"
+		sed -i "s/.*\([ 123][0-9].*\)27m/${NC}${BOLD}${RED}\1${NC}${DIM}/g" $calendar
+		sed -i "s/\([a-z][a-z][a-z]\+\)/${NC}\1${NC}${DIM}/g" $calendar
+		sed -i "s/\($(LANG=es_AR.UTF-8 date "+%B")\)/${NC}${BOLD}${RED}\1${NC}${DIM}/g" $calendar
+	fi
+}
+pkill -RTMIN+9 dwmblocks; exit
 }
 
+# If currencies haven't been updated today, try to update them.
+[ ! -e "$calendar" ] && getCalendar
+[ "$(stat -c %x "$calendar" | cut -d' ' -f1)" != "$(date '+%Y-%m-%d')" ] && \
+	{ getCalendar || exit ;}
 case $BUTTON in
-	3) notify-send -t 3000 "♻  Loading..." && $HOME_SCRIPTS/basicos/horarios;;
-	2) notify-send "🗓  Calendario actualizado" && getCalendar;;
-	1) setsid -f falacritty less -Srf "$calendar";;
-	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0";;
+	1) setsid -f falacritty -d 66 36 -e less -Srf "$calendar";;
+	2) getCalendar;;
+	6) "$TERMINAL" -e "$EDITOR" "$0";;
 esac
 
-printf "📅%s " "$(date "+%a %-d/%-m %-H:%M")"
-
-[ "$(stat -c %y "$calendar" 2> /dev/null | cut -d' ' -f1)" = "$(date '+%Y-%m-%d')" ] ||
-	getCalendar
+# Texto para mostrar en la barra
+printf "📅%s " "$(date "+%a %-d/%-m")"
