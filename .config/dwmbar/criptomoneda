@@ -30,7 +30,7 @@ getprices() { # The command to get the desired prices
 	valGraph="$(curl -s "rate.sx/$web@2d" > "$dir"/"$web".graph)" &&
 	val="$(curl -s "rate.sx/1$web")" &&
 	valBar="$(formatPrice "$val")" &&
-		echo "$icon;$valBar;$val;$human;" > "$dir/$web.data"
+		echo "$icon;$valBar;$val;$human;" > "$dir/$web"
 	done;
 	[ -d "$dir" ] && touch "$dir"
 	pkill -RTMIN+2 "${STATUSBAR:-dwmblocks}" ;} &
@@ -39,7 +39,7 @@ getprices() { # The command to get the desired prices
 
 printprices() { # Print/format all prices
 	#for x in "$dir"/*; do
-	for x in $(find . -name "*.data" | tr "\n" "\ "); do
+	for x in $(find "${dir}" -name "*.data" ! -name *.graph | tr "\n" "\ "); do
 		[ -f "$x" ] || break
 		info="$(cut -d';' -f-2 --output-delimiter=':' "$x")"
 		#info="$(cut -d';' -f-2 "$x")"
@@ -55,11 +55,11 @@ printprices() { # Print/format all prices
 
 case $BUTTON in
 	1) uptime="$(date -d "$(stat -c %x "$dir")" '+%D at %T' | sed "s|$(date '+%D')|Today|")"
-		notify-send -t 15000 "Exact prices in USD" "$(awk -F';' '{print $1, $4 ":\n$" $3}' "$dir"/*)
+		notify-send -t 15000 "Exact prices in USD" "$(awk -F';' '{print $1, $4 ":\n$" $3}' "$dir"/*.data)
 <b>Last updated:</b>
 $uptime" ;;
 	2) getprices ;;
-	3) falacritty -d 84 38 -e less -qfr "$(find "$dir" -name "*.graph" ! -name "nzd*" -exec basename {} \; | tr "\n" " ")";;
+	3) falacritty -d 84 38 -e less -qfr "$(find "$dir" -name "*.graph" ! -name "nzd*" | tr "\n" " ")";;
 	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
