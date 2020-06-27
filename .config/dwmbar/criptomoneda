@@ -30,7 +30,7 @@ getprices() { # The command to get the desired prices
 	valGraph="$(curl -s "rate.sx/$web@2d" > "$dir"/"$web".graph)" &&
 	val="$(curl -s "rate.sx/1$web")" &&
 	valBar="$(formatPrice "$val")" &&
-		echo "$icon;$valBar;$val;$human;" > "$dir/$web"
+		echo "$icon;$valBar;$val;$human;" > "$dir/$web.data"
 	done;
 	[ -d "$dir" ] && touch "$dir"
 	pkill -RTMIN+2 "${STATUSBAR:-dwmblocks}" ;} &
@@ -50,8 +50,8 @@ printprices() { # Print/format all prices
 [ ! -d "$dir" ] && mkdir -p "$dir" && { getprices; exit ;}
 
 # If currencies haven't been updated today, try to update them.
-#[ "$(stat -c %x "$HOME/.local/share/crypto-prices" | cut -d' ' -f1)" != "$(date '+%Y-%m-%d')" ] &&
-	#{ ping -q -c 1 1.1.1.1 >/dev/null 2>&1 && getprices || exit ;}
+[ "$(stat -c %x "$HOME/.local/share/crypto-prices" | cut -d' ' -f1)" != "$(date '+%Y-%m-%d')" ] &&
+	{ ping -q -c 1 1.1.1.1 >/dev/null 2>&1 && getprices || exit ;}
 
 case $BUTTON in
 	1) uptime="$(date -d "$(stat -c %x "$dir")" '+%D at %T' | sed "s|$(date '+%D')|Today|")"
