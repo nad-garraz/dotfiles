@@ -1,0 +1,62 @@
+#!/bin/sh
+
+#   ____            _
+#  / ___|___   ___ | |
+# | |   / _ \ / _ \| |
+# | |__| (_) | (_) | |
+#  \____\___/ \___/|_|
+#
+#  _____                 _   _
+# |  ___|   _ _ __   ___| |_(_) ___  _ __  ___
+# | |_ | | | | '_ \ / __| __| |/ _ \| '_ \/ __|
+# |  _|| |_| | | | | (__| |_| | (_) | | | \__ \
+# |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
+#
+#
+
+# Abrir un archivo de mi home directory con el neovim
+vf(){ find $HOME -type f | fzf | xargs -r -I % $EDITOR %; }
+# Abrir sesiones de mi home directory con el neovim
+vs(){ find $HOME -name "*.vim" | fzf | xargs -r -I % $EDITOR -S %; }
+# REMOVE VIM SWAP FILES
+rvs(){ find $HOME -name "*.swp" | fzf | xargs -r -I % rm %; notify-send "Se eliminó la swap"; }
+
+superlame () {
+	arg=${1:-128}
+	parallel lame -S --mp3input -b $arg {} {.}.tmp \'&&\' \mv {.}.tmp {} ::: \
+		$(find . -maxdepth 1 -name "*.mp3" -exec basename {} \;)
+	}
+
+cl() {
+	local dir="$1"
+	local dir="${dir:=$HOME}"
+	if [[ -d "$dir" ]]; then
+		cd "$dir" >/dev/null; ls -ha --color=auto
+	else
+		echo "bash: cl: $dir: Directory not found"
+	fi
+}
+
+calc() {
+	echo "scale=3;$@" | bc -l
+}
+
+ipif() {
+	if grep -P "(([1-9]\d{0,2})\.){3}(?2)" <<< "$1"; then
+		curl ipinfo.io/"$1"
+	else
+		ipawk=($(host "$1" | awk '/address/ { print $NF }'))
+		curl ipinfo.io/${ipawk[1]}
+	fi
+	echo
+}
+
+EC() {
+	echo -e '\e[1;33m'code $?'\e[m' # Este tiene el \n extra
+}
+trap EC ERR
+
+qr() {
+	arg=$1
+	curl qrenco.de/"$arg"
+}
