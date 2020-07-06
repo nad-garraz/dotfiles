@@ -1,8 +1,8 @@
 # Listar directorio
 alias ls='ls --color=auto'
 alias la='ls -ahp'
-alias ll='ls -lahp'
 alias lc='ls -cltah'
+alias ll='ls -lahp'
 
 # Shorcuts to used directories
 alias cds='cd ~/.local/scripts'
