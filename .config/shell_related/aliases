@@ -7,7 +7,6 @@ alias lc='ls -cltah'
 # Shorcuts to used directories
 alias cds='cd ~/.local/scripts'
 alias cdc='cd ~/.config'
-alias cdpp='cd ~/programitas/python_projects'
 alias cdda='cd /data'
 
 # Calcu
