@@ -9,7 +9,9 @@
 
 #mv "$1" "$(echo "$1"| sed -r 's/dwm_//g')"
 
-mv "$1" "$(echo "$1" | sed "s/^[0-9].*gerald-//g")"
+#mv "$1" "$(echo "$1" | sed "s/^[0-9][0-9]_-_//g")"
+#mv "$1" "$(echo "$1" | sed "s/^_//g")"
+mv "$1" "$(echo "$1" | sed "s/^otros_aires_-_//g")"
 
 ## Cambiar "(" --> "_" y ")" --> ""   NO PARENTESIS
 #mv "$1" "$(echo "$1" | tr "(" "_" | tr -d ")")"

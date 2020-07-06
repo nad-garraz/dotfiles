@@ -15,7 +15,7 @@ is_movie () {
 # Si es una película, la manda a la carpta de películas e intenta bajar subtítulo
 	[ -d "/data/peliculas" ] && dir_pelis="/data/peliculas" || exit 1;
 	peli="$(find "$TR_TORRENT_DIR$TR_TORRENT_NAME" -name "*.mp4" -o -name "*.mkv" -o -name "*.avi")"
-	if [ -z $peli ]
+	if [ -f $peli ];
 	then transmission-remote -t$TR_TORRENT_ID --move $dir_pelis &> /dev/null && notify-send "📽 $TR_TORRENT_NAME" "📽   --> $dir_pelis  ";
 		subdl --existing=bypass "$dir_pelis/$TR_TORRENT_NAME$(basename "$peli")" &> /dev/null && notify-send "Se bajó subtítulo" || notify-send "Falló el subtítulo"
 	else

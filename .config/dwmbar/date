@@ -1,14 +1,14 @@
 #!/bin/sh
-
+icon="📅:"
 # Creo el archivo con el calendario
 calendar="${XDG_DATA_HOME:-$HOME/.local/share}/calendar"
-# Calendario anual, lunes primer día.
+
+# Calendario anual, lunes primer día. Y color manipulation
 getCalendar () {
 	printf "🗘"
 	{
 	LANG=es_AR.UTF-8 \cal -y -m --color=always > "$calendar"
 	if [ -e "$calendar" ];then
-		notify-send "Alo" "fiera"
 		sed -i "s/.*\([ 123][0-9].*\)27m/${NC}${BOLD}${RED}\1${NC}${DIM}/g" $calendar
 		sed -i "s/\([a-z][a-z][a-z]\+\)/${NC}\1${NC}${DIM}/g" $calendar
 		sed -i "s/\($(LANG=es_AR.UTF-8 date "+%B")\)/${NC}${BOLD}${RED}\1${NC}${DIM}/g" $calendar
@@ -17,10 +17,10 @@ getCalendar () {
 pkill -RTMIN+9 dwmblocks; exit
 }
 
-# If currencies haven't been updated today, try to update them.
 [ ! -e "$calendar" ] && getCalendar
 [ "$(stat -c %x "$calendar" | cut -d' ' -f1)" != "$(date '+%Y-%m-%d')" ] && \
 	{ getCalendar || exit ;}
+
 case $BUTTON in
 	1) setsid -f falacritty -d 66 36 -e less -Srf "$calendar";;
 	2) getCalendar;;
@@ -28,4 +28,4 @@ case $BUTTON in
 esac
 
 # Texto para mostrar en la barra
-printf "📅%s " "$(date "+%a %-d/%-m")"
+printf "$icon%s " "$(date "+%a%-d/%-m")"

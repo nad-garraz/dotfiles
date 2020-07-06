@@ -1,10 +1,37 @@
 #!/bin/sh
 
-# Dependencies: xorg-setxkbmap
+#xkb_keyboard () {
+	#layout=$(setxkbmap -query | awk '/layout/{print $2}')
+	#printf "⌨:%s " "$layout"
+#}
 
-dwm_keyboard () {
-LAYOUT=$(setxkbmap -query | awk '/layout/{print $2}')
-        printf "%s%s%s" "$SEP1" "$LAYOUT" "$SEP2"
+print_ibus_keyboard () {
+	layout=$(ibus engine | cut -d":" -f2)
+	case $layout in
+		us) printf "⌨:%s " "$layout";;
+		latam) printf "⌨:es ";;
+		zh) printf "⌨:ch ";;
+	esac
 }
 
-dwm_keyboard
+ibus_keyboard_toggle () {
+	if [ $(ibus engine | cut -d":" -f2) != "us" ]; then
+		ibus engine xkb:us::eng
+	else
+		ibus engine xkb:latam::spa
+		flag="on"
+	fi
+	pkill -RTMIN+8 dwmblocks
+}
+ibus_keyboard_zh () {
+	ibus engine m17n:zh:tonepy ;
+		pkill -RTMIN+8 dwmblocks
+	}
+
+case $BUTTON in
+	1)ibus_keyboard_toggle;;
+	3)ibus_keyboard_zh;;
+	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+print_ibus_keyboard

@@ -1,11 +1,16 @@
 #!/bin/sh
+icon=" 🎧 "
 
 musicOn () {
-	i=$(date "+%S")
-	if [ $(expr $i % 3 ) -eq 0 ]; then
-		echo "🎶♫ "
+	if [ "$STATUS" = "[playing]" ]; then
+		i=$(date "+%S")
+		if [ $(expr $i % 3 ) -eq 0 ]; then
+			echo " (🎶♫$icon♫🎶)  "
+		else
+			echo "((♫🎶$icon🎶♫)) "
+		fi
 	else
-		echo "♫🎶 "
+		echo " $icon "
 	fi
 }
 
@@ -18,27 +23,28 @@ dancingMan () {
 	fi
 }
 
-ARTIST=$(mpc current -f %artist%)
-TRACK=$(mpc current -f %title%)
-STATUS=$(mpc status | sed -n 2p | awk '{print $1;}')
-NEXT=$(mpc queued)
-[ "$STATUS" = "[playing]" ] &&	musicOn
-
 notifyInfo () {
 	i=10
 	while [ $i -gt 0 ];do
 		read now <<< $(mpc status | awk '/^\[/ { printf $3 "\t" $4}')
 		dunstify -r 1 "🎶$ARTIST
-  $TRACK" "  $now
-$(dancingMan $i)
+$TRACK" "  $now
+	$(dancingMan $i)
 Next song: $NEXT "
 		let i=$(echo "$i-1" | bc -ql) 1> /dev/null
 		sleep 1
 	done
 }
 
+ARTIST=$(mpc current -f %artist%)
+TRACK=$(mpc current -f %title%)
+STATUS=$(mpc status | sed -n 2p | awk '{print $1;}')
+NEXT=$(mpc queued)
 
 case $BUTTON in
-	1) notifyInfo;;
+	3) notifyInfo;;
+	1) mpc toggle && printf "🎧";;
 	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0"
 esac
+
+musicOn

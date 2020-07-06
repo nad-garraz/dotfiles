@@ -1,8 +1,16 @@
 #!/usr/bin/env bash
 
+# Timer casero. Toma el primer argumento en segundos o minutos
+
 i=${1:-60}
 
+alarm_sound="$HOME/.reminders/sonidos/spoon.mp3"
+
 convert (){
+	# Esta función se encarga de convertir el
+	# parametro de tiempo a segundos, en caso de que se haya
+	# ingresado con la unidad de minutos. De esa manera es más
+	# fácil ejecutar la cuenta regresiva.
 	long=$(echo "${#i}-1" | bc -ql) # saco el número
 	numero="${i: 0:$long}"
 	if [ "$(echo "${i: -1}")" = "m" ];
@@ -12,12 +20,14 @@ convert (){
 }
 
 convert
+
 while [ $i -gt 0 ];
 do
-	[ $i -gt 0 ] && [ $i -le 10 ] && dunstify -r 12 "$i"
-	let i=$(echo "$i-1" | bc -ql) 1> /dev/null
+	#[ $i -gt 0 ] && [ $i -le 10 ] && dunstify -r 12 "$i"
+	[ $i -gt 0 ] && [ $i -le 10 ] && notify-send -t 1000 "$i"
+	let i=$(echo "$i-1" | bc -ql) &> /dev/null
 	sleep 1
 done
 
-dunstify -t 10000 "Fin de los $1 segundos" &
-mpv $HOME/.reminders/sonidos/spoon.mp3
+notify-send "Fin de los $1"
+[ -e "$alarm_sound" ] && \mpv $alarm_sound

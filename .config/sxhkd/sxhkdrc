@@ -30,7 +30,7 @@ super + {Up,Down}
 	{volume +,volume -}
 
 # Volumen control
-super + {Right,Down}
+super + {Right,Left}
 	{mpc next,mpc prev}
 
 # Restart dwmbar

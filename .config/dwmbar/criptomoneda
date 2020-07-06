@@ -44,7 +44,7 @@ printprices() { # Print/format all prices
 		info="$(cut -d';' -f-2 --output-delimiter=':' "$x")"
 		#info="$(cut -d';' -f-2 "$x")"
 		printf "%s " "$info"
-	done | sed 's/ $/\n/'
+	done #| sed 's/ $/\n/'
 	}
 
 [ ! -d "$dir" ] && mkdir -p "$dir" && { getprices; exit ;}
