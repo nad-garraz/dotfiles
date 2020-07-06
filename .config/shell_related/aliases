@@ -1,6 +1,6 @@
 # Listar directorio
-alias ls='ls --color=auto'
 alias la='ls -ahp'
+alias ls='ls --color=auto'
 alias lc='ls -cltah'
 alias ll='ls -lahp'
 
