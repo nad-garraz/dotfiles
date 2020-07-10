@@ -6,7 +6,6 @@ color listfocus_unread yellow default bold
 color info red black bold
 color article white default bold
 
-
 highlight all "---.*---" yellow
 highlight feedlist ".*(0/0))" black
 highlight article "(^Feed:.*|^Title:.*|^Author:.*)" cyan default bold
@@ -20,13 +19,22 @@ highlight article ":.*\\(link\\)$" cyan default
 highlight article ":.*\\(image\\)$" blue default
 highlight article ":.*\\(embedded flash\\)$" magenta default
 
-
 bind-key l open
 bind-key h quit
 bind-key j next
 bind-key k prev
 bind-key J down
 bind-key K up
+bind-key D delete-article
+bind-key  delete-all-articles
 
+external-url-viewer "urlscan -dc -r 'linkhandler {}'"
 # Macros
-macro y set browser "mpv --wid=${WINDOWID} %u" ; open-in-browser ; set browser "elinks %u"
+browser linkhandler
+macro , open-in-browser
+macro t set browser "qndl" ; open-in-browser ; set browser linkhandler
+macro a set browser "tsp youtube-dl" ; open-in-browser ; set browser linkhandler
+macro v set browser "setsid -f mpv" ; open-in-browser ; set browser linkhandler
+macro w set browser "lynx" ; open-in-browser ; set browser linkhandler
+macro p set browser "dmenuhandler" ; open-in-browser ; set browser linkhandler
+macro c set browser "xsel -b <<<" ; open-in-browser ; set browser linkhandler

@@ -1,5 +1,5 @@
 #!/bin/sh
-icon=" 🎧 "
+icon="🎧"
 
 musicOn () {
 	if [ "$STATUS" = "[playing]" ]; then
@@ -10,16 +10,16 @@ musicOn () {
 			echo "((♫🎶$icon🎶♫)) "
 		fi
 	else
-		echo " $icon "
+		echo "$icon "
 	fi
 }
 
 dancingMan () {
 	if [ $(expr $1 % 2 ) -eq 0 ]; then
-		parallel echo ::: "    ♪╔(・o･)╝♪♫  ♩♩♫~(◠o◠)~♫ " "======================================"
+		parallel echo ::: "   ♪╔(・o･)╝♪♫  ♩♩♫~(◠o◠)~♫ " "======================================"
 
 	else
-		parallel echo ::: "  ♫♪ ╚(･o・)╗ ♪  ♩~(◠0◠)~♫ ♩♫" "--------------------------------------"
+		parallel echo ::: " ♫♪ ╚(･o・)╗ ♪  ♩~(◠0◠)~♫ ♩♫" "--------------------------------------"
 	fi
 }
 
@@ -44,6 +44,7 @@ NEXT=$(mpc queued)
 case $BUTTON in
 	3) notifyInfo;;
 	1) mpc toggle && printf "🎧";;
+	2) setsid -f falacritty -d 130 30 -e ncmpcpp;;
 	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0"
 esac
 

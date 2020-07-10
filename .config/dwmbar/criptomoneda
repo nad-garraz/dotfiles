@@ -27,7 +27,7 @@ getprices() { # The command to get the desired prices
 	printf "🔃 "; printprices
 	{ rm -rf "${dir:?}/*"
 	echo "$coins" | while IFS=';' read -r human web icon; do
-	valGraph="$(curl -s "rate.sx/$web@2d" > "$dir"/"$web".graph)" &&
+	valGraph="$(curl -s "rate.sx/$web@3d" > "$dir"/"$web".graph)" &&
 	val="$(curl -s "rate.sx/1$web")" &&
 	valBar="$(formatPrice "$val")" &&
 		echo "$icon;$valBar;$val;$human;" > "$dir/$web.data"
@@ -38,19 +38,17 @@ getprices() { # The command to get the desired prices
 	}
 
 printprices() { # Print/format all prices
-	#for x in "$dir"/*; do
 	for x in $(find "${dir}" -name "*.data" ! -name *.graph | tr "\n" "\ "); do
 		[ -f "$x" ] || break
 		info="$(cut -d';' -f-2 --output-delimiter=':' "$x")"
-		#info="$(cut -d';' -f-2 "$x")"
-		printf "%s " "$info"
+		[ ! -z "$info" ] && printf "%s " "$info" || printf "%s " "🤑"
 	done #| sed 's/ $/\n/'
 	}
 
 [ ! -d "$dir" ] && mkdir -p "$dir" && { getprices; exit ;}
 
-# If currencies haven't been updated today, try to update them.
-[ "$(stat -c %x "$HOME/.local/share/crypto-prices" | cut -d' ' -f1)" != "$(date '+%Y-%m-%d')" ] &&
+# If currencies haven't been updated in the past 10 minutes, try to update them.
+[ $(expr $(date "+%s") - $(stat -c %Y "$HOME/.local/share/crypto-prices")) -ge 600 ] &&
 	{ ping -q -c 1 1.1.1.1 >/dev/null 2>&1 && getprices || exit ;}
 
 case $BUTTON in

@@ -8,9 +8,9 @@
 print_ibus_keyboard () {
 	layout=$(ibus engine | cut -d":" -f2)
 	case $layout in
-		us) printf "⌨:%s " "$layout";;
-		latam) printf "⌨:es ";;
-		zh) printf "⌨:ch ";;
+		us) printf "⌨:eng ";;
+		latam) printf "⌨:esp ";;
+		zh) printf "⌨:中文 ";;
 	esac
 }
 

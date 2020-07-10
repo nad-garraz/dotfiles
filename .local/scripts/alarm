@@ -30,4 +30,4 @@ do
 done
 
 notify-send "Fin de los $1"
-[ -e "$alarm_sound" ] && \mpv $alarm_sound
+[ -e "$alarm_sound" ] && \mpv --msg-level=all=no $alarm_sound
