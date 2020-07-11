@@ -54,7 +54,7 @@ $uptime" ;;
 esac
 
 
-# If currencies haven't been updated in the past 10 minutes, try to update them.
-{ [ $(expr $(date "+%s") - $(stat -c %Y "$HOME/.local/share/crypto-prices")) -ge 3600 ] && ping -q -c 1 1.1.1.1 >/dev/null 2>&1 ; } && { getprices && printprices ; } || { printprices && exit; }
+# If currencies haven't been updated in the past 10 minutes, try to update them if possible
+{ [ $(expr $(date "+%s") - $(stat -c %Y "$HOME/.local/share/crypto-prices")) -ge 600 ] && ping -q -c 1 1.1.1.1 >/dev/null 2>&1 ; } && { getprices && printprices ; } || { printprices && exit; }
 
 printprices

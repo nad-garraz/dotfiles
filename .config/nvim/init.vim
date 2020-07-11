@@ -39,7 +39,7 @@ autocmd BufWritePost ~/.local/src/dwmblocks/blocks.h !cd ~/.local/src/dwmblocks;
 map <leader>eng :setlocal spell! spelllang=en_us<CR>
 
 " Spell-check Spanish
-map <leader>spa :setlocal spell! spelllang=es_ar<CR>
+map <leader>esp :setlocal spell! spelllang=es_ar<CR>
 
 " Align all, indentation
 nmap <Leader>al ggVG=``zz<CR>
