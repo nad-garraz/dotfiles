@@ -15,6 +15,7 @@ musicOn () {
 }
 
 dancingMan () {
+	# Dancing in its purest form.
 	if [ $(expr $1 % 2 ) -eq 0 ]; then
 		parallel echo ::: "   ♪╔(・o･)╝♪♫  ♩♩♫~(◠o◠)~♫ " "======================================"
 
