@@ -16,20 +16,20 @@ showweather() {
 getforecast() {
 		{ [ -z "$(cat $weatherreport)" ] || olderAndIp  ;} &&
 			curl -sf "wttr.in/$LOCATION" > "$weatherreport" &&
-		uptime="$(date -d "$(stat -c %x "$weatherreport")" '+%D at %T' | sed "s|$(date '+%D')|Today|")" &&
+			uptime="$(LANG=es_AR.UTF-8 date -d "$(stat -c %x "$weatherreport")" '+%A %-d/%-m at %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1')" &&
 		echo -e "${RED}Last update: ${uptime}${NC}" >> $weatherreport
 }
 
 temperaturaActual () {
 	{ [ -z "$(cat $temp)" ] || olderAndIp ;} &&
-		uptime="$(date -d "$(stat -c %x "$temp")" '+%D at %T' | sed "s|$(date '+%D')|Today|")" &&
-		echo -e "Temperatura: $(curl -s wttr.in/$LOCATION?format=1 | sed "s/^. \+\?//g")\n<b>Last update:</b>\n${uptime}" > $temp ;
+		uptime="$(LANG=es_AR.UTF-8 date -d "$(stat -c %x $temp)" '+%A %-d/%-m at %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1')" &&
+		echo -e "Temperatura: $(curl -s wttr.in/${LOCATION}?format=1)\n<b>Last update:</b>\n${uptime}" > $temp ;
 		}
 
 
 
 weatherreport="${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport"
-temp="$HOME/.local/share/local_temperature"
+temp="$HOME/.local/share/temp_now"
 
 case $BUTTON in
 	3) setsid -f alacritty --class float,term -d 125 42 -e less -Srf "$weatherreport";;

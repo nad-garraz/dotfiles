@@ -21,7 +21,7 @@ formatPrice () {
 }
 
 getprices() { # The command to get the desired prices
-	printf "🔃 "; printprices
+	printf "🔃 ";
 	{ rm -rf "${dir:?}/*"
 	echo "$coins" | while IFS=';' read -r human web icon; do
 	valGraph="$(curl -s "rate.sx/$web@3d" > "$dir"/"$web".graph)" &&
@@ -44,7 +44,7 @@ printprices() { # Print/format all prices
 [ ! -d "$dir" ] && mkdir -p "$dir"
 
 case $BUTTON in
-	1) uptime="$(date -d "$(stat -c %x "$dir")" '+%D at %T' | sed "s|$(date '+%D')|Today|")"
+	1) uptime="$(LANG=es_AR.UTF-8 date -d "$(stat -c %x "$dir")" '+%A %-d/%-m at %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1')"
 		notify-send -t 15000 "Exact prices in USD" "$(awk -F';' '{print $1, $4 ":\n$" $3}' "$dir"/*.data)
 <b>Last updated:</b>
 $uptime" ;;
