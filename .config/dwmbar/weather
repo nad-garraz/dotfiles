@@ -3,7 +3,9 @@ LOCATION="-36.9267019,175.7895731"
 
 olderAndIp () {
 		# Update solo con inet y si el último update son más viejos que la edad objetivo
-		[ $(expr $(date "+%s") - $(stat -c %Y "$temp")) -ge 3600 ] || [ $(expr $(date "+%s") - $(stat -c %Y "$weatherreport")) -ge 7200 ] && { ping -q -c 1 1.1.1.1 >/dev/null 2>&1 || exit ;}
+		showweather;
+		{ [ $(expr $(date "+%s") - $(stat -c %Y "$temp")) -ge 3600 ] || [ $(expr $(date "+%s") - $(stat -c %Y "$weatherreport")) -ge 7200 ] ; } && ping -q -c 1 1.1.1.1 >/dev/null 2>&1 &&
+			rm $temp $weatherreport
 		}
 
 showweather() {
@@ -25,18 +27,19 @@ temperaturaActual () {
 		}
 
 
+
 weatherreport="${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport"
 temp="$HOME/.local/share/local_temperature"
 
 case $BUTTON in
-	1) setsid -f alacritty --class float,term -d 125 42 -e less -Srf "$weatherreport";;
-	2) rm $temp $weatherreport && notify-send -t 2000 "⛅ Refreshing...";;
-	3) notify-send "🌈 Weather module" "$(cat $temp)";;
+	3) setsid -f alacritty --class float,term -d 125 42 -e less -Srf "$weatherreport";;
+	2) notify-send -t 2000 "⛅ Refreshing..."; getforecast && temperaturaActual;;
+	1) notify-send "🌈 Weather module" "$(cat $temp)";;
 	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0";;
 esac
 
-[ ! -e "$weatherreport" ] && touch "$weatherreport"
-[ ! -e "$temp" ] && touch "$temp"
-getforecast;
-temperaturaActual;
+[ ! -e "$weatherreport" ] && touch "$weatherreport" && getforecast
+[ ! -e "$temp" ] && touch "$temp"&& temperaturaActual
+
+olderAndIp && getforecast && temperaturaActual;
 showweather

@@ -53,7 +53,7 @@ super + n
 alt + shift + o ; {b,c,e,g}
 	{$BROWSER,speedcrunch,calibre,gimp}
 
-# Gui apps, browser, calculator, downlords, steam
+# Gui games
 alt + shift + g ; {d,s,r}
 	{downlords-faf-client,steam,retroarch}
 

@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# Shows the price for desired cryptocurrencies. Module updates automatically
-# every calendar day, but can also be updated with a middle click.
-
 # Currencies should be ;-separated:
 # human-readable name;urlname;icon
 coins="Bitcoin;btc;💰
@@ -34,7 +31,6 @@ getprices() { # The command to get the desired prices
 	done;
 	[ -d "$dir" ] && touch "$dir"
 	pkill -RTMIN+2 "${STATUSBAR:-dwmblocks}" ;} &
-	exit
 	}
 
 printprices() { # Print/format all prices
@@ -42,14 +38,10 @@ printprices() { # Print/format all prices
 		[ -f "$x" ] || break
 		info="$(cut -d';' -f-2 --output-delimiter=':' "$x")"
 		[ ! -z "$info" ] && printf "%s " "$info" || printf "%s " "🤑"
-	done #| sed 's/ $/\n/'
+	done
 	}
 
-[ ! -d "$dir" ] && mkdir -p "$dir" && { getprices; exit ;}
-
-# If currencies haven't been updated in the past 10 minutes, try to update them.
-[ $(expr $(date "+%s") - $(stat -c %Y "$HOME/.local/share/crypto-prices")) -ge 600 ] &&
-	{ ping -q -c 1 1.1.1.1 >/dev/null 2>&1 && getprices || exit ;}
+[ ! -d "$dir" ] && mkdir -p "$dir"
 
 case $BUTTON in
 	1) uptime="$(date -d "$(stat -c %x "$dir")" '+%D at %T' | sed "s|$(date '+%D')|Today|")"
@@ -60,5 +52,9 @@ $uptime" ;;
 	3) falacritty -d 84 38 -e less -qfr "$(find "$dir" -name "*.graph" ! -name "nzd*" | tr "\n" " ")";;
 	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
+
+
+# If currencies haven't been updated in the past 10 minutes, try to update them.
+{ [ $(expr $(date "+%s") - $(stat -c %Y "$HOME/.local/share/crypto-prices")) -ge 3600 ] && ping -q -c 1 1.1.1.1 >/dev/null 2>&1 ; } && { getprices && printprices ; } || { printprices && exit; }
 
 printprices
