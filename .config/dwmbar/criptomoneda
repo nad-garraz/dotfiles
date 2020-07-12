@@ -1,13 +1,16 @@
 #!/bin/sh
 
-# Currencies should be ;-separated:
-# human-readable name;urlname;icon
-coins="Bitcoin;btc;💰
-EOSIO;eos;🍸
-NZD;nzd;🇳🇿"
+#++++++++++++++++++++++++++++++++
+## Funciones
+#++++++++++++++++++++++++++++++++
 
-# Directory where currency info is stored.
-dir="${XDG_DATA_HOME:-$HOME/.local/share}/crypto-prices"
+isOldAndIsInet () {
+		# Chequea si es posible bajar nueva info solo si el archivo
+		# es más antiguo que 600 s
+		ping -q -c 1 1.1.1.1 >/dev/null 2>&1 &&
+		{ [ $(expr $(date "+%s") - $(stat -c %Y "$dir")) -ge 600 ] &&
+			 touch -m "$dir"; }
+		}
 
 # Para acortar los números no significativos.
 formatPrice () {
@@ -20,20 +23,20 @@ formatPrice () {
 	fi
 }
 
-getprices() { # The command to get the desired prices
-	printf "🔃 ";
-	{ rm -rf "${dir:?}/*"
-	echo "$coins" | while IFS=';' read -r human web icon; do
+getprices() {
+	printf "loading... " &&
+		{ echo "$coins" | while IFS=';' read -r human web icon; do
 	valGraph="$(curl -s "rate.sx/$web@3d" > "$dir"/"$web".graph)" &&
 	val="$(curl -s "rate.sx/1$web")" &&
 	valBar="$(formatPrice "$val")" &&
 		echo "$icon;$valBar;$val;$human;" > "$dir/$web.data"
 	done;
-	[ -d "$dir" ] && touch "$dir"
-	pkill -RTMIN+2 "${STATUSBAR:-dwmblocks}" ;} &
+	pkill -RTMIN+2 "${STATUSBAR:-dwmblocks}" ;
+	showprices;
+	exit; } &
 	}
 
-printprices() { # Print/format all prices
+showprices() { # Print/format all prices
 	for x in $(find "${dir}" -name "*.data" ! -name *.graph | tr "\n" "\ "); do
 		[ -f "$x" ] || break
 		info="$(cut -d';' -f-2 --output-delimiter=':' "$x")"
@@ -41,20 +44,33 @@ printprices() { # Print/format all prices
 	done
 	}
 
-[ ! -d "$dir" ] && mkdir -p "$dir"
+
+#++++++++++++++++++++++++++++++++
+## Variables
+#++++++++++++++++++++++++++++++++
+# Currencies should be ;-separated:
+# human-readable name;urlname;icon
+coins="Bitcoin;btc;💰
+EOSIO;eos;🍸
+NZD;nzd;🇳🇿"
+
+# Directory where currency info is stored.
+dir="${XDG_DATA_HOME:-$HOME/.local/share}/crypto-prices"
+
+# Lo crea si no existe
+[ ! -d "$dir" ] && mkdir -p "$dir";
+[ ! "$(ls -A "$dir")" ] && printf "loading... " && getprices ;
+
+# Last modification of $dir string
+uptime="$(LANG=es_AR.UTF-8 date -d "$(stat -c %y "$dir")" '+%A %-d/%-m at %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1')";
 
 case $BUTTON in
-	1) uptime="$(LANG=es_AR.UTF-8 date -d "$(stat -c %x "$dir")" '+%A %-d/%-m at %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1')"
-		notify-send -t 15000 "Exact prices in USD" "$(awk -F';' '{print $1, $4 ":\n$" $3}' "$dir"/*.data)
+	1)  notify-send -t 15000 "Exact prices in USD" "$(awk -F';' '{print $1, $4 ":\n$" $3}' "$dir"/*.data)
 <b>Last updated:</b>
 $uptime" ;;
-	2) getprices ;;
+	2) isOldAndIsInet && getprices ;;
 	3) falacritty -d 84 38 -e less -qfr "$(find "$dir" -name "*.graph" ! -name "nzd*" | tr "\n" " ")";;
 	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-
-# If currencies haven't been updated in the past 10 minutes, try to update them if possible
-{ [ $(expr $(date "+%s") - $(stat -c %Y "$HOME/.local/share/crypto-prices")) -ge 600 ] && ping -q -c 1 1.1.1.1 >/dev/null 2>&1 ; } && { getprices && printprices ; } || { printprices && exit; }
-
-printprices
+showprices

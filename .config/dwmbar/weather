@@ -1,11 +1,12 @@
 #!/bin/sh
 LOCATION="-36.9267019,175.7895731"
 
-olderAndIp () {
+isOldAndIsInet () {
 		# Update solo con inet y si el último update son más viejos que la edad objetivo
 		showweather;
-		{ [ $(expr $(date "+%s") - $(stat -c %Y "$temp")) -ge 3600 ] || [ $(expr $(date "+%s") - $(stat -c %Y "$weatherreport")) -ge 7200 ] ; } && ping -q -c 1 1.1.1.1 >/dev/null 2>&1 &&
-			rm $temp $weatherreport
+		ping -q -c 1 1.1.1.1 >/dev/null 2>&1 && {
+		[ $(expr $(date "+%s") - $(stat -c %Y "$temp")) -ge 1800 ] && rm $temp ;
+		[ $(expr $(date "+%s") - $(stat -c %Y "$weatherreport")) -ge 7200 ] && rm $weatherreport ; }
 		}
 
 showweather() {
@@ -14,16 +15,18 @@ showweather() {
 				sed '13q;d' "$weatherreport" | grep -o "m\\([-+]\\)*[0-9]\\+" | sort -n -t 'm' -k 2n | sed -e 1b -e '$!d' | tr '\n|m' ' ' | awk '{ print "🥶:"$1"°""🌞:"$2"° " }' ;}
 
 getforecast() {
-		{ [ -z "$(cat $weatherreport)" ] || olderAndIp  ;} &&
+	[ ! -e $weatherreport ] && touch $weatherreport;
+		{ [ -z "$(cat $weatherreport)" ] || isOldAndIsInet  ;} &&
 			curl -sf "wttr.in/$LOCATION" > "$weatherreport" &&
-			uptime="$(LANG=es_AR.UTF-8 date -d "$(stat -c %x "$weatherreport")" '+%A %-d/%-m at %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1')" &&
+			uptime="$(LANG=es_AR.UTF-8 date -d "$(stat -c %y "$weatherreport")" '+%A %-d/%-m at %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1')" &&
 		echo -e "${RED}Last update: ${uptime}${NC}" >> $weatherreport
 }
 
 temperaturaActual () {
-	{ [ -z "$(cat $temp)" ] || olderAndIp ;} &&
-		uptime="$(LANG=es_AR.UTF-8 date -d "$(stat -c %x $temp)" '+%A %-d/%-m at %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1')" &&
-		echo -e "Temperatura: $(curl -s wttr.in/${LOCATION}?format=1)\n<b>Last update:</b>\n${uptime}" > $temp ;
+	[ ! -e $temp ] && touch $temp;
+	{ [ -z "$(cat $temp)" ] || isOldAndIsInet ;} &&
+		uptime="$(LANG=es_AR.UTF-8 date -d "$(stat -c %y "$temp")" '+%A %-d/%-m at %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1')" &&
+		echo -e "<b>Temperatura</b>: $(curl -s wttr.in/${LOCATION}?format=1)\n<b>Last update:</b>\n${uptime}" > $temp ;
 		}
 
 
@@ -33,7 +36,7 @@ temp="$HOME/.local/share/temp_now"
 
 case $BUTTON in
 	3) setsid -f alacritty --class float,term -d 125 42 -e less -Srf "$weatherreport";;
-	2) notify-send -t 2000 "⛅ Refreshing..."; getforecast && temperaturaActual;;
+	2) notify-send -t 2000 "⛅ Refreshing..."; temperaturaActual; getforecast ;;
 	1) notify-send "🌈 Weather module" "$(cat $temp)";;
 	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0";;
 esac
@@ -41,5 +44,4 @@ esac
 [ ! -e "$weatherreport" ] && touch "$weatherreport" && getforecast
 [ ! -e "$temp" ] && touch "$temp"&& temperaturaActual
 
-olderAndIp && getforecast && temperaturaActual;
 showweather
