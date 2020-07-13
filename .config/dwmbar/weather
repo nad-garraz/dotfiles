@@ -25,10 +25,10 @@ getforecast() {
 temperaturaActual () {
 	[ ! -e $temp ] && touch $temp;
 	{ [ -z "$(cat $temp)" ] || isOldAndIsInet ;} &&
+	echo -e "<b>Temperatura</b>: $(curl -s wttr.in/${LOCATION}?format=1)" > $temp &&
 		uptime="$(LANG=es_AR.UTF-8 date -d "$(stat -c %y "$temp")" '+%A %-d/%-m at %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1')" &&
-		echo -e "<b>Temperatura</b>: $(curl -s wttr.in/${LOCATION}?format=1)\n<b>Last update:</b>\n${uptime}" > $temp ;
+		echo -e "<b>Last update:</b>\n${uptime}" >> $temp ;
 		}
-
 
 
 weatherreport="${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport"
