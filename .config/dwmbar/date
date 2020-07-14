@@ -3,9 +3,9 @@ icon="📅:"
 # Creo el archivo con el calendario
 calendar="${XDG_DATA_HOME:-$HOME/.local/share}/calendar"
 
-# Calendario anual, lunes primer día. Y color manipulation
 getCalendar () {
-	printf "🗘"
+# Calendario anual, lunes primer día.
+# se muestra en color el día actual.
 	{
 	LANG=es_AR.UTF-8 \cal -y -m --color=always > "$calendar"
 	if [ -e "$calendar" ];then
@@ -23,6 +23,7 @@ pkill -RTMIN+9 dwmblocks; exit
 
 case $BUTTON in
 	1) setsid -f falacritty -d 66 36 -e less -Srf "$calendar";;
+	3) setsid -f falacritty -d 140 36 -e wyrd;;
 	2) getCalendar;;
 	6) "$TERMINAL" -e "$EDITOR" "$0";;
 esac

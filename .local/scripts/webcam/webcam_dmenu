@@ -7,10 +7,7 @@ FUENTE="monospace"
 first_choice=`echo -e "Toggle\nRecord\nShot" | dmenu -fn "$FUENTE" -i -p 'Webcam'`
 
 case $first_choice in
-	Toggle) webcam_toggle $(echo -e "4\n3\n2\n1" | dmenu -fn "$FUENTE" -i -p '¿Cuadrante?')
-		;;
-	Record) webcam_record
-		;;
-	Shot) webcam_shot
-		;;
+	Toggle) webcam_toggle $(echo -e "4\n3\n2\n1" | dmenu -fn "$FUENTE" -i -p '¿Cuadrante?');;
+	Record) webcam_record;;
+	Shot) webcam_shot;;
 esac
