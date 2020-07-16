@@ -14,13 +14,16 @@ export BROWSER="brave"
 
 # Colores
 export BOLD="$(tput bold)"
+export BLACK="$(tput setaf 0)"
 export RED="$(tput setaf 1)"
 export GREEN="$(tput setaf 2)"
+export YELLOW="$(tput setaf 3)"
 export BLUE="$(tput setaf 4)"
-export CYAN="$(tput setaf 6)"
-export NC="$(tput sgr0)"
 export MAGENTA="$(tput setaf 5)"
+export CYAN="$(tput setaf 6)"
+export WHITE="$(tput setaf 7)"
 export DIM="$(tput dim)"
+export NC="$(tput sgr0)"
 
 
 # Most commonly used paths

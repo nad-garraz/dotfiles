@@ -67,6 +67,10 @@ alt + shift + t ; {m,f,w,n,v}
 alt + shift + w ; {1,2,3,4,m}
 	{webcam_toggle 1, webcam_toggle 2, webcam_toggle 3, webcam_toggle 4, webcam_dmenu}
 
+# Screenkey, keyboard casting
+alt + shift + k
+	toggle_screenkey
+
 # Capture Screen, Take ScreenShot
 Print
 	capture_screen

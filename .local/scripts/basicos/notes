@@ -13,7 +13,7 @@ if ! (($#)); then
 elif [[ "$1" == "-c" ]]; then
 	# clear file
 	read -p "Borrar notas, ¿Seguro?: " -n 1 -r
-	[[ $REPLY =~ ^[YySs] ]] && figlet "Notes" > "$ARCHIVO" && sed -i 's/^\(\W\)/#\1/g' "$ARCHIVO" || exit 0
+	[[ $REPLY =~ ^[YySs] ]] && figlet "Notes" > "$ARCHIVO" && sed -i 's/^\(\W\)/##\1/g' "$ARCHIVO" || exit 0
 
 elif [[ "$1" == "-s" ]]; then
 	# buscar palabra en las notas
@@ -33,7 +33,7 @@ elif [[ "$1" == "-r" ]]; then
 
 else
 	# add all arguments to file
-	TIMESTAMP="$RED$(date "+%a %d\\%m\\%y\ $GREEN%H:%M:%S")$CYAN:"
+	TIMESTAMP="$RED$(date "+%a %d\\%m\\%y $GREEN%H:%M:%S")$CYAN:"
 
 	[ ! -z "$*" ] && printf "%s\n%s %s\n" "$TIMESTAMP" "☛" "$*" >> "$ARCHIVO"
 fi

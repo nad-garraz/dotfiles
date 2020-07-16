@@ -23,7 +23,7 @@ xcompmgr &
 redshift 1> /dev/null 2> $LOGS/redshift.log &
 
 # Automontar discos
-udiskie --no-notify &
+udiskie &
 
 # Para escribir en chino con el IBUS
 ibus-daemon -drx &

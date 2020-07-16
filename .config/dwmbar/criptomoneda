@@ -3,12 +3,12 @@
 #++++++++++++++++++++++++++++++++
 ## Funciones
 #++++++++++++++++++++++++++++++++
-
+update_interval=360
 isOldAndIsInet () {
 		# Chequea si es posible bajar nueva info solo si el archivo
-		# es más antiguo que 600 s
-		ping -q -c 1 1.1.1.1 >/dev/null 2>&1 &&
-		{ [ $(expr $(date "+%s") - $(stat -c %Y "$dir")) -ge 600 ] &&
+		# es más antiguo que $update_interval
+		{ ping -q -c 1 1.1.1.1 >/dev/null 2>&1 &&
+		 [ $(expr $(date "+%s") - $(stat -c %Y "$dir")) -ge $update_interval ] &&
 			 touch -m "$dir"; }
 		}
 
@@ -24,13 +24,13 @@ formatPrice () {
 }
 
 getprices() {
-	printf "loading... " &&
-		{ echo "$coins" | while IFS=';' read -r human web icon; do
+	{ echo "$coins" | while IFS=';' read -r human web icon; do
 	valGraph="$(curl -s "rate.sx/$web@3d" > "$dir"/"$web".graph)" &&
 	val="$(curl -s "rate.sx/1$web")" &&
 	valBar="$(formatPrice "$val")" &&
 		echo "$icon;$valBar;$val;$human;" > "$dir/$web.data"
 	done;
+	sleep 1
 	pkill -RTMIN+2 "${STATUSBAR:-dwmblocks}" ;
 	showprices;
 	exit; } &
@@ -59,7 +59,7 @@ dir="${XDG_DATA_HOME:-$HOME/.local/share}/crypto-prices"
 
 # Lo crea si no existe
 [ ! -d "$dir" ] && mkdir -p "$dir";
-[ ! "$(ls -A "$dir")" ] && printf "loading... " && getprices ;
+[ ! "$(ls -A "$dir")" ] && getprices && showprices && exit 0;
 
 # Last modification of $dir string
 uptime="$(LANG=es_AR.UTF-8 date -d "$(stat -c %y "$dir")" '+%A %-d/%-m at %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1')";
@@ -69,8 +69,10 @@ case $BUTTON in
 <b>Last updated:</b>
 $uptime" ;;
 	2) isOldAndIsInet && getprices ;;
-	3) falacritty -d 84 38 -e less -qfr "$(find "$dir" -name "*.graph" ! -name "nzd*" | tr "\n" " ")";;
+	3) falacritty -d 86 38 -e less -qfr "$(find "$dir" -name "*.graph" ! -name "nzd*" | tr "\n" " ")";;
 	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
 showprices
+
+isOldAndIsInet && getprices

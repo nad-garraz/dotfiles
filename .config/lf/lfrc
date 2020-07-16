@@ -3,10 +3,27 @@ set hidden
 set preview true
 set icons true
 
+# unset some defaults
+map c
+map d
+map o
+map a
+map t
+map p
+
+# Most used directories
+map cda cd /data
 map cds cd ~/.local/scripts
-map cddoc cd ~/documents
-map cdpa cd ~/paquetes
-map cdpp cd ~/programitas/python_projects
+map cdoc cd ~/documents
+map dow cd ~/downloads
+
+# Most useful commands
+map p paste
+map y copy
+map d cut
+map R load
+map DD delete
+
 
 # Custom Functions
 cmd open ${{
@@ -39,4 +56,5 @@ cmd video_preview ${{
     ffmpegthumbnailer -i "$f" -o $CACHE -s 0
     /path/to/draw_img.sh $CACHE && rm $CACHE
 }}
+
 map + :video_preview

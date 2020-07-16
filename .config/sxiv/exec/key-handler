@@ -1,24 +1,21 @@
 #!/bin/sh
 
+## PRIMERO HAY QUE PRESIONAR CTRL+X Y LUEGO EL COMANDO
+
 make_trash () {
 	[ ! -d /tmp/trash ] && mkdir /tmp/trash && notify-send "Se generó:" "/tmp/trash"
 }
 
+save_directory="/data/pictures"
+
 while read file
 do
 	case "$1" in
-		"C-d")
-			make_trash;
-			mv "$file" /tmp/trash
-			notify-send "Borrando archivo: " "$file --> /tmp/trash";;
-		"C-r")
-			convert -rotate 90 "$file" "$file" ;;
-		"C-c")
-			# Copia el nombre del archivo al clipboard
-			echo -n "$file" | xclip -selection clipboard && notify-send "Se copio: $(basename -- $file)" "al clipboard";;
-		"C-w")
-			xwallpaper --center "$file" ;;
-		"C-s")
-			cp "$file" /tmp/"$(basename -- $file)" ;;
+		"C-d") make_trash; mv "$file" /tmp/trash; notify-send "Borrando archivo: " "$file --> /tmp/trash";;
+		"C-r") convert -rotate 90 "$file" "$file" ;;
+		# Copia el nombre del archivo al clipboard
+		"C-c") echo -n "$file" | xclip -selection clipboard && notify-send "Se copio: $(basename -- $file)" "al clipboard";;
+		"C-w") xwallpaper --center "$file" ;;
+		"C-s") cp "$file" "$save_directory"/"$(basename -- $file)" && notify-send "Se copio: $(basename -- $file)" "$save_directory";;
 	esac
 done

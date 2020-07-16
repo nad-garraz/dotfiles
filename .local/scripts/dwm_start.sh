@@ -1,4 +1,4 @@
-#!/bin/sh 
+#!/bin/sh
 
 # EXECUTE WINDOW MANAGER WITHOUT
 # KILLING ALL OPENED CLIENTS
@@ -7,6 +7,5 @@ while true; do
 dwm 2> $LOGS/dwm.log
 # No error logging
 # dwm > /dev/null 2>&1
-sleep 2s
+sleep 3s
 done
-# exec dwm

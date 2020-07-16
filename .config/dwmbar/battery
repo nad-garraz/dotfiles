@@ -4,6 +4,7 @@
 CHARGE=$(cat /sys/class/power_supply/BAT1/capacity)
 # Charging status
 STATUS=$(cat /sys/class/power_supply/BAT1/status)
+
 if [ "$STATUS" = "Charging" ]; then
 	printf "🔌:%s%% " "$CHARGE"
 else
@@ -16,7 +17,6 @@ case $BUTTON in
 	1) notify-send -t 15000 "Info batería 🔋" "Estado: $STATUS
 Carga: $CHARGE%
 Time: $(acpi | cut -d"," -f3 | sed 's/^ //')
-Utilidad: $(echo $info | cut -d" " -f13 | tr -d " ")"
-	;;
+Utilidad: $(echo $info | cut -d" " -f13 | tr -d " ")";;
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
