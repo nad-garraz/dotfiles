@@ -16,17 +16,18 @@
 
 vf () {
 # Abrir un archivo de text usando el fuzzy finder con el $EDITOR
-	find $HOME -type f | fzf --bind "enter:execute($EDITOR {})"
+	find $HOME -type f | fzf | xargs -r -I % $EDITOR % && exit;
+
 }
 
 vs(){
 # Abrir una sesion de vim usando el fuzzy finder con el $EDITOR
-	find $HOME -name "*.vim" | fzf | xargs -r -I % $EDITOR -S %
+	find $HOME -name "*.vim" | fzf | xargs -r -I % $EDITOR -S % && exit;
 }
 
 rvs () {
 # REMOVE VIM SWAP FILES
-	find $HOME -name "*.swp" | fzf | xargs -r -I % rm % && notify-send "Se eliminó la swap"
+	find $HOME_LOCAL/share/nvim/swap -name "*.swp" | fzf | xargs -r -I % rm % && notify-send "Se eliminó la swap" && exit;
 }
 
 superlame () {

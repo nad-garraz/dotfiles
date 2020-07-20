@@ -2,7 +2,7 @@ window:
   dynamic_padding: true
   class:
     instance: float
-    general: term
+    general: Alacritty
 
 font:
   normal:

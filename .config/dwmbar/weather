@@ -35,9 +35,9 @@ weatherreport="${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport"
 temp="$HOME/.local/share/temp_now"
 
 case $BUTTON in
-	3) setsid -f alacritty --class float,term -d 125 42 -e less -Srf "$weatherreport";;
-	2) notify-send -t 2000 "⛅ Refreshing..."; temperaturaActual; getforecast ;;
 	1) notify-send "🌈 Weather module" "$(cat $temp)";;
+	2) notify-send -t 2000 "⛅ Refreshing..."; temperaturaActual; getforecast ;;
+	3) setsid -f falacritty -d 125 42 -e less -Srf "$weatherreport";;
 	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0";;
 esac
 
