@@ -16,7 +16,7 @@
 
 vf () {
 # Abrir un archivo de text usando el fuzzy finder con el $EDITOR
-	find $HOME -type f | fzf | xargs -r -I % $EDITOR %
+	find $HOME -type f | fzf --bind "enter:execute($EDITOR {})"
 }
 
 vs(){
@@ -26,7 +26,7 @@ vs(){
 
 rvs () {
 # REMOVE VIM SWAP FILES
-	find $HOME -name "*.swp" | fzf | xargs -r -I % rm %; notify-send "Se eliminó la swap"
+	find $HOME -name "*.swp" | fzf | xargs -r -I % rm % && notify-send "Se eliminó la swap"
 }
 
 superlame () {
@@ -61,12 +61,6 @@ ipif() {
 	fi
 	echo
 }
-
-EC() {
-	echo -e '\e[1;33m'code $?'\e[m' # Este tiene el \n extra
-}
-
-trap EC ERR
 
 qr() {
 	# Toma un argumento y lo convierte en un código QR

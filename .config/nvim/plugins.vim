@@ -29,6 +29,10 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 
 "============
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+"++++++++++++
+"============
 Plugin 'vim-latex/vim-latex'
 "++++++++++++
 "============

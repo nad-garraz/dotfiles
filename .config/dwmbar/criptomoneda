@@ -1,6 +1,26 @@
 #!/bin/sh
 
 #++++++++++++++++++++++++++++++++
+## Variables
+#++++++++++++++++++++++++++++++++
+# Currencies should be ;-separated:
+# human-readable name;urlname;icon
+coins="Bitcoin;btc;💰
+EOSIO;eos;🍸
+NZD;nzd;🇳🇿"
+
+# Directory where currency info is stored.
+dir="${XDG_DATA_HOME:-$HOME/.local/share}/crypto-prices"
+
+# Last modification of $dir string
+uptime="$(LANG=es_AR.UTF-8 date -d "$(stat -c %y "$dir")" '+%A %-d/%-m a las %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1')";
+
+# Lo crea si no existe
+[ ! -d "$dir" ] && mkdir -p "$dir";
+[ ! "$(ls -A "$dir")" ] && getprices && showprices && exit 0;
+
+
+#++++++++++++++++++++++++++++++++
 ## Funciones
 #++++++++++++++++++++++++++++++++
 update_interval=360
@@ -24,8 +44,10 @@ formatPrice () {
 }
 
 getprices() {
+	notify-send "💸 Getting data";
 	{ echo "$coins" | while IFS=';' read -r human web icon; do
-	valGraph="$(curl -s "rate.sx/$web@3d" > "$dir"/"$web".graph)" &&
+	curl -s "rate.sx/$web@3d" > "$dir"/"$web".graph &&
+		echo -e "${RED}Last update${NC}: $uptime" >> "$dir"/"$web".graph &&
 	val="$(curl -s "rate.sx/1$web")" &&
 	valBar="$(formatPrice "$val")" &&
 		echo "$icon;$valBar;$val;$human;" > "$dir/$web.data"
@@ -40,39 +62,17 @@ showprices() { # Print/format all prices
 	for x in $(find "${dir}" -name "*.data" ! -name *.graph | tr "\n" "\ "); do
 		[ -f "$x" ] || break
 		info="$(cut -d';' -f-2 --output-delimiter=':' "$x")"
-		[ ! -z "$info" ] && printf "%s " "$info" || printf "%s " "🤑"
+		[ ! -z "$info" ] && printf "%s " "$info" | sed 's|\n$||g'
 	done
 	}
-
-
-#++++++++++++++++++++++++++++++++
-## Variables
-#++++++++++++++++++++++++++++++++
-# Currencies should be ;-separated:
-# human-readable name;urlname;icon
-coins="Bitcoin;btc;💰
-EOSIO;eos;🍸
-NZD;nzd;🇳🇿"
-
-# Directory where currency info is stored.
-dir="${XDG_DATA_HOME:-$HOME/.local/share}/crypto-prices"
-
-# Lo crea si no existe
-[ ! -d "$dir" ] && mkdir -p "$dir";
-[ ! "$(ls -A "$dir")" ] && getprices && showprices && exit 0;
-
-# Last modification of $dir string
-uptime="$(LANG=es_AR.UTF-8 date -d "$(stat -c %y "$dir")" '+%A %-d/%-m at %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1')";
 
 case $BUTTON in
 	1)  notify-send -t 15000 "Exact prices in USD" "$(awk -F';' '{print $1, $4 ":\n$" $3}' "$dir"/*.data)
 <b>Last updated:</b>
 $uptime" ;;
 	2) isOldAndIsInet && getprices ;;
-	3) falacritty -d 86 38 -e less -qfr "$(find "$dir" -name "*.graph" ! -name "nzd*" | tr "\n" " ")";;
+	3) falacritty -d 86 40 -e less -qfr "$(find "$dir" -name "*.graph" ! -name "nzd*" | tr "\n" " ")";;
 	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
 showprices
-
-isOldAndIsInet && getprices

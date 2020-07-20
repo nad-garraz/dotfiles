@@ -82,7 +82,6 @@ autocmd FileType python noremap <buffer> <leader>pp <Esc>:w<CR> :exec '!python' 
 autocmd filetype c nnoremap <leader>co <Esc>:w <bar> :exec '!gcc '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
 "autocmd FileType *.c remap <buffer> <leader>co <Esc>:w<CR> :exec '!gcc %'<CR>
 
-
 " Mis tan usados y amados jumps.
 imap <C-J> <Esc>/<++><CR>:noh<CR><Esc>cf>
 inoremap () ()<++><Esc>F)i
@@ -91,6 +90,8 @@ inoremap {} {}<++><Esc>F}i
 inoremap "" ""<++><Esc>F"i
 inoremap '' ''<++><Esc>F'i
 inoremap <> <><++><Esc>F>i
+
+
 
 " Latex-Suite
 let g:Tex_DefaultTargetFormat='pdf'
@@ -111,3 +112,9 @@ let g:Tex_ViewRule_pdf='zathura'
 "
 "
 "
+
+ "This is the default extra key bindings
+    "let g:fzf_action = {
+      "\ 'ctrl-t': 'tab split',
+      "\ 'ctrl-x': 'split',
+      "\ 'ctrl-v': 'vsplit' }
