@@ -1,13 +1,12 @@
 #!/bin/bash
 
-FUENTE="monospace"
 # EL MENU PROMPTEA OPCIONES PARA GRABAR
 # Y PARA DISPLAYAR LA WEBCAM EN LAS ESQUINAS
 
-first_choice=`echo -e "Toggle\nRecord\nShot" | dmenu -fn "$FUENTE" -i -p 'Webcam'`
+first_choice=`echo -e "Toggle\nRecord\nShot" | dmenu -fn "$dmenu_font" -i -p 'Webcam'`
 
 case $first_choice in
-	Toggle) webcam_toggle $(echo -e "4\n3\n2\n1" | dmenu -fn "$FUENTE" -i -p '¿Cuadrante?');;
+	Toggle) webcam_toggle $(echo -e "4\n3\n2\n1" | dmenu -fn "$dmenu_font" -i -p '¿Cuadrante?');;
 	Record) webcam_record;;
 	Shot) webcam_shot;;
 esac

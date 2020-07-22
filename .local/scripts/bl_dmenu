@@ -11,7 +11,7 @@ blStatus="$(/usr/bin/rfkill | awk '/bluetooth/ { print $4 }')"
 
 MACADD="$(bluetoothctl list | cut -d" " -f2)"
 IS_ON="$(bluetoothctl show "$MACADD" | grep -i powered | cut -d: -f2 | tr -d " ")"
-FUENTE="monospace"
+dmenu_font="monospace"
 
 bl_toggle () {
 	if [ "$IS_ON" = "yes" ];
@@ -28,14 +28,14 @@ bl_connect () {
 	[ "$IS_ON" = "no" ] && bl_toggle
 
 	# Prompt para elegir el device
-	CHOICE=$(bluetoothctl devices | cut -d" " -f3- | dmenu -fn "$FUENTE" -i -l 10 -p "¿Cuál?")
+	CHOICE=$(bluetoothctl devices | cut -d" " -f3- | dmenu -fn "$dmenu_font" -i -l 10 -p "¿Cuál?")
 	MAC=$(bluetoothctl devices | grep -i "$CHOICE" | cut -d" " -f2 | tr -d " ")
 	bluetoothctl connect $MAC && notify-send "$icon Connectado a: " "$CHOICE"
 
 }
 
 
-FIRST_CHOICE=`echo -e "Toggle\nConnect" | dmenu -fn "$FUENTE" -i -p '¿Qué opción querés?'`
+FIRST_CHOICE=`echo -e "Toggle\nConnect" | dmenu -fn "$dmenu_font" -i -p '¿Qué opción querés?'`
 
 case $FIRST_CHOICE in
 	Toggle) bl_toggle 1> /dev/null 2>> $LOGS/bl_dmenu.log

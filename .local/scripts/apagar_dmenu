@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 
-FUENTE="monospace"
-
 # PROMPS A DMENU MENU ASKING TO SHUTDOWN
 
-first_choice=`echo -e "Kill X\nReiniciar\nApagar" | dmenu -fn "$FUENTE"  -i -p "¿Qué querés hacer?"`
+first_choice=`echo -e "Kill X\nReiniciar\nApagar" | dmenu -fn "$dmenu_font"  -i -p "¿Qué querés hacer?"`
 
 case $first_choice in
 	"Reiniciar") systemctl -i reboot

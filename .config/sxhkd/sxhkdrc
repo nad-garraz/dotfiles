@@ -49,6 +49,10 @@ super + b
 super + n
 	tx newsboat
 
+# Dragon
+alt + shift + d ; {h}
+	{dragon_quick}
+
 # Gui apps, browser, calculator, downlords, steam
 alt + shift + o ; {b,c,e,g}
 	{$BROWSER,speedcrunch,calibre,gimp}
@@ -57,9 +61,13 @@ alt + shift + o ; {b,c,e,g}
 alt + shift + g ; {d,s,r}
 	{downlords-faf-client,steam,retroarch}
 
+# Dmenu Transmission
+super + p
+	torrent_dmenu
+
 # Terminal apps, ncmpcpp, lf, wyrd
-alt + shift + t ; {m,f,w,n,v}
-	{tx ncmpcpp, tx lf, tx wyrd, tx notes, tx pulsemixer}
+alt + shift + t ; {m,f,w,n,v,t}
+	{tx ncmpcpp, tx lf ~, tx wyrd, tx notes, tx pulsemixer}
 
 # FFMPEG related:
 

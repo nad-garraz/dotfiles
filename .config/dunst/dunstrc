@@ -1,5 +1,5 @@
 [global]
-font = monospace 12
+font = "Calculator 22"
 
 # Allow a small subset of html markup:
 #   <b>bold</b>
@@ -145,7 +145,7 @@ startup_notification = false
 dmenu = /usr/bin/dmenu -p dunst:
 
 # Browser for opening urls in context menu.
-browser = /usr/bin/brave
+browser = "$BROWSER"
 
 # Align icons left/right/off
 icon_position = left
@@ -155,7 +155,7 @@ max_icon_size = 80
 icon_path = /usr/share/icons/Paper/16x16/mimetypes/:/usr/share/icons/Paper/48x48/status/:/usr/share/icons/Paper/16x16/devices/:/usr/share/icons/Paper/48x48/notifications/:/usr/share/icons/Paper/48x48/emblems/
 
 frame_width = 3
-frame_color = "#1144fa"
+frame_color = "#FFFFFF"
 
 ### mouse
 
@@ -186,10 +186,10 @@ close_all = ctrl+shift+space
 # Redisplay last message(s).
 # On the US keyboard layout "grave" is normally above TAB and left
 # of "1".
-history = ctrl+grave
+history = ctrl+shift+grave
 
 # Context menu.
-context = ctrl+shift+grave
+context = ctrl+grave
 
 # IMPORTANT: colors have to be defined in quotation marks.
 # Otherwise the "#" and following would be interpreted as a comment.
@@ -200,8 +200,8 @@ background = "#191311"
 timeout = 6
 
 [urgency_normal]
-frame_color = "#4444ba"
-foreground = "#aa77ba"
+frame_color = "#aaaaaa"
+foreground = "#FFFFFF"
 background = "#000000"
 timeout = 6
 
@@ -256,8 +256,8 @@ timeout = 0
 [low-bat]
 summary = "Carga: *"
 script = dunst_espeak.sh
-timeout = 2
-urgency = critical
+timeout = 5
+urgency = CRITICAL
 
 [countdown]
 summary = "Se termina en ..."

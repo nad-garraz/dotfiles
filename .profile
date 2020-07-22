@@ -59,3 +59,7 @@ export HISTFILESIZE=10000
 
 # Less file history
 export LESSHISTFILE="/dev/null"
+
+# DMENU font
+export dmenu_font="monospace-16"
+

@@ -7,9 +7,13 @@
 TIMESTAMP="$(date +%d-%m-%Y-%H:%M)"
 TARGETBASE="/data/pictures/screenshots"
 SHUTTER="/data/music/sounds/shutter.mp3"
-# Crea el directorio si no lo encuentra:
+# Crea el directorio si no lo encuentra:´
 [ -d $TARGETBASE ] || mkdir -p $TARGETBASE
 
 # Comando:
-import -window root $TARGETBASE/$TIMESTAMP.png && notify-send "📸 Screenshot guardada en:" "$TARGETBASE/$TIMESTAMP.png"
+import -window root $TARGETBASE/$TIMESTAMP.png &&
+action=$(dunstify --action="dragon,picture" "📸 Screenshot guardada en:" "$TARGETBASE/$TIMESTAMP.png")
+case $action in
+	"dragon") dragon -x "$TARGETBASE/$TIMESTAMP.png";;
+esac
 [ ! -z "$SHUTTER" ] && \mpv --msg-level=all=no $SHUTTER &

@@ -48,8 +48,18 @@ cmd mkfile ${{
   $EDITOR $ans
 }}
 
+# Obtener el nombre del archivo
+# copiado al clipboard
+cmd getName ${{
+  basename $f | tr '\n' ' ' | sed 's/\ //g' | xclip -selection "clipboard"
+}}
+
+# subtitulos en Inglés y en Español
+map SI $subdl --interactive --existing=query $f && echo -e "\n"
+map SE $subdl --interactive --lang=spa --existing=query $f && echo -e "\n"
+
 # Para previewer
-map - $/path/to/draw_img.sh $f
+map - $/home/test/.config/lf/draw_img.sh $f
 
 cmd video_preview ${{
     CACHE=$(mktemp /tmp/thumb_cache.XXXXX)

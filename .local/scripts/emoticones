@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Fuente
-FUENTE="EmojiOne Color"
+FUENTE="EmojiOne Color-30"
 
 # File with all the unicode characthers
 FILE="$HOME/.local/emoticones/unicode_compilation"

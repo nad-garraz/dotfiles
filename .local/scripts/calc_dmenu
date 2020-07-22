@@ -1,6 +1,6 @@
 #!/bin/sh
 
-EQ="$(echo '' | dmenu -p "Enter calculation")"
+EQ="$(echo '' | dmenu -fn $dmenu_font -p "Enter calculation")"
 RESULT=$(echo  "scale=3;"$EQ"" | bc -ql)
-dunstify -t 10000 "Result: $RESULT"
+dunstify -u low -t 10000 "Result: $RESULT"
 echo -e "$RESULT" | xclip -r -selection clipboard

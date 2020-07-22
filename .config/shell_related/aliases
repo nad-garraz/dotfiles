@@ -63,8 +63,8 @@ alias reflector='sudo reflector --latest 100 --age 24 --verbose --protocol http 
 alias bl='bluetoothctl'
 
 # transmission-torrent
-alias torrentinfo='transmission-remote -l'
 alias torrentkill='killall transmission-daemon'
+
 # PACCACHE, borra los paquetes de programas que no están
 # instalados y deja solo la última versión de los paquetes
 # que sí lo están.

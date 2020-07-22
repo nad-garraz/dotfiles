@@ -3,11 +3,8 @@
 # Script que usa el dmenu
 # PARA TERMINAR LA SESION O APAGAR LA COMPU
 
-FUENTE="monospace"
-
-
 # Prompt options to select
-FIRST_CHOICE=`echo -e "Restart dwmbar\nRestart dwm\nKill xinit" | dmenu -fn "$FUENTE" -i -p "¿Qué querés hacer?"`
+FIRST_CHOICE=`echo -e "Restart dwmbar\nRestart dwm\nKill xinit" | dmenu -fn "$dmenu_font" -i -p "¿Qué querés hacer?"`
 
 #
 case $FIRST_CHOICE in

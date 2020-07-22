@@ -5,12 +5,12 @@ musicOn () {
 	if [ "$STATUS" = "[playing]" ]; then
 		i=$(date "+%S")
 		if [ $(expr $i % 3 ) -eq 0 ]; then
-			echo " (🎶♫$icon♫🎶)  "
+			echo " (🎶♫$icon♫🎶)  " | sed 's|\n$||g'
 		else
-			echo "((♫🎶$icon🎶♫)) "
+			echo "((♫🎶$icon🎶♫)) " | sed 's|\n$||g'
 		fi
 	else
-		echo "$icon "
+		echo "$icon " | sed 's|\n$||g'
 	fi
 }
 
