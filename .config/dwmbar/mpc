@@ -5,12 +5,12 @@ musicOn () {
 	if [ "$STATUS" = "[playing]" ]; then
 		i=$(date "+%S")
 		if [ $(expr $i % 3 ) -eq 0 ]; then
-			echo " (🎶♫$icon♫🎶)  " | sed 's|\n$||g'
+			echo " (🎶♫$icon♫🎶)  "
 		else
-			echo "((♫🎶$icon🎶♫)) " | sed 's|\n$||g'
+			echo "((♫🎶$icon🎶♫)) "
 		fi
 	else
-		echo "$icon " | sed 's|\n$||g'
+		echo "$icon "
 	fi
 }
 
@@ -25,15 +25,15 @@ dancingMan () {
 }
 
 notifyInfo () {
-	i=10
+	i=8
 	while [ $i -gt 0 ];do
 		read now <<< $(mpc status | awk '/^\[/ { printf $3 "\t" $4}')
-		dunstify -r 1 "🎶$ARTIST
+		dunstify -r 213 -t 1000  "🎶$ARTIST
 $TRACK" "  $now
 	$(dancingMan $i)
 Next song: $NEXT "
-		let i=$(echo "$i-1" | bc -ql) 1> /dev/null
-		sleep 1
+let i=$(echo "$i-1" | bc -ql) > /dev/null
+	 sleep 1;
 	done
 }
 

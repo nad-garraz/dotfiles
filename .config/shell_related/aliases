@@ -112,3 +112,5 @@ alias reconectar="sudo netctl restart $(netctl list | grep '^*' | cut -d" " -f2-
 # NCDU tuneado
 alias ncdu="ncdu --color dark"
 
+# MPV FLOAT
+alias mpvf="mpv --title=mpvfloat"

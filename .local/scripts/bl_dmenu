@@ -11,7 +11,6 @@ blStatus="$(/usr/bin/rfkill | awk '/bluetooth/ { print $4 }')"
 
 MACADD="$(bluetoothctl list | cut -d" " -f2)"
 IS_ON="$(bluetoothctl show "$MACADD" | grep -i powered | cut -d: -f2 | tr -d " ")"
-dmenu_font="monospace"
 
 bl_toggle () {
 	if [ "$IS_ON" = "yes" ];
@@ -35,7 +34,7 @@ bl_connect () {
 }
 
 
-FIRST_CHOICE=`echo -e "Toggle\nConnect" | dmenu -fn "$dmenu_font" -i -p '¿Qué opción querés?'`
+FIRST_CHOICE=$(echo -e "Toggle\nConnect" | dmenu -fn "$dmenu_font" -i -p "${icon} ¿Qué opción querés?")
 
 case $FIRST_CHOICE in
 	Toggle) bl_toggle 1> /dev/null 2>> $LOGS/bl_dmenu.log

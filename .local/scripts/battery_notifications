@@ -26,7 +26,7 @@ do
 		fi
 	fi
 	case $action in
-		bigSleep) sleep 300;;
+		bigSleep) sleep 360;;
 		*) sleep 60;;
 	esac
 	unset action

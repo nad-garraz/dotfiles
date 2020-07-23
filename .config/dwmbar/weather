@@ -5,8 +5,8 @@ isOldAndIsInet () {
 		# Update solo con inet y si el último update son más viejos que la edad objetivo
 		showweather;
 		ping -q -c 1 1.1.1.1 >/dev/null 2>&1 && {
-		[ $(expr $(date "+%s") - $(stat -c %Y "$temp")) -ge 1800 ] && rm $temp ;
-		[ $(expr $(date "+%s") - $(stat -c %Y "$weatherreport")) -ge 7200 ] && rm $weatherreport ; }
+		[ $(expr $(date "+%s") - $(stat -c %Y "$temp")) -ge 1800 ] && find $temp -delete ;
+		[ $(expr $(date "+%s") - $(stat -c %Y "$weatherreport")) -ge 7200 ] && find $weatherreport -delete; }
 		}
 
 showweather() {
