@@ -3,6 +3,9 @@
 #++++++++++++++++++++++++++++++++
 ## Variables
 #++++++++++++++++++++++++++++++++
+
+update_interval=1800
+
 # Currencies should be ;-separated:
 # human-readable name;urlname;icon
 coins="Bitcoin;btc;💰
@@ -23,7 +26,6 @@ uptime="$(LANG=es_AR.UTF-8 date -d "$(stat -c %y "$dir")" '+%A %-d/%-m a las %-H
 #++++++++++++++++++++++++++++++++
 ## Funciones
 #++++++++++++++++++++++++++++++++
-update_interval=360 # 6 minutos
 isOldAndIsInet () {
 	# Chequea si es posible bajar nueva info solo si el archivo
 	# es más antiguo que $update_interval
@@ -54,8 +56,7 @@ getprices() {
 				done;
 				sleep 1
 				pkill -RTMIN+2 "${STATUSBAR:-dwmblocks}" ;
-				showprices;
-				exit; } &
+				} &
 			}
 
 		showprices() { # Print/format all prices
@@ -75,4 +76,5 @@ $uptime" ;;
 		6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
 	esac
 
-	showprices
+isOldAndIsInet && getprices;
+showprices

@@ -6,7 +6,7 @@ isOldAndIsInet () {
 		showweather;
 		ping -q -c 1 1.1.1.1 >/dev/null 2>&1 && {
 		[ $(expr $(date "+%s") - $(stat -c %Y "$temp")) -ge 1800 ] && find $temp -delete ;
-		[ $(expr $(date "+%s") - $(stat -c %Y "$weatherreport")) -ge 7200 ] && find $weatherreport -delete; }
+		[ $(expr $(date "+%s") - $(stat -c %Y "$weatherreport")) -ge 3600 ] && find $weatherreport -delete; }
 		}
 
 showweather() {
@@ -22,7 +22,7 @@ getforecast() {
 		echo -e "${RED}Last update: ${uptime}${NC}" >> $weatherreport
 }
 
-temperaturaActual () {
+getTemperaturaActual () {
 	[ ! -e $temp ] && touch $temp;
 	{ [ -z "$(cat $temp)" ] || isOldAndIsInet ;} &&
 	echo -e "<b>Temperatura</b>: $(curl -s wttr.in/${LOCATION}?format=1)" > $temp &&
@@ -36,12 +36,13 @@ temp="$HOME/.local/share/temp_now"
 
 case $BUTTON in
 	1) notify-send "🌈 Weather module" "$(cat $temp)";;
-	2) notify-send -t 2000 "⛅ Refreshing..."; temperaturaActual; getforecast ;;
+	2) notify-send -t 2000 "⛅ Refreshing..."; getTemperaturaActual; getforecast ;;
 	3) setsid -f falacritty -d 125 42 -e less -Srf "$weatherreport";;
 	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0";;
 esac
 
 [ ! -e "$weatherreport" ] && touch "$weatherreport" && getforecast
-[ ! -e "$temp" ] && touch "$temp"&& temperaturaActual
+[ ! -e "$temp" ] && touch "$temp"&& getTemperaturaActual
 
+isOldAndIsInet && getForecast && getTemperaturaActual;
 showweather

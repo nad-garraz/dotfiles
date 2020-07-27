@@ -34,9 +34,9 @@ superlame () {
 # Toma un argumento. Baja el bitrate del mp3 al argumento elegido, para todos
 # los archivos del directorio
 	arg=${1:-128}
-	parallel lame -S --mp3input -b $arg {} {.}.tmp \'&&\' \mv {.}.tmp {} ::: \
-		$(find . -maxdepth 1 -name "*.mp3" -exec basename {} \;)
+	parallel lame -S --mp3input -b $arg {} {.}.tmp '&&' \mv {.}.tmp {} ::: "$(find . -name "*mp3" -exec basename {} \;)"
 	}
+
 
 cl() {
 	# Change directory and ls

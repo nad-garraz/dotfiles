@@ -2,6 +2,7 @@
 set hidden
 set preview true
 set icons true
+set incsearch
 
 # unset some defaults
 map c
@@ -32,6 +33,21 @@ cmd open ${{
         video/*|image/*/application/pdf) xdg-open "$f" & disown;;
         *) xdg-open "$f" ;;
     esac
+}}
+
+# Con este paste, se puede mover de un device
+# al otro
+cmd paste %{{
+       load=$(lf -remote 'load')
+       mode=$(echo "$load" | sed -n '1p')
+       list=$(echo "$load" | sed '1d')
+       if [ $mode = 'copy' ]; then
+	   cp -R $list .
+       elif [ $mode = 'move' ]; then
+	   mv $list .
+       fi
+       lf -remote 'send load'
+       lf -remote 'send clear'
 }}
 
 # Crear nuevo directorio

@@ -57,8 +57,6 @@ alias ssid='sudo iw dev wlp1s0 scan | grep -i ssid'
 # Actualizar los mirrors de pacman a los 100 más nuevos y más rápidos.
 alias reflector='sudo reflector --latest 100 --age 24 --verbose --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 
-# Pasa los mp3 a menor calidad
-
 #Bluetoothcontrol
 alias bl='bluetoothctl'
 
