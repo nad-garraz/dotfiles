@@ -11,9 +11,9 @@
 
 #mv "$1" "$(echo "$1" | sed "s/^[0-9][0-9].*__//g")"
 #mv "$1" "$(echo "$1" | sed "s/^_//g")"
-#mv "$1" "$(echo "$1" | sed "s/^otros_aires_-_//g")"
+mv "$1" "$(echo "$1" | sed "s/^mysteries_of_modern_physics-__time_-_//g")"
 
 ## Cambiar "(" --> "_" y ")" --> ""   NO PARENTESIS
-mv "$1" "$(echo "$1" | tr "(" "_" | tr -d ")")"
+#mv "$1" "$(echo "$1" | tr "(" "_" | tr -d ")")"
 #mv "$1" "$(echo "$1" | tr -d "'")"
 

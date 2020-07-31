@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# Used and total storage in /home (rounded to 1024B)
+USED=$(\du -chs --exclude="*.pyc" "$HOME" /data | cut -f1 | tail -1)
+icon="💾"
+icon2="💽"
+
+getSizes () {
+echo -e "Data:
+$(parallel \du -hs --exclude *.pyc --exclude /home '{}' ::: $(\du -h /data -d 1 | head -n -2 | cut -f2 | tr '\n' ' ') | head -n -1 | sort -rh)
+-------------------
+Home:
+$(\du -hs --exclude *.pyc ~)
+-------------------
+System:
+$(\du -hs --exclude *.pyc --exclude /home --exclude /data --exclude /media / 2> /dev/null)"
+}
+
+lsSizes () {
+	notify-send -t 20000 "$icon2 Local Storage:" "$(getSizes)"
+}
+
+case $BUTTON in
+	1) lsSizes;;
+	3) pkill -RTMIN+4 dwmblocks && setsid -f falacritty -e \ncdu --color dark -x / ;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+printf "$icon:%s " "$USED"
+
+#$(\du -hs --exclude *.pyc --exclude /home $(\du -h /data -d 1 | head -n -2 | cut -f2 | tr '\n' ' ') | head -n -1 | sort -rh)

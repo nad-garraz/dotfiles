@@ -6,13 +6,13 @@ icon="☠"
 pgrep transmission-da > /dev/null && printf "%s " "$icon"
 
 
-# Hacer esto:  <25-07-20, nad> #
-#toggle_list () {
-#setsid -f falacritty -d 140 30 -e watch -d -n 1 -t -c transmission-remote -l;;}
+toggle_list () {
+pidof watch && killall watch || setsid -f falacritty -d 140 30 -e watch -d -n 1 -t -c transmission-remote -l
+}
 
 
 case $BUTTON in
-	1) setsid -f falacritty -d 140 30 -e watch -d -n 1 -t -c transmission-remote -l;;
+	1) toggle_list ;;
 	3) setsid -f torrent_dmenu;;
 	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac

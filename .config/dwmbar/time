@@ -1,0 +1,58 @@
+#!/bin/sh
+
+# Da la hora y tiene
+# también horarios y temperaturas
+# internacionales
+
+icon="🕰:"
+
+dir="$HOME/.local/share/cities"
+ciudades="America/Argentina/Buenos_Aires;BuenosAires;CABA;🇦🇷
+Europe/Madrid;Barcelona;Barcelona;🇪🇸
+Europe/Vienna;Vienna;Viena;🇦
+US/Pacific;40.099913,-123.794915;MaryLandia;🇺🇸"
+
+
+# Tiempo de update
+update_interval=10 # 1 hora
+
+# Busca la temperatura
+getTemp() {
+	# Agarra la temperatura y la pone en un archivo en "$2" solo
+	# si hay conexión a inet o si es más viejo que 3hrs.
+		curl -s wttr.in/$1?format=1 | awk '{ printf $2 }' > "$2"
+	}
+
+isOldAndIsInet () {
+		# Chequea si es posible bajar nueva info solo si el archivo
+		# es más antiguo que $update_interval
+		# Modifica el tiempo del directorio "dir"
+	ping -q -c 1 1.1.1.1 > /dev/null 2>&1 &&
+	[ $(expr $(date "+%s") - $(stat -c %Y "$dir")) -ge $update_interval ] &&
+		touch -m "$dir";
+}
+
+getTime() {
+	# Para el string "ciudades"
+	echo "$ciudades" | while IFS=';' read -r tz web human icon; do
+	[ ! -e "$dir/${web}.temperature" ] && curl -s wttr.in/${web}?format=1 | awk '{ printf $2 }' > "$dir/${web}.temperature";
+	isOldAndIsInet && getTemp "${web}" "$dir/${web}.temperature" &
+	temp="$(cat "$dir/${web}.temperature")"
+	time="$(TZ="$tz" LANG=es_AR.UTF-8 date "+%A %_H:%M")" &&
+		echo -e "$icon <b>$human</b>
+$time\t$temp" > "$dir/$web"
+		done;
+	}
+
+# Last modification of $dir string
+uptime="$(LANG=es_AR.UTF-8 date -d "$(stat -c %y "$dir")" '+%A %-d/%-m a las %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1')";
+
+case $BUTTON in
+	1) getTime && dunstify -r 1 -t 10000 "Otros Horarios: " "$(cat $(find $dir -type f ! -name "*.temperature"))
+<b>Last updated:</b>
+${uptime}";;
+	6) "$TERMINAL" -e "$EDITOR" "$0";;
+esac
+
+# Texto para mostrar en la barra
+printf "$icon%s " "$(date "+%-H:%M")"

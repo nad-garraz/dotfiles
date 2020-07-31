@@ -36,7 +36,7 @@ temp="$HOME/.local/share/temp_now"
 
 case $BUTTON in
 	1) notify-send "🌈 Weather module" "$(cat $temp)";;
-	2) notify-send -t 2000 "⛅ Refreshing..."; getTemperaturaActual; getforecast ;;
+	2) getTemperaturaActual; getforecast && notify-send -t 2000 "⛅ Refreshing...";;
 	3) setsid -f falacritty -d 125 42 -e less -Srf "$weatherreport";;
 	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0";;
 esac
