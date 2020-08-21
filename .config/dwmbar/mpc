@@ -5,12 +5,12 @@ musicOn () {
 	if [ "$STATUS" = "[playing]" ]; then
 		i=$(date "+%S")
 		if [ $(expr $i % 3 ) -eq 0 ]; then
-			echo " (🎶♫$icon♫🎶) " | tr "\n" " "
+			echo -n " (🎶♫$icon♫🎶) "
 		else
-			echo "((♫🎶$icon🎶♫))" | tr "\n" " "
+			echo -n "((♫🎶$icon🎶♫))"
 		fi
 	else
-		echo "$icon" | tr "\n" " "
+		echo -n "$icon "
 	fi
 }
 
@@ -48,7 +48,8 @@ case $BUTTON in
 	4) mpc next   > /dev/null;;
 	5) mpc prev   > /dev/null;;
 	2) setsid -f falacritty -d 130 30 -e ncmpcpp;;
-	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0"
+	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0";;
+	7) mpc_dmenu;;
 esac
 
 musicOn

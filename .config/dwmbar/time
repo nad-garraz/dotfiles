@@ -14,7 +14,7 @@ US/Pacific;40.099913,-123.794915;MaryLandia;🇺🇸"
 
 
 # Tiempo de update
-update_interval=10 # 1 hora
+update_interval=3600 # 1 hora
 
 # Busca la temperatura
 getTemp() {
@@ -40,7 +40,7 @@ getTime() {
 	temp="$(cat "$dir/${web}.temperature")"
 	time="$(TZ="$tz" LANG=es_AR.UTF-8 date "+%A %_H:%M")" &&
 		echo -e "$icon <b>$human</b>
-$time\t$temp" > "$dir/$web"
+$time  $temp" > "$dir/$web"
 		done;
 	}
 

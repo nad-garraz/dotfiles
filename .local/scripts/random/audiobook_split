@@ -3,7 +3,7 @@
 # separa audio en las pistas que tiene según la información
 # que se le dé con el archivo.
 # El uso es "separador audio_file info_file"
-
+# info_file tiene que ser del formato: "xx:xx:xx(tiempo final) Nombre_capitulo
 cr=`echo $'\n> '`
 # Preguntas para el formato
 read -p "Nombre del libro:$cr" -r
@@ -16,8 +16,8 @@ read -p "Genero del libro:$cr" -r GENERO
 read -p "Año:$cr" -r YEAR
 
 # Extención del archivo
-read -p "Formato audio [${RED}mp3${NC}/opus]:$cr" -r ext
-[[ $ext =~ ^[mo]*$ ]] && ext="mp3" && echo -e "Formato = \".$ext\""
+read -p "Formato audio [${RED}opus${NC}/mp3]:$cr" -r ext
+[[ $ext =~ ^[mo]*$ ]] && ext="opus" && echo -e "Formato = \".$ext\""
 
 # Defino la variable track 0 por default
 read -p "Primera track ¿${RED}0${NC} o 1?:$cr" -r TRACK
@@ -37,11 +37,15 @@ DIRECTORY="$(pwd)/$(echo -e "$AUTHOR-$BOOKTITLE" | tr '[:upper:]' '[:lower:]' | 
 mkdir -p $DIRECTORY
 
 # Defino start
-start="00:00:00"
+read -p "¿Tiempo para empezar? (${RED}00:00:00${NC}/hh:mm:ss):" -r tiempo
+case $tiempo in
+	[0-9][0-9]:[0-9]:[0-9]:[0-9][0-9]) start="$tiempo";;
+	*) start="00:00:00";;
+esac
 
 echo -e "El libro estará en:\n${BLUE}$DIRECTORY${NC}"
 
-TOTAL=$(cat $2 | wc -l)
+TOTAL=$(sed -i "/^[[:space:]]*$/d" "$2" | cat "$2" | wc -l)
 COMMENT="Hecho con mucho amor. ^_^/  NAD"
 # Loop starts
 while read -r x
@@ -55,7 +59,7 @@ OUTPUTFILE="$DIRECTORY/$TRACK-$name.$ext"
 echo -e "\nSplitting from $start to $end...\nChapter: $TRACK - $NAME"
 
 case $ext in
-	opus) ffmpeg -nostdin -y -loglevel -8 -i $inputaudio -ss $start -to $end -vn "$OUTPUTFILE"
+	opus) ffmpeg -nostdin -y -loglevel -8 -i $inputaudio -c:a libopus -b:a 36k -ss $start -to $end -vn "$OUTPUTFILE"
 		# Defino las tags para ponerle a los nuevos archivos
 		opustags -i "$OUTPUTFILE" -D
 		opustags -i "$OUTPUTFILE" -a chapter="$TRACK" -a title="$NAME ($TRACK/$TOTAL)" -a track="$TRACK" -a author="$AUTHOR" -a booktitle="$BOOKTITLE" -a language="$LANGUAGE" -a artist="$AUTHOR" -a album="$BOOKTITLE" -a genre="$GENERO" -a year="$YEAR" -a comment="$COMMENT"

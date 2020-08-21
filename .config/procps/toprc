@@ -1,10 +1,10 @@
 top's Config File (Linux processes with windows)
-Id:i, Mode_altscr=0, Mode_irixps=1, Delay_time=8.0, Curwin=1
+Id:i, Mode_altscr=0, Mode_irixps=1, Delay_time=5.0, Curwin=1
 Def	fieldscur=¥¨³´»½ÀÄ·º¹Å&')*+,-./012568<>?ABCFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghij
 	winflags=195892, sortindx=18, maxtasks=0, graph_cpus=0, graph_mems=0
 	summclr=6, msgsclr=1, headclr=4, taskclr=3
 Job	fieldscur=¥&¹·º(ÄÅ34;=@<')*+,-./012568>?ABCFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghij
-	winflags=196412, sortindx=18, maxtasks=0, graph_cpus=0, graph_mems=0
+	winflags=163644, sortindx=18, maxtasks=0, graph_cpus=0, graph_mems=0
 	summclr=13, msgsclr=6, headclr=11, taskclr=10
 Mem	fieldscur=¥º»<½¾¿ÀÁMBNÃD34·Å&'()*+,-./0125689FGHIJKLOPQRSTUVWXYZ[\]^_`abcdefghij
 	winflags=193844, sortindx=21, maxtasks=0, graph_cpus=0, graph_mems=0

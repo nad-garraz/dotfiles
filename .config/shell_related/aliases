@@ -1,7 +1,7 @@
 # Listar directorio
 alias la='ls -ahp'
 alias ls='ls --color=auto'
-alias lc='ls -cltah'
+alias lc='ls -cltahr'
 alias ll='ls -lahp'
 
 # Shorcuts to used directories
@@ -95,8 +95,8 @@ alias guitarra="python ~/programitas/python_projects/guita/main.py"
 alias pies="pstree -apC age | grep $1"
 
 # youtube-dl audio
-alias yt="youtube-dl --add-metadata -i"
-alias yta="yt -x -f bestaudio/best"
+alias yt="youtube-dl -i --restrict-filenames"
+alias yta="youtube-dl -i --restrict-filenames --extract-audio --audio-format mp3 --audio-quality 96K"
 
 # Corona Curl
 alias corona="curl -s https://corona-stats.online/{us,ar,es,it,nz,cn,ca,br,cl,in,tw,kr,jp}?minimal=true | grep -A1 Rank > ~/corona && grep -v \"\-\-\" ~/corona && \mv ~/corona /tmp"
@@ -112,3 +112,9 @@ alias ncdu="ncdu --color dark"
 
 # MPV FLOAT
 alias mpvf="mpv --title=mpvfloat"
+
+# Brutal Doom
+alias brutaldoom="gzdoom /data/games/doom/brutal-doom/brutalv21.pk3"
+
+# Watch
+alias watch="watch -d -n 1 -t -c"

@@ -1,5 +1,5 @@
 #!/bin/sh
-LOCATION="-36.9267019,175.7895731"
+LOCATION="-36.914261,175.776395"
 
 isOldAndIsInet () {
 		# Update solo con inet y si el último update son más viejos que la edad objetivo
@@ -44,5 +44,5 @@ esac
 [ ! -e "$weatherreport" ] && touch "$weatherreport" && getforecast
 [ ! -e "$temp" ] && touch "$temp"&& getTemperaturaActual
 
-isOldAndIsInet && getForecast && getTemperaturaActual;
 showweather
+isOldAndIsInet && getforecast && getTemperaturaActual;

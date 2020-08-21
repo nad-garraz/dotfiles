@@ -67,6 +67,9 @@ shopt -s autocd
 # Append to history
 shopt -s histappend
 
+# Para que al expandir no ponga "\" en los caractéres especiales
+shopt -s direxpand
+
 # Para poder browsear por la history con las flechas
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'

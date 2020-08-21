@@ -37,6 +37,12 @@ superlame () {
 	parallel lame -S --mp3input -b $arg {} {.}.tmp '&&' \mv {.}.tmp {} ::: "$(find . -name "*mp3" -exec basename {} \;)"
 	}
 
+superopus () {
+# Toma un argumento. Convierte el mp3 o opus al bitrate elegido, para todos
+# los archivos del directorio
+	arg=${1:-36}
+	parallel ffmpeg -i {} -c:a libopus -b:a "${arg}K" -f opus {.} '&&' \mv {.} {.}.opus ::: "$(find . -name "*mp3" -exec basename {} \; -o -name "*opus" -exec basename {} \;)"
+	}
 
 cl() {
 	# Change directory and ls
