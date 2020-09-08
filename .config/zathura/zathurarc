@@ -3,3 +3,13 @@ map i recolor
 
 # Zoom out
 map _ zoom out
+
+# Dragon: Para mandar el archivo arrastrándolo
+map <C-s> exec 'dragon -x %'
+
+# Selection to clipboard
+
+set selection-clipboard clipboard
+
+# Rotate
+map R rotate

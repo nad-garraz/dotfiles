@@ -12,6 +12,8 @@ set nonumber
 set encoding=utf-8
 set clipboard=unnamedplus
 set laststatus=1
+" Muestra whitespaces y tabs
+set list
 
 " Source functions file
 source $HOME_CONFIG/nvim/random_functions.vim

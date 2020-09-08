@@ -7,7 +7,8 @@ pgrep transmission-da > /dev/null && printf "%s " "$icon"
 
 
 toggle_list () {
-pidof watch && killall watch || setsid -f falacritty -d 140 30 -e watch -d -n 1 -t -c transmission-remote -l
+	rows=$(transmission-remote -l | wc -l)
+	pidof watch && killall watch || setsid -f falacritty -d 140 $rows -e watch -d -n 1 -t -c transmission-remote -l
 }
 
 

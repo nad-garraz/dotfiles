@@ -45,6 +45,10 @@ super + c
 super + b
 	bl_dmenu
 
+# Apagar pantalla
+shift + super + i
+	xset dpms force standby
+
 # Newsboat
 super + n
 	tx newsboat

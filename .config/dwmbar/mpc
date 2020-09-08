@@ -45,8 +45,8 @@ NEXT=$(mpc queued)
 case $BUTTON in
 	3) notifyInfo;;
 	1) mpc toggle > /dev/null;;
-	4) mpc next   > /dev/null;;
-	5) mpc prev   > /dev/null;;
+	4) [ "$STATUS" = "[playing]" ] && mpc next > /dev/null;;
+	5) [ "$STATUS" = "[playing]" ] && mpc prev > /dev/null;;
 	2) setsid -f falacritty -d 130 30 -e ncmpcpp;;
 	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0";;
 	7) mpc_dmenu;;

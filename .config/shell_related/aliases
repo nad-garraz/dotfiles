@@ -111,7 +111,7 @@ alias reconectar="sudo netctl restart $(netctl list | grep '^*' | cut -d" " -f2-
 alias ncdu="ncdu --color dark"
 
 # MPV FLOAT
-alias mpvf="mpv --title=mpvfloat"
+alias mpvf="mpv --title=mpvfloat --wid=$WINDOWID"
 
 # Brutal Doom
 alias brutaldoom="gzdoom /data/games/doom/brutal-doom/brutalv21.pk3"
