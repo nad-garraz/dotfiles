@@ -12,9 +12,9 @@ case $FIRST_CHOICE in
 		;;
 	Prev) mpc prev &> /dev/null
 		;;
-	Playlists) SECOND_CHOICE="`mpc lsplaylists | dmenu -i -l 20 -fn "$dmenu_font" -p "CHOOSE PLAYLIST"`"
+	Playlists) SECOND_CHOICE="`mpc lsplaylists | dmenu -i -l 35 -fn "$dmenu_font" -p "CHOOSE PLAYLIST"`"
 		;;
-	"Pick Song") PLAY_SONG="`mpc playlist | dmenu -i -l 15 -fn "$dmenu_font" -p "CHOOSE SONG"`"
+	"Pick Song") PLAY_SONG="`mpc playlist | dmenu -i -l 35 -fn "$dmenu_font" -p "CHOOSE SONG"`"
 		;;
 	Shuffle) mpc random > /dev/null
 		;;
