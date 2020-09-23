@@ -61,6 +61,9 @@ export HISTFILESIZE=10000
 # Less file history
 export LESSHISTFILE="/dev/null"
 
+# MPC Library
+export MPCLIBRARY="/data/music"
+
 # DMENU font
 export dmenu_font="monospace-16"
 

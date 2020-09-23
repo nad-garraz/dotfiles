@@ -102,7 +102,8 @@ alias yta="youtube-dl -i --restrict-filenames --extract-audio --audio-format mp3
 alias corona="curl -s https://corona-stats.online/{us,ar,es,it,nz,cn,ca,br,cl,in,tw,kr,jp}?minimal=true | grep -A1 Rank > ~/corona && grep -v \"\-\-\" ~/corona && \mv ~/corona /tmp"
 
 # Para ver la cantidad de filas que hay en el directorio
-alias archivos="ls -a | awk '{rows++} END {print \"Archivos: \" rows }'"
+alias archivos="ls -A | awk '{rows++} END {print \"Archivos: \" rows }'"
+alias archivos-recursive="find -type f | awk '{rows++} END {print \"Archivos: \" rows }'"
 
 # Refresh inet connection
 alias reconectar="sudo netctl restart $(netctl list | grep '^*' | cut -d" " -f2-)"

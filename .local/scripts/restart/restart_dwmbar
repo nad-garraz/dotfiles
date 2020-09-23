@@ -2,4 +2,4 @@
 #!/bin/sh
 #
 
-killall dwmblocks 2> /dev/null && dwmblocks &
+killall dwmblocks && dwmblocks &

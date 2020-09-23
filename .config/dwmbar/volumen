@@ -11,7 +11,7 @@ case $BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-[ $(pamixer --get-mute) = true ] && echo 🔇 && exit
+[ $(pamixer --get-mute) = true ] && echo -n "🔇" && exit
 
 vol="$(pamixer --get-volume)"
 
@@ -21,4 +21,4 @@ else
 	icon="🔉"
 fi
 
-echo  "$icon:$vol%" | tr "\n" " ";
+echo -n "$icon:$vol% ";

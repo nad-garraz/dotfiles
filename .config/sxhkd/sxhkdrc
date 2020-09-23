@@ -54,8 +54,8 @@ super + n
 	tx newsboat
 
 # Dragon
-alt + shift + d ; {h}
-	{dragon_quick}
+alt + shift + d ; {h,m}
+	{dragon_quick,share_music}
 
 # Gui apps, browser, calculator, downlords, steam
 alt + shift + o ; {b,c,e,g}
@@ -87,6 +87,9 @@ alt + shift + k
 Print
 	capture_screen
 
+# ScreenCasting
+super + s
+	screencasting
 # Killall ffmpeg
 control + F8
 	killall ffmpeg && notify-send "Se mató el ffmpeg"
