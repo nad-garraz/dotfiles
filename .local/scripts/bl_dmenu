@@ -15,8 +15,7 @@ IS_ON="$(bluetoothctl show "$MACADD" | grep -i powered | cut -d: -f2 | tr -d " "
 bl_toggle () {
 	if [ "$IS_ON" = "yes" ];
 	then
-		bluetoothctl power off;
-		notify-send "$icon Bluetooth off"
+		bluetoothctl power off && notify-send "$icon Bluetooth off"
 	else
 		bluetoothctl power on && notify-send "$icon Bluetooth on"
 fi
