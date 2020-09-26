@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Abre una instancia de dragon
+# y se pasa al dmenu o al linkhandler
+
+url="$(dragon -t -x)" && choice=$(echo -e "dmenuhandler\nlinkhandler" | dmenu -fn $dmenu_font -p "Elegí:")
+
+case $choice in
+	dmenuhandler) dmenuhandler "$url";;
+	linkhandler) linkhandler "$url" ;;
+esac
+

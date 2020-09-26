@@ -1,0 +1,67 @@
+#!/bin/sh
+
+# Timer para entrenar
+
+round=1
+tiempo_entrenamiento=${1:-120}
+tiempo_descanso=${2:-30}
+tiempo_descanso=$(echo "$tiempo_descanso - 3" | bc -ql)
+
+primeta_mitad=$(echo "$tiempo_entrenamiento / 2" | bc -ql | cut -d"." -f1)
+segunda_mitad=$(echo "$primeta_mitad - 2" | bc -ql)
+
+
+barra () {
+	tiempo_actual=0
+	porciento=1
+
+	while [ $tiempo_actual -le $tiempo_entrenamiento ]
+	do
+		tput civis
+		figlet -Wt "ROUND    $1 -- $(echo "$tiempo_entrenamiento - $tiempo_actual" | bc -ql) s"
+		step_x=$(echo "$COLUMNS / $tiempo_entrenamiento" | bc -ql)
+		#for i in $(seq 1 50)
+		for i in $(seq 1 $porciento)
+		do
+			echo -ne "#"
+		done
+		sleep 1
+		echo -ne "\r"
+		tiempo_actual=$(echo "$tiempo_actual + 1" | bc -ql)
+		porciento=$(echo "$tiempo_actual * $step_x" | bc -ql | cut -d"." -f1)
+		clear
+	done
+	figlet -Wt "Descanso"
+}
+
+countDown () {
+	for i in $(seq 1 5 | sort -r)
+	do
+		figlet -Wt $i | tr "|" "0"
+		sleep 1
+		clear
+
+	done
+}
+
+# Sección del timer que hace lo que tiene que hacer
+
+tiempo () {
+	clear
+	while true
+do
+
+	countDown &
+	espeak -ves-la -s 140 "5..... 4.....   3.....   2.....   1..... Entrenamiento" 2> /dev/null
+	clear
+	barra $round &
+
+	sleep $primeta_mitad
+	espeak -ves-la "MITAD" 2> /dev/null
+	sleep $segunda_mitad
+	espeak -ves-la "3..., 2..., 1..., Descanso" 2> /dev/null
+	sleep $tiempo_descanso
+	round=$(expr $round + 1)
+	done
+}
+tiempo

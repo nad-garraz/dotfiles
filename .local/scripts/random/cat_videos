@@ -1,0 +1,46 @@
+#!/bin/sh
+
+# Toma 2 archivos de video, los "mergea" con el
+# ffmpeg. Devuelve el archivo en $3
+
+usage="$(basename "$0") [-h] -- Para juntar dos videos en un solo archivo.
+Toma 3 argumentos en total
+where:
+	-h show this help
+Ejemplo: cat_videos ${RED}IN_1.mp4 IN_2.mp4 ${BLUE}OUT.mp4${NC}"
+
+while getopts ':h' option; do
+	case "$option" in
+		h) echo "$usage"
+			exit
+			;;
+		:) printf "missing argument for -%s\n" "$OPTARG" >&2
+			echo "$usage" >&2
+			exit 1
+			;;
+		\?) printf "invalid option: -%s\n" "$OPTARG" >&2
+			echo "$usage" >&2
+			exit 1
+			;;
+	esac
+done
+
+shift $((OPTIND - 1))
+
+ffmpeg -loglevel quiet -i "$1" -i "$2" -filter_complex "[0:v] [0:a] [1:v] [1:a] concat=n=2:v=1:a=1 [v] [a]" -map "[v]" -map "[a]" "$3"
+
+echo "${GREEN}Done ✔${NC}"
+
+ls -lh $1 $2 $3
+
+echo "¿${RED}Borrar${NC} "$1" y "$2" ?"
+select choice in 'Sí' 'No'
+do
+	case $choice in
+		'Sí') rm $1 $2 && break;;
+		'No') echo "No se borraron" && break;;
+	esac
+done
+
+echo "${RED}Done ✔${NC}"
+echo "bye ${CYAN}👋${NC}"

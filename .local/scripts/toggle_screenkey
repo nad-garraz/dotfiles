@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Toggle screenkey
+
+{ pkill screenkey && notify-send -t 2000 "ScreenKey Off"; } ||
+	{ screenkey --timeout 15 --no-systray --font-color "#7722AA" --vis-shift --bak-mode normal --font-size small & };
+pgrep screenkey &> /dev/null && notify-send -t 2000 "ScreenKey On"

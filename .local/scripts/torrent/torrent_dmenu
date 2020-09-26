@@ -1,0 +1,57 @@
+#!/bin/sh
+
+# Comandos mínimos para manipular los torrents
+icon="☠"
+# Filas de los torrents encolados para determinar tamaño de
+# la terminal
+rows=$(transmission-remote -l | wc -l)
+
+# Primer menu para el dmenu
+choice_one=$(echo -e "toggle-daemon\nstart-all\nstop-all\nstart-1\nstop-1\nremove-torrent\nlist-torrents" | dmenu  -i -fn "$dmenu_font" -p "${icon} MINIMAL TC: ")
+
+seleccion_torrent () {
+	grepping=${1:-"Downloading\|Idle\|Up & Down\|Stopped\|Seeding"}
+	torrent="$(transmission-remote -l | sed '$d' | sed '1d' | sed 's/[[:space:]][[:space:]]\+/~/g' | grep -i "$grepping" | awk -F~ '{ print $2 "    " $10 }' | dmenu -i -fn "$dmenu_font" -l 20;)"
+	echo "$torrent"
+}
+
+toggle_daemon () {
+	ping -q -c 1 1.1.1.1 > /dev/null 2>&1 &&
+		{ pgrep transmission-da > /dev/null &&
+			{ pkill transmission-da && notify-send "$icon   $icon   $icon   $icon   $icon" "Transmission killed" ; } ||
+			{ transmission-daemon   && notify-send "$icon   $icon   $icon   $icon   $icon" "Transmission started" ; } } || notify-send "no inet";
+				}
+
+case $choice_one in
+	"toggle-daemon") toggle_daemon
+		;;
+	"start-all") transmission-remote -t all -s > /dev/null && notify-send "$icon $icon $icon $icon"  "All torrent started" ;
+		;;
+	"stop-all") transmission-remote -t all -S  > /dev/null && notify-send "$icon $icon $icon $icon"  "All torrent stopped" ;
+		;;
+	"start-1") torrent_objetivo=$(seleccion_torrent "Stopped");
+		   ID=$(echo "$torrent_objetivo" | cut -c 1,2);
+		   NAME="$(echo "$torrent_objetivo" | cut -d" " -f2-)";
+		[ ! -z "$torrent_objetivo" ] &&
+			{ transmission-remote -t $ID -s > /dev/null && notify-send "$icon Torrent started:" "$NAME"; } ;
+		;;
+	"stop-1") torrent_objetivo=$(seleccion_torrent "Idle\|Downloading\|Up & Down\|Seeding");
+		   ID=$(echo "$torrent_objetivo" | cut -c 1,2);
+		   NAME="$(echo "$torrent_objetivo" | cut -d" " -f2-)";
+		[ ! -z "$torrent_objetivo" ] &&
+		{ transmission-remote -t $ID -S > /dev/null && notify-send "$icon Torrent Stopped:" "$NAME"; } ;
+		;;
+	"remove-torrent") torrent_objetivo=$(seleccion_torrent);
+		   ID=$(echo "$torrent_objetivo" | cut -c 1,2 | tr -d '*');
+		   [ -z "$ID" ] && exit;
+		   borrar="$(echo -e "Sí\nNo" | dmenu -i -fn "$dmenu_font" -p "$icon ¿Borrar datos también?")";
+		case $borrar in
+			"Sí") transmission-remote -t $ID -rad
+				;;
+			"No") transmission-remote -t $ID -r > /dev/null
+				;;
+		esac
+		;;
+	"list-torrents") pidof "watch" > /dev/null && killall watch || setsid -f falacritty -d 140 $rows -e watch -d -n 1 -t -c transmission-remote -l ;
+		;;
+esac

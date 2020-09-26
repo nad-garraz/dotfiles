@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Toma un video y le baja la calidad para poder compartirlo
+# más fácilmente
+
+in="$1"
+out="$(echo "$in" | sed 's/\....$//1')-shareable.mp4"
+ffmpeg -loglevel 0 -i "$in" -c:a libopus -b:a 36k -c:v libx264 -acodec aac -preset:v veryfast -crf 35 "$out" &&
+echo -e "Done $RED✔$NC\nNuevo archivo: "$out""
+[ -f "$out" ] && dragon -x "$out" &

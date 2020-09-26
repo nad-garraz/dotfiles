@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Para rotar rápido la pantalla
+
+choice=$(echo -e "Normal\nRight\nLeft\nInverted" | dmenu -fn "$dmenu_font" -i -p "Rotar la pantalla: ")
+
+case $choice in
+	Normal) xrandr -o normal;;
+	Right) xrandr -o right;;
+	Left) xrandr -o left;;
+	Inverted) xrandr -o inverted;;
+esac

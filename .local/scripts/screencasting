@@ -1,0 +1,42 @@
+#!/bin/sh
+
+#
+#	 ____                                         _
+#	/ ___|  ___ _ __ ___  ___ _ __   ___ __ _ ___| |_
+#	\___ \ / __| '__/ _ \/ _ \ '_ \ / __/ _` / __| __|
+#	 ___) | (__| | |  __/  __/ | | | (_| (_| \__ \ |_
+#	|____/ \___|_|  \___|\___|_| |_|\___\__,_|___/\__|
+#
+#
+
+dir="/data/ffmpeg"
+[ ! -d "$dir" ] && mkdir "$dir"
+FILENAME="$(date '+%d-%m-%y--%H%M%S')-video"
+FINAL_NAME="$dir/$FILENAME"
+
+first=$(echo -e "Placa & Mic\nPlaca\nMic\nNo Audio\nPlaca & Mic(light)\nSección Particular\nStop Screencast" | dmenu -fn "$dmenu_font" -i -p "ScreenCasting: ")
+
+case $first in
+	"Placa & Mic") ffmpeg -loglevel 0 -f x11grab -video_size 1920x1080 -framerate 30 -i $DISPLAY -f alsa -i pulse:1 -f alsa -i pulse:2 -filter_complex "[0:v]hue=s=1[outv];[1:a][2:a]amerge=inputs=2[a]" -map '[outv]' -map "[a]" -ac 2 -r 30 -c:a libopus -b:a 48k -c:v libx264 -preset:v slow -crf 28 "$FINAL_NAME.mkv"
+		;;
+	"Placa") ffmpeg -loglevel 0 -f x11grab -video_size 1920x1080 -framerate 30 -i $DISPLAY -f alsa -i pulse:1 -r 30 -c:v libx264 -preset:v fast -crf 40 -b:v 2000k -c:a libopus -b:a 48k "$FINAL_NAME.mkv"
+		;;
+	"Mic") ffmpeg -loglevel 0 -f x11grab -video_size 1920x1080 -framerate 30 -i $DISPLAY -f alsa -i pulse:2 -r 30 -c:v libx264 -preset:v fast -b:v 2000k -c:a libopus -b:a 48k "$FINAL_NAME.mkv"
+		;;
+	"No Audio") ffmpeg -loglevel 0 -f x11grab -video_size 1920x1080 -framerate 30 -i $DISPLAY -c:v libx264 -preset:v veryfast -b:v 2000k "$FINAL_NAME.mkv"
+		;;
+	"Placa & Mic(light)") ffmpeg -loglevel 0 -f x11grab -video_size 1920x1080 -framerate 30 -i $DISPLAY -f alsa -i pulse:1 -f alsa -i pulse:2 -filter_complex "[0:v]hue=s=1[outv];[1:a][2:a]amerge=inputs=2[a]" -map '[outv]' -map "[a]" -ac 2 -r 30 -c:a libopus -b:a 48k -c:v libx264 -acodec aac -preset:v veryfast -crf 35 "$FINAL_NAME.mp4" || dragon -x $FINAL_NAME.mp4
+		;;
+	"Sección Particular") notify-send "TODO"
+		;;
+	"Stop Screencast") killall ffmpeg
+		;;
+		#
+		# TODO: Hacer la "Sección Particular" (22/9/20)
+		## ESQUINA_LEFT_SUPERIOR="0,0" # ESQUINA SUPERIOR IZQUIERDA
+		## RESOLUTION="1340x1060" # TAMAÑO DE LA CAPTURA MEDIDO DESDE LEFT_SUPERIOR
+		## ffmpeg -loglevel 0 -f x11grab -framerate 50 -video_size $RESOLUTION -i :0.0+$ESQUINA_LEFT_SUPERIOR -f alsa -i pulse -r 30 -b:a 64k $FINAL_NAME
+	esac
+
+# calidad alta con captura de audio hw:0, sección elegida según
+# LEFT_SUPERIOR y RESOLUTION
