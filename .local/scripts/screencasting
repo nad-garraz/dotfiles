@@ -25,7 +25,7 @@ case $first in
 		;;
 	"No Audio") ffmpeg -loglevel 0 -f x11grab -video_size 1920x1080 -framerate 30 -i $DISPLAY -c:v libx264 -preset:v veryfast -b:v 2000k "$FINAL_NAME.mkv"
 		;;
-	"Placa & Mic(light)") ffmpeg -loglevel 0 -f x11grab -video_size 1920x1080 -framerate 30 -i $DISPLAY -f alsa -i pulse:1 -f alsa -i pulse:2 -filter_complex "[0:v]hue=s=1[outv];[1:a][2:a]amerge=inputs=2[a]" -map '[outv]' -map "[a]" -ac 2 -r 30 -c:a libopus -b:a 48k -c:v libx264 -acodec aac -preset:v veryfast -crf 35 "$FINAL_NAME.mp4" || dragon -x $FINAL_NAME.mp4
+	"Placa & Mic(light)") ffmpeg -loglevel 0 -f x11grab -i $DISPLAY -f alsa -i pulse:1 -f alsa -i pulse:2 -filter_complex "[0:v]hue=s=1[outv];[1:a][2:a]amerge=inputs=2[a]" -map '[outv]' -map "[a]" -ac 2 -r 30 -c:a libopus -b:a 48k -vcodec libx264 -profile:v baseline -level 3.0 -c:a aac -pix_fmt yuv420p -crf 35 "$FINAL_NAME.mp4" || dragon -x $FINAL_NAME.mp4
 		;;
 	"Sección Particular") notify-send "TODO"
 		;;
