@@ -4,16 +4,20 @@
 # Screen-shot, capture-screen
 
 # Variables:
-TIMESTAMP="$(date +%d-%m-%Y-%H:%M)"
+TIMESTAMP="$(date +%d-%m-%Y-%H%M%S)"
 TARGETBASE="/data/pictures/screenshots"
+OUT=$TARGETBASE/$TIMESTAMP.png
 SHUTTER="/data/music/sounds/shutter.mp3"
 # Crea el directorio si no lo encuentra:´
 [ -d $TARGETBASE ] || mkdir -p $TARGETBASE
 
 # Comando:
 [ ! -z "$SHUTTER" ] && \mpv --msg-level=all=no $SHUTTER &
-import -window root $TARGETBASE/$TIMESTAMP.png &&
-action=$(dunstify --action="dragon,picture" "📸 Screenshot guardada en:" "$TARGETBASE/$TIMESTAMP.png")
+import -window root $OUT &&
+action=$(dunstify -t 10000 --action="dragon,SHARE" --action="sxiv,SHOW" "📸 Screenshot" "Guardada en:$OUT")
 case $action in
-	"dragon") dragon -x "$TARGETBASE/$TIMESTAMP.png";;
+	"dragon") dragon -x "$OUT"
+		;;
+	"sxiv") setsid -f $TERMINAL -e sxiv "$OUT"
+		;;
 esac

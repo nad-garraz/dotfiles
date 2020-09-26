@@ -1,10 +1,14 @@
 #!/bin/sh
 
-if [ ! -e "$1" ]
+# Crea un archivo ejecutable con el nombre
+# y alguna que otra boludez.
+
+if [ ! -z "$1" ] && [ ! -e "$1" ]
 then
-	printf "#!/bin/sh\n\n# <++>" >> "$1"
+	name="$(figlet "$1" | sed 's/^/# /1')"
+	echo -e "#!/bin/sh\n\n$name\n\n# <++>" >> "$1"
 	chmod +x "$1"
 	nvim "$1"
 else
-	echo "Ya existe el archivo \"$RED"$1"$NC\"." && exit 0
+	echo -e "¡Error! Falta nombre de archivo o el nombre ingresado ya existe:\n\"$RED"$1"$NC\"" && exit 0
 fi
