@@ -119,3 +119,6 @@ alias brutaldoom="gzdoom /data/games/doom/brutal-doom/brutalv21.pk3"
 
 # Watch
 alias watch="watch -d -n 1 -t -c"
+
+# Bandwhich usage
+alias bandwhich="sudo bandwhich"

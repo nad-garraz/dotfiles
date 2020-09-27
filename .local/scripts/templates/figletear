@@ -1,0 +1,16 @@
+#!/bin/sh
+
+#   __ _       _      _
+#  / _(_) __ _| | ___| |_ ___  __ _ _ __
+# | |_| |/ _` | |/ _ \ __/ _ \/ _` | '__|
+# |  _| | (_| | |  __/ ||  __/ (_| | |
+# |_| |_|\__, |_|\___|\__\___|\__,_|_|
+#        |___/
+
+# Agrega el texto figleteado y comentado al archivo objetivo
+
+#
+# TODO: Hacer un help o algún tipo de control de errores (27/9/20)
+#
+
+figlet "$1" | sed 's/^/# /1' >> "$2"

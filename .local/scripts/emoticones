@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# el dmenu presenta una lista de emoticones, con su descripción. Se selecciona el emoticón deseado y
+# éste es copiado al CLIPBOARD. Una notificación muestra el emoticón copiado.
+
+
 # Fuente
 FUENTE="EmojiOne Color-30"
 
@@ -10,10 +14,10 @@ FILE="$HOME/.local/emoticones/unicode_compilation"
 OLD="$(xclip -o -selection clipboard)"
 
 # Opens dmenu ignoring the lines that finish with "#"
-# The awk commands can probably be improve
+# The awk commands can probably be improved
 # paste selection to CLIPBOARD
-grep -v -e "^#" $FILE | awk -F'   ---   ' '{ printf "%-40s     %s\n", $1, toupper($2) }' |
-	dmenu -i -l 20 -fn "$FUENTE" -nb "#000000" -sf "#FFFFFF" -nf "#aaaaaa" |
+grep -v -e "^#" $FILE | awk -F'   ---   ' '{ printf "%-40s     %-20s\n",$1,toupper($2) }' |
+	dmenu -i -l 23 -fn "$FUENTE" -nb "#000000" -sf "#FFFFFF" -nf "#aaaaaa" |
 	awk -F'     ' '{ printf "%s", $1 }' |
 	xclip -r -selection clipboard
 
