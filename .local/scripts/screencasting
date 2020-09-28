@@ -11,11 +11,23 @@
 
 # Menú que sirve para elegir como hacer un screencast. Opciones de audio y calidad de video.
 
-
 dir="/data/ffmpeg"
 [ ! -d "$dir" ] && mkdir "$dir"
 FILENAME="$(date '+%d-%m-%y--%H%M%S')-video"
 FINAL_NAME="$dir/$FILENAME"
+
+# Es muy común querer mandar el video, por eso doy esta opción luego de terminar
+# la grabación.
+share () {
+opcion=$(echo -e "Shareabilizar\nNo" | dmenu -fn "$dmenu_font" -i -p "Sharear?: ")
+
+case $opcion in
+	Shareabilizar) shareabilizar_video "$1"
+		;;
+	No) exit 0
+		;;
+esac
+}
 
 first=$(echo -e "Placa & Mic\nPlaca\nMic\nNo Audio\nPlaca & Mic(light)\nSección Particular\nStop Screencast" | dmenu -fn "$dmenu_font" -i -p "ScreenCasting: ")
 
