@@ -17,7 +17,7 @@ $(\du -hs --exclude *.pyc --exclude /home --exclude /data --exclude /media / 2> 
 }
 
 lsSizes () {
-	notify-send -t 20000 "$icon2 Local Storage:" "$(getSizes)"
+	notify-send -t 0 "$icon2 Local Storage:" "$(getSizes)"
 }
 
 case $BUTTON in

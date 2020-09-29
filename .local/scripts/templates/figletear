@@ -13,4 +13,4 @@
 # TODO: Hacer un help o algún tipo de control de errores (27/9/20)
 #
 
-echo -e "\n#\n$(figlet "$1" | sed 's/^/# /1')\n" >> "$2"
+echo -e "\n#\n$(figlet "$1" | sed 's/^/# /1')\n#\n" | sed 's/[[:space:]]*$//' >> "$2"

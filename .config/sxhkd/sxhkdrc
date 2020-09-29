@@ -21,6 +21,10 @@ super + o
 alt + shift + e
 	emoticones
 
+# Figlet_Whasapp
+alt + shift + f
+	figlet_whatsapp
+
 # Apagar, reiniciar, killx
 super + q
 	apagar_dmenu
@@ -29,9 +33,9 @@ super + q
 super + {Up,Down}
 	{volume +,volume -}
 
-# Volumen control
-super + {Right,Left}
-	{mpc next,mpc prev}
+# MPC
+alt + ctrl + {Right,Left,Up}
+	{mpc next,mpc prev,mpc toggle}
 
 # Restart dwmbar
 shift + super + r
@@ -62,8 +66,8 @@ alt + shift + o ; {b,c,e,g}
 	{$BROWSER,speedcrunch,calibre,gimp}
 
 # Gui games
-alt + shift + g ; {d,s,r}
-	{downlords-faf-client,steam,retroarch}
+alt + shift + g ; {d,s,r,h}
+	{downlords-faf-client,steam,retroarch,discord}
 
 # Dmenu Transmission
 super + p
