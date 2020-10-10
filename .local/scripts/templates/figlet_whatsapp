@@ -17,5 +17,3 @@
 text="$(echo '' | dmenu -fn $dmenu_font -p "Figletear para Whatsapp")"
 text_figleted="$(echo -e "\`\`\`$(figlet "$text")\n\`\`\`" | sed 's/[[:space:]]*$//')"
 echo -e "$text_figleted" | xclip -r -selection clipboard
-
-

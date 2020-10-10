@@ -1,0 +1,15 @@
+#!/bin/sh
+
+#        _                 _              _
+#   __ _| | __ _ _ __ ___ (_) ___ _ __ __| | __ _
+#  / _` | |/ _` | '_ ` _ \| |/ _ \ '__/ _` |/ _` |
+# | (_| | | (_| | | | | | | |  __/ | | (_| | (_| |
+#  \__,_|_|\__,_|_| |_| |_|_|\___|_|  \__,_|\__,_|
+#
+
+# Muestra a un simpático bicho mandando a la mierda una palabra
+
+texto="$@"
+texto="$(flipear "$texto")"
+
+echo -n "(╯°□ °)╯︵ $texto" | xclip -selection clip && notify-send "Copiado al Clipboard:" "(╯°□ °)╯︵ $texto"

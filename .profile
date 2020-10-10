@@ -50,7 +50,7 @@ export XDG_DATA_DIRS="/usr/share/:/usr/local/share:$HOME_LOCAL/share/"
 export XDG_CONFIG_DIRS="/etc/xdg"
 
 # NeoVim related
-export EDITOR="$HOME/.local/bin/nvim"
+export EDITOR="/usr/bin/nvim"
 export VIMRUNTIME="$HOME/.local/share/nvim/runtime"
 
 #VARIABLES PARA EL HISTORIAL
