@@ -6,7 +6,8 @@
 
 
 ## PARA QUE EL FAF LEVANTE LA VERSION CORRECTA DE JAVA
-#export PATH="/usr/lib/jvm/java-13-openjdk/bin/:$PATH"
+#export PATH="/usr/lib/jvm/java-14-openjdk/bin/:$PATH"
+#export INSTALL4J_JAVA_HOME="/usr/lib/jvm/java-14-openjdk/bin/:$PATH"
 
 # Terminal
 export TERMINAL="alacritty"

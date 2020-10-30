@@ -49,10 +49,6 @@ super + c
 super + b
 	bl_dmenu
 
-# Apagar pantalla
-shift + super + i
-	xset dpms force standby
-
 # Newsboat
 super + n
 	tx newsboat
@@ -94,6 +90,7 @@ Print
 # ScreenCasting
 super + s
 	screencasting
+
 # Killall ffmpeg
 control + F8
 	killall ffmpeg && notify-send "Se mató el ffmpeg"

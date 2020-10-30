@@ -11,8 +11,9 @@
 #python $DWMBAR/wallpaper/random_walk_wallpaper.py 1> /dev/null 2> $LOGS/random.log
 #convert -bordercolor "black" $FILENAME -crop "1920x1080+$XPIXEL-$YPIXEL" $CROPPED 1> /dev/null 2> $LOGS/convert_wall.log && xwallpaper --center $CROPPED
 
-wallpaper="$HOME/pictures/wallpaper/wall.jpg"
+WALLPAPER="$HOME/pictures/wallpaper/cartel-piedra.jpg"
 
-xwallpaper --center "$wallpaper"
+xwallpaper --center "$WALLPAPER"
+#xwallpaper --stretch "$WALLPAPER"
 
 
