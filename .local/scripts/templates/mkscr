@@ -10,5 +10,5 @@ then
 	chmod +x "$1"
 	nvim "$1"
 else
-	echo -e "¡Error! Falta nombre de archivo o el nombre ingresado ya existe:\n\"$RED"$1"$NC\"" && exit 0
+	echo -e "¡Error! Falta nombre de archivo o el nombre ingresado ya existe:\n\"$RED"$1"$NORMAL\"" && exit 0
 fi

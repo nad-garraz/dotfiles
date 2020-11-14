@@ -9,11 +9,12 @@
 
 #mv "$1" "$(echo "$1"| sed -r 's/  / /g')"
 
-#mv "$1" "$(echo "$1" | sed "s/^[0-9][0-9]\.//g")"
+#mv "$1" "$(echo "$1" | sed "s/^[0-9][0-9]-//g")"
 #mv "$1" "$(echo "$1" | sed "s/^_//g")"
-#mv "$1" "$(echo "$1" | sed "s/^mysteries_of_modern_physics-__time_-_//g")"
+#mv "$1" "$(echo "$1" | sed "s/_-_/-/g")"
+mv "$1" "$(echo "$1" | sed "s/#/e/g")"
 
 ## Cambiar "(" --> "_" y ")" --> ""   NO PARENTESIS
 #mv "$1" "$(echo "$1" | tr "(" "_" | tr -d ")")"
-mv "$1" "$(echo "$1" | tr -d "'")"
+#mv "$1" "$(echo "$1" | tr -d "'")"
 

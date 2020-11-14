@@ -1,11 +1,12 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # Timer casero. Toma el primer argumento en segundos o minutos
+
 icon="⏲"
 i=${1:-60}
 alarm_sound="$HOME/.reminders/sonidos/spoon.mp3"
 
-[ -e $alarm_sound ] || { notify-send -t 10000 "☢ No existe el archivo: ☢" "$alarm_sound" }
+[ -e "$alarm_sound" ] || { notify-send -t 10000 "☢ No existe el archivo: ☢" "$alarm_sound" ;}
 
 convert (){
 	# Esta función se encarga de convertir el
@@ -22,6 +23,9 @@ convert (){
 
 convert
 
+# Argumento ingresado en segundos para presentar al final
+en_segundos="$i"
+
 while [ $i -gt 0 ];
 do
 	#[ $i -gt 0 ] && [ $i -le 10 ] && dunstify -r 12 "$i"
@@ -30,5 +34,5 @@ do
 	sleep 1
 done
 
-notify-send -u critical "$icon Ya han transcurrido:" "$1"
-[ -e "$alarm_sound" ] && \mpv --msg-level=all=no $alarm_sound
+notify-send -u critical -t 0 "$icon Ya han transcurrido:" "$en_segundos s"
+[ -e "$alarm_sound" ] && \mpv --msg-level=all=no "$alarm_sound"

@@ -12,7 +12,7 @@ case $1 in
 	4) PLACE="-10-10";;
 esac
 
-# SI HAY INSTANCIA DE WEBCAM, SE MATA
+# SI HAY INSTANORMALIA DE WEBCAM, SE MATA
 # Y SI NO LA HAY SE INICIA.
 pkill -f /dev/video0 ||\
 \mpv --title=mpvwebcam --osc=no --deinterlace=yes --geometry=$PLACE --autofit=25% --profile=low-latency --untimed /dev/video0

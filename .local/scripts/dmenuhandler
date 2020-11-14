@@ -8,7 +8,7 @@ case "$(printf "mpv\\nmpv (loop)\\nmpv (float)\\nqueue download\\nqueue yt-d\\nq
 	"mpv (loop)") setsid -f mpv -quiet --loop "$1" >/dev/null 2>&1 ;;
 	"mpv (float)") setsid -f \mpv --autofit=50% --title="mpvfloat" "$1" >/dev/null 2>&1 ;;
 	"queue download") tsp curl -LO "$1" >/dev/null 2>&1 ;;
-	"queue yt-d") tsp youtube-dl --write-metadata -ic --restrict-filenames -o "~/downloads/%(title)s-%(realease_date)s.mp4" "$1" >/dev/null 2>&1 ;;
+	"queue yt-d") tsp youtube-dl -ic --restrict-filenames -o "~/downloads/%(title)s-%(realease_date)s.mp4" "$1" >/dev/null 2>&1 ;;
 	"queue yt-d (light)") tsp youtube-dl -ic -f worst --restrict-filenames -o "~/downloads/%(title)s-%(realease_date)s.mp4" "$1" >/dev/null 2>&1 ;;
 	"queue yt-d (audio)") tsp youtube-dl --ignore-errors --continue --restrict-filenames --extract-audio --format worstaudio --audio-format opus --audio-quality 48K -o "~/downloads/%(title)s-%(realease_date)s.tmp" "$1" >/dev/null 2>&1 ;;
 	browser) setsid -f "$BROWSER" "$1" >/dev/null 2>&1 ;;

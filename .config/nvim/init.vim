@@ -22,6 +22,13 @@ source $HOME_CONFIG/nvim/random_functions.vim
 set splitright
 set splitbelow
 
+" Tabbing
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+
+set path=.,,**
+
 " Remove trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
@@ -36,6 +43,8 @@ autocmd BufWritePost ~/.local/src/dwm/config.h !cd ~/.local/src/dwm ; make clean
 
 " MAKE CLEAN INSTALL FOR DWMBLOCKS is saved
 autocmd BufWritePost ~/.local/src/dwmblocks/blocks.h !cd ~/.local/src/dwmblocks; make clean install && { killall -q dwmblocks; setsid dwmblocks & }
+
+
 
 " Spell-check English
 map <leader>eng :setlocal spell! spelllang=en_us<CR>
@@ -94,6 +103,8 @@ inoremap '' ''<++><Esc>F'i
 inoremap <> <><++><Esc>F>i
 
 
+" FZF
+map <Leader><Leader>F :FZF ~
 
 " Latex-Suite
 let g:Tex_DefaultTargetFormat='pdf'

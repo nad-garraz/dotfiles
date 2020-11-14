@@ -30,14 +30,14 @@ toggle_bl () {
 	esac
 }
 
-select choice in Wifi Bluetooth ${RED}Both${NC} "exit"
+select choice in Wifi Bluetooth ${RED}Both${NORMAL} "exit"
 do
 	case $choice in
 		Wifi) toggle_wifi && break;;
 		Bluetooth) toggle_bl   && break;;
-		${RED}Both${NC}) toggle_wifi && toggle_bl && break;;
-		"exit") echo "${GREEN}Sin cambios${NC}" && exit 0;;
+		${RED}Both${NORMAL}) toggle_wifi && toggle_bl && break;;
+		"exit") echo "${GREEN}Sin cambios${NORMAL}" && exit 0;;
 	esac
 done
 
-echo "Done ${RED}✔${NC}"
+echo "Done ${RED}✔${NORMAL}"

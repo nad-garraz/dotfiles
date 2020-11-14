@@ -7,7 +7,7 @@ usage="$(basename "$0") [-h] -- Para juntar dos videos en un solo archivo.
 Toma 3 argumentos en total
 where:
 	-h show this help
-Ejemplo: cat_videos ${RED}IN_1.mp4 IN_2.mp4 ${BLUE}OUT.mp4${NC}"
+Ejemplo: cat_videos ${RED}IN_1.mp4 IN_2.mp4 ${BLUE}OUT.mp4${NORMAL}"
 
 while getopts ':h' option; do
 	case "$option" in
@@ -29,11 +29,11 @@ shift $((OPTIND - 1))
 
 ffmpeg -loglevel quiet -i "$1" -i "$2" -filter_complex "[0:v] [0:a] [1:v] [1:a] concat=n=2:v=1:a=1 [v] [a]" -map "[v]" -map "[a]" "$3"
 
-echo "${GREEN}Done ✔${NC}"
+echo "${GREEN}Done ✔${NORMAL}"
 
 ls -lh $1 $2 $3
 
-echo "¿${RED}Borrar${NC} "$1" y "$2" ?"
+echo "¿${RED}Borrar${NORMAL} "$1" y "$2" ?"
 select choice in 'Sí' 'No'
 do
 	case $choice in
@@ -42,5 +42,5 @@ do
 	esac
 done
 
-echo "${RED}Done ✔${NC}"
-echo "bye ${CYAN}👋${NC}"
+echo "${RED}Done ✔${NORMAL}"
+echo "bye ${CYAN}👋${NORMAL}"

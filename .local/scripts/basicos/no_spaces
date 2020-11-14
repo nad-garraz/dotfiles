@@ -17,6 +17,11 @@
 
 # Renombra al archivo sin espacios y sin mayusculas
 
-mv "$1" "$(echo "$1" | tr " " "_" | tr [:upper:] [:lower:] | tr -d "(" | tr -d ")")"
-
-
+mv "$1" "$(echo "$1" | tr " " "_" |
+	tr [:upper:] [:lower:] |
+	tr -d "(" | tr -d ")" |
+	sed "s/_-_/-/g" |
+	sed "s/&/and/g" |
+	sed "s/__/_/g" |
+	tr -d "'"  |
+	iconv -cf UTF-8 -t ASCII//TRANSLIT)"

@@ -11,7 +11,7 @@
 
 if test "$#" -ne 1;
 then
-	echo -e "${RED}Error:${NC} Poné el texto entre comillas \"\". \nEl script toma un solo parámetro."
+	echo -e "${RED}Error:${NORMAL} Poné el texto entre comillas \"\". \nEl script toma un solo parámetro."
 	exit 1
 else {
 	string=$1

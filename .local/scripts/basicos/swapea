@@ -2,7 +2,7 @@
 
 # Receives two files and swap their names
 
-[ $# -eq 2 ] || { echo "${RED}Error: ${MAGENTA}Hay que poner 2 archivos como argumentos${NC}" && exit 1 ; }
+[ $# -eq 2 ] || { echo "${RED}Error: ${MAGENTA}Hay que poner 2 archivos como argumentos${NORMAL}" && exit 1 ; }
 
 icon="↔"
 dir=$(pwd)

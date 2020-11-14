@@ -24,7 +24,7 @@ export MAGENTA="$(tput setaf 5)"
 export CYAN="$(tput setaf 6)"
 export WHITE="$(tput setaf 7)"
 export DIM="$(tput dim)"
-export NC="$(tput sgr0)"
+export NORMAL="$(tput sgr0)"
 
 
 # Most commonly used paths

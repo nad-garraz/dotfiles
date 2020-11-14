@@ -58,8 +58,8 @@ alt + shift + d ; {h,m}
 	{dragon_quick,share_music}
 
 # Gui apps, browser, calculator, downlords, steam
-alt + shift + o ; {b,c,e,g}
-	{$BROWSER,speedcrunch,calibre,gimp}
+alt + shift + o ; {b,c,e,g,t}
+	{$BROWSER,speedcrunch,calibre,gimp,telegram-desktop}
 
 # Gui games
 alt + shift + g ; {d,s,r,h}

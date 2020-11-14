@@ -96,7 +96,7 @@ alias pies="pstree -apC age | grep $1"
 
 # youtube-dl audio
 alias yt="youtube-dl -i --restrict-filenames"
-alias yta="youtube-dl -i --restrict-filenames --extract-audio --audio-format mp3 --audio-quality 96K"
+alias yta="youtube-dl -i --restrict-filenames --extract-audio --audio-format mp3 --audio-quality 48K"
 
 # Corona Curl
 alias corona="curl -s https://corona-stats.online/{us,ar,es,it,nz,cn,ca,br,cl,in,tw,kr,jp}?minimal=true | grep -A1 Rank > ~/corona && grep -v \"\-\-\" ~/corona && \mv ~/corona /tmp"
