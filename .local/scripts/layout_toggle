@@ -9,7 +9,7 @@ function toggle_layout() {
 	fi
 }
 
-pkill -RTMIN+11 dwmblocks
 toggle_layout
+pkill -RTMIN+8 dwmblocks
 
 #$HOME_SCRIPTS/restart/restart_dwmbar

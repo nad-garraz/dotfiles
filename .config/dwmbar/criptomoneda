@@ -20,7 +20,7 @@ uptime="$(LANG=es_AR.UTF-8 date -d "$(stat -c %y "$dir")" '+%A %-d/%-m a las %-H
 
 # Lo crea si no existe
 [ ! -d "$dir" ] && mkdir -p "$dir";
-[ ! "$(ls -A "$dir")" ] && getprices && showprices && exit 0;
+[ ! "$(ls -A "$dir")" ] ;
 
 
 #++++++++++++++++++++++++++++++++
@@ -49,7 +49,7 @@ getprices() {
 	{ echo "$coins" | while IFS=';' read -r human web icon; do
 		curl -s "rate.sx/$web@3d" > "$dir"/"$web".graph &&
 			uptime="$(LANG=es_AR.UTF-8 date -d "$(stat -c %y "$dir")" '+%A %-d/%-m a las %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1')" &&
-			echo -e "${RED}Last update${NC}: $uptime" >> "$dir"/"$web".graph &&
+			echo -e "${RED}Last update${NORMAL}: $uptime" >> "$dir"/"$web".graph &&
 			val="$(curl -s "rate.sx/1$web")" &&
 			valBar="$(formatPrice "$val")" &&
 			echo "$icon;$valBar;$val;$human;" > "$dir/$web.data"

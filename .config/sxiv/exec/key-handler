@@ -17,6 +17,6 @@ do
 		"C-c") echo -n "$file" | xclip -selection clipboard && notify-send "Se copio: $(basename -- $file)" "al clipboard";;
 		"C-w") xwallpaper --center "$file" ;;
 		"C-g") cp "$file" "$save_directory"/"$(basename -- $file)" && notify-send "Se copio: $(basename -- $file)" "$save_directory";;
-		"C-s") dragon -x "$file";;
+		"C-s") shareabilizar_foto "$file";;
 	esac
 done

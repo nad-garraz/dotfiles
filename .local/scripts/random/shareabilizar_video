@@ -10,10 +10,13 @@
 #
 
 # Toma un video y le baja la calidad para poder compartirlo
-# más fácilmente
+# más fácilmente. Le cambia el nombre y lo guarda en un directorio temporal.
+
+directorio="/tmp/share"
+[ -d "$directorio" ] || mkdir -p "$directorio"
 
 in="$1"
-out="$(echo "$in" | sed 's/\....$//1')-shareable.mp4"
+out="${directorio}/$(echo "$in" | sed 's/\....$//1')-shareable.mp4"
 ffmpeg -loglevel 0 -i "$in" -c:a libopus -b:a 36k -vcodec libx264 -profile:v baseline -level 3.0 -c:a aac -pix_fmt yuv420p -crf 35 "$out" &&
 echo -e "Done $RED✔$NORMAL\nNuevo archivo: "$out""
 [ -f "$out" ] && dragon -x "$out" &

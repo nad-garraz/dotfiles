@@ -2,6 +2,8 @@
 
 # Toma 2 archivos de video, los "mergea" con el
 # ffmpeg. Devuelve el archivo en $3
+# no va a funcionar si el size de los videos no es el mismo en ese caso usar para convertirlos al mismo tamaño:
+#ffmpeg -i 5.mp4 -vf "scale=1080x1920:force_original_aspect_ratio=decrease,pad=1080:1920:-1:-1:color=black" output.mp4
 
 usage="$(basename "$0") [-h] -- Para juntar dos videos en un solo archivo.
 Toma 3 argumentos en total

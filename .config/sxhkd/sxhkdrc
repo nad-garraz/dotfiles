@@ -98,4 +98,4 @@ control + F8
 
 ##Change layout: Estoy usando el IBUS por el momento
 #control + shift + i
-	#layout_toggle
+#	layout_toggle

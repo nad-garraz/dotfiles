@@ -4,13 +4,13 @@
 	#layout=$(setxkbmap -query | awk '/layout/{print $2}')
 	#printf "⌨:%s " "$layout"
 #}
-
+icon="⌨"
 print_ibus_keyboard () {
 	layout=$(ibus engine | cut -d":" -f2)
 	case $layout in
-		us) printf "⌨:eng ";;
-		latam) printf "⌨:esp ";;
-		zh) printf "⌨:中文 ";;
+		us) printf "${icon}:eng ";;
+		latam) printf "${icon}:spa ";;
+		zh) printf "${icon}:中文 ";;
 	esac
 }
 
