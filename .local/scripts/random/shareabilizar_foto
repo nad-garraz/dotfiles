@@ -14,10 +14,9 @@
 directorio="/tmp/share"
 [ -d "$directorio" ] || mkdir -p "$directorio"
 in="$1"
-#out=""${directorio}"/$(echo "$in" | sed 's/\..\{3,4\}$//1')-shareable.jpg"
-out=""${directorio}"/$(echo "$in" | sed 's/\..\{3,4\}$//1').jpg"
-convert "$in" -sampling-factor 4:2:0 -strip -quality 85 -interlace Plane -gaussian-blur 0.05 -colorspace RGB "$out"
-# &&
-#echo -e "Done $RED✔$NORMAL\nNuevo archivo: "$out""
-#[ -f "$out" ] && dragon -x "$out" &
+out=""${directorio}"/$(echo "$in" | sed 's/\..\{3,4\}$//1')-shareable.jpg"
+#out=""${directorio}"/$(echo "$in" | sed 's/\..\{3,4\}$//1').jpg"
+convert "$in" -sampling-factor 4:2:0 -strip -quality 85 -interlace Plane -gaussian-blur 0.05 -colorspace RGB "$out" &&
+echo -e "Done $RED✔$NORMAL\nNuevo archivo: "$out""
+[ -f "$out" ] && dragon -x "$out" &
 
