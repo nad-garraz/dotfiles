@@ -18,7 +18,7 @@ ibus_keyboard_toggle () {
 	if [ $(ibus engine | cut -d":" -f2) != "us" ]; then
 		ibus engine xkb:us::eng
 	else
-		ibus engine xkb:latam::spa
+		ibus engine xkb:latam:es:Spanish
 		flag="on"
 	fi
 	pkill -RTMIN+8 dwmblocks

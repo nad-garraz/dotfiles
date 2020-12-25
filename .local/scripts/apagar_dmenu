@@ -9,16 +9,19 @@ kill_dwm () {
 pids_dwm="$(ps -ax | grep -w dwm_start | grep tty | awk '{print $2" --> "$1}')"
 
 # Selecciono las lineas
-linea=$(echo -e "$pids_dwm\nTodos $icon_warning" | dmenu -i -l 10 -fn "$dmenu_font" -p "¿Cuál?")
+linea=$(echo -e "$pids_dwm\nTodos $icon_warning" | dmenu -i -l 10 -fn "$dmenu_font" -p "¿Cuál se mata?")
 # Selecciono el PID
 pid_to_kill="$(echo "$linea" | cut -d" " -f3)"
 
 # Acá mato el proceso
+if [ ! -z $pid_to_kill ]; then
 case $linea in
 	"Todos $icon_warning") killall xinit;;
 	*) kill -9 $pid_to_kill;;
-
 esac
+else
+	exit 0
+fi
 
 }
 

@@ -2,12 +2,16 @@
 icon="📅:"
 # Creo el archivo con el calendario
 calendar="${XDG_DATA_HOME:-$HOME/.local/share}/calendar"
+calendar_last="${XDG_DATA_HOME:-$HOME/.local/share}/calendar_last"
+calendar_next="${XDG_DATA_HOME:-$HOME/.local/share}/calendar_next"
 
 getCalendar () {
 # Calendario anual, lunes primer día.
 # se muestra en color el día actual.
 	{
 	LANG=es_AR.UTF-8 \cal -y -m --color=always > "$calendar"
+	LANG=es_AR.UTF-8 \cal -y -m --color=always '1 year ago' > "$calendar_last"
+	LANG=es_AR.UTF-8 \cal -y -m --color=always '+1year' > "$calendar_next"
 	if [ -e "$calendar" ];then
 		sed -i "s/.*\([ 123][0-9].*\)27m/${NORMAL}${BOLD}${RED}\1${NORMAL}${NORMAL}/g" $calendar
 		sed -i "s/\([a-z][a-z][a-z]\+\)/${NORMAL}\1${NORMAL}${NORMAL}/g" $calendar
@@ -22,7 +26,7 @@ pkill -RTMIN+9 dwmblocks; exit
 	{ getCalendar || exit ;}
 
 case $BUTTON in
-	1) setsid -f falacritty -d 66 36 -e less -Srf "$calendar";;
+	1) setsid -f falacritty -d 66 36 -e less -Srf  "$calendar" "$calendar_next" "$calendar_last";;
 	3) setsid -f falacritty -d 140 36 -e wyrd;;
 	2) getCalendar;;
 	6) "$TERMINAL" -e "$EDITOR" "$0";;
