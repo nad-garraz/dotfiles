@@ -7,7 +7,7 @@ icon="☠"
 rows=$(transmission-remote -l | wc -l)
 
 # Primer menu para el dmenu
-choice_one=$(echo -e "toggle-daemon\nstart-all\nstop-all\nstart-1\nstop-1\nremove-torrent\nlist-torrents" | dmenu  -i -fn "$dmenu_font" -p "${icon} MINIMAL TC: ")
+choice_one=$(echo -e "toggle-daemon\nstart-all\nstop-all\nstart-1\nstop-1\nremove-torrent\nlist-torrents\ninfo-torrent" | dmenu  -i -fn "$dmenu_font" -p "${icon} MINIMAL TC: ")
 
 seleccion_torrent () {
 	grepping=${1:-"Downloading\|Idle\|Up & Down\|Stopped\|Seeding"}
@@ -18,8 +18,8 @@ seleccion_torrent () {
 toggle_daemon () {
 	ping -q -c 1 1.1.1.1 > /dev/null 2>&1 &&
 		{ pgrep transmission-da > /dev/null &&
-			{ pkill transmission-da && notify-send "$icon   $icon   $icon   $icon   $icon" "Transmission killed" ; } ||
-			{ transmission-daemon   && notify-send "$icon   $icon   $icon   $icon   $icon" "Transmission started" ; } } || notify-send "no inet";
+			{ transmission-remote --exit && notify-send "$icon   $icon   $icon   $icon   $icon" "Transmission killed" ; } ||
+			{ transmission-daemon --paused && notify-send "$icon   $icon   $icon   $icon   $icon" "Transmission started" ; } } || notify-send "no inet";
 				}
 
 case $choice_one in
@@ -52,6 +52,14 @@ case $choice_one in
 				;;
 		esac
 		;;
-	"list-torrents") pidof "watch" > /dev/null && killall watch || setsid -f falacritty -d 140 $rows -e watch -d -n 1 -t -c transmission-remote -l ;
+	"list-torrents") pidof "watch" > /dev/null && killall watch || setsid -f falacritty -d 170 $rows -e watch -d -n 1 -t -c transmission-remote -l ;
 		;;
+	"info-torrent") torrent_objetivo=$(seleccion_torrent);
+		   ID=$(echo "$torrent_objetivo" | cut -c 1,2 | tr -d '*');
+		   [ -z "$ID" ] && exit;
+			 rows=$(transmission-remote -t $ID -i | grep -v Hash | grep -v Magnet | grep -v Labels | sed '/^[[:space:]]*$/d' | wc -l)
+				pidof "watch" > /dev/null && killall watch;
+				setsid -f falacritty -d 140 $rows -e watch -d -n 1 -t -c "transmission-remote -t $ID -i | grep -v Hash | grep -v Magnet | grep -v Labels | sed '/^[[:space:]]*$/d'";
+		;;
+
 esac
