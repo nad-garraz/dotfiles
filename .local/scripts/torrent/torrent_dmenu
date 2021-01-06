@@ -18,16 +18,16 @@ seleccion_torrent () {
 toggle_daemon () {
 	ping -q -c 1 1.1.1.1 > /dev/null 2>&1 &&
 		{ pgrep transmission-da > /dev/null &&
-			{ transmission-remote --exit && notify-send "$icon   $icon   $icon   $icon   $icon" "Transmission killed" ; } ||
+			{ transmission-remote --exit && notify-send "$icon   $icon   $icon   $icon   $icon" "Transmission is now off" ; } ||
 			{ transmission-daemon --paused && notify-send "$icon   $icon   $icon   $icon   $icon" "Transmission started" ; } } || notify-send "no inet";
 				}
 
 case $choice_one in
 	"toggle-daemon") toggle_daemon
 		;;
-	"start-all") transmission-remote -t all -s > /dev/null && notify-send "$icon $icon $icon $icon"  "All torrent started" ;
+	"start-all") transmission-remote -t all -s > /dev/null && notify-send "$icon   $icon   $icon    $icon"  "All torrent started" ;
 		;;
-	"stop-all") transmission-remote -t all -S  > /dev/null && notify-send "$icon $icon $icon $icon"  "All torrent stopped" ;
+	"stop-all") transmission-remote -t all -S  > /dev/null && notify-send "$icon  $icon   $icon   $icon"  "All torrent stopped" ;
 		;;
 	"start-1") torrent_objetivo=$(seleccion_torrent "Stopped");
 		   ID=$(echo "$torrent_objetivo" | cut -c 1,2);

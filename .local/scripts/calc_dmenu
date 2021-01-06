@@ -11,7 +11,9 @@
 
 EQ="$(echo '' | dmenu -fn $dmenu_font -p "Enter calculation")"
 RESULT=$(echo  "scale=3;"$EQ"" | bc -ql)
-dunstify -u low -t 10000 "Result: $RESULT"
+
+[ ! -z "$RESULT" ] && dunstify -u low -t -1 "$EQ = $RESULT"
+
 echo -e "$RESULT" | xclip -r -selection clipboard
 
 
