@@ -1,23 +1,20 @@
 [Default Applications]
 x-scheme-handler/discord-464069837237518357=discord-464069837237518357.desktop
-
 application/x-magnet=torrent.desktop
 application/x-bittorrent=torrent.desktop;
-
 application/pdf=pdf.desktop;
 application/postscript=pdf.desktop;
-
 image/jpeg=img.desktop;
 image/png=img.desktop;
 image/gif=img.desktop;
-
 video/x-matroska=video.desktop
 video/mpg=video.desktop
-
 audio/mpeg=audio.desktop
 audio/x-opus+ogg.xml=audio.desktop
-
 text/plain=text.desktop
 text/x-tex=text.desktop
-
 inode/directory=file.desktop
+x-scheme-handler/tg=userapp-Telegram Desktop-C1QDX0.desktop
+
+[Added Associations]
+x-scheme-handler/tg=userapp-Telegram Desktop-C1QDX0.desktop;

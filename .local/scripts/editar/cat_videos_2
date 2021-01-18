@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# Toma un archivo con los nombres de los videos a unir en orden. Los "mergea" con el
+# ffmpeg. Devuelve el archivo en $2
+
+# no va a funcionar si el size de los videos no es el mismo en ese caso usar para convertirlos al mismo tamaño:
+#ffmpeg -i IN -vf "scale=1080x1920:force_original_aspect_ratio=decrease,pad=1080:1920:-1:-1:color=black" output.mp4
+
+input=""
+output="$2"
+nvideos="$(wc -l $1 | cut -d" " -f1)"
+string="[0:v] [0:a] [1:v] [1:a]"
+i=2
+while [ $i -lt "$nvideos" ]
+do
+string="$string [$i:v] [$i:a]"
+i=$(( $i+1))
+done
+
+echo -e "${BLUE} $string ${NORMAL}"
+
+while read line
+do
+	input=""$input" -i "$line""
+done < "$1"
+
+echo "$input"
+
+ffmpeg -vsync 0 $input -filter_complex "$string concat=n="$nvideos":v=1:a=1 [v] [a]" -map "[v]" -map "[a]" "$output"

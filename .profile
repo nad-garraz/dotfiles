@@ -6,8 +6,8 @@
 
 
 ## PARA QUE EL FAF LEVANTE LA VERSION CORRECTA DE JAVA
-#export PATH="/usr/lib/jvm/java-14-openjdk:$PATH"
-#export INSTALL4J_JAVA_HOME="/usr/lib/jvm/*"
+export PATH="/usr/lib/jvm/java-15-openjdk:$PATH"
+export INSTALL4J_JAVA_HOME="/usr/lib/jvm/java-15-oracle"
 
 # Terminal
 export TERMINAL="alacritty"
@@ -70,3 +70,6 @@ export dmenu_font="monospace-16"
 
 # DOOM WADS
 export DOOMWADDIR="/data/games/doom/wads/:/data/games/doom/bkp-wads"
+
+# GPG
+export GNUPGHOME="$HOME/.local/.gnupg"

@@ -7,8 +7,10 @@ map _ zoom out
 # Dragon: Para mandar el archivo arrastrándolo
 map <C-s> exec 'dragon -x %' # El "%" representa al archivo
 
-# Selection to clipboard
+# Abrir el mismo archivo
+map <C-o> exec 'zathura %'
 
+# Selection to clipboard
 set selection-clipboard clipboard
 
 # Rotate
