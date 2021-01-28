@@ -26,8 +26,8 @@ pkill -RTMIN+9 dwmblocks; exit
 	{ getCalendar || exit ;}
 
 case $BUTTON in
-	1) setsid -f falacritty -d 66 36 -e less -Srf  "$calendar" "$calendar_next" "$calendar_last";;
-	3) setsid -f falacritty -d 140 36 -e wyrd;;
+	1) setsid -f falacritty -o window.dimensions.columns=66 -o window.dimensions.lines=36 -e less -Srf  "$calendar" "$calendar_next" "$calendar_last";;
+	3) setsid -f falacritty -o window.dimensions.columns=140 -o window.dimensions.lines=36 -e wyrd;;
 	2) getCalendar;;
 	6) "$TERMINAL" -e "$EDITOR" "$0";;
 esac

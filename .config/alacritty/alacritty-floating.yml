@@ -3,6 +3,9 @@ window:
   class:
     instance: float
     general: Alacritty
+  dimensions:
+    columns: 160
+    lines: 45
 
 font:
   normal:

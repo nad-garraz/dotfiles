@@ -52,14 +52,14 @@ toggle_daemon () {
 											;;
 									esac
 									;;
-								"list-torrents") pidof "watch" > /dev/null && killall watch || setsid -f falacritty -d 170 $rows -e watch -d -n 1 -t -c transmission-remote -l ;
+								"list-torrents") pidof "watch" > /dev/null && killall watch || setsid -f falacritty -o window.dimensions.columns=160 -o window.dimensions.lines=$rows -e watch -d -n 1 -t -c transmission-remote -l ;
 									;;
 								"info-torrent") torrent_objetivo=$(seleccion_torrent);
 									ID=$(echo "$torrent_objetivo" | cut -c 1,2 | tr -d '*');
 									[ -z "$ID" ] && exit;
 									rows=$(transmission-remote -t $ID -i | grep -v Hash | grep -v Magnet | grep -v Labels | sed '/^[[:space:]]*$/d' | wc -l)
 									pidof "watch" > /dev/null && killall watch;
-									setsid -f falacritty -d 140 $rows -e watch -d -n 1 -t -c "transmission-remote -t $ID -i | grep -v Hash | grep -v Magnet | grep -v Labels | sed '/^[[:space:]]*$/d'";
+									setsid -f falacritty -o window.dimensions.columns=140 -o window.dimensions.lines="$rows" -e watch -d -n 1 -t -c "transmission-remote -t $ID -i | grep -v Hash | grep -v Magnet | grep -v Labels | sed '/^[[:space:]]*$/d'";
 									;;
 								"move-torrent") torrent_objetivo=$(seleccion_torrent);
 									ID=$(echo "$torrent_objetivo" | cut -c 1,2 | tr -d '*');

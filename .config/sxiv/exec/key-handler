@@ -11,12 +11,21 @@ save_directory="/data/pictures"
 while read file
 do
 	case "$1" in
-		"C-d") make_trash; mv "$file" /tmp/trash; notify-send "Borrando archivo: " "$file --> /tmp/trash";;
-		"C-r") convert -rotate 90 "$file" "$file" ;;
+		"C-d") make_trash; mv "$file" /tmp/trash; notify-send "Borrando archivo: " "$file --> /tmp/trash"
+			;;
+		"C-r") convert -rotate 90 "$file" "$file"
+			;;
 		# Copia el nombre del archivo al clipboard
-		"C-c") echo -n "$file" | xclip -selection clipboard && notify-send "Se copio: $(basename -- $file)" "al clipboard";;
-		"C-w") xwallpaper --center "$file" ;;
-		"C-g") cp "$file" "$save_directory"/"$(basename -- $file)" && notify-send "Se copio: $(basename -- $file)" "$save_directory";;
-		"C-s") shareabilizar_foto "$file";;
+		"C-c") echo -n "$file" | xclip -selection clipboard && notify-send "Se copio: $(basename -- $file)" "al clipboard"
+		;;
+		"C-w") xwallpaper --center "$file"
+			;;
+		"C-g") cp "$file" "$save_directory"/"$(basename -- $file)" && notify-send "Se copio: $(basename -- $file)" "$save_directory"
+			;;
+		"C-s") shareabilizar_foto "$file"
+			;;
+		"M-r") new_name="$(echo "" | dmenu -fn $dmenu_font -p "Nuevo nombre:")";
+			[ ! -z $new_name ] && mv "$file" "./${new_name}" || exit 0
+			;;
 	esac
 done

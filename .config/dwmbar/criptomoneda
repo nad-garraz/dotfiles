@@ -72,7 +72,7 @@ getprices() {
 <b>Last updated:</b>
 $uptime" ;;
 		2) isOldAndIsInet && getprices ;;
-		3) setsid -f falacritty -d 86 40 -e less -qfr "$(find "$dir" -name "*.graph" ! -name "nzd*" | tr "\n" " ")";;
+		3) setsid -f falacritty -o window.dimensions.columns=86 -o window.dimensions.lines=40 -e less -qfr "$(find "$dir" -name "*.graph" ! -name "nzd*" | tr "\n" " ")";;
 		6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
 	esac
 

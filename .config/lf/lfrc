@@ -24,7 +24,7 @@ map y copy
 map d cut
 map R load
 map DD delete
-
+map sh share
 
 # Custom Functions
 cmd open ${{
@@ -33,6 +33,10 @@ cmd open ${{
         video/*|image/*/application/pdf) xdg-open "$f" & disown;;
         *) xdg-open "$f" ;;
     esac
+}}
+
+cmd share ${{
+        dragon -x "$f"
 }}
 
 # Con este paste, se puede mover de un device

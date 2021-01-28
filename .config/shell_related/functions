@@ -16,8 +16,8 @@
 
 vf () {
 # Abrir un archivo de text usando el fuzzy finder con el $EDITOR
-	find $HOME -type f | fzf | xargs -r -I % $EDITOR % ;
-
+archivo=$(find /data/documents $HOME -type f -a ! -name "*.mp4" -a ! -name "*.so" -a ! -name "*.jpeg" -a ! -name "*.png" -a ! -name "*faforever*" | fzf -x);
+[ ! -z $archivo ] && $EDITOR $archivo && unset archivo
 }
 
 vs(){

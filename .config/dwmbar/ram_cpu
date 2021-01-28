@@ -15,7 +15,7 @@ TEMP=$(sensors | grep edge | cut -d" " -f10 | sed 's|\+\(.*\)\.[0-9]\(.\)C$|\1\2
 printf "💻:%.0f%%,%s,%.0f%% " "$CPU" "$TEMP" "$MEM" | sed 's|\n$||g';
 
 case $BUTTON in
-	1) setsid -f falacritty -d 80 30 -e top -d 8 -u $(id -u);;
+	1) setsid -f falacritty -o window.dimensions.columns=80 -o window.dimensions.lines=35 -e top -d 8 -u $(id -u);;
 	2) pkill -RTMIN+3 dwmblocks ;;
 	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac

@@ -10,6 +10,12 @@
 # Genera un archivo con un mini template para latex
 
 nombre_final="$1"
+
+while [ -z "$nombre_final" ]
+do
+	read -p "Nombre para archivo: " nombre_final
+done
+
 [ "$(echo $nombre_final | rev | cut -d. -f1 | rev)" = "tex" ] || nombre_final="${nombre_final}.tex"
 if [ ! -z "$nombre_final" ] && [ ! -e "$nombre_final" ]
 then

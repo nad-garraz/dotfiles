@@ -122,3 +122,6 @@ alias watch="watch -d -n 1 -t -c"
 
 # Bandwhich usage
 alias bandwhich="sudo bandwhich -t"
+
+# SCID chess my database
+alias chess="scid /data/games/chess/my_games/mis_juegos.si4"

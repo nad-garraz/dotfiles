@@ -21,8 +21,8 @@ lsSizes () {
 }
 
 case $BUTTON in
-	1) lsSizes;;
-	3) pkill -RTMIN+4 dwmblocks && setsid -f falacritty -e \ncdu --color dark -x / ;;
+	3) lsSizes;;
+	1) pkill -RTMIN+4 dwmblocks && setsid -f falacritty -o window.dimensions.columns=100 -o window.dimensions.lines=35  -e \ncdu --color dark -x / ;;
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
