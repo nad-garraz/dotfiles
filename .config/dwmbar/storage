@@ -13,7 +13,7 @@ Home:
 $(\du -hs --exclude *.pyc ~)
 -------------------
 System:
-$(\du -hs --exclude *.pyc --exclude /home --exclude /data --exclude /media / 2> /dev/null)"
+$(\du -hs --exclude *.pyc --exclude /home --exclude /data --exclude /media --exclude /proc / 2> /dev/null)"
 }
 
 lsSizes () {
@@ -21,7 +21,7 @@ lsSizes () {
 }
 
 case $BUTTON in
-	3) lsSizes;;
+	3) setsid -f falacritty -o window.dimensions.columns=100 -o window.dimensions.lines=35  -e lf  ;;
 	1) pkill -RTMIN+4 dwmblocks && setsid -f falacritty -o window.dimensions.columns=100 -o window.dimensions.lines=35  -e \ncdu --color dark -x / ;;
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac

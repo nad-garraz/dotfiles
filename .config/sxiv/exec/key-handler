@@ -11,8 +11,10 @@ save_directory="/data/pictures"
 while read file
 do
 	case "$1" in
+		# Mandar a la basura
 		"C-d") make_trash; mv "$file" /tmp/trash; notify-send "Borrando archivo: " "$file --> /tmp/trash"
 			;;
+			# Rota la foto "in file"
 		"C-r") convert -rotate 90 "$file" "$file"
 			;;
 		# Copia el nombre del archivo al clipboard
@@ -20,12 +22,17 @@ do
 		;;
 		"C-w") xwallpaper --center "$file"
 			;;
+			# Manda la foto que se esté viendo a $save_directory
 		"C-g") cp "$file" "$save_directory"/"$(basename -- $file)" && notify-send "Se copio: $(basename -- $file)" "$save_directory"
 			;;
 		"C-s") shareabilizar_foto "$file"
 			;;
+			# Para rebombrar la foto usando el dmenu
 		"M-r") new_name="$(echo "" | dmenu -fn $dmenu_font -p "Nuevo nombre:")";
 			[ ! -z $new_name ] && mv "$file" "./${new_name}" || exit 0
+			;;
+			# Toma la foto de la cámara y la baja a la compu
+			"M-m") camera "$file"
 			;;
 	esac
 done

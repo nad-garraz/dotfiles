@@ -1,5 +1,5 @@
 # Default show hidden files. zh -> HOTKEY
-set hidden
+#set hidden
 set preview true
 set icons true
 set incsearch
@@ -24,7 +24,8 @@ map y copy
 map d cut
 map R load
 map DD delete
-map sh share
+map sh share compartir archivo
+
 
 # Custom Functions
 cmd open ${{
@@ -35,9 +36,9 @@ cmd open ${{
     esac
 }}
 
+
 cmd share ${{
-        dragon -x "$f"
-}}
+        parallel dragon -x '{/}' ::: "$fs" }}
 
 # Con este paste, se puede mover de un device
 # al otro

@@ -78,6 +78,7 @@ alias espeak="espeak -ves-la"
 alias bkp="/usr/bin/git --git-dir=/home/test/repos/dotfiles/ --work-tree=/home/test/" # prefijo
 alias dwmbkp="/usr/bin/git --git-dir=/home/test/repos/dwm/ --work-tree=$HOME_LOCAL/src/dwm" # prefijo
 alias dbbkp="/usr/bin/git --git-dir=/home/test/repos/dwmblocks/ --work-tree=$HOME_LOCAL/src/dwmblocks" # prefijo
+alias guita_bkp="/usr/bin/git --git-dir=/home/test/repos/control_guita/ --work-tree=$HOME/programitas/python_projects/guita" # prefijo
 
 # MEGA
 alias megals="megals --human --header --long --config=$HOME_CONFIG/megarc"

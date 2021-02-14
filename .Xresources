@@ -1,4 +1,4 @@
-xterm*faceName: monospace:size=12:antialias=true:autohint=true
+xterm*faceName: monospace:size=10:antialias=true:autohint=true
 
 xterm*foreground: rgb:ff/ff/ff
 xterm*background: rgb:00/00/00
