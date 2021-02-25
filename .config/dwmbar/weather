@@ -1,5 +1,5 @@
 #!/bin/sh
-LOCATION="-36.914261,175.776395"
+LOCATION="-37.234,174.726"
 
 isOldAndIsInet () {
 		# Update solo con inet y si el último update son más viejos que la edad objetivo

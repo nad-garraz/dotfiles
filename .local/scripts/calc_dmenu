@@ -9,10 +9,13 @@
 #                  |_____|
 #
 
+# Se entra el cálculo en el DMENU y el resultado aparece en una notificación
+# y también se copia al CLIPBOARD
+
 EQ="$(echo '' | dmenu -fn $dmenu_font -p "Enter calculation")"
 RESULT=$(echo  "scale=3;"$EQ"" | bc -ql)
 
-[ ! -z "$RESULT" ] && dunstify -u low -t -1 "$EQ = $RESULT"
+[ ! -z "$RESULT" ] && dunstify -u low -t 0 "$EQ = $RESULT"
 
 echo -e "$RESULT" | xclip -r -selection clipboard
 

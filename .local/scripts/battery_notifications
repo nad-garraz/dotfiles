@@ -12,13 +12,13 @@ do
 		then
 			action=$(dunstify -r 1234 --action="bigSleep,label" "Cargando al $CHARGE%" "Desconectar cargador")
 		elif [ $CHARGE -ge 96 ] && [ $(expr $CHARGE % 2) -eq 0 ];then
-			action=$(dunstify -u critical --timeout=-1 -r 1234 --action="bigSleep,label" "Carga: $CHARGE%" "Desconectar cargador")
+			action=$(dunstify -u critical --timeout=0 -r 1234 --action="bigSleep,label" "Carga: $CHARGE%" "Desconectar cargador")
 		fi
 	else
 		if [ $CHARGE -le 40 ] && [ $CHARGE -ge 20 ] && [ $(expr $CHARGE % 10) -eq 0 ]; then
 			action=$(dunstify -r 1234 --action="bigSleep,label" "Batería al $CHARGE%" "Conectar cargador")
 		elif [ $CHARGE -le 20 ] && [ $(expr $CHARGE % 5) -eq 0 ]; then
-			action=$(dunstify -u critical --timeout=-1 --action="bigSleep,label" -r 1234 "Carga: $CHARGE%" "Conectar cargador")
+			action=$(dunstify -u critical --timeout=0 --action="bigSleep,label" -r 1234 "Carga: $CHARGE%" "Conectar cargador")
 		elif [ $CHARGE -eq 4 ]; then
 			dunstify -u critical -r 1234 "Carga: $CHARGE%" "¡Se suspenderá en instantes!"
 		elif [ $CHARGE -le 3 ]; then

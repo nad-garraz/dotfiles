@@ -41,7 +41,7 @@ superopus () {
 # Toma un argumento. Convierte el mp3 o opus al bitrate elegido, para todos
 # los archivos del directorio
 	arg=${1:-48}
-	parallel ffmpeg -loglevel quiet -i {} -c:a libopus -b:a "${arg}K" -f opus {.} '&&' \mv {.} {.}.opus ::: "$(find . -name "*mp3" -exec basename {} \; -o -name "*aac" -exec basename {} \; -o -name "*opus" -exec basename {} \;)"
+	parallel ffmpeg -loglevel quiet -i "{/}" -c:a libopus -b:a "${arg}K" -f opus "{/}".opus ::: "$(find . -name "*aac" -o -name "*opus" -o -name "*mp3")"
 	}
 
 cl() {

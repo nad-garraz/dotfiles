@@ -90,7 +90,7 @@ alias megaget="megaget --config=$HOME_CONFIG/megarc"
 alias vim="nvim"
 
 # La platita
-alias guitarra="python ~/programitas/python_projects/guita/main.py"
+alias guita="python ~/programitas/python_projects/guita/main.py"
 
 # Ps que tanto uso
 alias pies="pstree -apC age | grep $1"
