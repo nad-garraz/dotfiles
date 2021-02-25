@@ -32,7 +32,7 @@ do
 			[ ! -z $new_name ] && mv "$file" "./${new_name}" || exit 0
 			;;
 			# Toma la foto de la cámara y la baja a la compu
-			"M-m") camera "$file"
+		"M-m") camera "$file"
 			;;
 	esac
 done
