@@ -11,7 +11,7 @@
 
 #mv "$1" "$(echo "$1" | sed "s/^[0-9][0-9]-//g")"
 #mv "$1" "$(echo "$1" | sed "s/^_//g")"
-#mv "$1" "$(echo "$1" | sed "s/_-_/-/g")"
+mv "$1" "$(echo "$1" | sed -r "s/.mp3//g")"
 
 ## Cambiar "(" --> "_" y ")" --> ""   NO PARENTESIS
 #mv "$1" "$(echo "$1" | tr "(" "_" | tr -d ")")"

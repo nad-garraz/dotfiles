@@ -9,12 +9,22 @@
 
 i=0
 total=$(cat $1 | wc -l)
-while read -r x
-do
 	autor="JRR Tolkien"
-	libro="El Señor de los anillos"
-	capitulo="$(echo "$x" | sed -r 's/[0-9]{1,2}-(.*)\.opus/\1/1' | tr "_" " " | sed -r 's/^(.)/\u\1/1')"
+	libro="La caída de Arturo"
 	comentario="Hecho con mucho amor. ^_^/  NAD"
-	opustags -i "$x" -a album="$libro" -a author="$autor" -a title="$capitulo ($i/$total)" -a chapter="$i" -a artist="$autor" -a comment="$comentario"
-	i=$(( $i + 1 ))
+while read -r archivo
+do
+
+	capitulo="$(echo "$archivo" | sed -r 's/[0-9]{1,2}-(.*)\..*/\1/1' | tr "_" " " | sed -r 's/^(.)/\u\1/1')"
+
+	#opustags -i "$archivo" -a album="$libro" -a author="$autor" -a title="$capitulo ($i/$total)" -a booktitle="$libro" -a chapter="$i" -a artist="$autor" -a comment="$comentario"
+
+	#i=$(( $i + 1 ))
+
+	## Para modificar una tag
+	opustags -i "$archivo" --set title="$capitulo"
+
+	## Para borrar una tag
+	#opustags -i "$archivo" -d encoder
+
 done < $1
