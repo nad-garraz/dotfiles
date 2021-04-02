@@ -24,7 +24,7 @@ convert (){
 presentar_tiempo () {
 # Esta función agarra el tiempo en segundos
 # y lo presenta de mejor manera.
-tiempo = $1
+tiempo=$1
 	if [ $tiempo -gt 60 ]
 	then
 		minutos=$(( $tiempo / 60 ))
@@ -40,6 +40,8 @@ convert
 # Argumento ingresado en segundos para presentar al final
 en_segundos="$i"
 
+hora_start=$(date "+%H:%M:%S")
+
 while [ $i -gt 0 ];
 do
 	#[ $i -gt 0 ] && [ $i -le 10 ] && dunstify -r 12 "$i"
@@ -48,7 +50,8 @@ do
 	sleep 1
 done
 
+hora_finish=$(date "+%H:%M:%S")
 presentar_tiempo $en_segundos
 
-notify-send -u critical -t 0 "$icon Ya han transcurrido:" "$en_segundos s"
+notify-send -u critical -t 0 "$icon Ya han transcurrido: ${en_segundos}s" "$hora_start -> $hora_finish"
 [ -e "$alarm_sound" ] && \mpv --msg-level=all=no "$alarm_sound"

@@ -12,8 +12,9 @@ set nonumber
 set encoding=utf-8
 set clipboard=unnamedplus
 set laststatus=1
+
 " Muestra whitespaces y tabs
-set list
+"set list
 
 " Source functions file
 source $HOME_CONFIG/nvim/random_functions.vim
@@ -80,9 +81,12 @@ nnoremap <Leader>s :%s/<c-r><c-w>//gc<Left><Left><Left>
 " Make all appearences of the word UPPER
 nnoremap <Leader>u :%s/\(<c-r><c-w>\)/\U\1/g<CR>:noh<CR>
 
+" Make all appearences of the word UPPER
+"vmap <Leader><Leader>u ".y<Esc>:%s/\(<C-R>".\)/\U\1/1<CR>
+
 " UltiSnips files
 " Make all appearences of the word LOWER
-nnoremap <Leader>l :%s/\(<c-r><c-w>\)/\L\1/g<CR>
+nnoremap <Leader><Leader>l :%s/\(<c-r><c-w>\)/\L\1/g<CR>
 
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "my_snippets"]
 
@@ -93,8 +97,11 @@ autocmd FileType python noremap <buffer> <leader>pp <Esc>:w<CR> :exec '!python' 
 autocmd filetype c nnoremap <leader>co <Esc>:w <bar> :exec '!gcc '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
 "autocmd FileType *.c remap <buffer> <leader>co <Esc>:w<CR> :exec '!gcc %'<CR>
 
+" C++ exec
+autocmd filetype cpp nnoremap <leader><leader>c <Esc>:w <bar> :exec '!g++ '.shellescape('%').' -o 'shellescape('%:r')' && ./"%:r" '<CR>
+
 " Mis tan usados y amados jumps.
-imap <C-J> <Esc>/<++><CR>:noh<CR><Esc>cf>
+imap <C-J> <Esc>/<+\.+><CR>:noh<CR><Esc>cf>
 inoremap () ()<++><Esc>F)i
 inoremap [] []<++><Esc>F]i
 inoremap {} {}<++><Esc>F}i

@@ -2,6 +2,7 @@
 alias la='ls -ahp'
 alias ls='ls --color=auto'
 alias lc='ls -cltahr'
+alias lsc='ls -ctar'
 alias ll='ls -lahp'
 
 # Shorcuts to used directories
@@ -55,7 +56,7 @@ alias cls='echo -ne "\033c"'
 alias ssid='sudo iw dev wlp1s0 scan | grep -i ssid'
 
 # Actualizar los mirrors de pacman a los 100 más nuevos y más rápidos.
-alias reflector='sudo reflector --latest 100 --age 24 --verbose --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
+alias reflector='sudo reflector --latest 25 --age 24 --verbose --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 
 #Bluetoothcontrol
 alias bl='bluetoothctl'

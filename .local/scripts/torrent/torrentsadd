@@ -5,6 +5,6 @@
 #
 TORRENTDONE="$HOME_LOCAL/scripts/torrent/torrentdone"
 
-pgrep -x transmission-da > /dev/null || (transmission-daemon && notify-send "Starting transmission daemon.." && sleep 3)
+pgrep -x transmission-da > /dev/null || (transmission-daemon -c /data/torrents && notify-send "Starting transmission daemon.." && sleep 3)
 #transmission-remote -a "$@" --torrent-done-script $TORRENTDONE && notify-send "Torrent added"
 transmission-remote -a "$@" && notify-send "Torrent added"
