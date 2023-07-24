@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+#⚠ ⚠ ⚠  Nota: El "pick song" funciona si la "tag ARTIST y TITLE" están puestas. El comando
+# "mpc searchplay artist" busca en las tags.
+
+icon="🎧"
+# PROMPS A DMENU MENU FOR MPC
+
+FIRST_CHOICE=$(printf "Toggle\nNext\nPrev\nStop\nPlaylists\nPick Song\nShuffle\nRepeat" | dmenu -i -fn "$dmenu_font" -p "$icon MINIMAL MPC: ")
+
+case $FIRST_CHOICE in
+	Toggle) mpc -q toggle
+		;;
+	Next) mpc -q next 
+		;;
+	Prev) mpc -q prev
+		;;
+	Stop) mpc -q stop
+		;;
+	Playlists) SECOND_CHOICE="`mpc lsplaylists | dmenu -i -l 35 -fn "$dmenu_font" -p "CHOOSE PLAYLIST"`"
+		;;
+	"Pick Song") PLAY_SONG="`mpc playlist | dmenu -i -l 35 -fn "$dmenu_font" -p "CHOOSE SONG"`"
+		;;
+  Shuffle) mpc -q random &&
+    shuffle_status=$(mpc status %random%);
+    dunstify -t 2000 "$icon" "Shuffle is now "$shuffle_status"";
+    unset shuffle_status
+		;;
+	Repeat) mpc repeat -q
+    repeat_status=$(mpc status %repeat%);
+    dunstify -t 2000 "$icon" "Repeat is now "$repeat_status"";
+    unset repeat_status
+esac
+
+
+# IF THE SECOND_CHOICE IS NON EMPTY, CLEAR PLAYLIST --> LOAD SECOND_CHOICE PLAYLIST
+# AND START PLAYING
+
+[ ! -z "$SECOND_CHOICE" ] && mpc -q clear && mpc -q load "$SECOND_CHOICE" && mpc -q play
+
+if [ ! -z "$PLAY_SONG" ]; then
+	ARTIST=$(echo "$PLAY_SONG" | awk -F' - ' '{ printf "%s", $1}')
+	TITLE=$(echo "$PLAY_SONG" | awk -F' - ' '{ printf "%s", $2}')
+	echo "$ARTIST\n$TITLE"
+	[ ! -z "$ARTIST" ] && 
+    [ ! -z "$TITLE" ] && 
+    mpc searchplay artist "$ARTIST" title "$TITLE" 1> /dev/null 2> $LOGS/dwm_demu.log
+fi

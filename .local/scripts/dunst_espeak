@@ -1,0 +1,6 @@
+#!/bin/bash
+
+body="$3"
+
+#echo "$body" | espeak -ves-la 2> /dev/null
+echo "$body" | espeak -ves-la

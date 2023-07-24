@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# Comienza a grabar audio y video
+# de la webcam.
+
+# Variables:
+TIMESTAMP="webcam-$(date "+%d-%m-%Y-%H%M%S").mkv"
+TARGETBASE="/data/ffmpeg"
+OUT="$TARGETBASE/$TIMESTAMP"
+[ ! -d $TARGETBASE ] || mkdir -p $TARGETBASE
+
+# Comando:
+notify-send -t 5000 "Grabando desde Webcam:" "$OUT" &&
+ffmpeg -loglevel -8 -f alsa -i pulse:2 -f video4linux2\
+-i /dev/video0 -vcodec libx264 -preset:v ultrafast -rtbufsize 702000k "$OUT"
+
+action=$(dunstify -t 10000 --action="dragon-drop,SHARE" --action="mpv,SHOW" "📽 WebcamFilm" "Guardada en:$OUT")
+case $action in
+	"dragon-drop") dragon-drop -x "$OUT"
+		;;
+	"mpv") setsid -f "$TERMINAL" -e mpv "$OUT"
+		;;
+esac

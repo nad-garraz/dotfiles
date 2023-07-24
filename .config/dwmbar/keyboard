@@ -1,0 +1,40 @@
+#!/bin/sh
+
+#xkb_keyboard () {
+	#layout=$(setxkbmap -query | awk '/layout/{print $2}')
+	#printf "⌨:%s " "$layout"
+#}
+icon="⌨"
+print_ibus_keyboard () {
+	layout=$(ibus engine | cut -d":" -f2)
+	case $layout in
+		us) printf "${icon}:eng ";;
+		latam) printf "${icon}:latam ";;
+		zh) printf "${icon}:中文 ";;
+		es) printf "${icon}:esp ";;
+	esac
+}
+
+ibus_keyboard_toggle () {
+    if [[ $(ibus engine | cut -d":" -f2) == "us" ]]; then
+		ibus engine xkb:latam::spa
+    elif [[ $(ibus engine | cut -d":" -f2) == "latam" ]]; then
+		ibus engine xkb:es::spa
+	else
+		ibus engine xkb:us::eng
+	fi
+	pkill -RTMIN+8 dwmblocks
+}
+ibus_keyboard_zh () {
+	ibus engine m17n:zh:tonepy ;
+		pkill -RTMIN+8 dwmblocks
+	}
+
+case $BUTTON in
+	1)ibus_keyboard_toggle;;
+	3)ibus_keyboard_zh;;
+  2)ibus-setup;;
+	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+print_ibus_keyboard

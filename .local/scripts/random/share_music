@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Genera una ventana GUI con el archivo que esté "current" en el mpc
+
+dragon-drop -x "$MPCLIBRARY"/"$(mpc current -f %file%)"

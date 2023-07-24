@@ -1,0 +1,10 @@
+#!/usr/bin/sh
+
+# Cambiar el layout del teclado si usar el IBUS
+current_engine=$(ibus engine | cut -d: -f4)
+case $1 in
+  "toggle")  [ "$current_engine" = "spa" ] && ibus engine xkb:us::eng || ibus engine xkb:latam::spa ;;
+  "zh") ibus engine m17n:zh:tonepy;;
+  "spa") ibus engine xkb:es::spa;;
+esac
+pkill -RTMIN+8 dwmblocks

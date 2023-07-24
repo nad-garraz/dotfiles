@@ -1,0 +1,45 @@
+sw_volume: 100
+audio_device_state:1:pulse audio
+audio_device_state:1:Visualizer feed
+state: stop
+current: 20
+random: 0
+repeat: 0
+single: 0
+consume: 0
+crossfade: 0
+mixrampdb: 0.000000
+mixrampdelay: -1.000000
+playlist_begin
+0:intoxicados/intoxicados-como_ganado.opus
+1:intoxicados/intoxicados-mi_inteligencia_intrapersonal.opus
+2:intoxicados/intoxicados-quieren_rock.opus
+3:intoxicados/intoxicados-religión.opus
+4:intoxicados/intoxicados-se_fue_al_cielo.opus
+5:intoxicados/intoxicados-viviendo_con_Él.opus
+6:intoxicados/intoxicados-casi_sin_pensar.opus
+7:intoxicados/intoxicados-del_mar.opus
+8:intoxicados/intoxicados-me_vuelvo_al_sudestes.opus
+9:intoxicados/intoxicados-noche_con_amigos.opus
+10:intoxicados/intoxicados-pila_pila.opus
+11:intoxicados/intoxicados-un_secreto.opus
+12:intoxicados/intoxicados-rastone.opus
+13:intoxicados/intoxicados-don_electrón.opus
+14:intoxicados/intoxicados-está_saliendo_el_sol.opus
+15:intoxicados/intoxicados-no_tengo_ganas.opus
+16:intoxicados/intoxicados-reggae_para_los_amigos.opus
+17:intoxicados/intoxicados-volver_a_casa.opus
+18:intoxicados/intoxicados-de_la_guitarra.opus
+19:intoxicados/intoxicados-prologo_iii_-_en_vivo_luna_park.opus
+20:intoxicados/intoxicados-reggae_para_mirta_-_en_vivo_luna_park.opus
+21:intoxicados/intoxicados-canta_-_en_vivo_luna_park.opus
+22:intoxicados/intoxicados-homero_-_en_vivo_luna_park.opus
+23:intoxicados/intoxicados-needles_&_pins_-_en_vivo_luna_park.opus
+24:intoxicados/intoxicados-un_gran_camping_-_vivo_luna_park.opus
+25:intoxicados/intoxicados-fuego.opus
+26:intoxicados/intoxicados-fuiste_lo_mejor.opus
+27:intoxicados/intoxicados-las_cosas_que_no_se_tocan.opus
+28:intoxicados/intoxicados-nunca_quise.opus
+29:intoxicados/intoxicados-reggae_para_mirtha.opus
+30:intoxicados/intoxicados-señor_kioskero.opus
+playlist_end

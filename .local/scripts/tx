@@ -1,0 +1,5 @@
+#
+#!/bin/sh
+#
+
+falacritty -o window.dimensions.columns=110 -o window.dimensions.lines=30 -e $1

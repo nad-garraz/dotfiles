@@ -1,0 +1,37 @@
+#!/bin/sh
+#
+# ( Last Update: 2022-12-27)
+#
+# It uses 2 programs, android-file-transfer y simple-mtpfs. The second one is just to view the plugge
+
+# Recordatorio
+notify-send -t 4000 -u critical "⚠ Para montar el ☏:" "Tiene que estar desbloqueado"
+
+# Si la elección resulta vacía se corta el script
+MountOrUmount="$(echo -e "Mount\nUmount" | dmenu -fn "$dmenu_font" -p 'Elegí: ' -i)"
+[ -z $MountOrUmount ] && exit
+
+# Declaro variables
+devices=$(simple-mtpfs --list-devices) # Listar devices
+target_dev="$(echo -e "$devices" | dmenu -p '¿Cuál?' -fn "$dmenu_font" -i -l 20 | cut -c 1)"
+target_dir="$HOME/"$(echo -e "$devices" | grep "^$target_dev" | cut -d " " -f2- | tr "/" "-" | tr " " "_" | tr [:upper:] [:lower:])"" # mountpoint
+
+
+case "$MountOrUmount" in
+	# Si el directorio no existe, se crea y se monta el dispositivo
+	Mount) [ -d "$target_dir" ] || mkdir "$target_dir"
+	aft-mtp-mount "$target_dir"
+	[ "$(ls -A "$target_dir" | head -5)" ] && notify-send -t 6000 "☏ Dispositivo en: " "$target_dir";
+	;;
+
+	# Se desmonta el dispositivo y se intenta borrar la carpeta en la cual se montó
+	Umount) fusermount -u "$target_dir" && sleep 1
+	if [ ! $(ls -A "$target_dir" | head -5) ]
+	then
+		rmdir "$target_dir"
+		notify-send -t 5000 "☏ Borrado" "$target_dir"
+	else
+		notify-send -t 5000 "☏ No se pudo borrar T.T" "$target_dir"
+	fi
+	;;
+esac

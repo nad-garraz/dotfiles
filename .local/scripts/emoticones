@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# el dmenu presenta una lista de emoticones, con su descripción. Se selecciona el emoticón deseado y
+# éste es copiado al CLIPBOARD. Una notificación muestra el emoticón copiado.
+
+font="FantasqueSansM Nerd Font:size=25"
+# font="DaddyTimeMono Nerd Font Mono:size=25"
+
+# File with all the unicode characthers
+FILE="$HOME/.local/emoticones/unicode_compilation"
+
+# Old clipboard for comparison with added one
+OLD="$(xclip -o -selection clipboard)"
+
+# Opens dmenu ignoring the lines that finish with "#"
+# The awk commands can probably be improved
+# paste selection to CLIPBOARD
+grep -v -e "^#" $FILE | awk -F'   ---   ' '{ printf "%-40s     %-20s\n",$1,toupper($2) }' |
+	dmenu -i -l 23 -fn "$font" -nb "#000000" -sf "#FFFFFF" -nf "#aaaaaa" |
+	awk -F'     ' '{ printf "%s", $1 }' |
+	xclip -r -selection clipboard
+
+# If the new chrachter differs from the OLD one
+# a pop up will show the charachter copied
+NEW="$(xclip -o -selection clipboard)"
+
+if [ ! "$OLD" = "$NEW" ] && [ ! -z "$NEW" ]; then
+	pgrep -x dunst >> /dev/null && dunstify -r 3214 "Copiado al clipboard:" "$NEW"
+fi

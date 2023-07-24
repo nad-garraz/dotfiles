@@ -1,0 +1,43 @@
+#!/bin/sh
+
+## PRIMERO HAY QUE PRESIONAR CTRL+X Y LUEGO LA TECLA
+
+## CTRL+X --> C-X
+## ALT+X --> M-X
+
+make_trash () {
+	[ ! -d /tmp/trash ] && mkdir /tmp/trash && notify-send "Se generó:" "/tmp/trash"
+}
+
+save_directory="/data/pictures"
+
+while read file
+do
+	case "$1" in
+		# Mandar a la basura
+		"C-d") make_trash; mv "$file" /tmp/trash; notify-send "Borrando archivo: " "$file --> /tmp/trash"
+			;;
+			# Rota la foto "in file"
+		"C-r") convert -rotate 90 "$file" "$file"
+			;;
+		# Copia el nombre del archivo al clipboard
+		"c") echo -n "$file" | xclip -selection clipboard && notify-send "Se copio: $(basename -- $file)" "al clipboard"
+		;;
+		"C-w") xwallpaper --center "$file"
+			;;
+			# Manda la foto que se esté viendo a $save_directory
+		"g") cp "$file" "$save_directory"/"$(basename -- $file)" && notify-send "Se copio: $(basename -- $file)" "$save_directory"
+			;;
+		"s") shareabilizar_foto "$file"
+			;;
+		"S") dragon -x "$file"
+			;;
+			# Para rebombrar la foto usando el dmenu
+		"r") new_name="$(echo "" | dmenu -fn $dmenu_font -p "Nuevo nombre:")";
+			[ ! -z $new_name ] && mv "$file" "./${new_name}"
+			;;
+			# Toma la foto de la cámara y la baja a la compu
+		"m") camera "$file"
+			;;
+	esac
+done

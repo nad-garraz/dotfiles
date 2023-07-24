@@ -1,0 +1,16 @@
+#!/bin/sh
+
+#                             _
+#  _   _ _ __  _ __ ___  __ _| |
+# | | | | '_ \| '__/ _ \/ _` | |
+# | |_| | | | | | |  __/ (_| | |
+#  \__,_|_| |_|_|  \___|\__,_|_|
+#
+
+# Solo para ejecutar el unreal
+
+wineprefix=/data/wine_shit
+ejecutable=${wineprefix}/drive_c/ut/System/UnrealTournament.exe
+
+# Comando
+WINEPREFIX=${wineprefix} wine ${ejecutable}

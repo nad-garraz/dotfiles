@@ -1,0 +1,21 @@
+#!/bin/sh
+
+
+#PERCENTAGE="5%"
+
+
+#case $1 in
+	#-) amixer set Master $PERCENTAGE- &> $LOGS/volume.log
+		#;;
+	#+) amixer set Master $PERCENTAGE+ &> $LOGS/volume.log
+		#;;
+#esac
+
+case $1 in
+	-) pamixer --allow-boost -d 5 &> $LOGS/volume.log
+		;;
+	+) pamixer --allow-boost -i 5 &> $LOGS/volume.log
+		;;
+esac
+
+pkill -RTMIN+6 dwmblocks

@@ -1,0 +1,110 @@
+#		  _   _       _   _  __
+#		 | | | | ___ | |_| |/ /___ _   _ ___
+#		 | |_| |/ _ \| __| ' // _ \ | | / __|
+#		 |  _  | (_) | |_| . \  __/ |_| \__ \
+#		 |_| |_|\___/ \__|_|\_\___|\__, |___/
+#					   |___/
+
+# Open a terminal emulator
+super + t
+	$TERMINAL
+
+# MPC dmenu
+super + m
+	mpc_dmenu
+
+# Dual Monitor: Output
+super + o
+	monitor_dmenu
+
+# Emoticones
+alt + shift + e
+	emoticones
+
+# Figlet_Whasapp
+alt + shift + f
+	figlet_whatsapp
+
+# Apagar, reiniciar, killx
+super + q
+	apagar_dmenu
+
+# Bloquea la pantalla
+super + backslash
+	slock
+
+# Volumen control
+super + {Up,Down}
+	{volume +,volume -}
+
+# MPC
+alt + ctrl + {Left,Right,Up,Down}
+	{mpc_hk Left,mpc_hk Right,mpc_hk Up, mpc_hk Down}
+alt + shift + {Left,Right}
+	{mpc -q seek -10,mpc -q seek +10}
+
+# Restart dwmbar
+shift + super + r
+	restart_dmenu
+
+# Dmenu calculator
+super + c
+	calc_dmenu
+
+# Dmenu bluetoothctl
+super + b
+	bl_dmenu
+
+# Newsboat
+super + n
+	tx newsboat
+
+# Dragon
+alt + shift + d ; {h,m}
+	{dragon_quick,share_music}
+
+# Gui apps, browser, calculator, downlords, steam
+alt + shift + o ; {b,c,e,g,t}
+	{$BROWSER,speedcrunch,calibre,gimp,telegram-desktop}
+
+# Gui games
+alt + shift + g ; {d,s,r,h,u}
+	{downlords-faf-client,steam,retroarch,discord,unreal_tournament}
+
+# Dmenu Transmission
+super + p
+	torrent_dmenu
+
+# Terminal apps, ncmpcpp, lf, wyrd, notes, pulsemixer, guita
+alt + shift + t ; {m,f,w,n,v,g,t}
+	{tx ncmpcpp, tx lf ~, tx wyrd, tx notes, tx pulsemixer, tx guita_exe, terminal}
+
+# FFMPEG related:
+
+# Webcam
+alt + shift + w ; {1,2,3,4,m}
+	{webcam_toggle 1, webcam_toggle 2, webcam_toggle 3, webcam_toggle 4, webcam_dmenu}
+
+# Screenkey, keyboard casting
+alt + shift + k
+	toggle_screenkey
+
+# Capture Screen, Take ScreenShot
+Print
+	capture_screen
+
+# ScreenCasting
+super + s
+	screencasting
+
+# Killall ffmpeg
+control + F8
+	killall ffmpeg && notify-send "Se mató el ffmpeg"
+
+# Toggle touchpad
+alt + ctrl + t
+	toggle_touchpad
+
+# Change the keyboard layout
+alt + shift + i ; {i,c,e}
+  {layout_toggle "toggle", layout_toggle "zh", layout_toggle "spa"}

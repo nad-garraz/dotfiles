@@ -1,0 +1,131 @@
+#!/bin/sh
+
+#                  _   _                                                                         _   
+#   ___ ___  _ __ | |_(_)_ __  _   _  ___  _   _ ___     ___  ___  _ __   __ _ ___     ___ _   _| |_ 
+#  / __/ _ \| '_ \| __| | '_ \| | | |/ _ \| | | / __|   / __|/ _ \| '_ \ / _` / __|   / __| | | | __|
+# | (_| (_) | | | | |_| | | | | |_| | (_) | |_| \__ \   \__ \ (_) | | | | (_| \__ \  | (__| |_| | |_ 
+#  \___\___/|_| |_|\__|_|_| |_|\__,_|\___/ \__,_|___/___|___/\___/|_| |_|\__, |___/___\___|\__,_|\__|
+#                                                  |_____|               |___/   |_____|             
+
+# CUando grabo las canciones desde Spotify, cortarla después es un parto, con esto va a ser más fácil.
+
+# Argumentos de entrada
+archivo_audio="$1"
+archivo_info="$2"
+
+# Colores
+red="\e[0;91m"
+green="\e[0;32m"
+lightblue="\e[0;34m"
+cyan="\e[0;36m"
+reset="\e[0m"
+
+
+
+# Agarra una línea de texto con la info artist;title;album;genre y 
+# lo separa en 4 variables
+parsear_info () {
+  artist="$(echo "$1" | cut -d';' -f1)"
+  title="$(echo "$1" | cut -d';' -f2)"
+  album="$(echo "$1" | cut -d';' -f3)"
+  genre="$(echo "$1" | cut -d';' -f4)"
+}
+
+#Tagear el tema actual, toma argumentos artist, title, album, genre
+tagear () {
+  nombre_nuevo="$( echo ""$1"-"$2"" | tr " " "_" | tr [:upper:] [:lower:]).opus";
+  #printf se encarga de llenar el %03d
+	nombre_viejo="$(printf "output_%03d.opus" "$i")";
+	mv "$nombre_viejo" "$nombre_nuevo"
+	opustags -i $nombre_nuevo -D;
+	opustags -i $nombre_nuevo -a artist="$1" -a title="$2" -a album="$3" -a genre="$4" -a comment="Hecho con mucho amor ^_^/ -- NAD";
+  echo -e "Se creó: ${red}${nombre_nuevo}${reset}, tema $i/$total"
+}
+
+# Printea ese texto para ayudar
+guia_visual () {
+  echo -e "${cyan}Ahora hacemos el tema $1/$2${reset}"
+}
+
+#Total de lineas del archivo_info
+total=$(wc -l $archivo_info | cut -d" " -f1)
+
+read -e -p "Por cuál número de canción empezás?: " i;
+
+#Comienza el loop
+first_iter=true; # Flag para que el bloque no pase en la primera iteración
+
+while true
+do
+
+# Este bloque es para agilizar el input	
+  if [ ! $first_iter = true ]; then
+  echo -e "¿Uso el ${green}tiempo corte${reset} anterior como el ${red}tiempo inicial${reset} actual?"
+  select choice in "Sí" "No"
+  do
+    case $choice in   
+      "Sí") ss=${to};
+        guia_visual $i $total;
+        echo "${red}Tiempo inicial${reset}: $ss"&& break;;
+      "No") 
+    read -e -p "${red}Tiempo inicio${reset}: " ss && break;;
+  esac
+  done
+else 
+  guia_visual $i $total;
+  read -e -p "${red}Tiempo inicio${reset}: " ss;
+  fi
+read -e -p "${green}Tiempo corte${reset}: " to 
+ 
+# Comando para que el FFMPEG haga el corte del audio
+ffmpeg -loglevel 24 -i "$archivo_audio" -ss "$ss" -to "$to" -reset_timestamps 1 -map 0:a -c:a copy output_$(printf "%003d" "$i").opus
+
+
+# Saco datos de archivo_info
+cancion="$(sed "$(echo $i)q;d" ${archivo_info})"
+
+# Declaro los elementos para tagear
+parsear_info "$cancion"
+
+# Muestro los datos para control
+  echo -e "\n${red}¿Tageo con la información?${reset}:
+  artist = "$artist"
+  title = "$title"
+  album = "$album"
+  genre = "$genre""
+select choice in "Sí" "Manual" "Elegir fila" "exit"
+do
+ case $choice in
+   "Sí") tagear "$artist" "$title" "$album" "$genre" && break
+    ;;
+    "Manual") read -e -p "Artista: " artist;
+                        read -e -p "Título: " title;
+                        read -e -p "Album: " album;
+                        read -e -p "Género: " genre;
+                        tagear "$artist" "$title" "$album" "$genre" && break
+    ;;
+    "Elegir fila") cancion="$(cat "$archivo_info" | fzf)";
+                        parsear_info "$cancion";
+                        tagear "$artist" "$title" "$album" "$genre" && break
+    ;;
+  "exit") exit 0
+    ;;
+  esac
+done
+
+if [ $i -eq $total ]; then
+  echo -e "${lightblue}Esa fue la $total. No hay más info de canciones:${reset}";
+  select choice in "Exit" "Seguir";
+  do
+    case $choice in
+      "Exit") echo -e "Todo listo ${red}✔${reset}" && exit 0 ;;
+      "Seguir") break;;
+    esac
+  done
+fi
+
+  #Siguiente canción
+  i=$(( i + 1 ))
+  #Cambio la flag de iteraciones
+  first_iter=false
+done

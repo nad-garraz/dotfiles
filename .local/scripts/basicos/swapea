@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Receives two files and swap their names
+
+[ $# -eq 2 ] || { echo "${RED}Error: ${MAGENTA}Hay que poner 2 archivos como argumentos${NORMAL}" && exit 1 ; }
+
+icon="↔"
+dir=$(pwd)
+name1="$(realpath $1)"
+name2="$(realpath $2)"
+temp="$name1.tmp"
+{ mv "$name1" "$temp" &&
+	mv "$name2" "$name1" &&
+	mv "$temp" "$name2"; } &&
+	notify-send -t 1500 "$icon Swaped!"

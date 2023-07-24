@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# HACE APARECER LA WEBCAM
+# POR DEFECTO EN LA ESQUINA ABAJO A LA DERECHA
+
+PLACE=${1:--10-10}
+
+case $1 in
+	1) PLACE="-10-1070";;
+	2) PLACE="-1910-1070";;
+	3) PLACE="-1910-10";;
+	4) PLACE="-10-10";;
+esac
+
+# SI HAY INSTANORMALIA DE WEBCAM, SE MATA
+# Y SI NO LA HAY SE INICIA.
+pkill -f /dev/video0 ||\
+\mpv --really-quiet --title=mpvwebcam --osc=no --deinterlace=yes --geometry=$PLACE --autofit=25% --profile=low-latency --untimed /dev/video0

@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# Feed this script a link and it will give dmenu
+# some choice programs to use to open it.
+
+dir_descarga="$HOME/downloads"
+
+case "$(printf "mpv\\nmpv (loop)\\nmpv (float)\\nqueue curl-download\\nqueue yt-d\\nqueue yt-d (light)\\nqueue yt-d (audio-light)\\nqueue yt-d (audio-best)\\nsxiv\\nbrowser\\nw3m\\ncopy url" | dmenu -l 20 -fn "$dmenu_font" -i -p "Open link with what program?")" in
+	mpv) setsid -f mpv -quiet "$1" >/dev/null 2>&1
+		;;
+	"mpv (loop)") setsid -f mpv -quiet --loop "$1" >/dev/null 2>&1
+		;;
+	"mpv (float)") setsid -f \mpv --autofit=50% --title="mpvfloat" "$1" >/dev/null 2>&1
+		;;
+	"queue download") tsp curl -LO "$1" >/dev/null 2>&1
+		;;
+	"queue yt-d") tsp youtube-dl -ic --restrict-filenames -o "$dir_descarga/%(title)s-%(realease_date)s.mp4" "$1" >/dev/null 2>&1
+		;;
+	"queue yt-d (light)") tsp youtube-dl -ic -f worst --restrict-filenames -o "$dir_descarga/%(title)s-%(realease_date)s.mp4" "$1" >/dev/null 2>&1
+		;;
+	"queue yt-d (audio-light)") tsp youtube-dl --ignore-errors --continue --restrict-filenames --extract-audio  --format worstaudio --audio-format opus --audio-quality 40K -o "$dir_descarga/%(title)s-%(realease_date)s.tmp" "$1" >/dev/null 2>&1
+		;;
+	"queue yt-d (audio-best)") tsp youtube-dl --ignore-errors --continue --restrict-filenames --extract-audio --format bestaudio --audio-format opus --audio-quality 60K -o "$dir_descarga/%(title)s-%(realease_date)s.tmp" "$1" >/dev/null 2>&1
+		;;
+	browser) setsid -f "$BROWSER" "$1" >/dev/null 2>&1
+		;;
+	sxiv) setsid -f sxiv -a "$1" >/dev/null 2>&1
+		;;
+	w3m) setsid -f readable "$1" | w3m -T text/html
+		;;
+	"copy url") echo "$1" | xclip -selection clipboard
+		;;
+esac

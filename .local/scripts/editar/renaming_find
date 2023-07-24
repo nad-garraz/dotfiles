@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# Comandos para reemplazar nombres con find
+# USAGE parallel renaming_find {} ::: "$(find -name "*.mp3" -exec basename {} \;)"
+# USAGE: ""find . -maxdepth 1 -name "..." -exec renaming {} \;""
+
+## Cambiar espacios por "_" y de mayúsculas a minúsculas
+#\mv "$1" "$(echo "$1"| sed -r 's/(.*)-.*-(.*)/\1-\2/1')"
+# mv "$1" "$(echo "$1" | tr " " "_" | tr [:upper:] [:lower:])"
+
+# \mv "$1" "$(echo "$1" | sed -r "s/\.mp3//g")"
+# \mv "$1" "$(echo "$1" | sed -r "s/(unit)_(.*)(\.opus)/\2_\1\3/g")"
+\mv "$1" "$(echo "$1" | sed -r "s/^([0-9]_)/0\1/g")"
+
+#chap="0"
+# chap="$(echo "$1" | sed -r "s/english_i_(.*)\.opus/\1/1")"
+# opustags -i "$1" -D
+# opustags -i "$1" -a author="Pimsleur English" -a album="English I" -a genre="Language practice" -a chapter="$chap" -a title="Chapter $chap English I" -a comment="Hecho con mucho amor. ^_^/  NAD"
+
+# mv "$1" "$(echo "$1" | sed "s/^[0-9][0-9][0-9]-//g")"
+
+
+## Cambiar "(" --> "_" y ")" --> ""   NO PARENTESIS
+#mv "$1" "$(echo "$1" | tr "(" "_" | tr -d ")")"
+#mv "$1" "$(echo "$1" | tr -d "'")"
+
+# mv "$1" "$(echo "$1" | sed -r 's|^Game_||1')"

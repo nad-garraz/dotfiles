@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# Para poder usar el pacman sin tener que recordar
+# todos los comandos
+
+#
+# TODO: Hacer dos funciones. Una que devuelva un archivo y la otra que devuelva un paquete. Con el dmenu. (6/9/20)
+#
+
+read -p ¿Cuál package? -r package
+select choice in "List files of package" "A quién pertenece la file" "list package explicitly installed NOT dependencies"
+do
+	case $choice in
+		"Files of package") pacman -Ql $package;;
+		"A quién pertenece la file") pacman -Qo $filename;;
+		"list package explicitly installed NOT dependencies") pacman -Qet;;
+	esac
+done
+
+
+
+# list all foreing packages (yay, aur) --> pacman -Qm
+# list all NOT foreing packages (database) --> pacman -Qn

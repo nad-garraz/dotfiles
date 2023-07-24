@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+# PROMPS A DMENU MENU ASKING TO SHUTDOWN
+icon_warning="⚠"
+icon="🖥"
+first_choice=$(echo -e "Kill X\nRestart\nPower Off\nScreen\nRestart DWM/BLOCKS/SXHKD/DUNST\nScreen Off" | dmenu -fn "$dmenu_font"  -i -p "$icon ¿Qué querés hacer?");
+
+
+kill_X () {
+	# PIDs de los dwm según la tty en la que esté
+	pids_dwm="$(ps -ax | grep -w dwm_start | grep tty | awk '{print $2" --> "$1}')"
+
+# Selecciono las lineas
+linea=$(echo -e "$pids_dwm\nTodos $icon_warning" | dmenu -i -l 10 -fn "$dmenu_font" -p "¿Cuál se mata?")
+
+case $linea in
+	"Todos $icon_warning") killall xinit ;;
+	*) # Selecciono el PID
+		pid_to_kill="$(echo "$linea" | cut -d" " -f3)"
+		# Acá mato el proceso
+		kill -9 $pid_to_kill ;;
+esac
+}
+
+case $first_choice in
+	"Restart") systemctl -i reboot ;;
+	"Power Off") systemctl -i poweroff ;;
+	"Kill X") kill_X ;;
+  "Restart DWM/BLOCKS/SXHKD/DUNST") restart_dmenu ;;
+	"Screen Off") xset dpms force standby ;;
+esac

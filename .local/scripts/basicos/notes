@@ -1,0 +1,39 @@
+#!/bin/sh
+
+
+# El archivo donde guardar las notas
+ARCHIVO="$HOME_LOCAL/notes"
+# if file doesn't exist, create it
+[[ ! -e $HOME_LOCAL/notes ]] && touch "$HOME_LOCAL/notes"
+
+if ! (($#)); then
+	# no arguments, print file
+	less -R "$ARCHIVO"
+
+elif [[ "$1" == "-c" ]]; then
+	# clear file
+	read -e -p "Borrar notas, ¿Seguro?: " -n 1 -r
+	[[ $REPLY =~ ^[YySs] ]] && figlet "Notes" > "$ARCHIVO" && sed -i 's/^\(\W\)/##\1/g' "$ARCHIVO" || exit 0
+
+elif [[ "$1" == "-s" ]]; then
+	# buscar palabra en las notas
+	grep -i -B1 "$2" "$ARCHIVO"
+
+elif [[ "$1" == "-r" ]]; then
+	# buscar palabra en las notas y borrar la linea correspondiente.
+	target=$(grep "^☛" "$ARCHIVO" | dmenu -i -fn "$dmenu_font" -l 20 -p "¿Cuál borrás?")
+	if [[ ! -z $target ]]
+	then
+		linea=$(grep -F -n "$target" "$ARCHIVO" | cut -d : -f1 | head -1)
+		linea2=$(echo "$linea-1" | bc -ql)
+		sed -i -r ""$linea2","$linea"d" "$ARCHIVO"
+	else
+		exit 0
+	fi
+
+else
+	# add all arguments to file
+	TIMESTAMP="$RED$(date "+%a %d/%m/%y $GREEN%H:%M:%S")$CYAN:"
+
+	[ ! -z "$*" ] && printf "%s\n%s %s\n" "$TIMESTAMP" "☛" "$*" >> "$ARCHIVO"
+fi

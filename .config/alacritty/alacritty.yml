@@ -1,0 +1,46 @@
+env:
+  TERM: alacritty
+
+window:
+  opacity: 0.9
+
+# Font configuration
+font:
+  normal:
+    family: "DaddyTimeMono"
+    family: "HackNerdFont"
+    family: "FantasqueSansM Nerd Font Mono"
+    style: Regular
+
+  bold:
+    family: "JetBrainsMonoExtraBold NF"
+    family: "HackNerdFont"
+    family: "DaddyTimeMono"
+    family: "FantasqueSansM Nerd Font Mono"
+    style: Bold
+
+  italic:
+    family: "JetBrainsMono Nerd Font Mono"
+    family: "HackNerdFont"
+    family: "DaddyTimeMono"
+    family: "FantasqueSansM Nerd Font Mono"
+    style: Italic
+
+  bold_italic:
+    family: "JetBrainsMonoExtraBold NF"
+    family: "HackNerdFont"
+    family: "DaddyTimeMono"
+    family: "FantasqueSansM Nerd Font Mono"
+    style: Bold Italic
+
+  # Point size
+  size: 10
+
+cursor:
+  style: Beam
+
+key_bindings:
+  - { key: K,    mods: Alt|Shift,       action: ScrollPageUp }
+  - { key: J,    mods: Alt|Shift,       action: ScrollPageDown }
+  - { key: V,    mods: Alt,             action: Paste            }
+

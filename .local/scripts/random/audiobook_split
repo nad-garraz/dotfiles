@@ -1,0 +1,81 @@
+#!/bin/bash
+
+# separa audio en las pistas que tiene según la información
+# que se le dé con el archivo.
+# El uso es "separador audio_file info_file"
+# info_file tiene que ser del formato: "xx:xx:xx(tiempo final) Nombre_capitulo
+cr=`echo $'\n> '`
+# Preguntas para el formato
+read -e -p "Nombre del libro:$cr" -r
+BOOKTITLE="$(echo $REPLY | iconv -cf UTF-8 -t ASCII//TRANSLIT | tr -d '[:punct:]')"
+read -e -p "Nombre del autor:$cr" -r
+AUTHOR="$(echo $REPLY | iconv -cf UTF-8 -t ASCII//TRANSLIT | tr -d '[:punct:]')"
+read -e -p "Idioma del libro:$cr" -r
+LANGUAGE="$(echo $REPLY | iconv -cf UTF-8 -t ASCII//TRANSLIT | tr -d '[:punct:]')"
+read -e -p "Genero del libro:$cr" -r GENERO
+read -e -p "Año:$cr" -r YEAR
+
+# Extención del archivo
+read -e -p "Formato audio [${RED}opus${NORMAL}/mp3]:$cr" -r ext
+[[ $ext =~ ^[mo]*$ ]] && ext="opus" && echo -e "Formato = \".$ext\""
+
+# Defino la variable track 0 por default
+read -e -p "Primera track ¿${RED}0${NORMAL} o 1?:$cr" -r TRACK
+case $TRACK in
+	1) TRACK=1 && echo -e "Primera track \"$TRACK\"" ;;
+	0) TRACK=0 && echo -e "Primera track \"$TRACK\"" ;;
+	*) TRACK=0 && echo -e "Primera track \"$TRACK\"" ;;
+esac
+
+# Audio input como el primer argumento
+inputaudio=$1
+
+# Directorio donde está el archivo
+DIRECTORY="$(pwd)/$(echo -e "$AUTHOR-$BOOKTITLE" | tr '[:upper:]' '[:lower:]' | sed 's/\ /_/g')"
+
+# Directorio donde poner el los capítulos
+mkdir -p $DIRECTORY
+
+# Defino start
+read -e -p "¿Tiempo para empezar? (${RED}00:00:00${NORMAL}/hh:mm:ss):" -r tiempo
+case $tiempo in
+	[0-9][0-9]:[0-9]:[0-9]:[0-9][0-9]) start="$tiempo";;
+	*) start="00:00:00";;
+esac
+
+echo -e "El libro estará en:\n${BLUE}$DIRECTORY${NORMAL}"
+
+TOTAL=$(sed -i "/^[[:space:]]*$/d" "$2" | cat "$2" | wc -l)
+COMMENT="Hecho con mucho amor. ^_^/  NAD"
+# Loop starts
+while read -r x
+do
+end=$(echo $x | cut -d" " -f1)
+NAME=$(echo $x | cut -d" " -f2- | iconv -cf UTF-8 -t ASCII//TRANSLIT | tr -d '[:punct:]')
+name=$(echo $NAME | tr [:upper:] [:lower:] | tr " " "_")
+
+# Nombre del archivo creado en el loop
+OUTPUTFILE="$DIRECTORY/$TRACK-$name.$ext"
+echo -e "\nSplitting from $start to $end...\nChapter: $TRACK - $NAME"
+
+case $ext in
+	opus) ffmpeg -nostdin -y -loglevel -8 -i $inputaudio -c:a libopus -b:a 36k -ss $start -to $end -vn "$OUTPUTFILE"
+		# Defino las tags para ponerle a los nuevos archivos
+		opustags -i "$OUTPUTFILE" -D
+		opustags -i "$OUTPUTFILE" -a chapter="$TRACK" -a title="$NAME ($TRACK/$TOTAL)" -a track="$TRACK" -a author="$AUTHOR" -a booktitle="$BOOKTITLE" -a language="$LANGUAGE" -a artist="$AUTHOR" -a album="$BOOKTITLE" -a genre="$GENERO" -a year="$YEAR" -a comment="$COMMENT"
+		opustags "$OUTPUTFILE"
+		;;
+	mp3) ffmpeg -nostdin -y -loglevel -8 -i "$inputaudio" -ss "$start" -to "$end" -vn -ar 44100 -ac 2 -b:a 64k "$OUTPUTFILE"
+		# Defino las tags para ponerle a los nuevos archivos
+		id3v2 -D "$OUTPUTFILE"
+		id3v2 --artist "$AUTHOR" --album "$BOOKTITLE" --song "$NAME ($TRACK/$TOTAL)" --comment "$COMMENT" --genre "12" --track "($TRACK)/$TOTAL" --year "$YEAR" "$OUTPUTFILE"
+		;;
+esac
+
+# Sumo un numero para el loop
+TRACK=$(( $TRACK + 1))
+# El último final es el siguiente principio
+start=$end
+done < $2
+echo -e "$GREEN DONE ${CYAN}✅✅✅ $NORMAL"
+

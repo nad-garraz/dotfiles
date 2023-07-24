@@ -1,0 +1,32 @@
+#!/bin/sh
+
+#      _                          _     _ _ _                 __       _
+#  ___| |__   __ _ _ __ ___  __ _| |__ (_) (_)______ _ _ __  / _| ___ | |_ ___
+# / __| '_ \ / _` | '__/ _ \/ _` | '_ \| | | |_  / _` | '__|| |_ / _ \| __/ _ \
+# \__ \ | | | (_| | | |  __/ (_| | |_) | | | |/ / (_| | |   |  _| (_) | || (_) |
+# |___/_| |_|\__,_|_|  \___|\__,_|_.__/|_|_|_/___\__,_|_|___|_|  \___/ \__\___/
+#                                                      |_____|
+
+# Reduce el tamaño de la foto para poder enviarla más fácilmente. Formato de salida "jpg"
+# El archivo final tiene el mismo nombre + "-shareable.jpg".
+# Luego la pasa por el dragon para poder arrastrarla.
+
+directorio="/tmp/share"
+[ -d "$directorio" ] || mkdir -p "$directorio"
+in="$1"
+out=" "$directorio"/$(echo "$in" | sed 's/\..\{3,4\}$//1')-shareable.jpg"
+#out=""${directorio}"/$(echo "$in" | sed 's/\..\{3,4\}$//1').jpg"
+convert "$in" -sampling-factor 4:2:0 -strip -quality 85 -interlace Plane\
+  -gaussian-blur 0.05 -colorspace RGB "$out" &&
+echo -e "Done $RED✔$NORMAL\nNuevo archivo: $out"
+
+# Dragon
+[ -f "$out" ] && choice=$(echo -e "Sí\nNo" | dmenu -p ¿Compartir? -fn $dmenu_font)
+
+case $choice in
+	"Sí") dragon-drop -x "$out" &
+		;;
+	"*") exit 0
+		;;
+esac
+

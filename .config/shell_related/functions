@@ -1,0 +1,87 @@
+#!/bin/sh
+
+#   ____            _
+#  / ___|___   ___ | |
+# | |   / _ \ / _ \| |
+# | |__| (_) | (_) | |
+#  \____\___/ \___/|_|
+#
+#  _____                 _   _
+# |  ___|   _ _ __   ___| |_(_) ___  _ __  ___
+# | |_ | | | | '_ \ / __| __| |/ _ \| '_ \/ __|
+# |  _|| |_| | | | | (__| |_| | (_) | | | \__ \
+# |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
+#
+#
+
+vf () {
+# Abrir un archivo de text usando el fuzzy finder con el $EDITOR
+archivo=$(find /data/documents $HOME -type f -a ! -name "*.mp4" -a ! -name "*.so" -a ! -name "*.jpeg" -a ! -name "*.png" -a ! -name "*.faforever*" | fzf --height=30 -x);
+[ ! -z $archivo ] && $EDITOR $archivo;
+unset archivo
+}
+
+vs(){
+# Abrir una sesion de vim usando el fuzzy finder con el $EDITOR
+	find $HOME -name "*.vim" | fzf | xargs -r -I % $EDITOR -S % ;
+}
+
+rvs () {
+# REMOVE VIM SWAP FILES
+	find $HOME_LOCAL/share/nvim/swap -name "*.sw[po]" | fzf -m | xargs -r -I % rm % && notify-send "Se eliminó la swap";
+}
+
+superlame () {
+# Toma un argumento. Baja el bitrate del mp3 al argumento elegido, para todos
+# los archivos del directorio
+	arg=${1:-128}
+	parallel lame -S --mp3input -b $arg {} {.}.tmp '&&' \mv {.}.tmp {} ::: "$(find . -name "*mp3" -exec basename {} \;)"
+	}
+
+superopus () {
+# Toma un argumento. Convierte el mp3 o opus al bitrate elegido, para todos
+# los archivos del directorio
+	arg=${1:-48}
+	parallel ffmpeg -loglevel quiet -i "{/}" -c:a libopus -b:a "${arg}K" -f opus "{/}".opus ::: "$(find . -name "*aac" -o -name "*opus" -o -name "*mp3")"
+	}
+
+cl() {
+	# Change directory and ls
+	local dir="$1"
+	local dir="${dir:=$HOME}"
+	if [[ -d "$dir" ]]; then
+		cd "$dir" >/dev/null; ls -ha --color=auto
+	else
+		echo "bash: cl: $dir: Directory not found"
+	fi
+}
+
+calc() {
+	echo "scale=3;$@" | bc -l
+}
+
+ipif() {
+	if grep -P "(([1-9]\d{0,2})\.){3}(?2)" <<< "$1"; then
+		curl ipinfo.io/"$1"
+	else
+		ipawk=($(host "$1" | awk '/address/ { print $NF }'))
+		curl ipinfo.io/${ipawk[1]}
+	fi
+	echo
+}
+
+qr() {
+	# Toma un argumento y lo convierte en un código QR
+	arg=$1
+	curl qrenco.de/"$arg"
+}
+
+#RSYNC
+
+function cpr() {
+  rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 "$@"
+}
+
+function mvr() {
+  rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 --remove-source-files "$@"
+}

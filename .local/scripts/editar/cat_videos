@@ -1,0 +1,118 @@
+#!/bin/sh
+
+# 					 _           _     _
+# 	___ __ _| |_  __   _(_) __| | ___  ___  ___
+#  / __/ _` | __| \ \ / / |/ _` |/ _ \/ _ \/ __|
+# | (_| (_| | |_   \ V /| | (_| |  __/ (_) \__ \
+#  \___\__,_|\__|___\_/ |_|\__,_|\___|\___/|___/
+# 						 |_____|
+
+# no va a funcionar si el size de los videos no es el mismo en ese caso usar para convertirlos al mismo tamaño:
+#ffmpeg -i IN -vf "scale=1080x1920:force_original_aspect_ratio=decrease,pad=1080:1920:-1:-1:color=black" output.mp4
+
+usage="$(basename "$0") [-h] -- Para juntar dos o más videos en un solo archivo.
+No necesita argumentos. Puede hacerse desde un menú en el script.
+where:
+	-h show this help\n
+${RED}IMPORTANTE${NORMAL}: Los archivos elegidos para juntarse deben tener la misma resolución. En el caso de tener que modificar algún video, acá dejo un ejemplo:
+ffmpeg -i IN -vf "scale=1080x1920:force_original_aspect_ratio=decrease,pad=1080:1920:-1:-1:color=black" output.mp4"
+
+while getopts ':h' option; do
+	case "$option" in
+		h) echo -e "$usage"
+			exit
+			;;
+		:) printf "missing argument for -%s\n" "$OPTARG" >&2
+			echo "$usage" >&2
+			exit 1
+			;;
+		\?) printf "invalid option: -%s\n" "$OPTARG" >&2
+			echo "$usage" >&2
+			exit 1
+			;;
+	esac
+done
+
+shift $((OPTIND - 1))
+
+# Menú para elegir el archivo con los nombres de los archivos para unir o
+# elegir los archivos del directorio de trabajo. El fzf arma la lista automáticamente.
+
+echo -e "${MAGENTA}Input:${NORMAL}"
+select choice in "Archivo lista" "Seleccionar con FZF"
+do
+	case $choice in
+		"Archivo lista") lista=$(fzf -x) && break
+			;;
+		"Seleccionar con FZF") lista="/tmp/catting-"$(date "+%d%m-%H%M")"" ;
+			fzf -x -m >> "$lista"
+			cat $lista
+			read -p "¿La lista está bien? [Y/n]: "
+			if [[ "$REPLY" =~ ^[Yy] ]] || [ -z $REPLY ]
+			then break
+			fi
+			;;
+	esac
+	echo -e "${MAGENTA}Input:${NORMAL}"
+done
+
+# Declaro el nombre del archivo final de una forma medio chota.
+output="comp-"$(date "+%d%m-%H%M")".mp4"
+read -p "${GREEN}Nombre del output [${RED}$output${NORMAL}]: " out
+if [ ! -z $out ]
+then
+[ "$(echo "${out: -4}")" = ".mp4" ] || out="$out.mp4"; output=$out
+fi
+
+# Cuantos videos hay?
+nvideos="$(wc -l $lista | cut -d" " -f1)"
+
+# Inicializo el string como si hubieran 2 videos,
+# después le agrego según la cantidad que haya.
+string="[0:v] [0:a] [1:v] [1:a]"
+
+i=2
+while [ $i -lt "$nvideos" ]
+do
+string="$string [$i:v] [$i:a]"
+i=$(( $i+1 ))
+done
+
+# Inicializo el string "inpuT". El comando del ffmpeg
+# no toma un archivo sino todos los nombres de los videos
+# con la flag -i: Una goma tremenda.
+
+input=""
+while read line
+do
+	input=""$input" -i "$line""
+done < "$lista"
+
+# Comando para unir los videos.
+ffmpeg -loglevel 24 -vsync 0 $input -filter_complex "$string concat=n="$nvideos":v=1:a=1 [v] [a]" -map "[v]" -map "[a]" "$output"
+
+# Si hubo error corto el programa
+[ $? = 0 ] || { echo "Hubo un error" && exit 0; }
+
+read -p $"¿Reproducir "$output"? [Y/n]: "
+if [[ $REPLY =~ ^[Yy] ]]
+then \mpv $output;
+fi
+
+echo "¿${RED}Borrar${NORMAL} $(cat $lista | tr '\n' ',' | sed 's/,/, /g' | sed -r 's/(.*), (.*), $/\1 y \2\n/')?"
+select choice in 'Sí' 'No'
+do
+	case $choice in
+		'Sí')rm $(cat $lista | tr "\n" " ") && echo "Se borraron" && break
+			;;
+		'No') echo "No se borraron" && break
+			;;
+	esac
+done
+
+# Borro y unseteo cosas temporales
+[ -z $lista ] || rm $lista;
+unset input output lista string out
+
+echo "${RED}Done ✔${NORMAL}"
+echo "bye ${CYAN}👋${NORMAL}"

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+
+# Screen-shot, capture-screen
+
+# Variables:
+TIMESTAMP="$(date +%d-%m-%Y-%H%M%S)"
+TARGETBASE="/data/pictures/screenshots"
+OUT=$TARGETBASE/$TIMESTAMP.png
+SHUTTER="/data/music/sounds/shutter.mp3"
+# Crea el directorio si no lo encuentra:´
+[ -d $TARGETBASE ] || mkdir -p $TARGETBASE
+
+# Comando:
+[ -n "$SHUTTER" ] && \mpv --keep-open=no --msg-level=all=no $SHUTTER &
+import -window root "$OUT" &&
+action=$(dunstify -t 10000 --action="dragon-drop,SHARE" --action="sxiv,SHOW" --action="gimp,GIMP" "📸" "Guardada en:$OUT")
+case $action in
+	"dragon-drop") dragon-drop -x "$OUT"
+		;;
+	"sxiv") setsid -f "$TERMINAL" -e sxiv "$OUT"
+		;;
+  "gimp") gimp "$OUT"
+    ;;
+esac

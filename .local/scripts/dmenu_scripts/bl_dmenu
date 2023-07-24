@@ -1,0 +1,54 @@
+#!/bin/sh
+
+icon="🦷"
+
+# Get info of rfkill
+bl="$(/usr/bin/rfkill | awk '/bluetooth/ { print $1 }')"
+blStatus="$(/usr/bin/rfkill | awk '/bluetooth/ { print $4 }')"
+# Unblock if blocked
+[ $blStatus = "blocked" ] && sudo /usr/bin/rfkill unblock $bl
+
+
+MACADD="$(bluetoothctl list | cut -d" " -f2)"
+IS_ON="$(bluetoothctl show "$MACADD" | grep -i powered | cut -d: -f2 | tr -d " ")"
+
+bl_toggle () {
+	if [ "$IS_ON" = "yes" ];
+	then
+		bluetoothctl power off && notify-send "$icon Bluetooth off"
+	else
+		bluetoothctl power on && notify-send "$icon Bluetooth on"
+	fi
+}
+
+bl_connect () {
+	# Prendo el bl si está apagado
+	[ "$IS_ON" = "no" ] && bl_toggle
+
+	# Prompt para elegir el device
+	CHOICE=$(bluetoothctl devices | cut -d" " -f3- | dmenu -fn "$dmenu_font" -i -l 10 -p "¿Cuál?")
+	MAC=$(bluetoothctl devices | grep -i "$CHOICE" | cut -d" " -f2 | tr -d " ")
+	bluetoothctl connect $MAC	&& notify-send "$icon Conectado a: " "$CHOICE"
+
+}
+
+bl_disconnect () {
+
+# Prompt para elegir el device
+	CHOICE=$(bluetoothctl devices | cut -d" " -f3- | dmenu -fn "$dmenu_font" -i -l 10 -p "¿Cuál?")
+	MAC=$(bluetoothctl devices | grep -i "$CHOICE" | cut -d" " -f2 | tr -d " ")
+	bluetoothctl disconnect $MAC	&& notify-send "$icon Disconectado a: " "$CHOICE"
+
+}
+
+FIRST_CHOICE=$(echo -e "Connect\nDisconnect\nToggle" | dmenu -fn "$dmenu_font" -i -p "${icon} ¿Qué opción querés?")
+
+case $FIRST_CHOICE in
+	Toggle) bl_toggle
+		;;
+	Connect) bl_connect
+		;;
+	Disconnect) bl_disconnect
+		;;
+esac
+

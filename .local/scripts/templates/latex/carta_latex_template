@@ -1,0 +1,69 @@
+\documentclass[10pt]{letter} % 10pt font size default, 11pt and 12pt are also possible
+
+\usepackage{geometry} % Required for adjusting page dimensions
+
+%\longindentation=0pt % Un-commenting this line will push the closing "Sincerely," to the left of the page
+
+\geometry{
+	paper=a4paper, % Change to letterpaper for US letter
+	top=3cm, % Top margin
+	bottom=1.5cm, % Bottom margin
+	left=4.5cm, % Left margin
+	right=4.5cm, % Right margin
+	%showframe, % Uncomment to show how the type block is set on the page
+}
+
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+
+\usepackage{stix} % Use the Stix font by default
+
+\usepackage{microtype} % Improve justification
+
+\usepackage{lipSUm} % Rellenado dummy
+% Para tunear la fecha
+\usepackage[spanish]{babel} % Da la fecha en español
+\usepackage[dayofweek]{datetime} % Hace que aparezca el día de la semana en la fecha
+%----------------------------------------------------------------------------------------
+%	YOUR NAME & ADDRESS SECTION
+%----------------------------------------------------------------------------------------
+
+\signature{<+ NOMBRE +>} % Your name for the signature at the bottom
+
+\address{<+ DIRECCION  +>\\ <+ CIUDAD  +>\\ <+ TELEFONO +>} % Your address and phone number
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	ADDRESSEE SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{letter}{Nathan Drake \\ LaTeXTemplates.com \\ 321 Pleasant Lane \\ City, State 12345} % Name/title of the addressee
+% Fecha
+	\date{\longdate\today} % Sacaar el \longdate para que no aparezca el día de la semana en la fecha
+%----------------------------------------------------------------------------------------
+%	LETTER CONTENT SECTION
+%----------------------------------------------------------------------------------------
+
+\opening{\textbf{Dear Sir or Madam,}}
+
+\lipSUm[2-3]
+
+
+<+ MUCHAS GRACIAS POR SU TIEMPO y CONSIDERACIÓN +>
+
+<+ ESPERO CON ANSIAS SU RESPUESTA +>
+
+\vspace{2\parskip} % Extra whitespace for aesthetics
+\closing{Sincerely,}
+\vspace{2\parskip} % Extra whitespace for aesthetics
+
+\ps{<+ P.S. ACA VA LA POSTDATA +>} % Postscript text, comment this line to remove it
+
+%----------------------------------------------------------------------------------------
+
+\end{letter}
+
+\end{document}

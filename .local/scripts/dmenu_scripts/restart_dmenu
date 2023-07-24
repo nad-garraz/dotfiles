@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Restart DWM or DWMBLOCKS
+
+
+# Prompt options to select
+FIRST_CHOICE=$(echo -e "DWMBLOCKS\nDWM\nSXHKD\nDUNST\nExit" | dmenu -fn "${dmenu_font}" -i -p "¿RESTART?")
+
+#
+case $FIRST_CHOICE in
+	"DWMBLOCKS") /usr/bin/killall dwmblocks && dwmblocks >> "${LOGS}"/dwmblocks.log 2>&1 & ;;
+	"DWM") /usr/bin/killall dwm ;;
+  "SXHKD") /usr/bin/killall sxhkd && sxhkd &;;
+  "DUNST") /usr/bin/killall dunst && dunst &;;
+  "Exit") exit 0 ;;
+esac

@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# Battery percentage
+CHARGE=$(cat /sys/class/power_supply/BAT0/capacity)
+# Charging status
+STATUS=$(cat /sys/class/power_supply/BAT0/status)
+if [[ ! "$STATUS" = "Discharging" ]]; then
+	printf "🔌%s%% " "$CHARGE"
+else
+	printf "🔋%s%% " "$CHARGE"
+fi
+
+info=$(acpi -V | sed '2q;d')
+
+case $BUTTON in
+	1) notify-send -t 15000 "Info batería 🔋" "Estado: $STATUS
+Carga: $CHARGE%
+Time: $(acpi | cut -d"," -f3 | sed 's/^ //')
+Utilidad: $(echo $info | cut -d" " -f13 | tr -d " ")";;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac

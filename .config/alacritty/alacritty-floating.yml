@@ -1,0 +1,19 @@
+window:
+  dynamic_padding: true
+  class:
+    instance: float
+    general: Alacritty
+  dimensions:
+    columns: 160
+    lines: 45
+
+font:
+  normal:
+          family: monospace
+  size: 8.0
+
+opacity: 0.9
+key_bindings:
+  - { key: K,    mods: Alt|Shift,       action: ScrollPageUp }
+  - { key: J,    mods: Alt|Shift,       action: ScrollPageDown }
+  - { key: V,    mods: Alt,             action: Paste            }

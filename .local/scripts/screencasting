@@ -1,0 +1,79 @@
+#!/bin/sh
+
+#
+#	 ____                                         _
+#	/ ___|  ___ _ __ ___  ___ _ __   ___ __ _ ___| |_
+#	\___ \ / __| '__/ _ \/ _ \ '_ \ / __/ _` / __| __|
+#	 ___) | (__| | |  __/  __/ | | | (_| (_| \__ \ |_
+#	|____/ \___|_|  \___|\___|_| |_|\___\__,_|___/\__|
+#
+#
+
+# Menú que sirve para elegir como hacer un screencast. Opciones de audio y calidad de video.
+# opciones:
+input_mic="1"
+input_monitor="0"
+
+verbosity="-hide_banner -loglevel warning -nostats"
+
+
+dir="/data/ffmpeg"
+[ ! -d "$dir" ] && mkdir "$dir"
+FILENAME="$(date '+%d-%m-%y--%H%M%S')-video"
+FINAL_NAME="$dir/$FILENAME"
+
+# Es muy común querer mandar el video, por eso doy esta opción luego de terminar
+# la grabación.
+share () {
+opcion=$(echo -e "Shareabilizar\nNo" | dmenu -fn "$dmenu_font" -i -p "Sharear?: ")
+
+case $opcion in
+	Shareabilizar) shareabilizar_video "$1"
+		;;
+	No) exit 0
+		;;
+esac
+}
+
+first=$(echo -e "Placa & Mic\nPlaca\nMic\nNo Audio\nPlaca & Mic(light)\nSección Particular\nStop Screencast" | dmenu -fn "$dmenu_font" -i -p "ScreenCasting: ")
+
+case $first in
+	"Placa & Mic") ffmpeg -f x11grab -video_size 1920x1080 -framerate 30 \
+    -i "$DISPLAY" -f alsa -i pulse:"${input_monitor}" -f alsa -i pulse:${input_mic} \
+    -filter_complex "[0:v]hue=s=1[outv];[1:a][2:a]amerge=inputs=2[a]" -map '[outv]' -map "[a]" \
+    -ac 2 -r 30 -c:a libopus -b:a 48k \
+    -c:v libx264 -preset:v slow -crf 20 "$FINAL_NAME.mkv"
+		;;
+  "Placa") ffmpeg "$verbosity"\
+    -f x11grab -video_size 1920x1080 -i "$DISPLAY"\
+    -f alsa -i pulse:${input_monitor} -r 30 \
+    -c:v libx264 -crf 0 -preset slow\
+    -c:a libopus -b:a 48k\
+    "$FINAL_NAME.mkv"
+		;;
+	"Mic") ffmpeg -loglevel 0 -f x11grab -video_size 1920x1080 -framerate 30 -i "$DISPLAY"\
+    -f alsa -i pulse:${input_mic} -r 30 -c:v libx264 -preset:v fast -b:v 2000k\
+    -c:a libopus -b:a 48k "$FINAL_NAME.mkv"
+		;;
+	"No Audio") ffmpeg -loglevel 0 -f x11grab\
+    -video_size 1920x1080 -framerate 30\
+    -i "$DISPLAY" -c:v libx264 -preset:v veryfast -b:v 2000k "$FINAL_NAME.mkv"
+		;;
+	"Placa & Mic(light)") 
+    ffmpeg -loglevel 0 -f x11grab\
+      -i "$DISPLAY" -f alsa -i pulse:${input_monitor}\
+      -f alsa -i pulse:${input_mic} -filter_complex "[0:v]hue=s=1[outv];[1:a][2:a]amerge=inputs=2[a]"\
+      -map '[outv]' -map "[a]" -ac 2 -r 30\
+      -c:a libopus -b:a 48k -vcodec libx264 -profile:v baseline -level 3.0\
+      -c:a aac -pix_fmt yuv420p -crf 35 "$FINAL_NAME.mp4" || dragon-drop -x "$FINAL_NAME.mp4"
+		;;
+	"Sección Particular") notify-send "TODO"
+		;;
+	"Stop Screencast") killall ffmpeg
+		;;
+		#
+		# TODO: Hacer la "Sección Particular" (22/9/20)
+		## ESQUINA_LEFT_SUPERIOR="0,0" # ESQUINA SUPERIOR IZQUIERDA
+		## RESOLUTION="1340x1060" # TAMAÑO DE LA CAPTURA MEDIDO DESDE LEFT_SUPERIOR
+		## ffmpeg -loglevel 0 -f x11grab -framerate 50 -video_size $RESOLUTION -i :0.0+$ESQUINA_LEFT_SUPERIOR -f alsa -i pulse -r 30 -b:a 64k $FINAL_NAME
+	esac

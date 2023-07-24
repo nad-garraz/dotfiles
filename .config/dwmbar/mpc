@@ -1,0 +1,62 @@
+#!/bin/sh
+icon="🎧"
+
+musicOn () {
+	if [ "$STATUS" = "[playing]" ]; then
+		i=$(date "+%S")
+		if [ $(expr $i % 3 ) -eq 0 ]; then
+			echo -n " (🎶♫$icon♫🎶) "
+		else
+			echo -n "((♬🎶$icon🎶♬))"
+		fi
+	else
+		echo -n "$icon "
+	fi
+}
+
+dancingMan () {
+STATUS=$(mpc status | sed -n 2p | awk '{print $1;}')
+  [ "$STATUS" = "[playing]" ] &&  
+	# Dancing in its purest form.
+	if [ $(expr $1 % 2 ) -eq 0 ]; then	
+		echo "   ♪╔(・o･)╝♪♫  ♩♩♫~(◠o◠)~♫ \n" "======================================"
+	else
+		echo " ♫♪ ╚(･o・)╗ ♪  ♩~(◠0◠)~♫ ♩♫\n" "======================================"
+	fi
+}
+
+notifyInfo () {
+	local -i i=8
+	while [ $i -gt 0 ];
+	do
+    ARTIST=$(mpc current -f %artist%)
+    TRACK=$(mpc current -f %title%)
+    REPEAT=$(mpc status %repeat%)
+    sh=$(mpc status %random%)
+    read NEXT <<< $(mpc queued)
+		read now <<< $(mpc status | awk '/^\[/ { printf $3 "\t" $4}')
+		dunstify -r 213 -t 1500 "🎶$ARTIST     
+  $TRACK " " $now
+$(dancingMan $i)
+Next song: $NEXT
+ ======================================
+random: "$sh"   repeat: "$REPEAT""
+		sleep 0.8
+	  i=i-1;
+	done
+	unset i;
+}
+
+STATUS=$(mpc status | sed -n 2p | awk '{print $1;}')
+
+case $BUTTON in
+	3) notifyInfo;;
+	1) mpc -q toggle && pkill -RTMIN+1 dwmblocks;;
+	4) [ "$STATUS" = "[playing]" ] && mpc -q next;;
+	5) [ "$STATUS" = "[playing]" ] && mpc -q prev;;
+	2) setsid -f falacritty -o window.dimensions.columns=150 -o window.dimensions.lines=30 -e ncmpcpp;;
+	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0";;
+	7) mpc_dmenu;;
+esac
+
+musicOn  

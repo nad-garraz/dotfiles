@@ -1,0 +1,51 @@
+#!/bin/sh
+
+# Toggles rfkill bluetooth and wifi
+# just to save some battery.
+
+wifi="$(/usr/bin/rfkill | awk '/wlan/ { print $1 }')"
+wifiStatus="$(/usr/bin/rfkill | awk '/wlan/ { print $4 }')"
+
+bl="$(/usr/bin/rfkill | awk '/bluetooth/ { print $1 }')"
+blStatus="$(/usr/bin/rfkill | awk '/bluetooth/ { print $4 }')"
+
+echo -e "Wifi: $wifiStatus\nbl: $blStatus"
+
+toggle_wifi () {
+	case $wifiStatus in
+		unblocked) sudo /usr/bin/rfkill block $wifi &&
+      [ ! -z $(pgrep -x dunst) ] &&
+      notify-send -u low "Wifi blocked"
+			;;
+		blocked) sudo /usr/bin/rfkill unblock $wifi &&
+      [ ! -z $(pgrep -x dunst) ] &&
+      notify-send -u low "Wifi unblocked"
+			;;
+	esac
+}
+
+toggle_bl () {
+	case $blStatus in
+		unblocked) /usr/bin/bluetoothctl power off > /dev/null;
+			sudo /usr/bin/rfkill block $bl &&
+      [ ! -z $(pgrep -x dunst) ] &&
+      notify-send -u low "Bluetooth blocked"
+			;;
+		blocked) sudo /usr/bin/rfkill unblock $bl &&
+      [ ! -z $(pgrep -x dunst) ] &&
+      notify-send -u low "Bluetooth unblocked"
+			;;
+	esac
+}
+
+select choice in Wifi Bluetooth ${RED}Both${NORMAL} "exit"
+do
+	case $choice in
+		Wifi) toggle_wifi && break;;
+		Bluetooth) toggle_bl && break;;
+		${RED}Both${NORMAL}) toggle_wifi && toggle_bl && break;;
+		"exit") echo "${GREEN}Sin cambios${NORMAL}" && exit 0;;
+	esac
+done
+
+echo "Done ${RED}✔${NORMAL}"

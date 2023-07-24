@@ -1,0 +1,130 @@
+# Listar directorio
+alias la='ls -ahp'
+alias ls='ls --color=auto'
+alias lc='ls -cltahr'
+alias lsc='ls -ctar'
+alias ll='ls -lahp'
+
+# Shorcuts to used directories
+alias cds='cd ~/.local/scripts'
+alias cdc='cd ~/.config'
+alias cd2='cd ../..'
+alias cd3='cd ../../..'
+alias cd4='cd ../../../..'
+
+# Calcu
+alias bc='bc -ql'
+
+# xdg-open
+alias o='xdg-open'
+# Para ver recursos de memoria
+alias free='free -hwt'
+
+# Almanaque
+alias cal='cal -3 --color=auto'
+
+# Agrgarle colores a diff
+alias diff='colordiff'              # requires colordiff package
+
+# Color al grep
+alias grep='grep --color=auto'
+
+alias more='less'
+
+alias df='df -h'
+alias du='du -c -h'
+
+# Para que se creen los parent directories
+alias mkdir='mkdir -p -v'
+
+alias ping='ping -c 1'
+
+alias dmesg='dmesg -HL'
+
+# Safety features
+alias sudo='sudo '
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -I'
+alias ln='ln -i'
+
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+
+alias cls='echo -ne "\033c"'
+
+# wlan presentar SSID
+alias ssid='sudo iw dev wlp1s0 scan | grep -i ssid'
+
+# Actualizar los mirrors de pacman a los 100 más nuevos y más rápidos.
+alias reflector='sudo reflector --latest 25 --age 24 --verbose --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
+
+#Bluetoothcontrol
+alias bl='bluetoothctl'
+
+# PACCACHE, borra los paquetes de programas que no están
+# instalados y deja solo la última versión de los paquetes
+# que sí lo están.
+alias limpiarpaquetes="sudo paccache -rk1"
+
+# EXPAC, muestra los últimos paquetes instalados
+alias ultimospaquetes="expac --timefmt=%s '%l\t%n' | sort -n"
+
+# espeak in spanish
+alias espeak="espeak -ves-la"
+
+# Para el bare git repository
+alias bkp="/usr/bin/git --git-dir=$HOME/repos/dotfiles/ --work-tree=$HOME/" # prefijo
+alias dwmbkp="/usr/bin/git --git-dir=$HOME/repos/dwm/ --work-tree=$HOME_LOCAL/src/dwm" # prefijo
+alias dbbkp="/usr/bin/git --git-dir=$HOME/repos/dwmblocks/ --work-tree=$HOME_LOCAL/src/dwmblocks" # prefijo
+
+# MEGA
+alias megals="megatools ls --human --header --long --config=$HOME_CONFIG/megarc"
+alias megarm="megarm --config=$HOME_CONFIG/megarc"
+alias megaput="megatools put --config=$HOME_CONFIG/megarc"
+alias megacp="megatools copy --config=$HOME_CONFIG/megarc"
+alias megaget="megaget --config=$HOME_CONFIG/megarc"
+
+# VIM --> NVIM
+alias vim="nvim"
+
+# La platita
+alias guita="python /data/repos/control-guita/main.py"
+
+# Ps que tanto uso
+alias pies="pstree -apC age | grep $1"
+
+# youtube-dl audio
+alias yt="youtube-dl -i --restrict-filenames"
+alias yta="youtube-dl -i --restrict-filenames --extract-audio --audio-format mp3 --audio-quality 48K"
+
+# Para ver la cantidad de filas que hay en el directorio
+alias archivos="ls -A | awk '{rows++} END {print \"Archivos: \" rows }'"
+alias archivos-recursive="find -type f | awk '{rows++} END {print \"Archivos: \" rows }'"
+
+# NCDU tuneado
+alias ncdu="ncdu --color dark"
+
+# MPV FLOAT
+alias mpvf="\mpv --title=mpvfloat"
+alias mpv="\mpv --wid=$WINDOWID"
+#
+# Brutal Doom
+alias brutaldoom="gzdoom /data/games/doom/brutal-doom/brutalv21.pk3"
+
+# Watch
+alias watch="watch -d -n 1 -t -c"
+
+# Bandwhich usage
+alias bandwhich="sudo bandwhich -t"
+
+# SCID chess my database
+alias chess="scid /data/games/chess/my_games/mis_juegos.si4"
+
+# dragon share
+alias share="dragon-drop -x"
+alias dragon="dragon-drop"
+
+# Qr scan
+alias qr-scan="zbarcam"

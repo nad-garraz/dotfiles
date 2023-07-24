@@ -1,0 +1,19 @@
+#!/bin/sh
+
+#
+#   __ _       _      _              _           _
+#  / _(_) __ _| | ___| |_  __      _| |__   __ _| |_ ___  __ _ _ __  _ __
+# | |_| |/ _` | |/ _ \ __| \ \ /\ / / '_ \ / _` | __/ __|/ _` | '_ \| '_ \
+# |  _| | (_| | |  __/ |_   \ V  V /| | | | (_| | |_\__ \ (_| | |_) | |_) |
+# |_| |_|\__, |_|\___|\__|___\_/\_/ |_| |_|\__,_|\__|___/\__,_| .__/| .__/
+#        |___/          |_____|                               |_|   |_|
+#
+
+
+# Se escribe una frase en el DMENU que va a parar directo al clipboard
+# entre backticks para que se pueda pasar al Whatsapp
+
+
+text="$(echo '' | dmenu -fn "$dmenu_font" -p "Figletear para Whatsapp")"
+text_figleted="$(echo -e "\`\`\`$(figlet "$text")\n\`\`\`" | sed 's/[[:space:]]*$//')"
+echo -e "$text_figleted" | xclip -r -selection clipboard

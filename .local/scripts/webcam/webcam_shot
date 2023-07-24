@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# Saca una foto con la webcam y la guarda en $TARGEBASE/$TIMESTAMP
+# Muestra una notificación y hace un ruido de shutter
+
+# Variables:
+TIMESTAMP="webcam_shot-$(date "+%d-%m-%Y-%H_%M")"
+TARGETBASE="/data/pictures/webcam";
+OUT=$TARGETBASE/$TIMESTAMP.jpg
+# Mkdir if not existent
+[ ! -d $TARGETBASE ] && mkdir -p $TARGETBASE ;
+SHUTTER="/data/music/sounds/shutter.mp3"
+
+setsid -f ffmpeg -f video4linux2 -s 1024x786 -i /dev/video0 -ss 0:0:2 -frames 1 "$OUT" &
+sleep 1
+[ -n "$SHUTTER" ] && \mpv --msg-level=all=no $SHUTTER &
+action=$(dunstify -t 10000 --action="dragon-drop,picture" --action="sxiv,show" "📸 WebCam-shot" "Se guardó en: $OUT")
+case $action in
+	"dragon-drop") dragon-drop -x "$OUT"
+		;;
+	"sxiv") setsid -f "$TERMINAL" -e sxiv "$OUT"
+		;;
+esac

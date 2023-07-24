@@ -1,0 +1,35 @@
+# Most used directories
+map gsc cd ~/.local/scripts
+map gdo cd ~/documents
+map gdw cd ~/downloads
+map gpe cd ~/peliculas
+map gcv cd ~/documents/cv/nad_cv
+map gto cd /data/torrents/torrent_files
+map gda cd /data
+
+map S toggle
+
+
+# cmd open ${{
+#     case $(file --mime-type "$f" -bL) in
+#         text/*|application/json) $EDITOR "$f";;
+#         image/*/application/pdf) xdg-open "$f" & disown;;
+#         video/*) \mpv --title=mpvfloat "$f" & disown;;
+#         *) xdg-open "$f" ;;
+#     esac
+# }}
+
+
+cmd open ${{
+    case "$f" in
+        *.vim) alacritty -e nvim -S "$f";;
+        *.mp4|*.mp3|*.opus|*.mkv) mpv --title=mpvfloat "$f" & disown;;
+        *.pdf) zathura "$f";;
+        *.jpg|*.jpeg) sxiv "$f";;
+        *) alacritty -e $EDITOR "$f";;
+    esac
+}}
+
+cmd share ${{
+        parallel dragon -x '{/}' ::: "$fs"
+        }}

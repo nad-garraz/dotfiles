@@ -1,0 +1,23 @@
+#!/bin/sh
+
+#
+#  ____  _                          _     _ _ _
+# / ___|| |__   __ _ _ __ ___  __ _| |__ (_) (_)______ _ _ __
+# \___ \| '_ \ / _` | '__/ _ \/ _` | '_ \| | | |_  / _` | '__|
+#  ___) | | | | (_| | | |  __/ (_| | |_) | | | |/ / (_| | |
+# |____/|_| |_|\__,_|_|  \___|\__,_|_.__/|_|_|_/___\__,_|_|
+#
+#
+
+# Toma un video y le baja la calidad para poder compartirlo
+# más fácilmente. Le cambia el nombre y lo guarda en un directorio temporal.
+
+directorio="/tmp/share"
+[ -d "$directorio" ] || mkdir -p "$directorio"
+
+in="$1"
+out="${directorio}/$(echo "$in" | sed 's/\....$//1')-shareable.mp4"
+ffmpeg -loglevel 0 -i "$in" -vcodec libx264 -profile:v baseline -level 3.0 -c:a aac -pix_fmt yuv420p -crf 35 "$out" &&
+echo -e "Done $RED✔$NORMAL\nNuevo archivo: "$out""
+[ -f "$out" ] && dragon-drop -x "$out" &
+

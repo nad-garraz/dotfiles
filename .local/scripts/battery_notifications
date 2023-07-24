@@ -1,0 +1,62 @@
+#!/bin/bash
+
+icon="🔋"
+
+# Flag for stopping the audio notifications
+on=true
+
+mute_notifications () {
+	case "$1" in
+    choice)	eleccion=$(printf "toggle\nOff\n10m\n1h\nexit" | dmenu -fn "$dmenu_font" -p "Elegir: ")
+            case $eleccion in
+              toggle) [ "$on" = true ] && on=false || on=true; sleep 60;;
+              Off) exit 0;;
+              10m) sleep 600;;
+              1h) sleep 3600;;
+              exit) sleep 60;;
+            esac;;
+		*) sleep 60;;
+	esac
+}
+
+while true
+do
+	# Battery percentage
+	CHARGE=$(cat /sys/class/power_supply/BAT0/capacity)
+	# Charging status
+	STATUS=$(cat /sys/class/power_supply/BAT0/status)
+
+	if [ "$STATUS" = "Charging" ];
+  then
+		if [ $CHARGE -eq 100 ] && [ $on = false ];
+    then
+		  on=true;
+		elif [ $CHARGE -ge 90 ] && [ $CHARGE -lt 96 ] && [ $(expr $CHARGE % 2) -eq 0 ] && [ $on = true ];
+    then
+			action=$(dunstify -r 1234 --action="choice,label" "Cargando al $CHARGE%" "Desconectar cargador")
+		elif [ $CHARGE -ge 96 ] && [ $(expr $CHARGE % 2) -eq 0 ] && [ $on = true ];
+    then
+			action=$(dunstify -r 1234 --timeout=15000 --action="choice,label" "Carga: $CHARGE%" "Desconectar cargador")
+		fi
+	else
+		if [ $CHARGE -le 40 ] && [ $CHARGE -ge 25 ] && [ $(expr $CHARGE % 10) -eq 0 ] && [ $on = true ];
+      then
+			action=$(dunstify -r 1234 --action="choice,label" "Batería al $CHARGE%" "Conectar cargador")
+		elif [ $CHARGE -le 25 ] && [ $(expr $CHARGE % 5) -eq 0 ] && [ $on = true ];
+    then
+			action=$(dunstify -r 1234 --timeout=15000 --action="choice,label" "Carga: $CHARGE%" "Conectar cargador")
+		elif [ $CHARGE -eq 4 ];
+    then
+			dunstify -r 1234 --timeout=15000 "Carga: $CHARGE%" "¡Se suspenderá en instantes!"
+		elif [ $CHARGE -le 2 ];
+    then
+			systemctl -i suspend
+		fi
+	fi
+
+  # Para que no me atormente el aviso sonoro
+  mute_notifications $action
+
+  unset eleccion
+	unset action
+done

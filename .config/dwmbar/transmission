@@ -1,0 +1,23 @@
+#
+#!/bin/sh
+#
+
+icon="☠"
+
+toggle_list () {
+	rows=$(transmission-remote -l | wc -l)
+	pidof watch && killall watch || setsid -f falacritty -o window.dimensions.columns=170 -o window.dimensions.lines=$rows -e watch -d -n 1 -t -c transmission-remote -l
+}
+
+
+case $BUTTON in
+	1) toggle_list;;
+	3) setsid -f torrent_dmenu;;
+	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0";;
+esac
+
+# Si el transmission está prendido, muestra el icono.
+id=$(pgrep transmission-da)
+[ ! -z "$id" ] && echo -e "$icon " | tr -d "\n"; 
+
+
