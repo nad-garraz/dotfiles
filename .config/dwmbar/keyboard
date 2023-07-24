@@ -1,30 +1,59 @@
-#!/bin/sh
+#!/bin/bash
 
 #xkb_keyboard () {
 	#layout=$(setxkbmap -query | awk '/layout/{print $2}')
 	#printf "⌨:%s " "$layout"
 #}
-icon="⌨"
 print_ibus_keyboard () {
+icon="⌨"
 	layout=$(ibus engine | cut -d":" -f2)
 	case $layout in
-		us) printf "${icon}:eng ";;
-		latam) printf "${icon}:latam ";;
-		zh) printf "${icon}:中文 ";;
-		es) printf "${icon}:esp ";;
+		us) printf "%s:eng " "$icon";;
+		latam) printf "%s:latam " "${icon}";;
+		zh) printf "%s:中文 " "${icon}";;
+		es) printf "%s:esp " "${icon}";;
 	esac
 }
 
+
+ibus_keyboard_select () {
+  case "$(ibus engine | cut -d":" -f2)" in 
+    "us") k=0
+    ;;
+  "latam") k=1
+    ;;
+    "es") k=2
+    ;;
+  esac
+
+  case "$1" in 
+    "+") (( k = (++k)%3 ))
+      ;;
+    # "-") (( k = (--k)%3 ))
+    #   ;;
+  esac
+
+  case $k in
+    0) ibus engine xkb:us::eng
+    ;;
+    1) ibus engine xkb:latam::spa
+    ;;
+    2) ibus engine xkb:es::spa
+    ;;
+  esac
+	pkill -RTMIN+8 dwmblocks
+}
+
+
 ibus_keyboard_toggle () {
-    if [[ $(ibus engine | cut -d":" -f2) == "us" ]]; then
-		ibus engine xkb:latam::spa
-    elif [[ $(ibus engine | cut -d":" -f2) == "latam" ]]; then
-		ibus engine xkb:es::spa
-	else
+    if [[ $(ibus engine | cut -d":" -f2) == "latam" ]]; then
 		ibus engine xkb:us::eng
+	else
+		ibus engine xkb:latam::spa
 	fi
 	pkill -RTMIN+8 dwmblocks
 }
+
 ibus_keyboard_zh () {
 	ibus engine m17n:zh:tonepy ;
 		pkill -RTMIN+8 dwmblocks
@@ -34,6 +63,8 @@ case $BUTTON in
 	1)ibus_keyboard_toggle;;
 	3)ibus_keyboard_zh;;
   2)ibus-setup;;
+  4) ibus_keyboard_select "+";;
+  # 5) ibus_keyboard_select "-";;
 	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
