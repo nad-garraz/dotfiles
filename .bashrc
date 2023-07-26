@@ -29,7 +29,7 @@ exitstatus()
     fi
 }
 
-PS1='\[$BOLD\]\[$RED\]\u\[$RESET\] at \[$GREEN\]\w\[$RESET\]\n\[$BOLD\]\[$BLUE\]$(exitstatus)\[$RESET\]\[$BOLD\] -->\[$RESET\] '
+PS1='\[$BOLD\]\[$RED\]\u\[$RESET\]@\[$BOLD\]\[$RED\]\h\[$RESET\] \[$GREEN\]\w\[$RESET\]\n\[$BOLD\]\[$BLUE\]$(exitstatus)\[$RESET\]\[$BOLD\] -->\[$RESET\] '
 #PS1='[\u@\h \W]\$ '
 
 

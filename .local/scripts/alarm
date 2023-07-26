@@ -1,5 +1,4 @@
-#!/usr/bin/env sh
-
+#!/usr/bin/bash
 # Timer casero. Toma el primer argumento en segundos o minutos
 
 icon="⏲"
@@ -9,34 +8,32 @@ alarm_sound="$HOME/.local/reminders/sonidos/spoon.mp3"
 
 [ -e "$alarm_sound" ] ||
 {
-  notify-send -t 0 "$icon_warning No existe el archivo: $icon_warning" "$alarm_sound" ;
+    notify-send -t 0 "$icon_warning No existe el archivo: $icon_warning" "$alarm_sound"
 }
 
-convert (){
-	# Esta función se encarga de convertir el
-	# parametro de tiempo a segundos, en caso de que se haya
-	# ingresado con la unidad de minutos, e.g. "30m". De esa manera es más
-	# fácil ejecutar la cuenta regresiva.
-	long=$(echo "${#i}-1" | bc -ql) # saco el número
-	numero="${i: 0:$long}"
-	if [ "$(echo "${i: -1}")" = "m" ];
-	then
-		let i=$(echo "$numero"*60 | bc -ql)
-	fi
+convert() {
+    # Esta función se encarga de convertir el
+    # parametro de tiempo a segundos, en caso de que se haya
+    # ingresado con la unidad de minutos, e.g. "30m". De esa manera es más
+    # fácil ejecutar la cuenta regresiva.
+    long=$(echo "${#i}-1" | bc -ql) # saco el número
+    numero="${i:0:$long}"
+    if [ "${i: -1}" = "m" ]; then
+        i=$((numero * 60))
+    fi
 }
 
-presentar_tiempo () {
-# Esta función agarra el tiempo en segundos
-# y lo presenta de mejor manera.
-tiempo=$1
-	if [ $tiempo -gt 60 ]
-	then
-		minutos=$(( $tiempo / 60 ))
-		segundos=$(( $tiempo % 60 ))
-		delta="${minutos} minutos y ${segundos} segundos"
-	else
-		delta="${segundos} segundos"
-	fi
+presentar_tiempo() {
+    # Esta función agarra el tiempo en segundos
+    # y lo presenta de mejor manera.
+    tiempo=$1
+    if [ "$tiempo" -gt 60 ]; then
+        minutos=$((tiempo / 60))
+        segundos=$((tiempo % 60))
+        delta="${minutos} minutos y ${segundos} segundos"
+    else
+        delta="${segundos} segundos"
+    fi
 }
 
 convert
@@ -46,16 +43,15 @@ en_segundos="$i"
 
 hora_start=$(date "+%H:%M:%S")
 
-while [ $i -gt 0 ];
-do
-	#[ $i -gt 0 ] && [ $i -le 10 ] && dunstify -r 12 "$i"
-	[ $i -gt 0 ] && [ $i -le 10 ] && notify-send -t 1000 "$i"
-	let i=$(echo "$i-1" | bc -ql) &> /dev/null
-	sleep 1
+while [ "$i" -gt 0 ]; do
+    #[ $i -gt 0 ] && [ $i -le 10 ] && dunstify -r 12 "$i"
+    [ "$i" -gt 0 ] && [ "$i" -le 10 ] && notify-send -t 1000 "$i"
+    i=$((i - 1)) &>/dev/null
+    sleep 1
 done
 
 hora_finish=$(date "+%H:%M:%S")
-presentar_tiempo $en_segundos
+presentar_tiempo "$en_segundos"
 
 notify-send -u critical -t 0 "$icon Ya han transcurrido: ${en_segundos}s" "$hora_start -> $hora_finish"
 [ -e "$alarm_sound" ] && \mpv --msg-level=all=no "$alarm_sound"

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #
 #   ____      _             _
@@ -13,10 +13,8 @@
 # y también se copia al CLIPBOARD
 
 EQ="$(echo '' | dmenu -fn "$dmenu_font" -p "Enter calculation")"
-RESULT=$(echo  "scale=3;"$EQ"" | bc -ql)
+RESULT=$(echo  "scale=3;$EQ" | bc -ql)
 
-[ ! -z "$RESULT" ] && dunstify -u low -t 0 "$EQ = $RESULT"
+[ -n "$RESULT" ] && dunstify -u low -t 0 "$EQ = $RESULT"
 
 echo -e "$RESULT" | xclip -r -selection clipboard
-
-
