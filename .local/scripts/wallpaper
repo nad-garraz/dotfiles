@@ -6,8 +6,8 @@
 #   \ V  V / ___ \| |___| |___|  __/ ___ \|  __/| |___|  _ <
 #    \_/\_/_/   \_\_____|_____|_| /_/   \_\_|   |_____|_| \_\
 
-DIRECTORY="$HOME/pictures/wallpaper/regular_show"
-WALLPAPER="rigby_1.jpg"
+DIRECTORY="$HOME/pictures/wallpaper"
+WALLPAPER="wall.jpg"
 
 xwallpaper --stretch "$DIRECTORY/$WALLPAPER"
 #xwallpaper --center "$WALLPAPER"
