@@ -75,6 +75,7 @@ keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 -- Comment
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
 keymap("x", "<leader>/", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", opts)
+keymap("n", "<leader>sc", "<cmd> lua my_shit.see_the_fucking_comments() <CR>", opts)
 
 -- DAP
 keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
@@ -121,7 +122,7 @@ keymap('i', '<>', '<><++><Esc>F>i' ,opts)
 keymap('n', '<leader>tt', "<cmd>lua require('tildes').ToggleTildes()<enter>" ,opts)
 
 -- Yo mama
-keymap("n", "ym", "<cmd>lua print(T.pete())<cr>", opts)
+keymap("n", "ym", "<cmd>lua print(my_shit.pete())<cr>", opts)
 
 -- save and quit
 keymap("n", "wq", ":wq<enter>", opts)

@@ -3,13 +3,13 @@
 # Monitor en dwmbar
 icon="🎙"
 
-monitor_volume="$(pamixer --source 0 --get-volume)%"
+monitor_volume="$(pamixer --source 3 --get-volume)%"
 case $BUTTON in
-	1) pamixer --source 0 -t && pkill -RTMIN+6 dwmblocks
+	1) pamixer --source 3 -t && pkill -RTMIN+6 dwmblocks
 		;;
-	4) pamixer --source 0 -i 2 && pkill -RTMIN+6 dwmblocks
+	4) pamixer --source 3 -i 2 && pkill -RTMIN+6 dwmblocks
 		;;
-	5) pamixer --source 0 -d 2 && pkill -RTMIN+6 dwmblocks
+	5) pamixer --source 3 -d 2 && pkill -RTMIN+6 dwmblocks
 		;;
 	3) notify-send -t 10000 "$icon Monitor module" "Monitor Vol: $monitor_volume
 --------------------------
@@ -22,7 +22,7 @@ Left click - Mute toggle"
 		;;
 esac
 
-monitor_muted=$(pamixer --source 0 --get-mute)
+monitor_muted=$(pamixer --source 3 --get-mute)
 
 if [ $monitor_muted = true ]
 then

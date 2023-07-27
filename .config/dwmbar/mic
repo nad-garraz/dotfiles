@@ -3,13 +3,13 @@
 # Micrófono y Monitor en dwmbar
 icon="🎙"
 
-mic_volume="$(pamixer --source 1 --get-volume)%"
+mic_volume="$(pamixer --source 5 --get-volume)%"
 case $BUTTON in
-	1) pamixer --source 1 -t
+	1) pamixer --source 5 -t && pkill -RTMIN+17 dwmblocks;
 		;;
-	4) pamixer --source 1 -i 2
+	4) pamixer --source 5 -i 2 && pkill -RTMIN+17 dwmblocks;
 		;;
-	5) pamixer --source 1 -d 2
+	5) pamixer --source 5 -d 2 && pkill -RTMIN+17 dwmblocks;
 		;;
 	3) notify-send -t 10000 "$icon Mic module" "Mic Vol: $mic_volume
 --------------------------
@@ -22,7 +22,7 @@ Left click - Mute toggle"
 		;;
 esac
 
-mic_muted=$(pamixer --source 1 --get-mute)
+mic_muted=$(pamixer --source 5 --get-mute)
 
 if [ $mic_muted = true ]
 then

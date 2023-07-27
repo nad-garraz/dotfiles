@@ -14,16 +14,17 @@ temp="$HOME/.local/share/temp_now"
 #icons
 snow_icon="⛄"
 sun_icon="🌞"
+
 isOldAndIsInet () {
 		# Update solo con inet y si el último update son más viejos que la edad objetivo
 		#showweather;
 		ping -q -c 1 1.1.1.1 >/dev/null 2>&1 &&
     { [ -f "$temp" ] &&
-      [ $(expr $(date "+%s") - $(stat -c %Y "$temp")) -ge 1800 ] &&
-      find $temp -delete;
+      [ $(( $(date "+%s") - $(stat -c %Y "$temp"))) -ge 1800 ] &&
+      find "$temp" -delete;
       [ -f "$weatherreport" ] &&
-        [ $(expr $(date "+%s") - $(stat -c %Y "$weatherreport")) -ge 3600 ] &&
-      find $weatherreport -delete;
+        [ $(( $(date "+%s") - $(stat -c %Y "$weatherreport"))) -ge 1800 ] &&
+      find "$weatherreport" -delete;
     }
 }
 
@@ -39,29 +40,29 @@ showweather() {
 }
 
 getforecast() {
-	[ ! -e $weatherreport ] && touch $weatherreport;
+	[ ! -e "$weatherreport" ] && touch "$weatherreport";
 		{
-      [ -z "$(cat $weatherreport)" ] || isOldAndIsInet;
+      [ -z "$(cat "$weatherreport")" ] || isOldAndIsInet;
     } &&
 		curl -sf "wttr.in/$LOCATION" > "$weatherreport" &&
 		uptime="$(LANG=es_AR.UTF-8 date -d "$(stat -c %y "$weatherreport")" '+%A %-d/%-m at %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1')" &&
-		echo -e "${RED}Last update: ${uptime}${NORMAL}" >> $weatherreport
+		echo -e "${RED}Last update: ${uptime}${NORMAL}" >> "$weatherreport"
 }
 
 getTemperaturaActual () {
-	[ ! -e $temp ] && touch $temp;
+	[ ! -e "$temp" ] && touch "$temp";
 	{
-    [ -z "$(cat $temp)" ] || isOldAndIsInet;
+    [ -z "$(cat "$temp")" ] || isOldAndIsInet;
   } &&
-  echo -e "<b>Temperatura</b>: $(curl -s wttr.in/${LOCATION}?format=1)" > $temp &&
+  echo -e "<b>Temperatura</b>: $(curl -s wttr.in/${LOCATION}?format=1)" > "$temp" &&
   uptime="$(LANG=es_AR.UTF-8 date -d "$(stat -c %y "$temp")" '+%A %-d/%-m at %-H:%M' |
   sed 's|^\([a-z]\{2,\}\)|\u\1|1')" &&
-  echo -e "<b>Last update:</b>\n${uptime}" >> $temp;
+  echo -e "<b>Last update:</b>\n${uptime}" >> "$temp";
 }
 
 
 case $BUTTON in
-	1) notify-send "🌈 Weather module" "$(cat $temp)";;
+	1) notify-send "🌈 Weather module" "$(cat "$temp")";;
 	2) getTemperaturaActual; getforecast && notify-send -t 2000 "⛅ Refreshing...";;
 	3) setsid -f falacritty -o window.dimensions.columns=125 -o window.dimensions.lines=45 -e less -Srf "$weatherreport";;
 	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0";;
