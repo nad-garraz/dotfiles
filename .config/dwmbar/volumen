@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 case $BUTTON in
     1) setsid -f falacritty -e pulsemixer ;;
@@ -11,14 +11,13 @@ case $BUTTON in
     6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-[ $(pamixer --get-mute) = true ] && echo -n "🔇" && pkill -RTMIN+17 dwmblocks && exit
+[ "$(pamixer --get-mute)" = true ] && echo -n "🔇" && pkill -RTMIN+17 dwmblocks && exit
 
 vol="$(pamixer --get-volume)"
 
 if [ "$vol" -gt "70" ]; then icon="🔊"
 elif [ "$vol" -lt "30" ]; then icon="🔈"
-else
-    icon="🔉"
+else icon="🔉";
 fi
 
-echo -n "$icon $vol% ";
+echo -n "$icon$vol ";

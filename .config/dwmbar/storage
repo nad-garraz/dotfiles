@@ -10,7 +10,7 @@ echo -e "Data:
 $(parallel \du -hs --exclude=""*.pyc"" --exclude="$HOME" '{}' ::: $(\du -h /data -d 1 | head -n -2 | cut -f2 | tr '\n' ' ') | head -n -1 | sort -rh)
 -------------------
 Home:
-$(\du -hs --exclude *.pyc ~)
+$(\du -hs --exclude -- *glob*.pyc ~)
 -------------------
 System:
 $(\du -hs --exclude *.pyc --exclude /home/* --exclude /data --exclude /media --exclude /proc / 2> /dev/null)"
@@ -26,6 +26,6 @@ case $BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-printf "$icon %s " "$USED"
+printf "$icon%s " "$USED"
 
 #$(\du -hs --exclude *.pyc --exclude /home $(\du -h /data -d 1 | head -n -2 | cut -f2 | tr '\n' ' ') | head -n -1 | sort -rh)

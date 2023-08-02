@@ -1,51 +1,42 @@
-#!/bin/sh
+#!/bin/bash
 #
+PLUG_icon='󰚥'
 # Battery percentage
 CHARGE=$(cat /sys/class/power_supply/BAT0/capacity)
 # Charging status
 STATUS=$(cat /sys/class/power_supply/BAT0/status)
 # Battery icon
 battery_icon() {
-  if (( charge == 100 )); then
-    printf '%s' "󰂃"
-  elif (( charge >= 90 )); then
-    printf '%s' "󰂂"
-  elif (( charge >= 80 )); then
-    printf '%s' "󰂁"
-  elif (( charge >= 70 )); then
-    printf '%s' "󰂀"
-  elif (( charge >= 60 )); then
-    printf '%s' "󰁿"
-  elif (( charge >= 50 )); then
-    printf '%s' "󰁾"
-  elif (( charge >= 40 )); then
-    printf '%s' "󰁽"
-  elif (( charge >= 30 )); then
-    printf '%s' "󰁼"
-  elif (( charge >= 20 )); then
-    printf '%s' "󰁻"
-  else
-    printf '%s' "󰁺";
-  fi
+    if (( CHARGE == 100 )); then printf '%s' "󰂃";
+    elif (( CHARGE >= 90 )); then printf '%s' "󰂂"
+    elif (( CHARGE >= 80 )); then printf '%s' "󰂁"
+    elif (( CHARGE >= 70 )); then printf '%s' "󰂀"
+    elif (( CHARGE >= 60 )); then printf '%s' "󰁿"
+    elif (( CHARGE >= 50 )); then printf '%s' "󰁾"
+    elif (( CHARGE >= 40 )); then printf '%s' "󰁽"
+    elif (( CHARGE >= 30 )); then printf '%s' "󰁼"
+    elif (( CHARGE >= 20 )); then printf '%s' "󰁻"
+    else printf '%s' "󰁺";
+    fi
 }
-bat_ico=$(battery_icon)
 
-
-if [ ! "$STATUS" = "Discharging" ]; then
-	printf "🔌%s%% " "$CHARGE"
-else
-  printf "$bat_ico %s " "$CHARGE"
-fi
 
 batt_life=$(acpi -V | sed '2q;d')
 batt_temp=$(acpi -V | grep degrees | sed '1q;d' | cut -d" " -f4)
 
 
 case $BUTTON in
-  1) notify-send -t 15000 "Info batería $bat_ico" "Estado: $STATUS
+    1) notify-send -t 15000 "Info batería $(battery_icon)" "Estado: $STATUS
 Carga: $CHARGE%
 Time: $(acpi | cut -d"," -f3 | sed 's/^ //')
 Vida Útil: $(echo "$batt_life" | cut -d" " -f13 | tr -d " ")
-Temperatura: $(echo "$batt_temp" | cut -d" " -f13 | tr -d " ")";;
-	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+Temperatura: $(echo "$batt_temp" | cut -d" " -f13 | tr -d " ")" ;;
+    6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
+
+
+if [ ! "$STATUS" = "Discharging" ]; then
+    printf "%s%s " "$PLUG_icon" "$CHARGE"
+else
+    printf "%s%s " "$(battery_icon)" "$CHARGE";
+fi

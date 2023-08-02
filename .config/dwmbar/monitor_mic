@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Monitor en dwmbar
-icon="🎙"
+icon=""
 
 monitor_volume="$(pamixer --source 3 --get-volume)%"
 case $BUTTON in
@@ -28,6 +28,6 @@ if [ $monitor_muted = true ]
 then
 	echo -n "-" | tr -d " " | tr -d "\n"
 else
-	echo -n "$icon:$monitor_volume" | tr -d " " | tr -d "\n"
+	echo -n "$icon$monitor_volume" | tr -d " " | tr -d "\n"
 fi
 
