@@ -1,5 +1,7 @@
 #!/bin/sh
 
+ICON=;
+
 # Porcentaje de RAM usada
 read tot used <<< $(\free | awk '/Mem/ { printf $2" "$3 "\n"}')
 MEM=$(echo $used/$tot*100 | bc -l)
@@ -12,7 +14,7 @@ CPU=$(echo $LOAD/$CPUS*100 | bc -l)
 # CPU temperature
 TEMP=$(sensors | grep Package | cut -d" " -f5 | sed 's|\+\(.*\)\.[0-9]\(.\)C$|\1\2|')
 
-printf "💻:%.0f%%,%s,%.0f%% " "$CPU" "$TEMP" "$MEM" | sed 's|\n$||g';
+printf "%s %.0f%%,%s,%.0f%% " "$ICON" "$CPU" "$TEMP" "$MEM" | sed 's|\n$||g';
 
 case $BUTTON in
 	1) setsid -f falacritty -o window.dimensions.columns=80 -o window.dimensions.lines=35 -e top -d 8 -u $(id -u);;

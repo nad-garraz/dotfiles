@@ -2,8 +2,8 @@
 
 # Used and total storage in /home (rounded to 1024B)
 USED=$(\du -chs --exclude="*.pyc" --exclude="$HOME/.local/cache/yay/*" "$HOME" /data | cut -f1 | tail -1)
-icon="💾"
-icon2="💽"
+icon=""
+icon2="󰋊"
 
 getSizes () {
 echo -e "Data:
@@ -26,6 +26,6 @@ case $BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-printf "$icon:%s " "$USED"
+printf "$icon %s " "$USED"
 
 #$(\du -hs --exclude *.pyc --exclude /home $(\du -h /data -d 1 | head -n -2 | cut -f2 | tr '\n' ' ') | head -n -1 | sort -rh)

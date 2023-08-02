@@ -67,6 +67,9 @@ export HISTCONTROL="ignoredups:erasedups"
 export HISTSIZE=10000
 export HISTFILESIZE=10000
 
+# NODE JS
+export NODE_REPL_HISTORY="$HOME_CONFIG/node/node_history"
+
 # Less file history
 export LESSHISTFILE="/dev/null"
 

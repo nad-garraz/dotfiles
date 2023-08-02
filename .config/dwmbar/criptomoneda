@@ -8,10 +8,10 @@ update_interval=1200
 
 # Currencies should be ;-separated:
 # human-readable name;urlname;icon
-coins="Bitcoin;btc;💰
+coins="Bitcoin;btc;
 EOSIO;eos;🍸
 NZD;nzd;🇳🇿
-EUR;eur;🇪🇺
+EUR;eur;
 "
 
 # Directory where currency info is stored.
@@ -91,4 +91,4 @@ isOldAndIsInet && getprices;
 		# 		[ ! -z "$info" ] && echo -n "$info";
 		# 		#[ ! -z "$info" ] && printf "%s " "$info" | sed 's|\n$||g';
 		# done
-    echo -n "💰 ";
+    echo -n " ";

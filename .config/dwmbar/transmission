@@ -2,7 +2,7 @@
 #!/bin/sh
 #
 
-icon="☠"
+icon="󰚌"
 
 toggle_list () {
 	rows=$(transmission-remote -l | wc -l)

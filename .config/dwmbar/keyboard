@@ -5,13 +5,13 @@
 	#printf "⌨:%s " "$layout"
 #}
 print_ibus_keyboard () {
-icon="⌨"
+icon=" "
 	layout=$(ibus engine | cut -d":" -f2)
 	case $layout in
-		us) printf "%s:eng " "$icon";;
-		latam) printf "%s:latam " "${icon}";;
-		zh) printf "%s:中文 " "${icon}";;
-		es) printf "%s:esp " "${icon}";;
+		us) printf "%seng " "$icon";;
+		latam) printf "%slatam " "${icon}";;
+		zh) printf "%s中文 " "${icon}";;
+		es) printf "%sesp " "${icon}";;
 	esac
 }
 

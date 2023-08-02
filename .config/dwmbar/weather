@@ -12,8 +12,8 @@ weatherreport="${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport"
 temp="$HOME/.local/share/temp_now"
 
 #icons
-snow_icon="⛄"
-sun_icon="🌞"
+snow_icon=""
+sun_icon=""
 
 isOldAndIsInet () {
 		# Update solo con inet y si el último update son más viejos que la edad objetivo
@@ -30,12 +30,12 @@ isOldAndIsInet () {
 
 showweather() {
 	printf "%s " "$(sed '16q;d' "$weatherreport" |
-	grep -wo "[0-9]*%" | sort -rn | sed "s/^/☔:/g;1q" | tr -d '\n')";
+	grep -wo "[0-9]*%" | sort -rn | sed "s/^/☔ /g;1q" | tr -d '\n')";
 	sed '13q;d' "$weatherreport" |
   grep -o "m\\([-+]\\)*[0-9]\\+" |
   sort -n -t 'm' -k 2n | sed -e 1b -e '$!d' |
   tr '\n|m' ' ' |
-  awk '{ print "⛄"$1"°""🌞"$2"°" }' |
+  awk '{ print "⛄"$1"°""🌞"$2"° "}' |
   tr -d '\n' ;
 }
 
