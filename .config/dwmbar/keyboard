@@ -5,7 +5,7 @@
 	#printf "⌨:%s " "$layout"
 #}
 print_ibus_keyboard () {
-icon=" "
+icon=""
 	layout=$(ibus engine | cut -d":" -f2)
 	case $layout in
 		us) printf "%seng " "$icon";;

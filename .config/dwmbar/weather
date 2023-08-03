@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #LOCATION="42.134028,-123.639673" # Cave Junction OR, USA
 #LOCATION="-34.559136,-58.463755" # CABA
@@ -8,68 +8,75 @@
 LOCATION="39.485487,-0.3612157" # Valencia, Benimaclet
 
 # Variables
-weatherreport="${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport"
-temp="$HOME/.local/share/temp_now"
+weatherReport="${XDG_DATA_HOME:-$HOME/.local/share}/weatherReport"
+temp_data="${XDG_DATA_HOME:-$HOME/.local/share}/temp_data.json"
 
 #icons
-snow_icon=""
-sun_icon=""
+sun_icon=$(curl wttr.in/Valencia?format=%c)
 
 isOldAndIsInet () {
-		# Update solo con inet y si el último update son más viejos que la edad objetivo
-		#showweather;
-		ping -q -c 1 1.1.1.1 >/dev/null 2>&1 &&
-    { [ -f "$temp" ] &&
-      [ $(( $(date "+%s") - $(stat -c %Y "$temp"))) -ge 1800 ] &&
-      find "$temp" -delete;
-      [ -f "$weatherreport" ] &&
-        [ $(( $(date "+%s") - $(stat -c %Y "$weatherreport"))) -ge 1800 ] &&
-      find "$weatherreport" -delete;
+    # Update solo con inet y si el último update son más viejos que la edad objetivo
+    ping -q -c 1 1.1.1.1 >/dev/null 2>&1 &&
+    { [ -f "$temp_data" ] &&
+        [ $(( $(date "+%s") - $(stat -c %Y "$temp_data"))) -ge 600 ] && find "$temp_data" -delete;
+        [ -f "$weatherReport" ] &&
+        [ $(( $(date "+%s") - $(stat -c %Y "$weatherReport"))) -ge 600 ] && find "$weatherReport" -delete;
     }
 }
 
-showweather() {
-	printf "%s " "$(sed '16q;d' "$weatherreport" |
-	grep -wo "[0-9]*%" | sort -rn | sed "s/^/☔ /g;1q" | tr -d '\n')";
-	sed '13q;d' "$weatherreport" |
-  grep -o "m\\([-+]\\)*[0-9]\\+" |
-  sort -n -t 'm' -k 2n | sed -e 1b -e '$!d' |
-  tr '\n|m' ' ' |
-  awk '{ print "⛄"$1"°""🌞"$2"° "}' |
-  tr -d '\n' ;
+langDate() {
+    LANG=es_AR.UTF-8 date -d "$(stat -c %y "$1")" '+%A %-d/%-m at %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1'
 }
 
 getforecast() {
-	[ ! -e "$weatherreport" ] && touch "$weatherreport";
-		{
-      [ -z "$(cat "$weatherreport")" ] || isOldAndIsInet;
+    [ ! -e "$weatherReport" ] && touch "$weatherReport";
+    {
+        [ -z "$(cat "$weatherReport")" ] || isOldAndIsInet;
     } &&
-		curl -sf "wttr.in/$LOCATION" > "$weatherreport" &&
-		uptime="$(LANG=es_AR.UTF-8 date -d "$(stat -c %y "$weatherreport")" '+%A %-d/%-m at %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1')" &&
-		echo -e "${RED}Last update: ${uptime}${NORMAL}" >> "$weatherreport"
+    curl -sf "v2d.wttr.in/$LOCATION" > "$weatherReport" &&
+    uptime="$(langDate "$weatherReport")" && echo -e "${RED}Last update: ${uptime}${NORMAL}" >> "$weatherReport"
 }
 
-getTemperaturaActual () {
-	[ ! -e "$temp" ] && touch "$temp";
-	{
-    [ -z "$(cat "$temp")" ] || isOldAndIsInet;
-  } &&
-  echo -e "<b>Temperatura</b>: $(curl -s wttr.in/${LOCATION}?format=1)" > "$temp" &&
-  uptime="$(LANG=es_AR.UTF-8 date -d "$(stat -c %y "$temp")" '+%A %-d/%-m at %-H:%M' |
-  sed 's|^\([a-z]\{2,\}\)|\u\1|1')" &&
-  echo -e "<b>Last update:</b>\n${uptime}" >> "$temp";
+getData () {
+    [ ! -e "$temp_data" ] && touch "$temp_data";
+    [ -z "$(cat "$temp_data")" ] || isOldAndIsInet &&
+    curl -s wttr.in/${LOCATION}?format=j1 | jq '.current_condition[0] * .weather[0].astronomy[0]' > "$temp_data";
 }
 
+show () {
+    parJQ () { jq -r "$1" "$temp_data"; }
+    feelsLike=$(parJQ ".FeelsLikeC")
+    temp_C=$(parJQ ".temp_C")
+    humidity=$(parJQ ".humidity")
+    cloudCover=$(parJQ ".cloudcover")
+    uvIndex=$(parJQ ".uvIndex")
+    weatherDesc=$(parJQ ".weatherDesc[0].value")
+    moon_phase=$(parJQ ".moon_phase")
+    moonrise=$(parJQ ".moonrise")
+    sunrise=$(parJQ ".sunrise")
+    sunset=$(parJQ ".sunset")
+    localObsDateTime=$(parJQ ".localObsDateTime")
+    dunstify "$sun_icon Weather: $weatherDesc" "Feels like: $feelsLike°C ($temp_C°C)
+Humidity: $humidity%
+Cloud cover: $cloudCover%
+UV Index: $uvIndex
+===============
+Moon Phase: $moon_phase
+Moon Rise: $moonrise
+Sun Rise: $sunrise
+Sun Set: $sunset
+==============
+<b>Last update:</b>\n$localObsDateTime";
+}
 
 case $BUTTON in
-	1) notify-send "🌈 Weather module" "$(cat "$temp")";;
-	2) getTemperaturaActual; getforecast && notify-send -t 2000 "⛅ Refreshing...";;
-	3) setsid -f falacritty -o window.dimensions.columns=125 -o window.dimensions.lines=45 -e less -Srf "$weatherreport";;
-	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0";;
+    1) show ;;
+    3) setsid -f falacritty -o window.dimensions.columns=74 -o window.dimensions.lines=45 -e less -Srf "$weatherReport" ;;
+    6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-[ ! -e "$weatherreport" ] && touch "$weatherreport" && getforecast
-[ ! -e "$temp" ] && touch "$temp"&& getTemperaturaActual
+[ ! -e "$weatherReport" ] && touch "$weatherReport" && getforecast
+[ ! -e "$temp_data" ] && touch "$temp_data"&& getData
 
-isOldAndIsInet && getforecast && getTemperaturaActual;
-showweather
+isOldAndIsInet && getforecast && getData;
+printf '%s' "$sun_icon"

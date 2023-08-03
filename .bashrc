@@ -82,7 +82,7 @@ man() {
 }
 
 # Command not found helper
-source /usr/share/doc/pkgfile/command-not-found.bash
+source /usr/share/doc/find-the-command/ftc.bash noprompt quiet
 
 # FZF
 source /usr/share/fzf/key-bindings.bash

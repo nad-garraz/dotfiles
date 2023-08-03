@@ -4,7 +4,7 @@
 # también horarios y temperaturas
 # internacionales
 
-icon="󰥔 "
+icon="󰥔"
 
 dir="$HOME/.local/share/cities"
 [ ! -d "$dir" ] && mkdir "$dir"
