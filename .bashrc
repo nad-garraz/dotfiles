@@ -123,4 +123,5 @@ export QT_IM_MODULE=ibus
 eval "$(register-python-argcomplete pmbootstrap)"
 
 complete -cf sudo
+complete -cf git
 

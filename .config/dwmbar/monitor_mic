@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Monitor en dwmbar
 icon=""
@@ -24,9 +24,9 @@ esac
 
 monitor_muted=$(pamixer --source 3 --get-mute)
 
-if [ $monitor_muted = true ]
+if [[ "$monitor_muted" == true ]]
 then
-	echo -n "-" | tr -d " " | tr -d "\n"
+	echo "" | tr -d " " | tr -d "\n"
 else
 	echo -n "$icon$monitor_volume" | tr -d " " | tr -d "\n"
 fi

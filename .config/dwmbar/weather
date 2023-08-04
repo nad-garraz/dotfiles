@@ -11,31 +11,30 @@ LOCATION="39.485487,-0.3612157" # Valencia, Benimaclet
 weatherReport="${XDG_DATA_HOME:-$HOME/.local/share}/weatherReport"
 temp_data="${XDG_DATA_HOME:-$HOME/.local/share}/temp_data.json"
 
-#icons
-sun_icon=$(curl -s wttr.in/Valencia?format=%c)
+howOldIsTheFile() {
+ echo $(( $(date "+%s") - $(stat -c %Y "$1") ))
+}
 
 isOldAndIsInet () {
-    # Update solo con inet y si el último update son más viejos que la edad objetivo
-    ping -q -c 1 1.1.1.1 >/dev/null 2>&1 &&
+    # If true delete files if false nothing happens
+    ping -q -c 1 wttr.in >/dev/null 2>&1 &&
     { [ -f "$temp_data" ] &&
-        [ $(( $(date "+%s") - $(stat -c %Y "$temp_data"))) -ge 3600 ] && find "$temp_data" -delete;
-        [ -f "$weatherReport" ] &&
-        [ $(( $(date "+%s") - $(stat -c %Y "$weatherReport"))) -ge 3600 ] && find "$weatherReport" -delete;
+      [ -s "$temp_data" ] && [ -s "$weatherReport" ] &&
+      [ "$(howOldIsTheFile "$temp_data")" -ge "3600" ] && find "$temp_data" -delete;
     }
 }
+
+# Get icon if there is inet
+if [ ! "$(isOldAndIsInet)" ]; then bar_icon=$(curl -s wttr.in/$LOCATION?format=%c | tr -d " ")
+fi
+
 
 langDate() {
     LANG=es_AR.UTF-8 date -d "$(stat -c %y "$1")" '+%A %-d/%-m at %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1'
 }
 
-getforecast() {
-    [ ! -e "$weatherReport" ] && touch "$weatherReport";
-    {
-        [ -z "$(cat "$weatherReport")" ] || isOldAndIsInet;
-    } &&
-    curl -sf "v2d.wttr.in/$LOCATION" |
-    head -n -1 > "$weatherReport" && uptime="$(langDate "$weatherReport")" &&
-    echo -e "${RED}Last update: ${uptime}${NORMAL}" >> "$weatherReport"
+getWeatherReport() {
+  ! isOldAndIsInet && curl -sf "v2d.wttr.in/$LOCATION" | head -n -1 > "$weatherReport"
 }
 
 getData () {
@@ -57,7 +56,7 @@ show () {
     sunrise=$(parJQ ".sunrise")
     sunset=$(parJQ ".sunset")
     localObsDateTime=$(parJQ ".localObsDateTime")
-    dunstify -t 0 "$sun_icon Weather: $weatherDesc" "Feels like: $feelsLike°C ($temp_C°C)
+    dunstify -t 0 "$bar_icon Weather: $weatherDesc" "Feels like: $feelsLike°C ($temp_C°C)
 Humidity: $humidity%
 Cloud cover: $cloudCover%
 UV Index: $uvIndex
@@ -72,13 +71,13 @@ $localObsDateTime";
 }
 
 case $BUTTON in
-    1) show;;
+    1) show ;;
     3) setsid -f falacritty -o window.dimensions.columns=74 -o window.dimensions.lines=47 -e less -Srf "$weatherReport" ;;
     6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-[ ! -e "$weatherReport" ] && touch "$weatherReport" && getforecast
+[ ! -e "$weatherReport" ] && touch "$weatherReport" && getWeatherReport
 [ ! -e "$temp_data" ] && touch "$temp_data"&& getData
 
-isOldAndIsInet && getforecast && getData;
-printf '%s' "$sun_icon"
+isOldAndIsInet && getWeatherReport && getData;
+printf '%s ' "$bar_icon"

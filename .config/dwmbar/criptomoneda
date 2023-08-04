@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #++++++++++++++++++++++++++++++++
 ## Variables
@@ -9,21 +9,17 @@ update_interval=1200
 # Currencies should be ;-separated:
 # human-readable name;urlname;icon
 coins="Bitcoin;btc;
-EOSIO;eos;🍸
 NZD;nzd;🇳🇿
 EUR;eur;
 "
 
 # Directory where currency info is stored.
 dir="$HOME/.local/share/crypto-prices"
+# Lo crea si no existe
+[ ! -d "$dir" ] && mkdir -p "$dir";
 
 # Last modification of $dir string
 uptime="$(LANG=es_AR.UTF-8 date -d "$(stat -c %y "$dir")" '+%A %-d/%-m a las %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1')";
-
-# Lo crea si no existe
-[ ! -d "$dir" ] && mkdir -p "$dir";
-[ ! "$(ls -A "$dir")" ] ;
-
 
 #++++++++++++++++++++++++++++++++
 ## Funciones
@@ -38,22 +34,13 @@ isOldAndIsInet () {
 # Para acortar los números no significativos.
 formatPrice () {
 	digitos="$(echo -n "$1" | cut -d"." -f1 | wc -c)"
-	if [ "$digitos" -ge 4 ];
-	then
-		printf "%.0f" "$1"
-	else
-		printf "%.2f" "$1"
-	fi
+	[ "$digitos" -ge 4 ] && printf "%.0f" "$1" || printf "%.2f" "$1"
 }
 
 getprices() {
-	notify-send "💸 Getting data";
 	{ echo -n "$coins" |
     while IFS=';' read -r human web icon;
     do
-		curl -s "rate.sx/$web@3d" > "$dir"/"$web".graph &&
-			echo -e -n "${RED}Last update${NORMAL}" >> "$dir"/"$web".graph &&
-			# echo -e "${RED}Last update${NORMAL}: $uptime" >> "$dir"/"$web".graph &&
 			val="$(forx -f "$web" usd)" &&
 			valBar="$(formatPrice "$val")" &&
 			echo -n "$icon;$valBar;$val;$human;" > "$dir/$web.data"
@@ -63,15 +50,10 @@ getprices() {
 			pkill -RTMIN+5 dwmblocks;
 			}
 
-
 	case $BUTTON in
-		1)	uptime="$(date -d "$(stat -c %y "$dir")" '+%-d/%-m a las %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1')" ;
-		  dunstify -t 10000 "Last update: $uptime" "$(awk -F';' '{print $1, $4 ":\n$" $3}' "$dir"/*.data)"
-;;
-		2) isOldAndIsInet && getprices ;;
-		3) setsid -f falacritty -o window.dimensions.columns=86 -o window.dimensions.lines=40 -e less -qfr "$(find "$dir" -name "*.graph" ! -name "nzd*" | tr "\n" " ")";;
+		 1) dunstify -t 10000 "$(awk -F';' '{print $1, $4 ":\n$" $3}' "$dir"/*.data)" "Last update: $uptime";;
 		6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
 	esac
 
 isOldAndIsInet && getprices;
-    echo -n "󰇁 ";
+echo -n "󰇁 ";

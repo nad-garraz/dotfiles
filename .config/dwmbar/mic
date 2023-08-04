@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Micrófono y Monitor en dwmbar
 icon=""
@@ -22,11 +22,11 @@ Left click - Mute toggle"
 		;;
 esac
 
-mic_muted=$(pamixer --source 5 --get-mute)
+mic_muted=$(pamixer --source 5 --get-mute | tr -d "\n")
 
-if [ $mic_muted = true ]
+if [[ "$mic_muted" == true ]]
 then
-	echo -n "- "
+	echo -n " "
 else
 	echo -n "$icon$mic_volume "
 fi
