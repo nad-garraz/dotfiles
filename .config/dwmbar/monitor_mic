@@ -6,26 +6,19 @@ icon_mute=""
 
 monitor_volume="$(pamixer --source 3 --get-volume)%"
 case $BUTTON in
-	1) pamixer --source 3 -t && pkill -RTMIN+6 dwmblocks
+	1) pamixer --source 3 -t && pkill -RTMIN+18 dwmblocks
 		;;
-	4) pamixer --source 3 -i 2 && pkill -RTMIN+6 dwmblocks
+	4) pamixer --source 3 -i 2 && pkill -RTMIN+18 dwmblocks
 		;;
-	5) pamixer --source 3 -d 2 && pkill -RTMIN+6 dwmblocks
+	5) pamixer --source 3 -d 2 && pkill -RTMIN+18 dwmblocks
 		;;
-	3) notify-send -t 10000 "$icon Monitor module" "Monitor Vol: $monitor_volume
---------------------------
-Shows "-" if muted.
-Shows "$icon" if not muted
---------------------------
-Left click - Mute toggle"
-;;
 	6) "$TERMINAL" -e "$EDITOR" "$0"
 		;;
 esac
 
-monitor_muted=$(pamixer --source 3 --get-mute)
+monitor_muted=$(pamixer --source 3 --get-mute | tr -d "\n")
 
-if [[ "$monitor_muted" == true ]]
+if [ "$monitor_muted" == "true" ]
 then
 	printf "%s" "$icon_mute"
 else

@@ -4,6 +4,16 @@
 icon=""
 icon_mute="" 
 mic_volume="$(pamixer --source 5 --get-volume)%"
+
+mic_muted=$(pamixer --source 5 --get-mute | tr -d "\n")
+
+if [ "$mic_muted" == "true" ]
+then
+	printf "%s " "$icon_mute" | tr -d "\n"
+else
+	printf "%s%s " "$icon" "$mic_volume" | tr -d "\n"
+fi
+
 case $BUTTON in
 	1) pamixer --source 5 -t && pkill -RTMIN+17 dwmblocks;
 		;;
@@ -11,22 +21,7 @@ case $BUTTON in
 		;;
 	5) pamixer --source 5 -d 2 && pkill -RTMIN+17 dwmblocks;
 		;;
-	3) notify-send -t 10000 "$icon Mic module" "Mic Vol: $mic_volume
---------------------------
-Shows "-" if muted.
-Shows "$icon" if not muted
---------------------------
-Left click - Mute toggle"
-;;
 	6) "$TERMINAL" -e "$EDITOR" "$0"
 		;;
 esac
 
-mic_muted=$(pamixer --source 5 --get-mute | tr -d "\n")
-
-if [[ "$mic_muted" == true ]]
-then
-	printf "%s " "$icon_mute"
-else
-	printf "%s%s " "$icon" "$mic_volume"
-fi

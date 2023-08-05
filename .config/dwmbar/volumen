@@ -1,24 +1,30 @@
 #!/bin/bash
 
-
-[ ! "$(pamixer --get-mute)" ] &&\
-  echo -n "🔇" &&\
-  pkill -RTMIN+6 dwmblocks &&\
-  exit
+mute_icon="󰝟"
+loud_icon=""
+medium_icon=""
+low_icon=""
 
 vol="$(pamixer --get-volume)"
 
-if [ "$vol" -gt "70" ]; then icon=""
-elif [ "$vol" -lt "30" ]; then icon=""
-else icon="";
+# Print to dwmbar
+if [ "$(pamixer --get-mute)" == "true" ];
+then
+    printf "%s " "$mute_icon" | tr -d "\n"
+else
+    if [ "$vol" -gt "70" ]; then current_icon="$loud_icon";
+    elif [ "$vol" -lt "30" ]; then current_icon="$low_icon";
+    else current_icon="$medium_icon";
+    fi
+    printf '%s%s ' "$current_icon" "$vol" | tr -d "\n"
 fi
 
-printf "%s%s" "$icon" "$vol "
 
 case $BUTTON in
     1) setsid -f falacritty -e pulsemixer ;;
-    2) pamixer -t ;;
+    3) pamixer -t && pkill -RTMIN+6 dwmblocks  ;;
     4) pamixer --allow-boost -i 3 && pkill -RTMIN+6 dwmblocks ;;
     5) pamixer --allow-boost -d 3 && pkill -RTMIN+6 dwmblocks ;;
     6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
+

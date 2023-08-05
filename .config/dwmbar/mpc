@@ -4,9 +4,9 @@ icon2='󰟎'
 
 musicOn () {
     if [ "$STATUS" = "[playing]" ]; then
-        printf "%s" " $icon  "
+        printf "%s" " $icon  " | tr -d "\n"
     else
-        printf "%s" "$icon2 "
+        printf "%s" "$icon2 " | tr -d "\n"
     fi
 }
 

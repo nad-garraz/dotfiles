@@ -26,6 +26,4 @@ case $BUTTON in
 	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-printf "$icon%s " "$USED"
-
-#$(\du -hs --exclude *.pyc --exclude /home $(\du -h /data -d 1 | head -n -2 | cut -f2 | tr '\n' ' ') | head -n -1 | sort -rh)
+printf "$icon%s " "$USED" | tr -d "\n"
