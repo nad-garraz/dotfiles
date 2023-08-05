@@ -2,6 +2,7 @@
 
 # Monitor en dwmbar
 icon=""
+icon_mute="" 
 
 monitor_volume="$(pamixer --source 3 --get-volume)%"
 case $BUTTON in
@@ -26,8 +27,7 @@ monitor_muted=$(pamixer --source 3 --get-mute)
 
 if [[ "$monitor_muted" == true ]]
 then
-	echo "" | tr -d " " | tr -d "\n"
+	printf "%s" "$icon_mute"
 else
-	echo -n "$icon$monitor_volume" | tr -d " " | tr -d "\n"
+	printf "%s%s " "$icon" "$monitor_volume"
 fi
-

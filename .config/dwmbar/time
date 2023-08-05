@@ -67,4 +67,4 @@ case $BUTTON in
 esac
 
 # Texto para mostrar en la barra
-printf "$clock_icon%s " "$(date "+%-H:%M")"
+printf "%s%s " "$clock_icon" "$(date "+%-H:%M")"

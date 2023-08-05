@@ -1,11 +1,12 @@
 #!/bin/sh
 icon="󰋋"
 icon2='󰟎'
+
 musicOn () {
     if [ "$STATUS" = "[playing]" ]; then
-        echo -n " $icon  "
+        printf "%s" " $icon  "
     else
-        echo -n "$icon2 "
+        printf "%s" "$icon2 "
     fi
 }
 
@@ -54,4 +55,5 @@ case $BUTTON in
     7) mpc_dmenu ;;
 esac
 
+# Status bar
 musicOn

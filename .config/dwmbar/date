@@ -36,4 +36,4 @@ esac
 
 # Texto para mostrar en la barra
 # printf "$icon%s " "$(LANG=es_AR.UTF-8 date "+%a%-d/%-m" | sed 's|^\([a-z]*\)|\u\1|1')"
-printf "$icon%s " "$(LANG=es_AR.UTF-8 date "+%a%-d" | sed 's|^\([a-z]*\)|\u\1|1')"
+printf "%s%s " "$icon" "$(LANG=es_AR.UTF-8 date "+%a%-d" | sed 's|^\([a-z]*\)|\u\1|1')"

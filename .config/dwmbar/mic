@@ -2,7 +2,7 @@
 
 # Micrófono y Monitor en dwmbar
 icon=""
-
+icon_mute="" 
 mic_volume="$(pamixer --source 5 --get-volume)%"
 case $BUTTON in
 	1) pamixer --source 5 -t && pkill -RTMIN+17 dwmblocks;
@@ -26,8 +26,7 @@ mic_muted=$(pamixer --source 5 --get-mute | tr -d "\n")
 
 if [[ "$mic_muted" == true ]]
 then
-	echo -n " "
+	printf "%s " "$icon_mute"
 else
-	echo -n "$icon$mic_volume "
+	printf "%s%s " "$icon" "$mic_volume"
 fi
-

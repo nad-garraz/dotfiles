@@ -1,14 +1,10 @@
 #!/bin/bash
 
-case $BUTTON in
-    1) setsid -f falacritty -e pulsemixer ;;
-    2) pamixer -t ;;
-    4) pamixer --allow-boost -i 3 && pkill -RTMIN+6 dwmblocks ;;
-    5) pamixer --allow-boost -d 3 && pkill -RTMIN+6 dwmblocks ;;
-    6) "$TERMINAL" -e "$EDITOR" "$0" ;;
-esac
 
-[ ! "$(pamixer --get-mute)" ] && echo -n "🔇" && pkill -RTMIN+6 dwmblocks && exit
+[ ! "$(pamixer --get-mute)" ] &&\
+  echo -n "🔇" &&\
+  pkill -RTMIN+6 dwmblocks &&\
+  exit
 
 vol="$(pamixer --get-volume)"
 
@@ -17,4 +13,12 @@ elif [ "$vol" -lt "30" ]; then icon=""
 else icon="";
 fi
 
-echo -n "$icon$vol ";
+printf "%s%s" "$icon" "$vol "
+
+case $BUTTON in
+    1) setsid -f falacritty -e pulsemixer ;;
+    2) pamixer -t ;;
+    4) pamixer --allow-boost -i 3 && pkill -RTMIN+6 dwmblocks ;;
+    5) pamixer --allow-boost -d 3 && pkill -RTMIN+6 dwmblocks ;;
+    6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
