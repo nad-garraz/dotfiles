@@ -1,46 +1,38 @@
 #!/bin/bash
 
-#LOCATION="42.134028,-123.639673" # Cave Junction OR, USA
-#LOCATION="-34.559136,-58.463755" # CABA
-# LOCATION="41.367,2.135" # Barcelona
-# LOCATION="36.79243,-6.31457" # Sanlúcar
-# LOCATION="39.474153,-0.377866" # Valencia
-LOCATION="39.485487,-0.3612157" # Valencia, Benimaclet
 
 # Variables
 weatherReport="${XDG_DATA_HOME:-$HOME/.local/share}/weatherReport"
 temp_data="${XDG_DATA_HOME:-$HOME/.local/share}/temp_data.json"
 
 howOldIsTheFile() {
- echo $(( $(date "+%s") - $(stat -c %Y "$1") ))
+    echo $(( $(date "+%s") - $(stat -c %Y "$1") ))
 }
 
-isOldAndIsInet () {
+areFilesOK () {
     # If true delete files if false nothing happens
     ping -q -c 1 wttr.in >/dev/null 2>&1 &&
     { [ -f "$temp_data" ] &&
-      [ -s "$temp_data" ] && [ -s "$weatherReport" ] &&
-      [ "$(howOldIsTheFile "$temp_data")" -ge "3600" ] && find "$temp_data" -delete;
+        [ -s "$temp_data" ] && [ -s "$weatherReport" ] &&
+        [ "$(howOldIsTheFile "$temp_data")" -ge "3600" ] && 
+        find "$temp_data" "$weatherReport" -delete;
     }
 }
-
-# Get icon if there is inet
-if [ ! "$(isOldAndIsInet)" ]; then bar_icon=$(curl -s wttr.in/$LOCATION?format=%c | tr -d " ")
-fi
-
 
 langDate() {
     LANG=es_AR.UTF-8 date -d "$(stat -c %y "$1")" '+%A %-d/%-m at %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1'
 }
 
 getWeatherReport() {
-  ! isOldAndIsInet && curl -sf "v2d.wttr.in/$LOCATION" | head -n -1 > "$weatherReport"
+  # If file is empty or isOld then get new info parsed in json format
+    [ ! -s "$weatherReport" ] || areFilesOK &&
+    curl -sf "v2d.wttr.in/$LOCATION" | head -n -1 > "$weatherReport"
 }
 
 getData () {
-    [ ! -e "$temp_data" ] && touch "$temp_data";
-    [ -z "$(cat "$temp_data")" ] || isOldAndIsInet &&
-    curl -s wttr.in/${LOCATION}?format=j1 | jq '.current_condition[0] * .weather[0].astronomy[0]' > "$temp_data";
+  # If file is empty or isOld then get new info parsed in json format
+    [ ! -s "$temp_data" ] || areFilesOK &&
+    curl -sf "wttr.in/$LOCATION?format=j1" | jq '.current_condition[0] * .weather[0].astronomy[0]' > "$temp_data";
 }
 
 show () {
@@ -56,7 +48,8 @@ show () {
     sunrise=$(parJQ ".sunrise")
     sunset=$(parJQ ".sunset")
     localObsDateTime=$(parJQ ".localObsDateTime")
-    dunstify -t 0 "$bar_icon Weather: $weatherDesc" "Feels like: $feelsLike°C ($temp_C°C)
+
+    dunstify -t 10000 "$bar_icon Weather: $weatherDesc" "Feels like: $feelsLike°C ($temp_C°C)
 Humidity: $humidity%
 Cloud cover: $cloudCover%
 UV Index: $uvIndex
@@ -70,14 +63,21 @@ Sun Set: $sunset
 $localObsDateTime";
 }
 
+# Get icon if there is inet
+! areFilesOK && bar_icon=$(curl -sf "wttr.in/$LOCATION?format=%c" | tr -d " ")
+
+
 case $BUTTON in
-    1) show ;;
-    3) setsid -f falacritty -o window.dimensions.columns=74 -o window.dimensions.lines=47 -e less -Srf "$weatherReport" ;;
+    1) getData;
+        show ;;
+    3) getWeatherReport;
+        setsid -f falacritty -o window.dimensions.columns=74\
+            -o window.dimensions.lines=47 -e less -Srf "$weatherReport" ;;
     6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-[ ! -e "$weatherReport" ] && touch "$weatherReport" && getWeatherReport
-[ ! -e "$temp_data" ] && touch "$temp_data"&& getData
+# [ ! -e "$weatherReport" ] && getWeatherReport
+# [ ! -e "$temp_data" ] && getData
 
-isOldAndIsInet && getWeatherReport && getData;
+! areFilesOK && getWeatherReport && getData;
 printf '%s ' "$bar_icon"

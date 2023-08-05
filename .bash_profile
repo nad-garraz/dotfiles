@@ -1,46 +1,50 @@
 # ~/.bash_profile
 
-    [[ -f "$HOME/.bashrc" ]] && . "$HOME/.bashrc"
-    [[ -d $HOME/.local/bin ]] && PATH="$HOME/.local/bin:$PATH"
-    [[ -d $HOME/.local/scripts ]] && PATH="$(du "$HOME/.local/scripts" | cut -f2 | tr '\n' ':' | sed 's/:*$//'):$PATH"
+[[ -f "$HOME/.bashrc" ]] && . "$HOME/.bashrc"
+[[ -d $HOME/.local/bin ]] && PATH="$HOME/.local/bin:$PATH"
+[[ -d $HOME/.local/scripts ]] && PATH="$(du "$HOME/.local/scripts" | cut -f2 | tr '\n' ':' | sed 's/:*$//'):$PATH"
 
 
 
-      ## PARA QUE EL FAF LEVANTE LA VERSION CORRECTA DE JAVA
-      # ver la variable en /usr/bin/downlords-faf-client
-    # export INSTALL4J_JAVA_HOME="/usr/lib/jvm/java-15-adoptopenjdk"
+## PARA QUE EL FAF LEVANTE LA VERSION CORRECTA DE JAVA
+# ver la variable en /usr/bin/downlords-faf-client
+# export INSTALL4J_JAVA_HOME="/usr/lib/jvm/java-15-adoptopenjdk"
 
 
-    # Terminal
-    export TERMINAL="alacritty"
-    export TERM="xterm"
-    export BROWSER="brave"
+# Terminal
+export TERMINAL="alacritty"
+export TERM="xterm"
+export BROWSER="brave"
 
-    # Colores
-    export BOLD="$(tput bold)"
-    export BLACK="$(tput setaf 0)"
-    export RED="$(tput setaf 1)"
-    export GREEN="$(tput setaf 2)"
-    export YELLOW="$(tput setaf 3)"
-    export BLUE="$(tput setaf 4)"
-    export MAGENTA="$(tput setaf 5)"
-    export CYAN="$(tput setaf 6)"
-    export WHITE="$(tput setaf 7)"
-    export DIM="$(tput dim)"
-    export NORMAL="$(tput sgr0)"
+# Colores
+# export BOLD="$(tput bold)"
+# export BLACK="$(tput setaf 0)"
+# export RED="$(tput setaf 1)"
+# export GREEN="$(tput setaf 2)"
+# export YELLOW="$(tput setaf 3)"
+# export BLUE="$(tput setaf 4)"
+# export MAGENTA="$(tput setaf 5)"
+# export CYAN="$(tput setaf 6)"
+# export WHITE="$(tput setaf 7)"
+# export DIM="$(tput dim)"
+# export NORMAL="$(tput sgr0)"
 
 
-    # Most commonly used paths
-    export HOME="/home/nad"
-    export HOME_CONFIG="$HOME/.config"
-    export HOME_LOCAL="$HOME/.local"
-    export HOME_SCRIPTS="$HOME_LOCAL/scripts"
-    export HOME_ICONS="$HOME_LOCAL/icons"
-    export DWMBAR="$HOME_CONFIG/dwmbar"
-    export LOGS="$HOME_LOCAL/my_logs"
+# Most commonly used paths
+export HOME="/home/nad"
+export HOME_CONFIG="$HOME/.config"
+export HOME_LOCAL="$HOME/.local"
+export HOME_SCRIPTS="$HOME_LOCAL/scripts"
+export HOME_ICONS="$HOME_LOCAL/icons"
+export DWMBAR="$HOME_CONFIG/dwmbar"
+export LOGS="$HOME_LOCAL/my_logs"
 
 # Wise
-# source $HOME/documents/tokens
+source $HOME/documents/tokens
+
+# locations
+source $HOME/documents/locations
+
 
 # Xorg config directory
 export XORGCONFIG="$HOME_LOCAL/share/xorg"
