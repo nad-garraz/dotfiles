@@ -1,5 +1,7 @@
 #!/bin/sh
 icon=""
+
+
 # Creo el archivo con el calendario
 calendar="${XDG_DATA_HOME:-$HOME/.local/share}/calendar"
 calendar_last="${XDG_DATA_HOME:-$HOME/.local/share}/calendar_last"

@@ -32,7 +32,7 @@ getWeatherReport() {
 getData () {
   # If file is empty or isOld then get new info parsed in json format
     [ ! -s "$temp_data" ] || areFilesOK &&
-    curl -sf "wttr.in/$LOCATION?format=j1" | jq '.current_condition[0] * .weather[0].astronomy[0]' > "$temp_data";
+    curl -sf "wttr.in/$LOCATION?format=j2" | jq '.current_condition[0] * .weather[0].astronomy[0]' > "$temp_data";
 }
 
 show () {

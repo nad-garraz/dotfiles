@@ -56,7 +56,7 @@ case $first in
     -c:a libopus -b:a 48k "$FINAL_NAME.mkv"
 		;;
 	"No Audio") ffmpeg -loglevel 0 -f x11grab\
-    -video_size 1920x1080 -framerate 30\
+    -video_size 2240x1400 -framerate 30\
     -i "$DISPLAY" -c:v libx264 -preset:v veryfast -b:v 2000k "$FINAL_NAME.mkv"
 		;;
 	"Placa & Mic(light)") 

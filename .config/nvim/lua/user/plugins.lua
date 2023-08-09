@@ -99,6 +99,9 @@ return packer.startup(function(use)
   use { "rcarriga/nvim-dap-ui", commit = "1cd4764221c91686dcf4d6b62d7a7b2d112e0b13" }
   use { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" }
 
+  -- rainbow-delimiters
+  use { "HiPhish/rainbow-delimiters.nvim", commit = "8c6697b293d44b9bbbbdcf37e200cd01c9b66355" }
+
   -- HOP
   use { "phaazon/hop.nvim", commit = "6591b3656b75ff313cc38dc662a7ee8f75f1c165" }
 

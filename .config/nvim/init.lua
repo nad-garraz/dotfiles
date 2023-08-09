@@ -21,6 +21,7 @@ require "user.alpha"
 require "user.lsp"
 require "user.dap"
 require "user.tildes_setup"
+require "user.rainbow-delimiters"
 
 -- my stuff
 require "user.hop"
