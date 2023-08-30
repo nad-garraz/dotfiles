@@ -4,7 +4,7 @@
 ## Variables
 #++++++++++++++++++++++++++++++++
 
-update_interval=1200
+update_interval=10
 
 # Currencies should be ;-separated:
 # human-readable name;urlname;icon
@@ -31,27 +31,19 @@ isOldAndIsInet () {
 		[ $(expr $(date "+%s") - $(stat -c %Y "$dir")) -ge $update_interval ] && touch -m "$dir";
 	}
 
-# Para acortar los números no significativos.
-formatPrice () {
-	digitos="$(echo -n "$1" | cut -d"." -f1 | wc -c)"
-	[ "$digitos" -ge 4 ] && printf "%.0f" "$1"  | tr -d "\n" || printf "%.2f" "$1"  | tr -d "\n"
-}
-
 getprices() {
 	{ echo -n "$coins" |
     while IFS=';' read -r human web icon;
     do
-			val="$(forx -f "$web" usd)" &&
-			valBar="$(formatPrice "$val")" &&
-			echo -n "$icon;$valBar;$val;$human;" > "$dir/$web.data"
+      val=$(printf "%.3f" "$(forx -f "$web" usd)") &&
+			echo -n "$icon;$val;$human;" > "$dir/$web.data"
 		done;
-				sleep 1
 				} &
 			pkill -RTMIN+5 dwmblocks;
 			}
 
 	case $BUTTON in
-      1) dunstify -t 10000 "$(awk -F';' '{print $1, $4 ":\n$" $3}' "$dir"/*.data)" "Last update: $uptime";;
+      1) dunstify -t 10000 "$(awk -F';' '{print $1, $3 ":\n$" $2}' "$dir"/*.data)" "Last update:\n$uptime";;
       6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
 	esac
 

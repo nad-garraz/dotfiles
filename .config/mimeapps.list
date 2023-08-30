@@ -15,6 +15,7 @@ text/plain=text.desktop
 text/x-tex=text.desktop
 application/epub=ebook.desktop
 x-scheme-handler/tg=org.telegram.desktop.desktop
+x-scheme-handler/postman=Postman.desktop
 
 [Added Associations]
 x-scheme-handler/tg=userapp-Telegram Desktop-C1QDX0.desktop;userapp-Telegram Desktop-QGZHL1.desktop;userapp-Telegram Desktop-TLP7V1.desktop;org.telegram.desktop.desktop;

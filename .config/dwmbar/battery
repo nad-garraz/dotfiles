@@ -22,15 +22,14 @@ battery_icon() {
 
 
 batt_life=$(acpi -V | sed '2q;d')
-batt_temp=$(acpi -V | grep degrees | sed '1q;d' | cut -d" " -f4)
 
 
 case $BUTTON in
     1) notify-send -t 15000 "Info batería $(battery_icon)" "Estado: $STATUS
 Carga: $CHARGE%
 Time: $(acpi | cut -d"," -f3 | sed 's/^ //')
-Vida Útil: $(echo "$batt_life" | cut -d" " -f13 | tr -d " ")
-Temperatura: $(echo "$batt_temp" | cut -d" " -f13 | tr -d " ")" ;;
+Vida Útil: $(echo "$batt_life" | cut -d" " -f13 | tr -d " ")"
+;;
     6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 

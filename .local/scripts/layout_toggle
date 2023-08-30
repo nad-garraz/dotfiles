@@ -1,11 +1,18 @@
-#!/usr/bin/sh
+#!/usr/bin/bash
 
 # Cambiar el layout del teclado si usar el IBUS
 current_engine=$(ibus engine | cut -d: -f2)
+toggle () {
+    if [[ ! "$current_engine" == "us" ]]; then
+        ibus engine xkb:us::eng;
+    else
+        ibus engine xkb:latam::spa;
+    fi
+}
+
 case $1 in
-  "toggle")  [ "$current_engine" = "latam" ] && ibus engine xkb:us::eng ||\
-    ibus engine xkb:latam::spa ;;
-  "zh") ibus engine m17n:zh:tonepy;;
-  "spa") ibus engine xkb:es::spa;;
+    "toggle")  toggle ;;
+    "zh") ibus engine m17n:zh:tonepy ;;
+    "spa") ibus engine xkb:es::spa ;;
 esac
 pkill -RTMIN+8 dwmblocks

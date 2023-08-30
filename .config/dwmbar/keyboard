@@ -13,7 +13,7 @@ icon=""
 }
 
 ibus_keyboard_toggle () {
-    if [[ $layout == "latam" ]] || [[ $layout == "zh" ]]; then
+    if [[ ! $layout == "us" ]]; then
 		ibus engine xkb:us::eng
 	else
 		ibus engine xkb:latam::spa

@@ -33,7 +33,7 @@ keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Clear highlights
-keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
+keymap("n", "noh", "<cmd>nohlsearch<CR>", opts)
 
 -- Close buffers
 keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
@@ -63,11 +63,12 @@ keymap("n", "<leader>ms", "<cmd>lua require('nvim-tree.api').marks.navigate.sele
 keymap("n", "<c-\\>", ":ToggleTerm<CR>", opts)
 
 -- -- Telescope
-keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts) 
+keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 keymap("n", "<leader>fr", ":Telescope oldfiles<CR>", opts)
+keymap("n", "<leader>fkk", ":Telescope keymaps<CR>", opts)
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
@@ -75,7 +76,7 @@ keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 -- Comment
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
 keymap("x", "<leader>/", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", opts)
-keymap("n", "<leader>sc", "<cmd> lua my_shit.see_the_fucking_comments() <CR>", opts)
+keymap("n", "<leader>sc", "<cmd> lua My_shit.see_the_fucking_comments() <CR>", opts)
 
 -- DAP
 keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
@@ -88,11 +89,12 @@ keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
 keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
 keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
 
--- Lsp
-keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
+-- FORMATTER
+keymap("n", "<leader>lf", "<cmd>Format<cr>", opts)
 
 -- Substitute visual selected
-keymap("v", "<leader><leader>s", "\"hy:%s/<C-r>h//gc<left><left><left>")
+keymap("v", "<leader>ss", "\"hy:%s/<c-r>h//gc<left><left><left>")
+keymap("n", "<leader>sw", "viw\"hy:%s/<c-r>=expand('<cword>')<cr>//gc<left><left><left>")
 
 -- Tabs/buffers
 keymap("n", "<leader>1", "<cmd>BufferLineGoToBuffer 1<cr>", opts)
@@ -122,7 +124,7 @@ keymap('i', '<>', '<><++><Esc>F>i' ,opts)
 keymap('n', '<leader>tt', "<cmd>lua require('tildes').ToggleTildes()<enter>" ,opts)
 
 -- Yo mama
-keymap("n", "ym", "<cmd>lua print(my_shit.pete())<cr>", opts)
+keymap("n", "ym", "<cmd>lua print(My_shit.pete())<cr>", opts)
 
 -- save and quit
 keymap("n", "wq", ":wq<enter>", opts)

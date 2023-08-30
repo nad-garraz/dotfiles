@@ -17,17 +17,28 @@ export TERM="xterm"
 export BROWSER="brave"
 
 # Colores
-# export BOLD="$(tput bold)"
-# export BLACK="$(tput setaf 0)"
-# export RED="$(tput setaf 1)"
-# export GREEN="$(tput setaf 2)"
-# export YELLOW="$(tput setaf 3)"
-# export BLUE="$(tput setaf 4)"
-# export MAGENTA="$(tput setaf 5)"
-# export CYAN="$(tput setaf 6)"
-# export WHITE="$(tput setaf 7)"
-# export DIM="$(tput dim)"
-# export NORMAL="$(tput sgr0)"
+BOLD="$(tput bold)"
+export BOLD 
+BLACK="$(tput setaf 0)"
+export BLACK
+RED="$(tput setaf 1)"
+export RED
+GREEN="$(tput setaf 2)"
+export GREEN
+YELLOW="$(tput setaf 3)"
+export YELLOW
+BLUE="$(tput setaf 4)"
+export BLUE
+MAGENTA="$(tput setaf 5)"
+export MAGENTA
+CYAN="$(tput setaf 6)"
+export CYAN
+WHITE="$(tput setaf 7)"
+export WHITE
+DIM="$(tput dim)"
+export DIM
+NORMAL="$(tput sgr0)"
+export NORMAL
 
 
 # Most commonly used paths
@@ -90,5 +101,5 @@ export DOOMWADDIR="/data/games/doom/wads/:/data/games/doom/bkp-wads"
 export GNUPGHOME="$HOME/.local/.gnupg"
 
 # Timezone
-TZ='Europe/Madrid'
+TZ='America/Argentina/Buenos_Aires'
 export TZ

@@ -1,4 +1,4 @@
-local status_ok, tt = pcall(require,tildes)
+local status_ok, tt = pcall(require, 'tildes')
 if not status_ok then
   return
 end

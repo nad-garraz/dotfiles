@@ -28,7 +28,7 @@ areFilesOld () {
 
 # Prints temperature to $2
 getTemp() {
-    curl -sf "wttr.in/$1?format=%f\(%t\)" > "$2"
+    curl --max-time 2 -sf "wttr.in/$1?format=%f\(%t\)" > "$2"
 }
 
 # Update depending on "areFilesOld" result the .temperature files

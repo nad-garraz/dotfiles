@@ -16,14 +16,14 @@
 
 vf () {
 # Abrir un archivo de text usando el fuzzy finder con el $EDITOR
-archivo=$(find /data/documents $HOME -type f -a ! -name "*.mp4" -a ! -name "*.so" -a ! -name "*.jpeg" -a ! -name "*.png" -a ! -name "*.faforever*" | fzf --height=30 -x);
+archivo=$(find -L /data/documents $HOME -type f -a ! -name "*.mp4" -a ! -name "*.so" -a ! -name "*.jpeg" -a ! -name "*.png" -a ! -name "*.faforever*" | fzf --height=30 -x);
 [ ! -z $archivo ] && $EDITOR $archivo;
 unset archivo
 }
 
 vs(){
 # Abrir una sesion de vim usando el fuzzy finder con el $EDITOR
-	find $HOME -name "*.vim" | fzf | xargs -r -I % $EDITOR -S % ;
+	find -L $HOME -name "*.vim" | fzf | xargs -r -I % $EDITOR -S % ;
 }
 
 rvs () {
@@ -64,7 +64,7 @@ ipif() {
 	if grep -P "(([1-9]\d{0,2})\.){3}(?2)" <<< "$1"; then
 		curl ipinfo.io/"$1"
 	else
-		ipawk=($(host "$1" | awk '/address/ { print $NF }'))
+		# ipawk=($(host "$1" | awk '/address/ { print $NF }'))
 		curl ipinfo.io/${ipawk[1]}
 	fi
 	echo

@@ -12,11 +12,11 @@ howOldIsTheFile() {
 areFilesOK () {
     # If true delete files if false nothing happens
     ping -q -c 1 wttr.in >/dev/null 2>&1 &&
-    { [ -f "$temp_data" ] &&
-        [ -s "$temp_data" ] && [ -s "$weatherReport" ] &&
-        [ "$(howOldIsTheFile "$temp_data")" -ge "3600" ] && 
-        find "$temp_data" "$weatherReport" -delete;
-    }
+    [ -f "$temp_data" ] && [ -s "$temp_data" ] && 
+    [ -s "$weatherReport" ] && 
+    [ "$(howOldIsTheFile "$temp_data")" -ge "3600" ] &&
+    find "$temp_data" "$weatherReport" -delete;
+    
 }
 
 langDate() {
@@ -24,15 +24,15 @@ langDate() {
 }
 
 getWeatherReport() {
-  # If file is empty or isOld then get new info parsed in json format
+    # If file is empty or isOld then get new info parsed in json format
     [ ! -s "$weatherReport" ] || areFilesOK &&
-    curl -sf "v2d.wttr.in/$LOCATION" | head -n -1 > "$weatherReport"
+    curl --max-time 5 -sf "v2d.wttr.in/$LOCATION" | head -n -1 > "$weatherReport" &
 }
 
 getData () {
-  # If file is empty or isOld then get new info parsed in json format
+    # If file is empty or isOld then get new info parsed in json format
     [ ! -s "$temp_data" ] || areFilesOK &&
-    curl -sf "wttr.in/$LOCATION?format=j2" | jq '.current_condition[0] * .weather[0].astronomy[0]' > "$temp_data";
+    curl --max-time 5 -sf "wttr.in/$LOCATION?format=j2" | jq '.current_condition[0] * .weather[0].astronomy[0]' > "$temp_data" &
 }
 
 show () {
@@ -64,15 +64,16 @@ $localObsDateTime";
 }
 
 # Get icon if there is inet
-! areFilesOK && bar_icon=$(curl -sf "wttr.in/$LOCATION?format=%c" | tr -d " ")
+bar_icon=$(curl --max-time 3 -sf "wttr.in/$LOCATION?format=%c" | tr -d " ")
 
 
 case $BUTTON in
     1) getData;
         show ;;
+    2) find "$temp_data" "$weatherReport" -delete ; getData; getWeatherReport ;;
     3) getWeatherReport;
         setsid -f falacritty -o window.dimensions.columns=74\
-            -o window.dimensions.lines=47 -e less -Srf "$weatherReport" ;;
+            -o window.dimensions.lines=47 -e less -Srf "$weatherReport" & ;;
     6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
@@ -80,4 +81,9 @@ esac
 # [ ! -e "$temp_data" ] && getData
 
 ! areFilesOK && getWeatherReport && getData;
-printf '%s ' "$bar_icon"
+if [[ ${#bar_icon} -gt 3 || ${#bar_icon} == 0 ]]
+then
+    printf '%s ' "N/A"
+  else
+    printf '%s ' "$bar_icon"
+fi

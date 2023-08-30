@@ -1,4 +1,4 @@
-local t = {}
+T = {}
 
 --Tildes
 -- Initialize toggleVariable
@@ -52,7 +52,7 @@ function TildesOff()
 end
 
 -- Toggle functionality
-function t.ToggleTildes()
+function T.ToggleTildes()
 	if (TILDESOn == 0) then
 		Tildes()
 	else
@@ -60,4 +60,4 @@ function t.ToggleTildes()
 	end
 end
 
-return t
+return T

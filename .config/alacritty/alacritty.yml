@@ -7,9 +7,11 @@ window:
 # Font configuration
 font:
   normal:
+    family: "FZKTPY06,方正楷体拼音字库06"
     family: "DaddyTimeMono"
     family: "HackNerdFont"
     family: "FantasqueSansM Nerd Font Mono"
+
     style: Regular
 
   bold:

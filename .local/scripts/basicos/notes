@@ -22,7 +22,7 @@ elif [[ "$1" == "-s" ]]; then
 elif [[ "$1" == "-r" ]]; then
 	# buscar palabra en las notas y borrar la linea correspondiente.
 	target=$(grep "^☛" "$ARCHIVO" | dmenu -i -fn "$dmenu_font" -l 20 -p "¿Cuál borrás?")
-	if [[ ! -z $target ]]
+	if [[ -n $target ]]
 	then
 		linea=$(grep -F -n "$target" "$ARCHIVO" | cut -d : -f1 | head -1)
 		linea2=$(echo "$linea-1" | bc -ql)
