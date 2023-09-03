@@ -28,6 +28,8 @@ alias diff='colordiff'              # requires colordiff package
 
 # Color al grep
 alias grep='grep --color=auto'
+# Color ip
+alias ip='ip -color=auto'
 
 alias more='less'
 
@@ -92,6 +94,9 @@ alias vim="nvim"
 # La platita
 alias guita="python /data/repos/control-guita/main.py"
 
+# Tree
+alias tree="tree -C"
+
 # Ps que tanto uso
 alias pies="pstree -apC age | grep $1"
 
@@ -128,3 +133,6 @@ alias dragon="dragon-drop"
 
 # Qr scan
 alias qr-scan="zbarcam"
+
+# Parallel
+alias parallel="parallel --color"

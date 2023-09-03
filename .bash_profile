@@ -87,6 +87,9 @@ export NODE_REPL_HISTORY="$HOME_CONFIG/node/node_history"
 
 # Less file history
 export LESSHISTFILE="/dev/null"
+# Coloring manpages
+export MANPAGER="less -R --use-color -Dd+r -Du+b"
+export MANROFFOPT="-P -c"
 
 # MPC Library
 export MPCLIBRARY="/data/music"

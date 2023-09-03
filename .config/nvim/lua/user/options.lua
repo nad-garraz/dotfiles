@@ -10,6 +10,7 @@ local options = {
 	hlsearch = true, -- highlight all matches on previous search pattern
 	ignorecase = true, -- ignore case in search patterns
 	mouse = "a", -- allow the mouse to be used in neovim
+  mousemoveevent = true, -- for buffeline events
 	pumheight = 10, -- pop up menu height
 	showmode = false, -- we don't need to see things like -- INSERT -- anymore
 	showtabline = 0, -- always show tabs
@@ -50,6 +51,9 @@ vim.opt.shortmess:append("c") -- hide all the completion messages, e.g. "-- XXX 
 for key, value in pairs(options) do
 	vim.opt[key] = value
 end
+
+vim.opt.list = true
+vim.opt.listchars:append("eol:↴") -- appends that char to the end of line
 
 vim.opt.whichwrap:append("<,>,[,],h,l") -- keys allowed to move to the previous/next line when the beginning/end of line is reached
 vim.opt.iskeyword:append("-") -- treats words with `-` as single words

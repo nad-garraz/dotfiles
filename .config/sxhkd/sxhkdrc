@@ -30,7 +30,7 @@ super + q
 	apagar_dmenu
 
 # Bloquea la pantalla
-super + backslash
+super + Delete
 	slock
 
 # Volumen control

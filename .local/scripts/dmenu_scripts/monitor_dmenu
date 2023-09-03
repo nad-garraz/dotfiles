@@ -4,28 +4,25 @@
 # EN EL PUERTO HDMI
 
 
-LAPTOP=$(xrandr | grep "primary" | cut -d" " -f1);
-MONITOR=$(xrandr | grep "HDM*" | head -n1 | cut -d" " -f1);
+LAPTOP=$(xrandr | grep -w "connected" | grep -w "primary" | cut -d" " -f1);
+MONITOR=$(xrandr | grep -w "connected" | grep -E "^DP*|HDM*" | head -n1 | cut -d" " -f1);
 
-first_choice=`echo -e "Dual\nSingle" | dmenu -fn "$dmenu_font" -i -p '¿Qué opción querés?'`
+first_choice=$(echo -e "Dual\nSingle" | dmenu -fn "$dmenu_font" -i -p '¿Qué opción querés?')
 
 case $first_choice in
-	Dual) second_choice=`echo -e "Derecha\nIzquierda\nAdelante" | dmenu -fn "$dmenu_font" -i -p '¿Dónde está el segundo monitor?'`
+	Dual) second_choice=$(echo -e "Derecha\nIzquierda\nAdelante" | dmenu -fn "$dmenu_font" -i -p '¿Dónde está el segundo monitor?')
 		;;
-	Single) second_choice=`echo -e "Laptop\nMonitor" | dmenu -fn "$dmenu_font" -i -p '¿Dónde querés la imagen?'`
+	Single) second_choice=$(echo -e "Laptop\nMonitor" | dmenu -fn "$dmenu_font" -i -p '¿Dónde querés la imagen?')
 		;;
 esac
 
 
 case $second_choice in
-	Derecha) xrandr --output $LAPTOP --auto --output $MONITOR --auto --right-of $LAPTOP
-		;;
-	Izquierda) xrandr --output $LAPTOP --auto --output $MONITOR --auto --left-of $LAPTOP
-		;;
-	Adelante) xrandr --output $LAPTOP --auto --output $MONITOR --auto --above $LAPTOP
-		;;
-	Laptop) xrandr --output $LAPTOP --auto --output $MONITOR --off
-		;;
-	Monitor) xrandr --output $LAPTOP --off --output $MONITOR --auto
-		;;
+	Derecha) xrandr --output "$LAPTOP" --auto --output "$MONITOR" --auto --right-of "$LAPTOP" ;;
+	Izquierda) xrandr --output "$LAPTOP" --auto --output "$MONITOR" --auto --left-of "$LAPTOP" ;;
+	Adelante) xrandr --output "$LAPTOP" --auto --output "$MONITOR" --auto --above "$LAPTOP" ;;
+	Laptop) xrandr --output "$LAPTOP" --auto --output "$MONITOR" --off ;;
+	Monitor) xrandr --output "$LAPTOP" --off --output "$MONITOR" --auto ;;
 esac
+
+sleep 3 && wallpaper

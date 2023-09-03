@@ -1,10 +1,25 @@
 #!/bin/sh
-#
-# TODO: Borrar ese torrentdone y el comando del transmission comentado la próxima vez que entre acá.
-# Llamo a ese script desde la config file y no desde el comando (26/9/20)
-#
-TORRENTDONE="$HOME_LOCAL/scripts/torrent/torrentdone"
+#  _____                         _          _       _     _ 
+# |_   _|__  _ __ _ __ ___ _ __ | |_ ___   / \   __| | __| |
+#   | |/ _ \| '__| '__/ _ \ '_ \| __/ __| / _ \ / _` |/ _` |
+#   | | (_) | |  | | |  __/ | | | |_\__ \/ ___ \ (_| | (_| |
+#   |_|\___/|_|  |_|  \___|_| |_|\__|___/_/   \_\__,_|\__,_|
+#                                                           
 
-pgrep -x transmission-da > /dev/null || (transmission-daemon -c /data/torrents && notify-send "Starting transmission daemon.." && sleep 3)
-#transmission-remote -a "$@" --torrent-done-script $TORRENTDONE && notify-send "Torrent added"
-transmission-remote -a "$@" && notify-send "Torrent added"
+# This file is read from the torrent.desktop file.
+# in order for it to work the lines
+# "x-scheme-handler/magnet=torrent.desktop;"
+# and
+# "application/x.bittorrent=torrent.desktop;"
+# must be in the ~/.config/mimeapps.list file.
+#
+
+
+# Si el torrent no está prendido lo prendo
+pgrep -f transmission-daemon > /dev/null ||\
+  (transmission-daemon &&\
+  notify-send "Transmission is now on" &&\
+  sleep 2)
+
+# agrego el torrent
+transmission-remote -a "$@" && notify-send "Torrent Added";

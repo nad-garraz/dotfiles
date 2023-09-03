@@ -9,6 +9,6 @@
 DIRECTORY="$HOME/pictures/wallpaper"
 WALLPAPER="wall.jpg"
 
-xwallpaper --stretch "$DIRECTORY/$WALLPAPER"
-#xwallpaper --center "$WALLPAPER"
+# xwallpaper --stretch "$DIRECTORY/$WALLPAPER"
+xwallpaper --focus "$DIRECTORY/$WALLPAPER"
 
