@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=true
+Name=lf File Browser
+MimeType=inode/directory;
+Exec=/usr/bin/lf %F

@@ -1,0 +1,15 @@
+[MIME Cache]
+application/x-bittorrent=torrent.desktop;
+application/x-pdf=pdf.desktop;
+audio/mp3=audio.desktop;
+audio/x-opus+ogg=audio.desktop;
+image/jpeg=img.desktop;
+inode/directory=file.desktop;lf.desktop;
+text/plain=text.desktop;
+video/mp4=video.desktop;
+video/mpeg=video.desktop;
+x-scheme-handler/http=torrent.desktop;
+x-scheme-handler/https=torrent.desktop;
+x-scheme-handler/ipfs=torrent.desktop;
+x-scheme-handler/ipns=torrent.desktop;
+x-scheme-handler/magnet=torrent.desktop;

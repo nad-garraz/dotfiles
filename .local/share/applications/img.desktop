@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Image viewer
+MimeType=image/jpeg
+Exec=/usr/bin/sxiv -a %f

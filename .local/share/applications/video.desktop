@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Video Player
+MimeType=video/mp4;video/mpeg;
+Exec=/usr/bin/mpv %f

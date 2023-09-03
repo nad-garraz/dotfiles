@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Torrent
+Terminal=true
+Exec=/home/nad/.local/scripts/torrent/torrentsadd %U
