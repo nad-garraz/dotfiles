@@ -45,6 +45,8 @@ keymap("n", "\\1", "<cmd>lua Harpoon_ui.nav_file(1)<cr>", opts)
 keymap("n", "\\2", "<cmd>lua Harpoon_ui.nav_file(2)<cr>", opts)
 keymap("n", "\\3", "<cmd>lua Harpoon_ui.nav_file(3)<cr>", opts)
 keymap("n", "\\4", "<cmd>lua Harpoon_ui.nav_file(4)<cr>", opts)
+keymap("n", "\\5", "<cmd>lua Harpoon_ui.nav_file(5)<cr>", opts)
+keymap("n", "\\6", "<cmd>lua Harpoon_ui.nav_file(6)<cr>", opts)
 
 -- Better paste
 keymap("v", "p", '"_dP', opts)
@@ -80,7 +82,7 @@ keymap("n", "<c-\\>", ":ToggleTerm<CR>", opts)
 
 -- -- Telescope
 keymap("n", "<leader>tf", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>tt", ":Telescope live_grep<CR>", opts)
+keymap("n", "<leader>tg", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>tp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>tb", ":Telescope buffers<CR>", opts)
 keymap("n", "<leader>tr", ":Telescope oldfiles<CR>", opts)

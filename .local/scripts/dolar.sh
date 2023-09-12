@@ -1,12 +1,23 @@
 #!/bin/bash
 
-dolar=$(curl -sf "https://api.bluelytics.com.ar/v2/latest" | jq -r)
-dolar_blue_sell="$(echo "$dolar" | jq -r ".blue.value_sell")"
-oficial_sell="$(echo "$dolar" | jq -r ".oficial.value_sell")"
-euro_blue_sell="$(echo "$dolar" | jq -r ".blue_euro.value_sell")"
-oficial_euro_sell="$(echo "$dolar" | jq -r ".blue_euro.value_sell")"
+#     _       _                 _     
+#  __| | ___ | | __ _ ___   ___| |__  
+# / _` |/ _ \| |/ _` / __| / __| '_ \ 
+#| (_| | (_) | | (_| \__ \_\__ \ | | |
+# \__,_|\___/|_|\__,_|___(_)___/_| |_|
+#                                     
+#                                     
 
-notify-send -t 15000 "Guita" "<b>Dolar Blue: $dolar_blue_sell</b>
-Dolar oficial: $oficial_sell
-<b>Euro Blue: $euro_blue_sell</b>
-Euro oficial: $oficial_euro_sell"
+# get currency information of the infame ARS peso
+API="https://api.bluelytics.com.ar/v2/latest"
+DOLAR=$(curl -sf $API | jq -r)
+DOLAR_BLUE_SELL="$(echo "$DOLAR" | jq -r ".blue.value_sell")"
+OFICIAL_SELL="$(echo "$DOLAR" | jq -r ".oficial.value_sell")"
+EURO_BLUE_SELL="$(echo "$DOLAR" | jq -r ".blue_euro.value_sell")"
+OFICIAL_EURO_SELL="$(echo "$DOLAR" | jq -r ".oficial_euro.value_sell")"
+
+notify-send -t 15000 "Guita BLUE:" \
+"<b>Dolar Blue: $DOLAR_BLUE_SELL</b>
+<i>Dolar oficial: $OFICIAL_SELL</i>
+<b>Euro Blue: $EURO_BLUE_SELL</b>
+<i>Euro oficial: $OFICIAL_EURO_SELL</i>"
