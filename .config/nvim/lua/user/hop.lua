@@ -8,5 +8,3 @@ end
 -- a balanced distribution of terminal / sequence keys
 npairs.setup { keys = 'etovxqpdygfblzhckisuran', jump_on_sole_occurrence = false }
 
-
-

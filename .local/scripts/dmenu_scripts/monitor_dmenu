@@ -7,7 +7,7 @@
 LAPTOP=$(xrandr | grep -w "connected" | grep -w "primary" | cut -d" " -f1);
 MONITOR=$(xrandr | grep -w "connected" | grep -E "^DP*|HDM*" | head -n1 | cut -d" " -f1);
 
-first_choice=$(echo -e "Dual\nSingle" | dmenu -fn "$dmenu_font" -i -p '¿Qué opción querés?')
+first_choice=$(echo -e "Single\nDual" | dmenu -fn "$dmenu_font" -i -p '¿Qué opción querés?')
 
 case $first_choice in
 	Dual) second_choice=$(echo -e "Derecha\nIzquierda\nAdelante" | dmenu -fn "$dmenu_font" -i -p '¿Dónde está el segundo monitor?')

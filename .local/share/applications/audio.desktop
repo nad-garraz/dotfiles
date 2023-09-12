@@ -1,5 +1,5 @@
 [Desktop Entry]
 Type=Audio
 Name=mp3-player
-Exec=/usr/bin/mpv %u
+Exec=/usr/bin/mpv %f
 MimeType=audio/x-opus+ogg;audio/mp3

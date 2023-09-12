@@ -17,23 +17,23 @@ notify-send -t 10000 "Torrent Done:" "$TR_TORRENT_NAME" 2> $LOGS/torrentdone.log
 
 is_movie () {
 # Si es una película, la manda a la carpta de películas e intenta bajar subtítulo
-	[ -d "/data/peliculas" ] && dir_pelis="/data/peliculas" || exit 1;
-	peli="$(find "$TR_TORRENT_DIR$TR_TORRENT_NAME" -name "*.mp4" -o -name "*.mkv" -o -name "*.avi")"
-	if [ -f $peli ];
+([ -d "/data/peliculas" ] && dir_pelis="/data/peliculas") || exit 1;
+peli="$(find "$TR_TORRENT_DIR$TR_TORRENT_NAME" -name "*.mp4" -o -name "*.mkv" -o -name "*.avi")"
+	if [ -f "$peli" ];
 	then
-		transmission-remote -t $TR_TORRENT_ID --move "$dir_pelis" &> /dev/null && notify-send "$icon $TR_TORRENT_NAME" "$icon  --> $dir_pelis  ";
-		sleep 5s ;;
+		transmission-remote -t "$TR_TORRENT_ID" --move "$dir_pelis" &> /dev/null && notify-send "$icon $TR_TORRENT_NAME" "$icon  --> $dir_pelis  ";
+		sleep 5s;
 
-		[-e "$dir_pelis/$TR_TORRENT_NAME$(basename "$peli")" ] && subdl --existing=bypass "$dir_pelis/$TR_TORRENT_NAME$(basename "$peli")" &> /dev/null && notify-send "Se bajó subtítulo" || notify-send "Falló el subtítulo"
-	else
+    basename_peli=$(basename $peli);
+		[ -e "${dir_pelis}/${TR_TORRENT_NAME}${basename_peli}" ];
+    else
 		notify-send "no funcó" && exit 1;
-
 	fi
 }
 
 is_movie
 
 case $TR_TORRENT_NAME in
-	*epub|*mobi|*pdf) transmission-remote -t $TR_TORRENT_ID --move "/data/downloads" &> /dev/null && notify-send "$icon2 $TR_TORRENT_NAME" "$icon2 -->> /data/downloads"
+	*epub|*mobi|*pdf) transmission-remote -t "$TR_TORRENT_ID" --move "/data/downloads" &> /dev/null && notify-send "$icon2 $TR_TORRENT_NAME" "$icon2 -->> /data/downloads"
 		;;
 esac

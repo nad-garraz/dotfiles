@@ -11,7 +11,6 @@ require "user.autopairs"
 require "user.comment"
 require "user.nvim-tree"
 require "user.colorscheme"
-require "user.bufferline"
 require "user.lualine"
 require "user.toggleterm"
 require "user.project"
@@ -21,7 +20,9 @@ require "user.lsp"
 require "user.dap"
 require "user.tildes_setup"
 require "user.rainbow-delimiters"
-require "user.indentline"
+-- require "user.bufferline" -- para borrar
+require "user.indentline" -- After colorscheme
+require "user.harpoon"
 
 -- my stuff
 require "user.hop"

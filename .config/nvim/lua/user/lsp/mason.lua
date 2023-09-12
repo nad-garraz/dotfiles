@@ -1,6 +1,5 @@
 local servers = {
 	"cssls",
-	"html",
 	"quick_lint_js",
 	"pyright",
 	"bashls",
@@ -8,6 +7,7 @@ local servers = {
 	"clangd",
 	"lua_ls",
 	"marksman",
+  "html"
 }
 
 local settings = {

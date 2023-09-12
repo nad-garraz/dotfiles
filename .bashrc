@@ -9,7 +9,7 @@
 [ -f $HOME/.config/shell_related/aliases ] && source $HOME/.config/shell_related/aliases
 [ -f $HOME/.config/shell_related/functions ] && source $HOME/.config/shell_related/functions
 
-# prompt
+#prompt
 FMT_BOLD="\[\e[1m\]"
 FMT_DIM="\[\e[2m\]"
 FMT_RESET="\[\e[0m\]"
@@ -31,23 +31,23 @@ BG_MAGENTA="\[\e[45m\]"
 BG_RED="\[\e[41m\]"
 
 parse_git_bg() {
-    [[ $(git status -s 2> /dev/null) ]] && echo -e "\e[43m" || echo -e "\e[42m"
+     [[ $(git status -s 2> /dev/null) ]] && echo -e "\e[43m" || echo -e "\e[42m"
 }
 
 parse_git_fg() {
-    [[ $(git status -s 2> /dev/null) ]] && echo -e "\e[33m" || echo -e "\e[32m"
+     [[ $(git status -s 2> /dev/null) ]] && echo -e "\e[33m" || echo -e "\e[32m"
 }
 
-exitstatus() {
-    [[ $? == 0 ]] && echo -e '(◠_◠) ' || echo -e '(╯°□ °)╯︵ X∩NI˥'
-  }
+#exitstatus() {
+#     [[ $? == 0 ]] && echo -e '(◠_◠) ' || echo -e '(╯°□ °)╯︵ X∩NI˥'
+#   }
 
-PS1="\n${FG_RED}╭─" # begin arrow to prompt
+PS1="${FG_CYAN}╭─" # begin arrow to prompt
 PS1+="${FG_MAGENTA}" # begin USERNAME container
 PS1+="${BG_MAGENTA}${FG_CYAN}${FMT_BOLD}  " # print OS icon
 PS1+="${FG_WHITE}\u@\h" # print username
 PS1+="${FMT_UNBOLD} ${FG_MAGENTA}${BG_BLUE} " # end USERNAME container / begin DIRECTORY container
-PS1+="${FG_GREY}\w " # print directory
+PS1+="${FG_GREY}\W " # print directory
 PS1+="${FG_BLUE}${BG_CYAN} " # end DIRECTORY container / begin FILES container
 PS1+="${FG_BLACK}"
 PS1+=" \$(find . -mindepth 1 -maxdepth 1 -type d | wc -l) " # print number of folders
@@ -58,17 +58,11 @@ PS1+="\$(git branch 2> /dev/null | grep '^*' | colrm 1 2 | xargs -I BRANCH echo 
 PS1+="\$(parse_git_bg) " # end FILES container / begin BRANCH container
 PS1+="${FG_BLACK} BRANCH " # print current git branch
 PS1+="${FMT_RESET}\$(parse_git_fg)\")\n" # end last container (either FILES or BRANCH)
-PS1+="${FG_RED}╰ " # end arrow to prompt
+PS1+="${FG_CYAN}╰ " # end arrow to prompt
 PS1+="${FG_RED}\\$ " # print prompt
 PS1+="${FMT_RESET}"
 export PS1
 
-
-
-#
-# PS1='\[$BOLD\]\[$RED\]\u\[$RESET\]@\[$BOLD\]\[$RED\]\h\[$RESET\] \[$GREEN\]\w\[$RESET)]\n\[$BOLD\]\[$BLUE\]$(exitstatus)\[$RESET\]\[$BOLD\] -->\[$RESET\] '
-# #PS1='[\u@\h \W]\$ '
-#
 
 # PARA TENER COLORES EN LAS MAN PAGES
 man() {
@@ -82,7 +76,7 @@ man() {
 }
 
 # Command not found helper
-source /usr/share/doc/find-the-command/ftc.bash noprompt quiet
+source /usr/share/doc/find-the-command/ftc.bash askfirst noupdate info
 
 # FZF
 source /usr/share/fzf/key-bindings.bash

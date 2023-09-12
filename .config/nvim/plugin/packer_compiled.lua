@@ -149,6 +149,11 @@ _G.packer_plugins = {
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
+  harpoon = {
+    loaded = true,
+    path = "/home/nad/.local/share/nvim/site/pack/packer/start/harpoon",
+    url = "https://github.com/ThePrimeagen/harpoon"
+  },
   ["hop.nvim"] = {
     loaded = true,
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/hop.nvim",

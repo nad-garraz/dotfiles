@@ -53,6 +53,9 @@ export LOGS="$HOME_LOCAL/my_logs"
 # Wise
 source $HOME/documents/tokens
 
+# REPOS
+source $HOME/repos/env
+
 # locations
 source $HOME/documents/locations
 

@@ -36,7 +36,15 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 keymap("n", "noh", "<cmd>nohlsearch<CR>", opts)
 
 -- Close buffers
-keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
+keymap("n", "<S-q>", ":w<cr><cmd>Bdelete!<CR>", opts)
+
+-- Harpoon keymaps
+keymap("n", "\\a", "<cmd>lua Harpoon_mark.add_file() <cr>", opts)
+keymap("n", "E", "<cmd>lua Harpoon_ui.toggle_quick_menu() <cr>", opts)
+keymap("n", "\\1", "<cmd>lua Harpoon_ui.nav_file(1)<cr>", opts)
+keymap("n", "\\2", "<cmd>lua Harpoon_ui.nav_file(2)<cr>", opts)
+keymap("n", "\\3", "<cmd>lua Harpoon_ui.nav_file(3)<cr>", opts)
+keymap("n", "\\4", "<cmd>lua Harpoon_ui.nav_file(4)<cr>", opts)
 
 -- Better paste
 keymap("v", "p", '"_dP', opts)
@@ -50,6 +58,14 @@ keymap("i", "kj", "<ESC>", opts)
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
+keymap("v", "J", ":m '>+1<cr>gv=gv")
+keymap("v", "K", ":m '<-2<cr>gv=gv")
+keymap("n", "J", "mzJ`z")
+keymap("n", "N", "Nzzzv")
+keymap("n", "<C-d>", "<c-d>zz")
+keymap("n", "<C-u>", "<c-u>zz")
+keymap("n", "n", "nzzzv", opts)
+keymap("n", "N", "Nzzzv", opts)
 
 -- Plugins --
 
@@ -63,12 +79,12 @@ keymap("n", "<leader>ms", "<cmd>lua require('nvim-tree.api').marks.navigate.sele
 keymap("n", "<c-\\>", ":ToggleTerm<CR>", opts)
 
 -- -- Telescope
-keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
-keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
-keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
-keymap("n", "<leader>fr", ":Telescope oldfiles<CR>", opts)
-keymap("n", "<leader>fkk", ":Telescope keymaps<CR>", opts)
+keymap("n", "<leader>tf", ":Telescope find_files<CR>", opts)
+keymap("n", "<leader>tt", ":Telescope live_grep<CR>", opts)
+keymap("n", "<leader>tp", ":Telescope projects<CR>", opts)
+keymap("n", "<leader>tb", ":Telescope buffers<CR>", opts)
+keymap("n", "<leader>tr", ":Telescope oldfiles<CR>", opts)
+keymap("n", "<leader>tkk", ":Telescope keymaps<CR>", opts)
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
@@ -93,7 +109,7 @@ keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
 keymap("n", "<leader>lf", "<cmd>Format<cr>", opts)
 
 -- Substitute visual selected
-keymap("v", "<leader>ss", "\"hy:%s/<c-r>h//gc<left><left><left>")
+keymap("v", "<leader>ss", '"hy:%s/<c-r>h//gc<left><left><left>')
 keymap("n", "<leader>sw", "viw\"hy:%s/<c-r>=expand('<cword>')<cr>//gc<left><left><left>")
 
 -- Tabs/buffers
@@ -108,20 +124,30 @@ keymap("n", "<leader>8", "<cmd>BufferLineGoToBuffer 8<cr>", opts)
 keymap("n", "<leader>9", "<cmd>BufferLineGoToBuffer 9<cr>", opts)
 
 -- Hop
-keymap('n', 'f', "<cmd>lua require('hop').hint_char1({ direction = require('hop.hint').HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
-keymap('n', 'F', "<cmd>lua require('hop').hint_char1({ direction = require('hop.hint').HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
+keymap(
+	"n",
+	"f",
+	"<cmd>lua require('hop').hint_char1({ direction = require('hop.hint').HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
+	{}
+)
+keymap(
+	"n",
+	"F",
+	"<cmd>lua require('hop').hint_char1({ direction = require('hop.hint').HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
+	{}
+)
 
 -- Jumps
-keymap('i', '<c-j>', '<esc>/<+.*+><enter>:noh<cr><esc>cf>', opts)
-keymap('i', '()', '()<++><esc>F)i', opts)
-keymap('i', '[]', '[]<++><Esc>F]i', opts)
-keymap('i', '{}', '{}<++><Esc>F}i', opts)
-keymap('i', '""', '""<++><Esc>F"i', opts)
-keymap('i', "''", "''<++><Esc>F'i", opts)
-keymap('i', '<>', '<><++><Esc>F>i' ,opts)
+keymap("i", "<c-j>", "<esc>/<+.*+><enter>:noh<cr><esc>cf>", opts)
+keymap("i", "()", "()<++><esc>F)i", opts)
+keymap("i", "[]", "[]<++><Esc>F]i", opts)
+keymap("i", "{}", "{}<++><Esc>F}i", opts)
+keymap("i", '""', '""<++><Esc>F"i', opts)
+keymap("i", "''", "''<++><Esc>F'i", opts)
+keymap("i", "<>", "<><++><Esc>F>i", opts)
 
 -- Tildes
-keymap('n', '<leader>tt', "<cmd>lua require('tildes').ToggleTildes()<enter>" ,opts)
+keymap("n", "<leader>tt", "<cmd>lua require('tildes').ToggleTildes()<enter>", opts)
 
 -- Yo mama
 keymap("n", "ym", "<cmd>lua print(My_shit.pete())<cr>", opts)
@@ -135,5 +161,5 @@ keymap("i", "\\ww", "<esc>:w<enter>a", opts)
 keymap("n", "<leader>tw", ":set invwrap<enter>", opts)
 
 -- SPELL CHECKING
-keymap("n", '\\eng', ":setlocal spell! spelllang=en_us<enter>", opts)
-keymap("n", '\\esp', ":setlocal spell! spelllang=es_ar<enter>", opts)
+keymap("n", "\\eng", ":setlocal spell! spelllang=en_us<enter>", opts)
+keymap("n", "\\esp", ":setlocal spell! spelllang=es_ar<enter>", opts)

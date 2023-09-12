@@ -1,6 +1,12 @@
 #!/bin/bash
 
-dolar=$(lynx --source www.dolar.blue \
-| grep -o -E "([0-9]{2,3}\.[0-9]{1,2})" \
-| awk '{i++} i==2 {print "Dolar Blue: " $1 } OR i==5 {print "Dolar Banco Nacion: " $1 }')
-notify-send -t 10000 "$dolar"
+dolar=$(curl -sf "https://api.bluelytics.com.ar/v2/latest" | jq -r)
+dolar_blue_sell="$(echo "$dolar" | jq -r ".blue.value_sell")"
+oficial_sell="$(echo "$dolar" | jq -r ".oficial.value_sell")"
+euro_blue_sell="$(echo "$dolar" | jq -r ".blue_euro.value_sell")"
+oficial_euro_sell="$(echo "$dolar" | jq -r ".blue_euro.value_sell")"
+
+notify-send -t 15000 "Guita" "<b>Dolar Blue: $dolar_blue_sell</b>
+Dolar oficial: $oficial_sell
+<b>Euro Blue: $euro_blue_sell</b>
+Euro oficial: $oficial_euro_sell"
