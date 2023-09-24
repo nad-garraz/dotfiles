@@ -20,9 +20,10 @@ require "user.lsp"
 require "user.dap"
 require "user.tildes_setup"
 require "user.rainbow-delimiters"
--- require "user.bufferline" -- para borrar
 require "user.indentline" -- After colorscheme
 require "user.harpoon"
+require "user.registers"
+-- require "user.bufferline" -- para borrar
 
 -- my stuff
 require "user.hop"

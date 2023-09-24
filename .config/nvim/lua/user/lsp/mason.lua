@@ -1,5 +1,6 @@
 local servers = {
 	"cssls",
+  "tsserver",
 	"quick_lint_js",
 	"pyright",
 	"bashls",

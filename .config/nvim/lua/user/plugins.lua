@@ -51,12 +51,9 @@ return packer.startup(function(use)
 	use({ "JoosepAlviste/nvim-ts-context-commentstring", commit = "32d9627123321db65a4f158b72b757bcaef1a3f4" })
 	use({ "kyazdani42/nvim-web-devicons", commit = "9ab9b0b894b2388a9dbcdee5f00ce72e25d85bf9" })
 	use({ "kyazdani42/nvim-tree.lua", commit = "a708bd2413d467929b5019ec1bce7b1f428438bc" })
-	use({
-		"akinsho/bufferline.nvim",
-		tag = "*",
-		requires = "nvim-tree/nvim-web-devicons",
-		commit = "9961d87bb3ec008213c46ba14b3f384a5f520eb",
-	})
+
+	-- use({ "akinsho/bufferline.nvim", tag = "*", requires = "nvim-tree/nvim-web-devicons", commit = "9961d87bb3ec008213c46ba14b3f384a5f520eb",
+	-- })
 	use({ "moll/vim-bbye", commit = "25ef93ac5a87526111f43e5110675032dbcacf56" })
 	use({ "nvim-lualine/lualine.nvim", commit = "05d78e9fd0cdfb4545974a5aa14b1be95a86e9c9" })
 	use({ "akinsho/toggleterm.nvim", commit = "12cba0a1967b4f3f31903484dec72a6100dcf515" })
@@ -75,14 +72,19 @@ return packer.startup(function(use)
 	use({ "hrsh7th/cmp-buffer", commit = "3022dbc9166796b644a841a02de8dd1cc1d311fa" }) -- buffer completions
 	use({ "hrsh7th/cmp-path", commit = "91ff86cd9c29299a64f968ebb45846c485725f23" }) -- path completions
 	use({ "hrsh7th/cmp-nvim-lsp", commit = "44b16d11215dce86f253ce0c30949813c0a90765" })
+	use({ "SirVer/ultisnips", commit = "24a3ebb36687b6d59a19d63173713575b486d739" })
 
 	-- SOURCES
-	use({ "L3MON4D3/LuaSnip", commit = "45a4e899ca8f54936fe32ead6bba65f2a8d42e12" }) --snippet engine
 	use({ "rafamadriz/friendly-snippets", commit = "6e0afe3be0ba43ef03d495a529de8fb22721c0d0" }) -- a bunch of snippets to use
-	use({ "saadparwaiz1/cmp_luasnip", commit = "18095520391186d634a0045dacaa346291096566" }) -- snippet completions
-	use({ "hrsh7th/cmp-nvim-lua", commit = "f12408bdb54c39c23e67cab726264c10db33ada" }) -- snippet completions
+	use({ "honza/vim-snippets", commit = "ccc2fa1529d372f7ac16d5eb07a385a72b50e05d" }) -- snippet completions
+	use({ "quangnguyen30192/cmp-nvim-ultisnips", commit = "24bca5c3e137b28cd87442d4fc51a2b312dd99cc" }) -- snippet completions
+	-- use({ "L3MON4D3/LuaSnip", version = "2.*", build = "make install_jsregexp", commit = "c5fb16a934892086d4ba01bac48b77c65435025e" }) --snippet engine
+	-- use({ "saadparwaiz1/cmp_luasnip", commit = "18095520391186d634a0045dacaa346291096566" }) -- snippet completions
+	-- use({ "hrsh7th/cmp-nvim-lua", commit = "f12408bdb54c39c23e67cab726264c10db33ada" }) -- snippet completions
+	-- use({ "mlaursen/vim-react-snippets", commit = "dbf0c856a8e8889412144d8fdd49837384818c5f" }) -- snippet completions
 
-	--use { "quangnguyen30192/cmp-nvim-ultisnips", commit = "24bca5c3e137b28cd87442d4fc51a2b312dd99cc" }
+	-- registers
+	use({ "tversteeg/registers.nvim", commit = "f7f7b8a55de10293e2af6002d4da98cbeffc6333" }) -- snippet completions
 
 	-- LSP
 	use({ "williamboman/mason.nvim", commit = "5ad3e113b0c3fde3caba8630599373046f6197e8" })
@@ -115,7 +117,8 @@ return packer.startup(function(use)
 	use({ "HiPhish/rainbow-delimiters.nvim", commit = "8c6697b293d44b9bbbbdcf37e200cd01c9b66355" })
 
 	-- HOP
-	use({ "phaazon/hop.nvim", commit = "6591b3656b75ff313cc38dc662a7ee8f75f1c165" })
+	-- use({ "phaazon/hop.nvim", commit = "6591b3656b75ff313cc38dc662a7ee8f75f1c165" })
+	use({ "smoka7/hop.nvim", commit = "f2508f415b9fe34082696009574ca26f57a66531" })
 
 	-- Harpoon
 	use({ "ThePrimeagen/harpoon", commit = "21f4c47c6803d64ddb934a5b314dcb1b8e7365dc" })

@@ -14,7 +14,7 @@ areFilesOK () {
     ping -q -c 1 wttr.in >/dev/null 2>&1 &&
     [ -f "$temp_data" ] && [ -s "$temp_data" ] && 
     [ -s "$weatherReport" ] && 
-    [ "$(howOldIsTheFile "$temp_data")" -ge "3600" ] &&
+    [ "$(howOldIsTheFile "$temp_data")" -ge "7200" ] &&
     find "$temp_data" "$weatherReport" -delete;
     
 }
@@ -32,7 +32,7 @@ getWeatherReport() {
 getData () {
     # If file is empty or isOld then get new info parsed in json format
     [ ! -s "$temp_data" ] || areFilesOK &&
-    curl --max-time 5 -sf "wttr.in/$LOCATION?format=j2" | jq '.current_condition[0] * .weather[0].astronomy[0]' > "$temp_data" &
+    curl --max-time 8 -sf "wttr.in/$LOCATION?format=j2" | jq '.current_condition[0] * .weather[0].astronomy[0]' > "$temp_data" &
 }
 
 show () {
@@ -49,7 +49,8 @@ show () {
     sunset=$(parJQ ".sunset")
     localObsDateTime=$(parJQ ".localObsDateTime")
 
-    dunstify -t 10000 "$bar_icon Weather: $weatherDesc" "Feels like: $feelsLike°C ($temp_C°C)
+    dunstify -t 10000 "$bar_icon Weather: $weatherDesc"\
+      "Feels like: $feelsLike°C ($temp_C°C)
 Humidity: $humidity%
 Cloud cover: $cloudCover%
 UV Index: $uvIndex

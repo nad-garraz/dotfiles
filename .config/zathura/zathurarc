@@ -5,7 +5,7 @@ map i recolor
 map _ zoom out
 
 # Dragon: Para mandar el archivo arrastrándolo
-map <C-s> exec 'dragon -x "$FILE"'
+map <C-s> exec 'dragon-drop -x "$FILE"'
 
 # Abrir otra isntancia del mismo archivo
 map <C-o> exec 'zathura "$FILE"'

@@ -126,18 +126,8 @@ keymap("n", "<leader>8", "<cmd>BufferLineGoToBuffer 8<cr>", opts)
 keymap("n", "<leader>9", "<cmd>BufferLineGoToBuffer 9<cr>", opts)
 
 -- Hop
-keymap(
-	"n",
-	"f",
-	"<cmd>lua require('hop').hint_char1({ direction = require('hop.hint').HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
-	{}
-)
-keymap(
-	"n",
-	"F",
-	"<cmd>lua require('hop').hint_char1({ direction = require('hop.hint').HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
-	{}
-)
+keymap( "n", "<leader>f", "<cmd>HopChar1<cr>", opts)
+keymap( "n", "<leader>fP", "<cmd>HopChar1<cr>", opts)
 
 -- Jumps
 keymap("i", "<c-j>", "<esc>/<+.*+><enter>:noh<cr><esc>cf>", opts)

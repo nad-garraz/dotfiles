@@ -34,9 +34,13 @@ require("tokyonight").setup({
   --@param highlights Highlights
   --@param colors ColorScheme
   on_highlights = function(highlights)
+    -- Para encontrar las propiedades de highlights
+    -- uso ':Inspect' para que me dé la propiedad
+    -- debajo del curso.
   highlights.LineNr = { fg = '#777777'}
   highlights.CursorLineNr = { fg = '#cccccc'}
   highlights.Comment = {fg = '#777777'}
+  highlights.DiagnosticUnnecessary = {fg = '#000000', bg = '#555555'}
   end,
 })
 
@@ -46,6 +50,7 @@ if not status_ok then
   vim.notify("colorscheme: " .. colorscheme .. " not found!" )
 end
 
+local va=vim.api
 -- to set transparency
-vim.api.nvim_set_hl(0, "Normal", { bg = "none"})
-vim.api.nvim_set_hl(0, "NormalFLoat", { bg = "none"})
+va.nvim_set_hl(0, "Normal", { bg = "none"})
+va.nvim_set_hl(0, "NormalFLoat", { bg = "none"})

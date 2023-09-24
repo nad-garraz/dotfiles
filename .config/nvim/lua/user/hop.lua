@@ -1,10 +1,16 @@
  -- Setup hop
-local status_ok, npairs = pcall(require, "hop")
+local status_ok, hop = pcall(require, 'hop')
 if not status_ok then
   return
 end
 
--- Use better keys for the bépo keyboard layout and set
--- a balanced distribution of terminal / sequence keys
-npairs.setup { keys = 'etovxqpdygfblzhckisuran', jump_on_sole_occurrence = false }
+ hop.setup({ keys = 'etovxqpdygfblzhckisuran' })
 
+local directions = require('hop.hint').HintDirection
+
+vim.keymap.set('', 'f', function()
+  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
+end, {remap=true})
+vim.keymap.set('', 'F', function()
+  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
+end, {remap=true})

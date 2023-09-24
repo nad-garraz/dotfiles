@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/nad/.local/cache/nvim/packer_hererocks/2.1.1692616192/share/lua/5.1/?.lua;/home/nad/.local/cache/nvim/packer_hererocks/2.1.1692616192/share/lua/5.1/?/init.lua;/home/nad/.local/cache/nvim/packer_hererocks/2.1.1692616192/lib/luarocks/rocks-5.1/?.lua;/home/nad/.local/cache/nvim/packer_hererocks/2.1.1692616192/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/nad/.local/cache/nvim/packer_hererocks/2.1.1692616192/lib/lua/5.1/?.so"
+local package_path_str = "/home/nad/.local/cache/nvim/packer_hererocks/2.1.1694285958/share/lua/5.1/?.lua;/home/nad/.local/cache/nvim/packer_hererocks/2.1.1694285958/share/lua/5.1/?/init.lua;/home/nad/.local/cache/nvim/packer_hererocks/2.1.1694285958/lib/luarocks/rocks-5.1/?.lua;/home/nad/.local/cache/nvim/packer_hererocks/2.1.1694285958/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/nad/.local/cache/nvim/packer_hererocks/2.1.1694285958/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -84,20 +84,10 @@ _G.packer_plugins = {
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/DAPInstall.nvim",
     url = "https://github.com/ravenxrz/DAPInstall.nvim"
   },
-  LuaSnip = {
-    loaded = true,
-    path = "/home/nad/.local/share/nvim/site/pack/packer/start/LuaSnip",
-    url = "https://github.com/L3MON4D3/LuaSnip"
-  },
   ["alpha-nvim"] = {
     loaded = true,
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/alpha-nvim",
     url = "https://github.com/goolord/alpha-nvim"
-  },
-  ["bufferline.nvim"] = {
-    loaded = true,
-    path = "/home/nad/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
-    url = "https://github.com/akinsho/bufferline.nvim"
   },
   ["cmp-buffer"] = {
     loaded = true,
@@ -109,20 +99,15 @@ _G.packer_plugins = {
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
-  ["cmp-nvim-lua"] = {
+  ["cmp-nvim-ultisnips"] = {
     loaded = true,
-    path = "/home/nad/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
-    url = "https://github.com/hrsh7th/cmp-nvim-lua"
+    path = "/home/nad/.local/share/nvim/site/pack/packer/start/cmp-nvim-ultisnips",
+    url = "https://github.com/quangnguyen30192/cmp-nvim-ultisnips"
   },
   ["cmp-path"] = {
     loaded = true,
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
-  },
-  cmp_luasnip = {
-    loaded = true,
-    path = "/home/nad/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
-    url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
   ["darkplus.nvim"] = {
     loaded = true,
@@ -157,7 +142,7 @@ _G.packer_plugins = {
   ["hop.nvim"] = {
     loaded = true,
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/hop.nvim",
-    url = "https://github.com/phaazon/hop.nvim"
+    url = "https://github.com/smoka7/hop.nvim"
   },
   ["impatient.nvim"] = {
     loaded = true,
@@ -254,6 +239,11 @@ _G.packer_plugins = {
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/rainbow-delimiters.nvim",
     url = "https://github.com/HiPhish/rainbow-delimiters.nvim"
   },
+  ["registers.nvim"] = {
+    loaded = true,
+    path = "/home/nad/.local/share/nvim/site/pack/packer/start/registers.nvim",
+    url = "https://github.com/tversteeg/registers.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -269,6 +259,11 @@ _G.packer_plugins = {
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
   },
+  ultisnips = {
+    loaded = true,
+    path = "/home/nad/.local/share/nvim/site/pack/packer/start/ultisnips",
+    url = "https://github.com/SirVer/ultisnips"
+  },
   ["vim-bbye"] = {
     loaded = true,
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/vim-bbye",
@@ -278,6 +273,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/vim-illuminate",
     url = "https://github.com/RRethy/vim-illuminate"
+  },
+  ["vim-snippets"] = {
+    loaded = true,
+    path = "/home/nad/.local/share/nvim/site/pack/packer/start/vim-snippets",
+    url = "https://github.com/honza/vim-snippets"
   }
 }
 
