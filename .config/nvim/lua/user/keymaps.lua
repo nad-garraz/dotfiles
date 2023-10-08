@@ -6,7 +6,6 @@ local opts = { silent = true }
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
-
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -37,6 +36,10 @@ keymap("n", "noh", "<cmd>nohlsearch<CR>", opts)
 
 -- Close buffers
 keymap("n", "<S-q>", ":w<cr><cmd>Bdelete!<CR>", opts)
+
+-- illuminate
+keymap("n", "<a-n>", '<cmd>lua require("illuminate").next_reference({wrap = true})<cr>', { noremap = true })
+keymap("n", "<a-p>", '<cmd>lua require("illuminate").next_reference({wrap = true, reverse = true})<cr>', { noremap = true })
 
 -- Harpoon keymaps
 keymap("n", "\\a", "<cmd>lua Harpoon_mark.add_file() <cr>", opts)
@@ -69,13 +72,11 @@ keymap("n", "<C-u>", "<c-u>zz")
 keymap("n", "n", "nzzzv", opts)
 keymap("n", "N", "Nzzzv", opts)
 
+
 -- Plugins --
 
 -- NvimTree
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
-keymap("n", "<leader>mn", "<cmd>lua require('nvim-tree.api').marks.navigate.next()<CR>", opts)
-keymap("n", "<leader>mp", "<cmd>lua require('nvim-tree.api').marks.navigate.prev()<CR>", opts)
-keymap("n", "<leader>ms", "<cmd>lua require('nvim-tree.api').marks.navigate.select()<CR>", opts)
 
 -- Terminal
 keymap("n", "<c-\\>", ":ToggleTerm<CR>", opts)
@@ -130,7 +131,7 @@ keymap( "n", "<leader>f", "<cmd>HopChar1<cr>", opts)
 keymap( "n", "<leader>fP", "<cmd>HopChar1<cr>", opts)
 
 -- Jumps
-keymap("i", "<c-j>", "<esc>/<+.*+><enter>:noh<cr><esc>cf>", opts)
+keymap("i", "<c-j>", "<esc>/<+.*+><enter>:noh<cr><esc>cf>", {silent = true, noremap = true})
 keymap("i", "()", "()<++><esc>F)i", opts)
 keymap("i", "[]", "[]<++><Esc>F]i", opts)
 keymap("i", "{}", "{}<++><Esc>F}i", opts)
@@ -145,9 +146,8 @@ keymap("n", "<leader>tt", "<cmd>lua require('tildes').ToggleTildes()<enter>", op
 keymap("n", "ym", "<cmd>lua print(My_shit.pete())<cr>", opts)
 
 -- save and quit
-keymap("n", "wq", ":wq<enter>", opts)
-keymap("n", "\\ww", ":w<enter>", opts)
-keymap("i", "\\ww", "<esc>:w<enter>a", opts)
+keymap("n", "<leader>wq", ":wq<enter>", opts)
+keymap('n', "<leader>ww", ":w<enter>", opts)
 
 -- Toggle WRAP
 keymap("n", "<leader>tw", ":set invwrap<enter>", opts)

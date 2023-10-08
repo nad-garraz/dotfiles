@@ -10,7 +10,7 @@ MONITOR=$(xrandr | grep -w "connected" | grep -E "^DP*|HDM*" | head -n1 | cut -d
 first_choice=$(echo -e "Single\nDual" | dmenu -fn "$dmenu_font" -i -p '¿Qué opción querés?')
 
 case $first_choice in
-	Dual) second_choice=$(echo -e "Adelante\nDerecha\nIzquierda" | dmenu -fn "$dmenu_font" -i -p '¿Dónde está el segundo monitor?')
+	Dual) second_choice=$(echo -e "Adelante\nDerecha\nIzquierdan" | dmenu -fn "$dmenu_font" -i -p '¿Dónde está el segundo monitor?')
 		;;
 	Single) second_choice=$(echo -e "Laptop\nMonitor" | dmenu -fn "$dmenu_font" -i -p '¿Dónde querés la imagen?')
 		;;

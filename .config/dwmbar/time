@@ -10,7 +10,7 @@ dir="$HOME/.local/share/cities"
 [ ! -d "$dir" ] && mkdir -p "$dir"
 
 ciudades="America/Argentina/Buenos_Aires;BuenosAires;CABA;🇦🇷
-America/New_York;NewYork;NYC;🇺🇸
+America/Miami;Miami;Miami;🇺🇸
 Europe/Madrid;Barcelona;Barcelona;🇪🇸
 NZ;Auckland;Auckland;🇳🇿"
 

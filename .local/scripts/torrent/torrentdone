@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # TR_APP_VERSION --> 3.00
 # TR_TIME_LOCALTIME --> Tue Jun 23 13:38:25 2020
@@ -11,7 +11,7 @@ icon="🎞"
 icon2="📕"
 
 SOUND="/data/music/sounds/beep.mp3"
-[ -e $SOUND ] && \mpv --keep-open=no --quiet $SOUND > /dev/null;
+[ -e $SOUND ] && \mpv --quiet --no-terminal "$SOUND";
 
 notify-send -t 10000 "Torrent Done:" "$TR_TORRENT_NAME" 2> $LOGS/torrentdone.log ;
 
@@ -25,7 +25,7 @@ peli="$(find "$TR_TORRENT_DIR$TR_TORRENT_NAME" -name "*.mp4" -o -name "*.mkv" -o
 		sleep 5s;
 
     basename_peli=$(basename $peli);
-		[ -e "${dir_pelis}/${TR_TORRENT_NAME}${basename_peli}" ];
+		[ -e "$dir_pelis}/${TR_TORRENT_NAME}${basename_peli}" ];
     else
 		notify-send "no funcó" && exit 1;
 	fi

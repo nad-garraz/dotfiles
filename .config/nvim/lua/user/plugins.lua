@@ -44,11 +44,11 @@ packer.init({
 -- Install your plugins here
 return packer.startup(function(use)
 	-- My plugins here
-	use({ "wbthomason/packer.nvim", commit = "6afb67460283f0e990d35d229fd38fdc04063e0a" }) -- Have packer manage itself
+	use({ "wbthomason/packer.nvim", commit = "ea0cc3c59f67c440c5ff0bbe4fb9420f4350b9a" }) -- Have packer manage itself
 	use({ "nvim-lua/plenary.nvim", commit = "4b7e52044bbb84242158d977a50c4cbcd85070c7" }) -- Useful lua functions used by lots of plugins
 	use({ "windwp/nvim-autopairs", commit = "ae5b41ce880a6d850055e262d6dfebd362bb276e" }) -- Autopairs, integrates with both cmp and treesitter
 	use({ "numToStr/Comment.nvim", commit = "0236521ea582747b58869cb72f70ccfa967d2e89" })
-	use({ "JoosepAlviste/nvim-ts-context-commentstring", commit = "32d9627123321db65a4f158b72b757bcaef1a3f4" })
+	use({ "JoosepAlviste/nvim-ts-context-commentstring", commit = "95e9ba9de4289d221666b66fd930d157c7ca08c6" })
 	use({ "kyazdani42/nvim-web-devicons", commit = "9ab9b0b894b2388a9dbcdee5f00ce72e25d85bf9" })
 	use({ "kyazdani42/nvim-tree.lua", commit = "a708bd2413d467929b5019ec1bce7b1f428438bc" })
 
@@ -91,20 +91,16 @@ return packer.startup(function(use)
 	use({ "williamboman/mason-lspconfig.nvim", commit = "796008869e67ef27a5aa5ac44c08ce2a60b89f55" })
 	use({ "neovim/nvim-lspconfig", commit = "a27356f1ef9c11e1f459cc96a3fcac5c265e72d6" }) -- enable LSP
 
-	-- use { "jose-elias-alvarez/null-ls.nvim", commit = "db09b6c691def0038c456551e4e2772186449f35" } -- for formatters and linters
-
 	use({ "mhartington/formatter.nvim", commit = "44c89f09dcc220dc2a9b056e93c3a87c86e79804" }) -- for formatters and linters
 	use({ "mfussenegger/nvim-lint", commit = "9b6cb72660114e5f188907be0d866a8ca2b0ef23" }) -- for formatters and linters
-	use({ "RRethy/vim-illuminate", commit = "a2e8476af3f3e993bb0d6477438aad3096512e42" })
+	use({ "RRethy/vim-illuminate", commit = "6acf7d4a18255a3ddc43770866c8e148fe85af7b" })
 
 	-- Telescope
 	use({ "nvim-telescope/telescope.nvim", commit = "76ea9a898d3307244dce3573392dcf2cc38f340f" })
 
 	-- Treesitter
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		commit = "d94e1ad9575cc211b5726f09b28ca9454aba22fe",
-	})
+	use({ "nvim-treesitter/nvim-treesitter", commit = "d94e1ad9575cc211b5726f09b28ca9454aba22fe", })
+
 	-- Git
 	use({ "lewis6991/gitsigns.nvim", commit = "f98c85e7c3d65a51f45863a34feb4849c82f240f" })
 

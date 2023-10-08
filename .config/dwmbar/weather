@@ -1,56 +1,57 @@
-#!/bin/bash
-
+#!/usr/bin/env bash
 
 # Variables
 weatherReport="${XDG_DATA_HOME:-$HOME/.local/share}/weatherReport"
 temp_data="${XDG_DATA_HOME:-$HOME/.local/share}/temp_data.json"
 
 howOldIsTheFile() {
-    echo $(( $(date "+%s") - $(stat -c %Y "$1") ))
+  echo $(($(date "+%s") - $(stat -c %Y "$1")))
 }
 
-areFilesOK () {
-    # If true delete files if false nothing happens
-    ping -q -c 1 wttr.in >/dev/null 2>&1 &&
-    [ -f "$temp_data" ] && [ -s "$temp_data" ] && 
-    [ -s "$weatherReport" ] && 
-    [ "$(howOldIsTheFile "$temp_data")" -ge "7200" ] &&
-    find "$temp_data" "$weatherReport" -delete;
-    
+areFilesOK() {
+  # If true delete files if false nothing happens
+  ping -q -c 1 wttr.in >/dev/null 2>&1 &&
+    [[ -s "$temp_data" ]] &&
+    [[ -s "$weatherReport" ]] &&
+    [[ "$(howOldIsTheFile "$temp_data")" -ge "2003" ]] &&
+    find "$temp_data" "$weatherReport" -delete
 }
 
 langDate() {
-    LANG=es_AR.UTF-8 date -d "$(stat -c %y "$1")" '+%A %-d/%-m at %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1'
+  LANG=es_AR.UTF-8 date -d "$(stat -c %y "$1")" '+%A %-d/%-m at %-H:%M' | sed 's|^\([a-z]\{2,\}\)|\u\1|1'
 }
 
 getWeatherReport() {
-    # If file is empty or isOld then get new info parsed in json format
-    [ ! -s "$weatherReport" ] || areFilesOK &&
-    curl --max-time 5 -sf "v2d.wttr.in/$LOCATION" | head -n -1 > "$weatherReport" &
+  # If file is empty or isOld then get new info parsed in json format
+  ([[ ! -s "$weatherReport" ]] || areFilesOK) &&
+    curl --max-time 5 -sf "v2d.wttr.in/$LOCATION" | head -n -1 >"$weatherReport"
 }
 
-getData () {
-    # If file is empty or isOld then get new info parsed in json format
-    [ ! -s "$temp_data" ] || areFilesOK &&
-    curl --max-time 8 -sf "wttr.in/$LOCATION?format=j2" | jq '.current_condition[0] * .weather[0].astronomy[0]' > "$temp_data" &
+getData() {
+  # If file is empty or isOld then get new info parsed in json format
+  ([[ ! -s "$temp_data" ]] || areFilesOK) &&
+    curl --max-time 8 -sf "wttr.in/$LOCATION?format=j2" | jq '.current_condition[0] * .weather[0].astronomy[0]' >"$temp_data"
 }
 
-show () {
-    parJQ () { jq -r "$1" "$temp_data"; }
-    feelsLike=$(parJQ ".FeelsLikeC")
-    temp_C=$(parJQ ".temp_C")
-    humidity=$(parJQ ".humidity")
-    cloudCover=$(parJQ ".cloudcover")
-    uvIndex=$(parJQ ".uvIndex")
-    weatherDesc=$(parJQ ".weatherDesc[0].value")
-    moon_phase=$(parJQ ".moon_phase")
-    moonrise=$(parJQ ".moonrise")
-    sunrise=$(parJQ ".sunrise")
-    sunset=$(parJQ ".sunset")
-    localObsDateTime=$(parJQ ".localObsDateTime")
+parJQ() {
+  jq -r "$1" "$temp_data"
+}
 
-    dunstify -t 10000 "$bar_icon Weather: $weatherDesc"\
-      "Feels like: $feelsLike°C ($temp_C°C)
+show() {
+  feelsLike=$(parJQ ".FeelsLikeC")
+  temp_C=$(parJQ ".temp_C")
+  humidity=$(parJQ ".humidity")
+  cloudCover=$(parJQ ".cloudcover")
+  uvIndex=$(parJQ ".uvIndex")
+  weatherDesc=$(parJQ ".weatherDesc[0].value")
+  moon_phase=$(parJQ ".moon_phase")
+  moonrise=$(parJQ ".moonrise")
+  sunrise=$(parJQ ".sunrise")
+  sunset=$(parJQ ".sunset")
+  localObsDateTime=$(parJQ ".localObsDateTime")
+
+  dunstify -t 20000 "$bar_icon Weather: $weatherDesc" \
+    "Feels like: $feelsLike°C ($temp_C°C)
 Humidity: $humidity%
 Cloud cover: $cloudCover%
 UV Index: $uvIndex
@@ -61,30 +62,37 @@ Sun Rise: $sunrise
 Sun Set: $sunset
 ===============
 <b>Last update:</b>
-$localObsDateTime";
+$localObsDateTime"
+}
+
+showWeatherReport() {
+  setsid -f falacritty -o window.dimensions.columns=74 -o window.dimensions.lines=47 -e less -Srf "$weatherReport"
 }
 
 # Get icon if there is inet
 bar_icon=$(curl --max-time 3 -sf "wttr.in/$LOCATION?format=%c" | tr -d " ")
 
-
 case $BUTTON in
-    1) getData;
-        show ;;
-    2) find "$temp_data" "$weatherReport" -delete ; getData; getWeatherReport ;;
-    3) getWeatherReport;
-        setsid -f falacritty -o window.dimensions.columns=74\
-            -o window.dimensions.lines=47 -e less -Srf "$weatherReport" & ;;
-    6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
+1)
+  getData
+  show
+  ;;
+2)
+  find "$temp_data" "$weatherReport" -delete
+  ;;
+3)
+  getWeatherReport
+  showWeatherReport
+  ;;
+6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-# [ ! -e "$weatherReport" ] && getWeatherReport
-# [ ! -e "$temp_data" ] && getData
+# [[ ! -e "$weatherReport" ]] && getWeatherReport
+# [[ ! -e "$temp_data" ]] && getData
 
-! areFilesOK && getWeatherReport && getData;
-if [[ ${#bar_icon} -gt 3 || ${#bar_icon} == 0 ]]
-then
-    printf '%s ' "N/A"
-  else
-    printf '%s ' "$bar_icon"
+! areFilesOK && getWeatherReport && getData
+if [[ ${#bar_icon} -gt 3 || ${#bar_icon} == 0 ]]; then
+  printf '%s ' "N/A"
+else
+  printf '%s ' "$bar_icon"
 fi

@@ -37,10 +37,10 @@ require("tokyonight").setup({
     -- Para encontrar las propiedades de highlights
     -- uso ':Inspect' para que me dé la propiedad
     -- debajo del curso.
-  highlights.LineNr = { fg = '#777777'}
-  highlights.CursorLineNr = { fg = '#cccccc'}
+  highlights.CursorLineNr = {bg = '#70a3ff', fg = '#000000'}--{ fg = '#777777'}
+  highlights.LineNr = { fg = '#cccccc'}
   highlights.Comment = {fg = '#777777'}
-  highlights.DiagnosticUnnecessary = {fg = '#000000', bg = '#555555'}
+  highlights.DiagnosticUnnecessary = {fg = '#cc7878', bg = '#475757'}
   end,
 })
 

@@ -1,4 +1,4 @@
-T = {}
+M = {}
 
 --Tildes
 -- Initialize toggleVariable
@@ -27,7 +27,6 @@ function Tildes()
 	keymap("i", "[N", "Ñ", opts)
 	keymap("i", "??", "¿", opts)
 	keymap("i", "!!", "¡", opts)
-	print("Tildes on")
 end
 
 -- Unmapping keys
@@ -48,11 +47,10 @@ function TildesOff()
 	delmap("i", "[N", opts)
 	delmap("i", "??", opts)
 	delmap("i", "!!", opts)
-	print("Tildes off")
 end
 
 -- Toggle functionality
-function T.ToggleTildes()
+function M.ToggleTildes()
 	if (TILDESOn == 0) then
 		Tildes()
 	else
@@ -60,4 +58,4 @@ function T.ToggleTildes()
 	end
 end
 
-return T
+return M
