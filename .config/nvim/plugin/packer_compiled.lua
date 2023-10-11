@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/DAPInstall.nvim",
     url = "https://github.com/ravenxrz/DAPInstall.nvim"
   },
+  LuaSnip = {
+    loaded = true,
+    path = "/home/nad/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    url = "https://github.com/L3MON4D3/LuaSnip"
+  },
   ["alpha-nvim"] = {
     loaded = true,
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/alpha-nvim",
@@ -99,15 +104,20 @@ _G.packer_plugins = {
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
-  ["cmp-nvim-ultisnips"] = {
+  ["cmp-nvim-lua"] = {
     loaded = true,
-    path = "/home/nad/.local/share/nvim/site/pack/packer/start/cmp-nvim-ultisnips",
-    url = "https://github.com/quangnguyen30192/cmp-nvim-ultisnips"
+    path = "/home/nad/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
+    url = "https://github.com/hrsh7th/cmp-nvim-lua"
   },
   ["cmp-path"] = {
     loaded = true,
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
+  },
+  cmp_luasnip = {
+    loaded = true,
+    path = "/home/nad/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
+    url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
   ["darkplus.nvim"] = {
     loaded = true,
@@ -259,11 +269,6 @@ _G.packer_plugins = {
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
   },
-  ultisnips = {
-    loaded = true,
-    path = "/home/nad/.local/share/nvim/site/pack/packer/start/ultisnips",
-    url = "https://github.com/SirVer/ultisnips"
-  },
   ["vim-bbye"] = {
     loaded = true,
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/vim-bbye",
@@ -273,6 +278,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/vim-illuminate",
     url = "https://github.com/RRethy/vim-illuminate"
+  },
+  ["vim-react-snippets"] = {
+    loaded = true,
+    path = "/home/nad/.local/share/nvim/site/pack/packer/start/vim-react-snippets",
+    url = "https://github.com/mlaursen/vim-react-snippets"
   },
   ["vim-snippets"] = {
     loaded = true,

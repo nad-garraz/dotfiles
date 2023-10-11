@@ -71,17 +71,18 @@ return packer.startup(function(use)
 	use({ "hrsh7th/nvim-cmp", commit = "c4e491a87eeacf0408902c32f031d802c7eafce8" }) -- The completion plugin
 	use({ "hrsh7th/cmp-buffer", commit = "3022dbc9166796b644a841a02de8dd1cc1d311fa" }) -- buffer completions
 	use({ "hrsh7th/cmp-path", commit = "91ff86cd9c29299a64f968ebb45846c485725f23" }) -- path completions
+	use({ "hrsh7th/cmp-nvim-lua", commit = "f12408bdb54c39c23e67cab726264c10db33ada" })
 	use({ "hrsh7th/cmp-nvim-lsp", commit = "44b16d11215dce86f253ce0c30949813c0a90765" })
-	use({ "SirVer/ultisnips", commit = "24a3ebb36687b6d59a19d63173713575b486d739" })
+  
+	use({ "saadparwaiz1/cmp_luasnip", commit = "18095520391186d634a0045dacaa346291096566" })
+	use({ "L3MON4D3/LuaSnip", version = "2.*", build = "make install_jsregexp", commit = "cdbf6f41381e5ee4810b4b09284b603d8f18365d" }) --snippet engine
+	use({ "mlaursen/vim-react-snippets", commit = "dbf0c856a8e8889412144d8fdd49837384818c5f" }) -- snippet completions
 
-	-- SOURCES
-	use({ "rafamadriz/friendly-snippets", commit = "6e0afe3be0ba43ef03d495a529de8fb22721c0d0" }) -- a bunch of snippets to use
+
+	use({ "rafamadriz/friendly-snippets", commit = "43727c2ff84240e55d4069ec3e6158d74cb534b6" }) -- a bunch of snippets to use
 	use({ "honza/vim-snippets", commit = "ccc2fa1529d372f7ac16d5eb07a385a72b50e05d" }) -- snippet completions
-	use({ "quangnguyen30192/cmp-nvim-ultisnips", commit = "24bca5c3e137b28cd87442d4fc51a2b312dd99cc" }) -- snippet completions
-	-- use({ "L3MON4D3/LuaSnip", version = "2.*", build = "make install_jsregexp", commit = "c5fb16a934892086d4ba01bac48b77c65435025e" }) --snippet engine
-	-- use({ "saadparwaiz1/cmp_luasnip", commit = "18095520391186d634a0045dacaa346291096566" }) -- snippet completions
-	-- use({ "hrsh7th/cmp-nvim-lua", commit = "f12408bdb54c39c23e67cab726264c10db33ada" }) -- snippet completions
-	-- use({ "mlaursen/vim-react-snippets", commit = "dbf0c856a8e8889412144d8fdd49837384818c5f" }) -- snippet completions
+	-- use({ "quangnguyen30192/cmp-nvim-ultisnips", commit = "24bca5c3e137b28cd87442d4fc51a2b312dd99cc" }) -- snippet completions
+	-- use({ "SirVer/ultisnips", commit = "24a3ebb36687b6d59a19d63173713575b486d739" })
 
 	-- registers
 	use({ "tversteeg/registers.nvim", commit = "f7f7b8a55de10293e2af6002d4da98cbeffc6333" }) -- snippet completions

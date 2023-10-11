@@ -3,25 +3,26 @@ if not cmp_status_ok then
 	return
 end
 
-local cmp_nvim_ultisnips_status_ok, cmp_nvim_ultisnips = pcall(require, "cmp_nvim_ultisnips")
-if not cmp_nvim_ultisnips_status_ok then
-	print("Problemas al cargar cmp_nvim_ultisnips.mappings")
+local snip_status_ok, luasnip = pcall(require, "luasnip")
+if not snip_status_ok then
 	return
 end
 
-local cmp_ultisnips_mappings_status_ok, cmp_ultisnips_mappings = pcall(require, "cmp_nvim_ultisnips.mappings")
-if not cmp_ultisnips_mappings_status_ok then
-	print("Problemas al cargar cmp_nvim_ultisnips.mappings")
-	return
+require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_snipmate").lazy_load()
+
+local check_backspace = function()
+	local col = vim.fn.col(".") - 1
+	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
 local kind_icons = {
 	Text = "",
 	Method = "",
-	Function = "",
+	Function = "󰊕",
 	Constructor = "",
 	Field = "",
-	Variable = "",
+	Variable = "󰫧",
 	Class = "",
 	Interface = "",
 	Module = "",
@@ -30,7 +31,7 @@ local kind_icons = {
 	Value = "",
 	Enum = "",
 	Keyword = "",
-	Snippet = "",
+	Snippet = "",
 	Color = "",
 	File = "",
 	Reference = "",
@@ -42,91 +43,102 @@ local kind_icons = {
 	Operator = "",
 	TypeParameter = "",
 }
-cmp.setup({
-
-	-- formatting = {
-	-- 	fields = { "kind", "abbr", "menu" },
-	-- 	format = function(entry, vim_item)
-	-- 		vim_item.kind = kind_icons[vim_item.kind]
-	-- 		vim_item.menu = ({
-	-- 			nvim_lsp = "[LSP]",
-	-- 			ultisnips = "[UltiSnips]",
-	-- 			buffer = "[Buffer]",
-	-- 			path = "[Path]",
-	-- 		})[entry.source.name]
-	-- 		return vim_item
-	-- 	end,
-	-- },
-	-- sources = {
-	-- 	{ name = "ultisnips" },
-	-- 	{ name = "nvim_lsp", max_item_count = 1 },
-	-- 	{ name = "buffer", max_item_count = 4 },
-	-- 	{ name = "path" },
-	-- },
-	-- sorting = {
-	-- 	comparators = {
-	-- 		cmp.config.compare.score,
-	-- 		cmp.config.compare.offset,
-	-- 		cmp.config.compare.exact,
-	-- 		cmp.config.compare.recently_used,
-	-- 		cmp.config.compare.length,
-	-- 		cmp.config.compare.locality,
-	-- 		cmp.config.compare.kind,
-	-- 		cmp.config.compare.sort_text,
-	-- 		cmp.config.compare.order,
-	-- 	},
-	-- },
-	-- confirm_opts = {
-	-- 	behavior = cmp.ConfirmBehavior.Replace,
-	-- 	select = true,
-	-- },
-	-- window = {
-	-- 	completion = cmp.config.window.bordered(),
-	-- 	documentation = cmp.config.window.bordered(),
-	-- },
-	-- experimental = {
-	-- 	ghost_text = true,
-	-- },
-})
 
 cmp.setup({
 	snippet = {
 		expand = function(args)
-			vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+			luasnip.lsp_expand(args.body) -- For `luasnip` users.
 		end,
 	},
 
+	mapping = cmp.mapping.preset.insert({
+		["<C-k>"] = cmp.mapping.select_prev_item(),
+		["<C-j>"] = cmp.mapping.select_next_item(),
+		["<m-k>"] = cmp.mapping(cmp.mapping.scroll_docs(-2), { "i", "c" }),
+		["<m-j>"] = cmp.mapping(cmp.mapping.scroll_docs(2), { "i", "c" }),
+		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+		["<C-e>"] = cmp.mapping({
+			i = cmp.mapping.abort(),
+			c = cmp.mapping.close(),
+		}),
+		-- Accept currently selected item. If none selected, `select` first item.
+		-- Set `select` to `false` to only confirm explicitly selected items.
+		["<CR>"] = cmp.mapping.confirm({ select = true }),
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			elseif luasnip.expandable() then
+				luasnip.expand()
+			elseif luasnip.expand_or_jumpable() then
+				luasnip.expand_or_jump()
+			elseif check_backspace() then
+				fallback()
+			else
+				fallback()
+			end
+		end, {
+			"i",
+			"s",
+		}),
+		["<S-Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			elseif luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, {
+			"i",
+			"s",
+		}),
+	}),
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
 		format = function(entry, vim_item)
 			vim_item.kind = kind_icons[vim_item.kind]
 			vim_item.menu = ({
-				ultisnips = "[UltiSnips]",
 				nvim_lsp = "[LSP]",
+				nvim_lua = "[NVim-LUA]",
+				luasnip = "[Snippet]",
 				buffer = "[Buffer]",
 				path = "[Path]",
+				emoji = "[Emoji]",
 			})[entry.source.name]
 			return vim_item
 		end,
 	},
-
 	sources = {
-		{ name = "ultisnips" },
-		{ name = "nvim_lsp", max_item_count = 4 },
-		{ name = "buffer", max_item_count = 4 },
+		{ name = "nvim_lsp" },
+		{ name = "luasnip", keyword_length = 2 },
+		{ name = "nvim_lua" },
+		{ name = "buffer" },
 		{ name = "path" },
 	},
-
 	sorting = {
+		-- TODO: Would be cool to add stuff like "See variable names before method names" in rust, or something like that.
 		comparators = {
-			cmp.config.compare.score,
 			cmp.config.compare.offset,
 			cmp.config.compare.exact,
-			cmp.config.compare.recently_used,
-			cmp.config.compare.length,
-			cmp.config.compare.locality,
+			cmp.config.compare.score,
+
+			-- copied from cmp-under, but I don't think I need the plugin for this.
+			-- I might add some more of my own.
+			function(entry1, entry2)
+				local _, entry1_under = entry1.completion_item.label:find("^_+")
+				local _, entry2_under = entry2.completion_item.label:find("^_+")
+				entry1_under = entry1_under or 0
+				entry2_under = entry2_under or 0
+				if entry1_under > entry2_under then
+					return false
+				elseif entry1_under < entry2_under then
+					return true
+				end
+			end,
+
 			cmp.config.compare.kind,
 			cmp.config.compare.sort_text,
+			cmp.config.compare.length,
 			cmp.config.compare.order,
 		},
 	},
@@ -135,73 +147,11 @@ cmp.setup({
 		behavior = cmp.ConfirmBehavior.Replace,
 		select = true,
 	},
-
 	window = {
 		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered(),
 	},
-
 	experimental = {
 		ghost_text = true,
 	},
-
-	mapping = cmp.mapping.preset.insert({
-		["<C-l>"] = cmp.mapping(function()
-			if cmp.visible() then
-				print("Forward docs")
-				cmp.scroll_docs(2)
-			end
-		end, { "i", "c" }),
-
-		["<C-h>"] = cmp.mapping(function()
-			if cmp.visible() then
-				print("Backwards Dock")
-				cmp.scroll_docs(-2)
-			end
-		end, { "i", "c" }),
-
-		["<C-n>"] = cmp.mapping(function(fallback)
-			print("Enter -> Confirm, ctrl+E -> Abort")
-			cmp_ultisnips_mappings.jump_forwards(fallback)
-		end, { "i", "s" }),
-
-		["<C-p>"] = cmp.mapping(function(fallback)
-			print("Enter -> Confirm, ctrl+E -> Abort")
-			cmp_ultisnips_mappings.jump_backwards(fallback)
-		end, { "i", "s" }),--[[ "c" (to enable the mapping in command mode) ]]
-
-		["<Tab>"] = cmp.mapping.confirm({ select = true }),
-
-		["<C-e>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
-	}),
-})
-
-cmp_nvim_ultisnips.setup({
-	snippet = {
-		expand = function(args)
-			vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-		end,
-	},
-	filetype_source = "treesitter", --"ultisnips_default"
-	show_snippets = "all",
-	documentation = function(snippet)
-		return snippet.description .. "\n\n" .. snippet.value
-	end,
-})
-
--- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
--- The following example advertise capabilities to `clangd`.
-require("lspconfig").clangd.setup({
-	capabilities = capabilities,
-})
-require("lspconfig").tsserver.setup({
-	capabilities = capabilities,
-})
-require("lspconfig").html.setup({
-	capabilities = capabilities,
-})
-require("lspconfig").cssls.setup({
-	capabilities = capabilities,
 })
