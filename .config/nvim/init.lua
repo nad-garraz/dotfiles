@@ -20,12 +20,15 @@ require "user.lsp"
 require "user.dap"
 require "user.tildes_setup"
 require "user.rainbow-delimiters"
+require "user.colorizer"
 require "user.indentline" -- After colorscheme
 require "user.harpoon"
 require "user.registers"
+-- require "user.luasnip"
 -- require "user.bufferline" -- para borrar
 
 -- my stuff
 require "user.hop"
 require "programming_autocommands"
 require "my"
+require "snippets.my_snippets"

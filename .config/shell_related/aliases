@@ -113,6 +113,7 @@ alias ncdu="ncdu --color dark"
 
 # MPV FLOAT
 alias mpvf="\mpv --title=mpvfloat"
+alias mpvfs='\mpv --title=mpvfloat --really-quiet --sub-files=$(find -name "*srt" | tr "\n" : | sed -r s/:$//)'
 alias mpv="\mpv --wid=$WINDOWID"
 #
 # Brutal Doom
@@ -136,3 +137,6 @@ alias qr-scan="zbarcam"
 
 # Parallel
 alias parallel="parallel --color"
+
+# PDF viewer Zathura
+alias z='zathura'

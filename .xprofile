@@ -32,5 +32,9 @@ udiskie &
 # Para escribir en chino con el IBUS
 ibus-daemon -drx &
 
+# Remind
+remind -z1 -t1 -k'dunstify -u low -t 15000 Remind: %s'\
+  "$HOME"/.local/reminders/rem-files/ 2>> "$LOGS"/remind.log &
+
 # Swaping Caps <--> Esc
 #setxkbmap -option caps:swapescape

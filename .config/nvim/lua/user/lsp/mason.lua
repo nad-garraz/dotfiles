@@ -7,6 +7,7 @@ local servers = {
 	"jsonls",
 	"clangd",
 	"lua_ls",
+  "ltex",
 	"marksman",
   "html"
 }

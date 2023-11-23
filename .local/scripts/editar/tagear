@@ -1,0 +1,45 @@
+#!/bin/bash
+
+#  _
+# | |_ __ _  __ _  ___  __ _ _ __
+# | __/ _` |/ _` |/ _ \/ _` | '__|
+# | || (_| | (_| |  __/ (_| | |
+#  \__\__,_|\__, |\___|\__,_|_|
+#           |___/
+
+i=1
+# total=$(cat $1 | wc -l)
+album="Los Hijos de Turin"
+booktitle=$album
+artist='JRR Tolkien'
+author=$artist
+comment="Hecho con mucho amor. ^_^/  NAD"
+creditos='Peregrino Alejo: "https://www.facebook.com/peregrino.alejo"'
+
+while read -r archivo
+do
+  chapter_name=$(echo "$archivo" | sed -r 's/.*de_hurin-(.*).opus/\1/1' | tr "_" " " | sed -E 's/\b(.)/\u\1/g')
+
+  # Borro todas las tags del archivo
+	opustags -i "$archivo" -D
+  # Pongo la nuevas tags
+	opustags -i "$archivo"\
+    -a album="$album"\
+    -a booktitle="$booktitle"\
+    -a author="$author"\
+    -a artist="$author"\
+    -a title="$chapter_name"\
+    -a booktitle="$booktitle"\
+    -a comment="$comment"\
+    -a creditos="$creditos"\
+    -a chapter="$i"
+
+	i=$(( i + 1 ))
+
+	## Para modificar una tag
+	#opustags -i "$archivo" --set title="$capitulo"
+
+	## Para borrar una tag
+	#opustags -i "$archivo" -d encoder
+
+done < "$1"

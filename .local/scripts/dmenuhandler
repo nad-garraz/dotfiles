@@ -14,13 +14,13 @@ case "$(printf "mpv\\nmpv (loop)\\nmpv (float)\\nqueue curl-download\\nqueue yt-
 		;;
 	"queue download") tsp curl -LO "$1" >/dev/null 2>&1
 		;;
-	"queue yt-d") tsp youtube-dl -ic --restrict-filenames -o "$dir_descarga/%(title)s-%(realease_date)s.mp4" "$1" >/dev/null 2>&1
+	"queue yt-d") tsp you-get -ic --restrict-filenames -o "$dir_descarga/%(title)s-%(realease_date)s.mp4" "$1" >/dev/null 2>&1
 		;;
-	"queue yt-d (light)") tsp youtube-dl -ic -f worst --restrict-filenames -o "$dir_descarga/%(title)s-%(realease_date)s.mp4" "$1" >/dev/null 2>&1
+	"queue yt-d (light)") tsp you-get -ic -f worst --restrict-filenames -o "$dir_descarga/%(title)s-%(realease_date)s.mp4" "$1" >/dev/null 2>&1
 		;;
-	"queue yt-d (audio-light)") tsp youtube-dl --ignore-errors --continue --restrict-filenames --extract-audio  --format worstaudio --audio-format opus --audio-quality 40K -o "$dir_descarga/%(title)s-%(realease_date)s.tmp" "$1" >/dev/null 2>&1
+	"queue yt-d (audio-light)") tsp you-get --ignore-errors --continue --restrict-filenames --extract-audio  --format worstaudio --audio-format opus --audio-quality 40K -o "$dir_descarga/%(title)s-%(realease_date)s.tmp" "$1" >/dev/null 2>&1
 		;;
-	"queue yt-d (audio-best)") tsp youtube-dl --ignore-errors --continue --restrict-filenames --extract-audio --format bestaudio --audio-format opus --audio-quality 60K -o "$dir_descarga/%(title)s-%(realease_date)s.tmp" "$1" >/dev/null 2>&1
+	"queue yt-d (audio-best)") tsp you-get --ignore-errors --continue --restrict-filenames --extract-audio --format bestaudio --audio-format opus --audio-quality 60K -o "$dir_descarga/%(title)s-%(realease_date)s.tmp" "$1" >/dev/null 2>&1
 		;;
 	browser) setsid -f "$BROWSER" "$1" >/dev/null 2>&1
 		;;

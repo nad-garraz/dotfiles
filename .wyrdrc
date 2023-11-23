@@ -1,0 +1,165 @@
+# Wyrd run-configuration file
+
+# command for the Remind executable
+# set remind_command="remind -t1 -k'dunstify -u low -t 12000 Remind: %s'" # Triggerea un día por adelantado.
+set remind_command="remind -k'dunstify -u low -t 12000 Remind: %s'"
+# the default reminder file or directory to display
+set reminders_file="$HOME/.local/reminders/rem-files/"
+# command for editing an old appointment, given a line number %line% and filename %file%
+set edit_old_command="$EDITOR +%line% \"%file%\""
+# command for editing a new appointment, given a filename %file%
+set edit_new_command="$EDITOR +999999 \"%file%\""
+# command for free editing of the reminders file, given a filename %file%
+set edit_any_command="$EDITOR \"%file%\""
+
+set edit_any_command="${EDITOR:-vi} \"%file%\""
+# command for pager used to view keybindings, calendar, and reminders
+set pager_command="${PAGER:-less -Srf}"
+
+# default zoom level
+# "0" -> hour | "1" -> half hour | "2" -> quarter hour
+set default_zoom="0"
+
+# templates for creating new appointments
+# %monname% -> month name, %mon% -> month number, %mday% -> day of the month, 
+# %year% -> year, %hour% -> hour, %min% -> minute, %wdayname% -> weekday name
+# %wday% -> weekday number
+set timed_template="REM %monname% %mday% %year% AT %hour%:%min% +5 *2 DURATION 1:00 MSG <+ESCRIBIR ACÁ+> faltan: %7 hr%0 y %8 min%9"
+set untimed_template="REM %monname% %mday% %year% +3 MSG <+ESCRIBIR ACÁ+> %b"
+
+# weekly recurrence
+set template0="REM %wdayname% AT %hour%:%min% DURATION 1:00 MSG "
+set template1="REM %wdayname% MSG "
+
+# monthly recurrence
+set template2="REM %mday% AT %hour%:%min% DURATION 1:00 MSG "
+set template3="REM %mday% MSG "
+
+
+# algorithm to use for determining busy level
+# "1" -> count the number of reminders in each day
+# "2" -> count the number of hours of reminders in each day
+set busy_algorithm="1"
+# for busy_algorithm="2", assume that untimed reminders occupy this many minutes
+set untimed_duration="60"
+
+# if busy_algorithm="1", number of reminders per day allowed for each calendar 
+# colorization level; if busy_algorithm="2", use number of hours of reminders
+# per day
+set busy_level1="1"   # level1 color
+set busy_level2="3"   # level2 color
+set busy_level3="5"   # level2 color, bold
+set busy_level4="7"   # level3 color
+                      # (everything else is level3 color, bold)
+
+
+# first day of the week is Sunday
+set week_starts_monday="true"
+
+# 12/24 hour time settings
+set schedule_12_hour="false"
+set selection_12_hour="false"
+set status_12_hour="false"
+set description_12_hour="false"
+
+# whether or not to keep the cursor centered when scrolling through timed
+# reminders
+set center_cursor="true"
+
+# date syntax for the 'go to date' command can be big or little endian
+set goto_big_endian="true"
+
+# date syntax for the "quick reminder" command can be US style
+# (6/1 -> June 1) or non-US style (6/1 -> January 6)
+set quick_date_US="true"
+
+# whether or not to number weeks within the month calendar
+set number_weeks="false"
+
+# whether or not the cursor should follow the current time
+# after pressing the "home" key
+set home_sticky="true"
+
+# whether or not to display advance warnings
+set advance_warning="true"
+
+# width of the untimed reminders window
+set untimed_window_width="60"
+
+# whether or not to render untimed reminders in boldface
+set untimed_bold="true"
+
+# key bindings
+bind "<down>" scroll_down
+bind "J" scroll_down
+bind "<up>" scroll_up
+bind "K" scroll_up
+bind "c" switch_window
+bind "L" switch_window
+bind "H" switch_window
+
+bind "a" previous_day
+bind "h" previous_day
+bind "d" next_day
+bind "l" next_day
+# bind "w" previous_week
+bind "k" previous_week
+bind "s" next_week
+bind "j" next_week
+bind "[" previous_month
+bind "]" next_month
+
+bind \010 home # ctrl+h = \010 (octal_notation)
+bind "g" goto
+bind "Z" zoom # ctrl+z = \032 (octal_notation)
+bind "<return>" edit
+#bind "e" edit_any
+bind "y" copy
+bind "X" cut
+bind "p" paste
+bind "P" paste_dialog
+bind "d" scroll_description_up
+bind "D" scroll_description_down
+unbind "q" quick_add
+bind "t" new_timed
+bind "T" new_timed_dialog
+bind "u" new_untimed
+bind "U" new_untimed_dialog
+#bind "w" new_template0
+#bind "W" new_template1
+#bind "m" new_template2
+bind "n" search_next
+bind "/" begin_search
+bind "<tab>" next_reminder
+bind "r" view_remind
+bind "R" view_remind_all
+#bind "w" view_week
+bind "m" view_month
+bind "?" help
+bind \022 refresh # ctrl+r = \022 (octal_notation)
+bind "Q" quit
+bind "<return>" entry_complete
+bind "<enter>" entry_complete
+bind "<backspace>" entry_backspace
+bind "<esc>" entry_cancel
+
+# set up the colors
+color help               cyan default
+color timed_default      white default
+color timed_current      black white
+color timed_reminder1    white default
+color timed_reminder2    white default bold
+color timed_reminder3    red default
+color timed_reminder4    white default
+color untimed_reminder   white default
+color timed_date         black white bold
+color selection_info     white default
+color description        blue default
+color status             white default
+color calendar_labels    white default
+color calendar_level1    white default bold
+color calendar_level2    yellow default
+color calendar_level3    red default
+color calendar_today     white default bold
+color left_divider       cyan default bold
+color right_divider      cyan default bold

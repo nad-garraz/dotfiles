@@ -44,7 +44,7 @@ packer.init({
 -- Install your plugins here
 return packer.startup(function(use)
 	-- My plugins here
-	use({ "wbthomason/packer.nvim", commit = "ea0cc3c59f67c440c5ff0bbe4fb9420f4350b9a" }) -- Have packer manage itself
+	use({ "wbthomason/packer.nvim", commit = "ea0cc3c59f67c440c5ff0bbe4fb9420f4350b9a3" }) -- Have packer manage itself
 	use({ "nvim-lua/plenary.nvim", commit = "4b7e52044bbb84242158d977a50c4cbcd85070c7" }) -- Useful lua functions used by lots of plugins
 	use({ "windwp/nvim-autopairs", commit = "ae5b41ce880a6d850055e262d6dfebd362bb276e" }) -- Autopairs, integrates with both cmp and treesitter
 	use({ "numToStr/Comment.nvim", commit = "0236521ea582747b58869cb72f70ccfa967d2e89" })
@@ -57,6 +57,7 @@ return packer.startup(function(use)
 	use({ "moll/vim-bbye", commit = "25ef93ac5a87526111f43e5110675032dbcacf56" })
 	use({ "nvim-lualine/lualine.nvim", commit = "05d78e9fd0cdfb4545974a5aa14b1be95a86e9c9" })
 	use({ "akinsho/toggleterm.nvim", commit = "12cba0a1967b4f3f31903484dec72a6100dcf515" })
+	use({ "norcalli/nvim-colorizer.lua", commit = "36c610a9717cc9ec426a07c8e6bf3b3abcb139d6" })
 	use({ "ahmedkhalf/project.nvim", commit = "628de7e433dd503e782831fe150bb750e56e55d6" })
 	use({ "lewis6991/impatient.nvim", commit = "b842e16ecc1a700f62adb9802f8355b99b52a5a6" })
 	use({ "lukas-reineke/indent-blankline.nvim", commit = "9637670896b68805430e2f72cf5d16be5b97a22a" })
@@ -68,14 +69,14 @@ return packer.startup(function(use)
 	use({ "Mofiqul/dracula.nvim", commit = "948d237241b91389c8c2f109885b91cd2574b8bb" })
 
 	-- Cmp
-	use({ "hrsh7th/nvim-cmp", commit = "c4e491a87eeacf0408902c32f031d802c7eafce8" }) -- The completion plugin
+	use({ "hrsh7th/nvim-cmp"}) -- The completion plugin
 	use({ "hrsh7th/cmp-buffer", commit = "3022dbc9166796b644a841a02de8dd1cc1d311fa" }) -- buffer completions
 	use({ "hrsh7th/cmp-path", commit = "91ff86cd9c29299a64f968ebb45846c485725f23" }) -- path completions
 	use({ "hrsh7th/cmp-nvim-lua", commit = "f12408bdb54c39c23e67cab726264c10db33ada" })
 	use({ "hrsh7th/cmp-nvim-lsp", commit = "44b16d11215dce86f253ce0c30949813c0a90765" })
   
-	use({ "saadparwaiz1/cmp_luasnip", commit = "18095520391186d634a0045dacaa346291096566" })
-	use({ "L3MON4D3/LuaSnip", version = "2.*", build = "make install_jsregexp", commit = "cdbf6f41381e5ee4810b4b09284b603d8f18365d" }) --snippet engine
+	use({ "saadparwaiz1/cmp_luasnip"})
+	use({ "L3MON4D3/LuaSnip", tag = "v2.*", run = "make install_jsregexp"}) --snippet engine
 	use({ "mlaursen/vim-react-snippets", commit = "dbf0c856a8e8889412144d8fdd49837384818c5f" }) -- snippet completions
 
 
@@ -97,7 +98,7 @@ return packer.startup(function(use)
 	use({ "RRethy/vim-illuminate", commit = "6acf7d4a18255a3ddc43770866c8e148fe85af7b" })
 
 	-- Telescope
-	use({ "nvim-telescope/telescope.nvim", commit = "76ea9a898d3307244dce3573392dcf2cc38f340f" })
+	use({ "nvim-telescope/telescope.nvim", commit = "74ce793a60759e3db0d265174f137fb627430355" })
 
 	-- Treesitter
 	use({ "nvim-treesitter/nvim-treesitter", commit = "d94e1ad9575cc211b5726f09b28ca9454aba22fe", })
@@ -118,7 +119,7 @@ return packer.startup(function(use)
 	use({ "smoka7/hop.nvim", commit = "f2508f415b9fe34082696009574ca26f57a66531" })
 
 	-- Harpoon
-	use({ "ThePrimeagen/harpoon", commit = "21f4c47c6803d64ddb934a5b314dcb1b8e7365dc" })
+	use({ "ThePrimeagen/harpoon", commit = "c1aebbad9e3d13f20bedb8f2ce8b3a94e39e424a" })
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

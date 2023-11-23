@@ -108,4 +108,5 @@ export GNUPGHOME="$HOME/.local/.gnupg"
 
 # Timezone
 TZ='America/Argentina/Buenos_Aires'
+# TZ='Europe/Madrid'
 export TZ

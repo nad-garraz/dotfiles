@@ -1,0 +1,44 @@
+#!/bin/bash
+
+#            _                  _                  _     
+#  _ __ ___ | | ____ _ _ __ ___| |__     _   _ ___| |__  
+# | '_ ` _ \| |/ / _` | '__/ __| '_ \   | | | / __| '_ \ 
+# | | | | | |   < (_| | | | (__| | | |  | |_| \__ \ |_) |
+# |_| |_| |_|_|\_\__,_|_|  \___|_| |_|___\__,_|___/_.__/ 
+#                                   |_____|              
+
+#  Script para generar un pendrive de instalación
+#  para el arch
+#
+# Function to display help information
+display_help() {
+    echo "Usage: mkarch_usb <argument1>"
+    echo "Arguments:"
+    echo "  <argument1>: Arch Iso Release date 'yyyy.mm.dd'."
+}
+
+# Check if the help option is provided
+if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
+    display_help
+    exit 0
+fi
+
+# Check if no arguments are provided
+if [[ $# -eq 0 ]]; then
+    echo "No arguments provided."
+    display_help
+    exit 1
+fi
+
+DATE="$1"
+# Bajo los archivos "iso" y "iso.sig"
+wget https://mirrors.eze.sysarmy.com/archlinux/iso/"$DATE"/{archlinux-"$DATE"-x86_64.iso,archlinux-2023.11.01-x86_64.iso.sig}
+
+echo \
+"
+1 - kill usdiskie
+2 - sq wkd get pierre@archlinux.org -o release-key.pgp
+3 - sq verify --signer-file release-key.pgp --detached archlinux-$DATE-x86_64.iso.sig archlinux-$DATE-x86_64.iso
+4 - buscá el USB: 'ls -l /dev/disk/by-id/usb*' sin la partición.
+5 - # cp path/to/archlinux-$DATE-x86_64.iso /dev/disk/by-id/MY_USB
+"

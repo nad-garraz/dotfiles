@@ -50,6 +50,9 @@ keymap("n", "\\3", "<cmd>lua Harpoon_ui.nav_file(3)<cr>", opts)
 keymap("n", "\\4", "<cmd>lua Harpoon_ui.nav_file(4)<cr>", opts)
 keymap("n", "\\5", "<cmd>lua Harpoon_ui.nav_file(5)<cr>", opts)
 keymap("n", "\\6", "<cmd>lua Harpoon_ui.nav_file(6)<cr>", opts)
+keymap("n", "\\7", "<cmd>lua Harpoon_ui.nav_file(7)<cr>", opts)
+keymap("n", "\\8", "<cmd>lua Harpoon_ui.nav_file(8)<cr>", opts)
+keymap("n", "\\9", "<cmd>lua Harpoon_ui.nav_file(9)<cr>", opts)
 
 -- Better paste
 keymap("v", "p", '"_dP', opts)
@@ -130,7 +133,7 @@ keymap("n", "<leader>9", "<cmd>BufferLineGoToBuffer 9<cr>", opts)
 keymap( "n", "<leader>f", "<cmd>HopChar1<cr>", opts)
 keymap( "n", "<leader>fP", "<cmd>HopChar1<cr>", opts)
 
--- Jumps
+-- -- Jumps
 keymap("i", "<c-j>", "<esc>/<+.*+><enter>:noh<cr><esc>cf>", {silent = true, noremap = true})
 keymap("i", "()", "()<++><esc>F)i", opts)
 keymap("i", "[]", "[]<++><Esc>F]i", opts)
@@ -148,6 +151,7 @@ keymap("n", "ym", "<cmd>lua print(My_shit.pete())<cr>", opts)
 -- save and quit
 keymap("n", "<leader>wq", ":wq<enter>", opts)
 keymap('n', "<leader>ww", ":w<enter>", opts)
+-- keymap({'n','i'}, "<C-i>", "<esc>o", opts)
 
 -- Toggle WRAP
 keymap("n", "<leader>tw", ":set invwrap<enter>", opts)

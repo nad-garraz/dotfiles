@@ -1,5 +1,7 @@
-#
-#!/bin/sh
-#
+#!/bin/bash
 
-falacritty -o window.dimensions.columns=110 -o window.dimensions.lines=30 -e $1
+PROGRAM=${1:-alacreitty}
+COLS=${2:-110}
+ROWS=${3:-30}
+
+falacritty -o window.dimensions.columns=$COLS -o window.dimensions.lines=$ROWS -e $PROGRAM
