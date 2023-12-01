@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
-# Macro para spawnear el terminal emulator
+# Macro para spawnear el terminal emulator en floating mode
 # Alacritty floating en el medio
 
-confTerminal="$XDG_CONFIG_HOME/alacritty/alacritty-floating.yml"
+confTerminal="$HOME_CONFIG/alacritty/alacritty-floating.yml"
 
-"$TERMINAL" --config-file "$confTerminal" $*
+"$TERMINAL" --config-file "$confTerminal" "$@"

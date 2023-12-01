@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #  _____                 _        ____                           _
 # |_   _|__   __ _  __ _| | ___  / ___|  ___ _ __ ___  ___ _ __ | | _____ _   _
@@ -7,8 +7,15 @@
 #   |_|\___/ \__, |\__, |_|\___| |____/ \___|_|  \___|\___|_| |_|_|\_\___|\__, |
 #            |___/ |___/                                                  |___/
 
-# Togglea screenkey y muestra un anuncio diciendo cuando se toglea.
+# Togglea screenkey y muestra un anuncio diciendo 
+# cuando se toglea.
 
 { pkill screenkey && notify-send -t 2000 "ScreenKey Off"; } ||
-	{ screenkey --timeout 15 --no-systray --font-color "#7722AA" --vis-shift --bak-mode normal --font-size small & };
+	{ screenkey --timeout 15 \
+    --no-systray \
+    --font-color "#7722AA" \
+    --vis-shift \
+    --bak-mode normal \
+    --font-size small & };
+
 pgrep screenkey &> /dev/null && notify-send -t 2000 "ScreenKey On"

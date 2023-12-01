@@ -35,8 +35,8 @@ ls.add_snippets(nil, {
 	},
 	javascriptreact = {
 		s(
-			{ trig = "aff", name = "Little Arrow Func", desc = "Just produces a () => {\n} " },
-			fmt("const {iNode1} = () => {{{iNode0}\n}}", { iNode0 = i(0, "body"), iNode1 = i(1, "FuncName") })
+			{ trig = "aff", name = "Little Arrow Func", desc = "Just produces a const $1 ($2) => {\n$3\n}$0" },
+      fmt("const {iNode1} = ({iNode2}) => {{{iNode0}\n}}", { iNode0 = i(0, "body"), iNode1 = i(1, "FuncName"), iNode2 = i(2,"args") })
 		),
 		s({
 			trig = "div",
