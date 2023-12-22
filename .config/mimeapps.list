@@ -19,7 +19,7 @@ audio/x-opus+ogg.xml=audio.desktop;
 text/plain=text.desktop;
 text/x-tex=text.desktop;
 
-application/epub=ebook.desktop;
+application/epub+zip=ebook.desktop;
 
 x-scheme-handler/tg=org.telegram.desktop.desktop;
 x-scheme-handler/postman=Postman.desktop;

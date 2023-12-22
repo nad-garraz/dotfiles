@@ -134,7 +134,7 @@ keymap( "n", "<leader>f", "<cmd>HopChar1<cr>", opts)
 keymap( "n", "<leader>fP", "<cmd>HopChar1<cr>", opts)
 
 -- -- Jumps
--- keymap("i", "<c-j>", "<esc>/<+.*+><enter>:noh<cr><esc>cf>", {silent = true, noremap = true})
+keymap("i", "<c-j>", "<esc>/<+.*+><enter>:noh<cr><esc>cf>", {silent = true, noremap = true})
 -- keymap("i", "()", "()<++><esc>F)i", opts)
 -- keymap("i", "[]", "[]<++><Esc>F]i", opts)
 -- keymap("i", "{}", "{}<++><Esc>F}i", opts)

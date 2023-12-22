@@ -9,7 +9,8 @@ local servers = {
 	"lua_ls",
   "ltex",
 	"marksman",
-  "html"
+  "html",
+  "rust_analyzer"
 }
 
 local settings = {

@@ -2,9 +2,7 @@
 
 [[ -f "$HOME/.bashrc" ]] && . "$HOME/.bashrc"
 [[ -d $HOME/.local/bin ]] && PATH="$HOME/.local/bin:$PATH"
-[[ -d $HOME/.local/scripts ]] && PATH="$(du "$HOME/.local/scripts" | cut -f2 | tr '\n' ':' | sed 's/:*$//'):$PATH"
-
-
+[[ -d $HOME/.local/scripts ]] &&  PATH="$(du "$HOME/.local/scripts" | cut -f2 | tr '\n' ':' | sed 's/:*$//'):$PATH"
 
 ## PARA QUE EL FAF LEVANTE LA VERSION CORRECTA DE JAVA
 # ver la variable en /usr/bin/downlords-faf-client
@@ -110,3 +108,13 @@ export GNUPGHOME="$HOME/.local/.gnupg"
 TZ='America/Argentina/Buenos_Aires'
 # TZ='Europe/Madrid'
 export TZ
+
+# rust directory
+export RUSTUP_HOME="$HOME_CONFIG/rustup"
+export HOME_CARGO="$HOME_CONFIG/cargo"
+[[ -f "$HOME_CARGO/env" ]] && . "$HOME_CARGO/env"
+PATH="$HOME_CARGO/bin:$PATH" 
+
+
+# C++ path
+export CPLUS_INCLUDE_PATH=/usr/include/SDL2:$CPLUS_INCLUDE_PATH

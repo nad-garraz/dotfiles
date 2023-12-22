@@ -3,5 +3,6 @@ require('lint').linters_by_ft = {
   lua = {'stylua'},
   javascriptreact = {'quick-lint-js', 'tsserver'},
   javascript = {'quick-lint-js', 'tsserver'},
-  json = {'jsonlint'}
+  json = {'jsonlint'},
+  rust = {'ast-grep','rust_analyzer'}
 }

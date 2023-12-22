@@ -89,7 +89,7 @@ return packer.startup(function(use)
 	use({ "tversteeg/registers.nvim", commit = "f7f7b8a55de10293e2af6002d4da98cbeffc6333" }) -- snippet completions
 
 	-- LSP
-	use({ "williamboman/mason.nvim", commit = "5ad3e113b0c3fde3caba8630599373046f6197e8" })
+	use({ "williamboman/mason.nvim"})
 	use({ "williamboman/mason-lspconfig.nvim", commit = "796008869e67ef27a5aa5ac44c08ce2a60b89f55" })
 	use({ "neovim/nvim-lspconfig", commit = "a27356f1ef9c11e1f459cc96a3fcac5c265e72d6" }) -- enable LSP
 

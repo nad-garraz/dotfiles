@@ -76,7 +76,7 @@ man() {
 }
 
 # Command not found helper
-source /usr/share/doc/find-the-command/ftc.bash askfirst noupdate info
+# source /usr/share/doc/find-the-command/ftc.bash askfirst noupdate info
 
 # FZF
 source /usr/share/fzf/key-bindings.bash
@@ -118,4 +118,3 @@ eval "$(register-python-argcomplete pmbootstrap)"
 
 complete -cf sudo
 complete -cf git
-

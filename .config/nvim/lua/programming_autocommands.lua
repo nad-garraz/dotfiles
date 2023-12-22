@@ -3,7 +3,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "cpp" },
 	callback = function()
 		vim.cmd([[
-    nnoremap <leader>cc <Esc>:w<Enter>:!g++ -Wunused-variable -Wall -pedantic "%" -o "%:r.out" -g<Enter>
+    nnoremap <leader>cc <Esc>:silent w<Enter>:6TermExec cmd="g++ % -o %:r.out -std=c++17 -Wunused-variable -pedantic -Wall -g && ./%:r.out"<Enter>
     ]])
 	end,
 })
@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "cpp" },
 	callback = function()
 		vim.cmd([[ 
-    nnoremap <leader>mc <Esc>:wa<Enter>:!g++ -Wunused-variable -pedantic -Wall *cpp *h -o %:r.out -g && time ./"%:r.out"<Enter>
+    nnoremap <leader>mc <Esc>:wa<Enter>:5TermExec cmd="g++ -std=c++17 -Wunused-variable -pedantic -Wall *cpp *h -o %:r.out -g"<Enter>
     ]])
 	end,
 })
@@ -21,7 +21,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "cpp" },
 	callback = function()
 		vim.cmd([[ 
-    nnoremap <leader>rr :2TermExec cmd='time ./"%:r.out"'<Enter>
+        nnoremap <leader>rr <Esc>:4TermExec go_back=0 cmd="./%:r.out"<Enter>
     ]])
 	end,
 })
@@ -75,8 +75,8 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
     ]])
 	end,
 })
---
--- JSl
+--gle = index * 2 * pi / getPointCoun
+-- Js
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	pattern = { "*.js" },
 	callback = function()
@@ -86,3 +86,23 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	end,
 })
 
+-- RUST V=(°°)=V 
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = { "rust" },
+	callback = function()
+		vim.cmd([[ 
+        nnoremap <leader>rr <Esc>:wa <bar>:5TermExec go_back=0 cmd="cargo run %"<Enter>
+      ]])
+	end,
+})
+
+
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = { "cpp" },
+	callback = function()
+		vim.cmd([[
+    nnoremap <leader>cs <Esc>:w<Enter>:6TermExec cmd="g++ -c main.cpp && g++ main.o -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system && ./sfml-app"<Enter>
+    ]])
+	end,
+})

@@ -65,9 +65,9 @@ formatter.setup({
 				}
 			end,
 		},
-    json = {
+		json = {
 			require("formatter.filetypes.json").prettier,
-    },
+		},
 		python = {
 			require("formatter.filetypes.python").black,
 		},
@@ -82,6 +82,33 @@ formatter.setup({
 
 		css = {
 			require("formatter.filetypes.css").prettier,
+		},
+		rust = {
+			require("formatter.filetypes.rust").rustfmt,
+		},
+		cpp = { -- PARA ENCONTRAR PARAMETROS --> https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+			require("formatter.filetypes.cpp").clangformat,
+			function()
+				local multiLinesStyle = [[ --style="{
+                                      BasedOnStyle: LLVM, 
+                                      IndentWidth: 2,
+                                      BreakBeforeBraces: Allman,
+                                      AlignConsecutiveAssignments: Consecutive,
+                                      PackConstructorInitializers: Never,
+                                      AllowShortLambdasOnASingleLine: Empty,
+                                      AlwaysBreakTemplateDeclarations: Yes,
+                                      }"
+                                ]]
+				return {
+					exe = "clang-format",
+					args = {
+						multiLinesStyle,
+						-- util.escape_path(util.get_current_buffer_file_path()),
+					},
+					stdin = true,
+					try_node_modules = true,
+				}
+			end,
 		},
 	},
 	-- Use the special "*" filetype for defining formatter configurations on

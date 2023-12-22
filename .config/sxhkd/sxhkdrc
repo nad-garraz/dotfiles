@@ -104,3 +104,7 @@ alt + ctrl + t
 # Change the keyboard layout
 alt + shift + i ; {i,c,e}
   {layout_toggle "toggle", layout_toggle "zh", layout_toggle "spa"}
+
+# Dunstctl
+alt + shift + d; {9,0,c}
+ {dunstctl close, dunstctl history-pop, dunstctl context}

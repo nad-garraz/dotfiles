@@ -295,9 +295,9 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#191311"
-    foreground = "#3B7C87"
-    frame_color = "#3B7C87"
+    background = "#222222"
+    foreground = "#66cccc"
+    frame_color = "#77ffff"
     timeout = 6
     # Icon for notifications with low urgency, uncomment to enable
     #default_icon = /path/to/icon
@@ -312,7 +312,7 @@
 
 [urgency_critical]
 		frame_color = "#B7472A"
-		foreground = "#B7472A"
+		foreground = "#f96760"
 		background = "#191311"
 		timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
