@@ -10,7 +10,7 @@ local servers = {
   "ltex",
 	"marksman",
   "html",
-  "rust_analyzer"
+  "rust_analyzer",
 }
 
 local settings = {

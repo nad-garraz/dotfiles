@@ -395,6 +395,12 @@
 #    summary = "*"
 #    script = dunst_espeak.sh
 
+[passport]
+summary = "La página cambió, sacar turno ya!!"
+script = dunst_espeak
+timeout = -1
+urgency = critical
+
 [low-bat]
 summary = "Carga: *"
 script = dunst_espeak

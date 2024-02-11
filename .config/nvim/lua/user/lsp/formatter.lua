@@ -90,13 +90,21 @@ formatter.setup({
 			require("formatter.filetypes.cpp").clangformat,
 			function()
 				local multiLinesStyle = [[ --style="{
-                                      BasedOnStyle: LLVM, 
-                                      IndentWidth: 2,
+                                      AlignConsecutiveAssignments: {Enabled: true, AlignCompound: true, AcrossEmptyLines: false, AcrossComments: false},
+                                      AlignConsecutiveDeclarations: {Enabled: true, AcrossEmptyLines: false, AcrossComments: false},
+                                      AllowShortCaseLabelsOnASingleLine: true,
+                                      AllowShortFunctionsOnASingleLine: true,
+                                      AllowShortIfStatementsOnASingleLine: Always,
+                                      BraceWrapping: {SplitEmptyFunction: false},
                                       BreakBeforeBraces: Allman,
-                                      AlignConsecutiveAssignments: Consecutive,
+                                      BreakBeforeTernaryOperators: true,
+                                      BreakConstructorInitializers: BeforeComma,
+                                      ColumnLimit: 130,
+                                      IndentCaseLabels: false,
+                                      IndentWidth: 2,
                                       PackConstructorInitializers: Never,
-                                      AllowShortLambdasOnASingleLine: Empty,
-                                      AlwaysBreakTemplateDeclarations: Yes,
+                                      ReflowComments: false, 
+                                      UseTab: Never,
                                       }"
                                 ]]
 				return {

@@ -1,0 +1,46 @@
+[cursor]
+style = "Beam"
+
+[env]
+TERM = "alacritty"
+
+[font]
+size = 9
+
+[font.bold]
+family = "JetBrainsMonoExtraBold NF"
+style = "Bold"
+
+[font.bold_italic]
+family = "JetBrainsMonoExtraBold NF"
+style = "Bold Italic"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "DaddyTimeMono"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[[keyboard.bindings]]
+action = "ScrollPageUp"
+key = "K"
+mods = "Alt|Shift"
+
+[[keyboard.bindings]]
+action = "ScrollPageDown"
+key = "J"
+mods = "Alt|Shift"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Alt"
+
+[window]
+opacity = 0.9

@@ -12,9 +12,12 @@ SHUTTER="/data/music/sounds/shutter.mp3"
 [ -d $TARGETBASE ] || mkdir -p $TARGETBASE
 
 # Comando:
-[ -n "$SHUTTER" ] && \mpv --keep-open=no --msg-level=all=no $SHUTTER &
+[ -n "$SHUTTER" ] && \mpv --keep-open=no --msg-level=no $SHUTTER &
+
 import -window root "$OUT" &&
+
 action=$(dunstify -t 10000 --action="dragon-drop,SHARE" --action="sxiv,SHOW" --action="gimp,GIMP" "📸" "Guardada en:$OUT")
+
 case $action in
 	"dragon-drop") dragon-drop -x "$OUT"
 		;;

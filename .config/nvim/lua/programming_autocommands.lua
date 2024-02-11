@@ -3,7 +3,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "cpp" },
 	callback = function()
 		vim.cmd([[
-    nnoremap <leader>cc <Esc>:silent w<Enter>:6TermExec cmd="g++ % -o %:r.out -std=c++17 -Wunused-variable -pedantic -Wall -g && ./%:r.out"<Enter>
+    nnoremap <leader>cc <Esc>:silent wa<Enter>:6TermExec cmd="make clean run"<Enter>
     ]])
 	end,
 })

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #                            _       _ _
 #   _____      __  _ __ ___ | | ____| (_)_ __
@@ -20,6 +20,7 @@ dir_js="$dir_programita/javascript/$ejercicio"
 dir_templates="$HOME_SCRIPTS/templates/programming"
 
 archivo_cpp="$dir_cpp/$ejercicio.cpp"
+makefile_cpp="$dir_templates/Makefile"
 archivo_py="$dir_py/$ejercicio.py"
 archivo_lua="$dir_lua/$ejercicio.lua"
 archivo_js="$dir_js/$ejercicio.js"
@@ -27,75 +28,81 @@ archivo_js="$dir_js/$ejercicio.js"
 # Funciones
 #----------
 
-hasta_luego () {
-	echo -e "[36mHasta luego!\n[33m(っ^‿^)っ[0m" && exit 0;
+hasta_luego() {
+  echo -e "[36mHasta luego!\n[33m(っ^‿^)っ[0m" && exit 0
 }
 
-ya_existe () {
-	argumento="$1"
-	case $(file -b "$argumento" | cut -d" " -f 1) in
-		C++|Python|"ASCII text") echo -e "[34mEl archivo:[0m $(basename "$argumento"), [31m ya existe.[0m" && break;;
-			directory)  echo -e "[34mEl directorio:[0m $(basename "$argumento"), [31mya existe.[0m" && break;;
-	esac
+ya_existe() {
+  argumento="$1"
+  case $(file -b "$argumento" | cut -d" " -f 1) in
+  C++ | Python | "ASCII text") echo -e "[34mEl archivo:[0m $(basename "$argumento"), [31m ya existe.[0m" && return ;;
+  directory) echo -e "[34mEl directorio:[0m $(basename "$argumento"), [31mya existe.[0m" && return ;;
+  esac
 }
 
-comentar_archivo () {
-	local terminacion=$(echo "$1" | cut -d"." -f2);
-	local file="$1";
-	case "$terminacion" in
-		'cpp') sed -i -e 1's|.*|\/\*\n&|' "$file";
-			echo -e '\n*/\n\n\n' >> "$file";
-			cat "$dir_templates/template_header.cpp" >> "$file";
-			break;;
-		'py')	sed -i -e 1's|.*|"""\n&|'  "$file";
-			echo -e '\n"""\n\n\n'  >> "$file";
-			cat "$dir_templates/template_header.py" >> "$file";
-			break;;
-		'lua')	sed -i -e 1's|.*|--[[\n&|'  "$file";
-			echo -e '\n--]]\n\n\n'  >> "$file";
-			cat "$dir_templates/template_header.lua" >> "$file";
-			break;;
-		'js') sed -i -e 1's|.*|\/\*\n&|' "$file";
-			echo -e '\n*/\n\n\n' >> "$file";
-			cat "$dir_templates/template_header.js" >> "$file";
-			break;;
-	esac
+comentar_archivo() {
+  local terminacion=$(echo "$1" | cut -d"." -f2)
+  local file="$1"
+  case "$terminacion" in
+  'cpp')
+    sed -i -e 1's|.*|\/\*\n&|' "$file"
+    echo -e '\n*/\n\n\n' >>"$file"
+    cat "$dir_templates/template_header.cpp" >>"$file"
+    return
+    ;;
+  'py')
+    sed -i -e 1's|.*|"""\n&|' "$file"
+    echo -e '\n"""\n\n\n' >>"$file"
+    cat "$dir_templates/template_header.py" >>"$file"
+    return
+    ;;
+  'lua')
+    sed -i -e 1's|.*|--[[\n&|' "$file"
+    echo -e '\n--]]\n\n\n' >>"$file"
+    cat "$dir_templates/template_header.lua" >>"$file"
+    return
+    ;;
+  'js')
+    sed -i -e 1's|.*|\/\*\n&|' "$file"
+    echo -e '\n*/\n\n\n' >>"$file"
+    cat "$dir_templates/template_header.js" >>"$file"
+    return
+    ;;
+  esac
 }
 
 # Genero directorio y archivos
-mk_dir_file () {
-	local dir="$1"
-	local file="$2"
-	{
-		[ ! -d "$dir" ] &&
-			mkdir -p -v "$dir" || ya_existe $dir;
-		};
-	{ # Bloque para crear el archivo
-		[ ! -f "$file" ] &&
-			xclip -o >> "$file" && # Copia lo que se haya puesto en el clipboard al archivo.
-			comentar_archivo "$file";
-		} || { # Bloque por si falla el crear archivo.
-			ya_existe "$file" && {
-			echo "++++++++++++++++";
-			echo "¿Querés abrirlo?";
-					select choice in Sí No
-					do
-						case $choice in
-							Sí) $EDITOR $file && exit 0;;
-							No) hasta_luego;;
-						esac
-					done
-				}
-		}
+mk_dir_file() {
+  local dir="$1"
+  local file="$2"
+  {
+    [ ! -d "$dir" ] &&
+      mkdir -p -v "$dir" || ya_existe "$dir"
+  }
+  { # Bloque para crear el archivo
+    [ ! -f "$file" ] &&
+      xclip -o >>"$file" && # Copia lo que se haya puesto en el clipboard al archivo.
+      comentar_archivo "$file"
+  } || { # Bloque por si falla el crear archivo.
+    ya_existe "$file" && {
+      echo "++++++++++++++++"
+      echo "¿Querés abrirlo?"
+      select choice in Sí No; do
+        case $choice in
+        Sí) $EDITOR "$file" && exit 0 ;;
+        No) hasta_luego ;;
+        esac
+      done
+    }
+  }
 }
 
-select choice in C++ PYTHON LUA JavaScript "exit"
-do
-	case $choice in
-		C++)              mk_dir_file $dir_cpp $archivo_cpp && $EDITOR $archivo_cpp && break ;;
-		PYTHON)           mk_dir_file $dir_py  $archivo_py  && $EDITOR $archivo_py && break;;
-		LUA)              mk_dir_file $dir_lua $archivo_lua && $EDITOR $archivo_lua && break;;
-		JavaScript)       mk_dir_file $dir_js $archivo_js && $EDITOR $archivo_js && break;;
-		"exit") hasta_luego;;
-	esac
+select choice in "C++" "PYTHON" "LUA" "JavaScript" "exit"; do
+  case $choice in
+  "C++") mk_dir_file "$dir_cpp" "$archivo_cpp" && [ -n "$makefile_cpp" ] && cp "$makefile_cpp" "$dir_cpp" && echo DONE! && "$EDITOR" "$archivo_cpp"  && break ;;
+  "PYTHON") mk_dir_file "$dir_py" "$archivo_py" && "$EDITOR" "$archivo_py" && break ;;
+  "LUA") mk_dir_file "$dir_lua" "$archivo_lua" && $EDITOR "$archivo_lua" && break ;;
+  "JavaScript") mk_dir_file "$dir_js" "$archivo_js" && $EDITOR "$archivo_js" && break ;;
+  "exit") hasta_luego && break ;;
+  esac
 done

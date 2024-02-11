@@ -1,0 +1,27 @@
+[font]
+size = 8.0
+
+[font.normal]
+family = "monospace"
+
+[[keyboard.bindings]]
+action = "ScrollPageUp"
+key = "K"
+mods = "Alt|Shift"
+
+[[keyboard.bindings]]
+action = "ScrollPageDown"
+key = "J"
+mods = "Alt|Shift"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Alt"
+
+[window]
+dynamic_padding = true
+opacity = 0.9
+title = "floating-alacritty"
+dynamic_title = false
+class = "Alacritty"

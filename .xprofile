@@ -1,8 +1,7 @@
-#!/usr/bin/env bash
-
+#!/bin/bash
 
 # Call the wallpaper script
-[ -e "$HOME_SCRIPTS"/wallpaper ] && "$HOME_SCRIPTS"/wallpaper 2> "$LOGS"/wallpaper.log &
+[ -e "$HOME_SCRIPTS"/wallpaper ] && "$HOME_SCRIPTS"/wallpaper 2>"$LOGS"/wallpaper.log &
 
 # Status Bar
 dwmblocks &
@@ -11,10 +10,10 @@ dwmblocks &
 dunst &
 
 # Battery Notifications
-[ -e "$HOME_SCRIPTS"/battery_notifications ] && battery_notifications 2> "$LOGS"/battery_notification.log 1> /dev/null &
+[ -e "$HOME_SCRIPTS"/battery_notifications ] && battery_notifications 2>"$LOGS"/battery_notification.log 1>/dev/null &
 
 # Hotkeys
-sxhkd 2> "$LOGS"/sxhkd.log &1 > /dev/null &
+sxhkd 2>"$LOGS"/sxhkd.log  1>/dev/null &
 
 # Compositor manager
 # picom --daemon --shadow --shadow-opacity 0.5 --shadow-offset-x=5
@@ -22,9 +21,8 @@ sxhkd 2> "$LOGS"/sxhkd.log &1 > /dev/null &
 # --frame-opacity=1 --fade-in-step=0.007 --fade-out-step=0.007 &
 picom --inactive-opacity=0.85 &
 
-
 # REDSHIFT
-redshift 1> /dev/null 2> "$LOGS"/redshift.log &
+redshift 1>/dev/null 2>"$LOGS"/redshift.log &
 
 # Automontar discos
 udiskie &
@@ -33,8 +31,4 @@ udiskie &
 ibus-daemon -drx &
 
 # Remind
-remind -z1 -t1 -k'dunstify -u low -t 15000 Remind: %s'\
-  "$HOME"/.local/reminders/rem-files/ 2>> "$LOGS"/remind.log &
-
-# Swaping Caps <--> Esc
-#setxkbmap -option caps:swapescape
+# remind -z1 -t1 -k'dunstify -u low -t 15000 Remind: %s' "$HOME_LOCAL"/reminders/rem-files/ &
