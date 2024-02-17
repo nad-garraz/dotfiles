@@ -31,4 +31,4 @@ udiskie &
 ibus-daemon -drx &
 
 # Remind
-# remind -z1 -t1 -k'dunstify -u low -t 15000 Remind: %s' "$HOME_LOCAL"/reminders/rem-files/ &
+nohup remind -z1 -t1 -k'dunstify -u low -t 15000 Remind: %s' "$HOME_LOCAL/reminders/rem-files/" 2> "$LOGS"/remind.log  1> /dev/null &
