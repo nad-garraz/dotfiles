@@ -1,4 +1,6 @@
+-- ========
 -- c++ compile and execute
+-- ========
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "cpp" },
 	callback = function()
@@ -26,7 +28,20 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	end,
 })
 
--- Lua
+-- compila usando el SFML libraries, etc.
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = { "cpp" },
+	callback = function()
+		vim.cmd([[
+    nnoremap <leader>cs <Esc>:w<Enter>:6TermExec cmd="g++ -c main.cpp && g++ main.o -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system && ./sfml-app"<Enter>
+    ]])
+	end,
+})
+
+
+-- ========
+-- LUA
+-- ========
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "lua" },
 	callback = function()
@@ -36,7 +51,10 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	end,
 })
 
--- Python
+
+-- ========
+-- PYTHON
+-- ========
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "python" },
 	callback = function()
@@ -46,12 +64,15 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	end,
 })
 
+
+-- ========
 -- Latex
+-- ========
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "tex" },
 	callback = function()
 		vim.cmd([[ 
-          nnoremap <leader>cc <Esc>:w <bar> :!pdflatex % <Enter>
+          nnoremap <leader>cc <Esc>:w <bar> :cd %:p:h <bar> :!pdflatex % <Enter>
     ]])
 	end,
 })
@@ -60,13 +81,14 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "tex" },
 	callback = function()
 		vim.cmd([[ 
-        nnoremap <leader>rr <Esc>:!zathura %:r.pdf & <Enter>
+        nnoremap <leader>rr <Esc>:cd %:p:h <bar> !zathura %:r.pdf & <Enter>
       ]])
 	end,
 })
 
+-- ========
 -- HTML
--- vim.api.nvim_create_autocmd({ "FileType" }, {
+-- ========
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	pattern = { "*.html" },
 	callback = function()
@@ -75,8 +97,11 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
     ]])
 	end,
 })
---gle = index * 2 * pi / getPointCoun
+
+--
+-- ========
 -- Js
+-- ========
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	pattern = { "*.js" },
 	callback = function()
@@ -86,7 +111,9 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	end,
 })
 
--- RUST V=(°°)=V 
+-- ========
+-- RUST V=(°°)=V
+-- ========
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "rust" },
 	callback = function()
@@ -97,12 +124,35 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 
-
+-- ========
+-- HASKELL
+-- ========
+-- Compila haskell
 vim.api.nvim_create_autocmd({ "FileType" }, {
-	pattern = { "cpp" },
+	pattern = { "haskell", "*hs" },
 	callback = function()
 		vim.cmd([[
-    nnoremap <leader>cs <Esc>:w<Enter>:6TermExec cmd="g++ -c main.cpp && g++ main.o -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system && ./sfml-app"<Enter>
+    nnoremap <leader>cc <Esc>:w<Enter>:6TermExec cmd="ghc %"<Enter>
+    ]])
+	end,
+})
+
+-- ejecuta haskell
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = { "haskell", "*hs" },
+	callback = function()
+		vim.cmd([[
+    nnoremap <leader>rr <Esc>:cd %:p:h <bar> 5TermExec cmd="./%:r"<Enter>
+    ]])
+	end,
+})
+
+-- ejecuta haskell ghci
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = { "haskell", "*hs" },
+	callback = function()
+		vim.cmd([[
+    nnoremap <leader>ri <Esc>:w <bar> cd %:p:h <bar> 5TermExec go_back=0 cmd="ghci %"<Enter>
     ]])
 	end,
 })

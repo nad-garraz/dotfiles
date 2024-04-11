@@ -5,6 +5,7 @@
 
 % Paquetes:
 % =========
+\usepackage[T1]{fontenc} % tildes
 \usepackage[utf8]{inputenc}  % Para poder escribir con tildes en el editor.
 \usepackage[spanish,english]{babel}  % Para cortar las palabras en silabas, creo.
 \usepackage[ddmmyyyy]{datetime}

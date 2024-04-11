@@ -142,6 +142,9 @@ keymap("i", "<c-j>", "<esc>/<+.*+><enter>:noh<cr><esc>cf>", {silent = true, nore
 -- keymap("i", "''", "''<++><Esc>F'i", opts)
 -- keymap("i", "<>", "<><++><Esc>F>i", opts)
 
+-- BackTilde
+keymap("i", "<leader>`", "```", opts)
+
 -- Tildes
 keymap("n", "<leader>tt", "<cmd>lua require('tildes').ToggleTildes()<enter>", opts)
 

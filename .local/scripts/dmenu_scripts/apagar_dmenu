@@ -3,7 +3,7 @@
 # PROMPS A DMENU MENU ASKING TO SHUTDOWN
 icon_warning="⚠"
 icon="🖥"
-first_choice=$(echo -e "Kill X\nRestart\nPower Off\nScreen\nRestart DWM/BLOCKS/SXHKD/DUNST\nScreen Off" | dmenu -fn "$dmenu_font"  -i -p "$icon ¿Qué querés hacer?");
+first_choice=$(echo -e "Kill X\nRestart\nPower Off\nRestart DWM/BLOCKS/SXHKD/DUNST\nScreen Off" | dmenu -fn "$dmenu_font"  -i -p "$icon ¿Qué querés hacer?");
 
 
 kill_X () {

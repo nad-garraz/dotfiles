@@ -21,17 +21,13 @@ done
 [ "$(echo $nombre_final | rev | cut -d. -f1 | rev)" = "tex" ] || nombre_final="${nombre_final}.tex"
 if [ ! -z "$nombre_final" ] && [ ! -e "$nombre_final" ]
 then
- select choice in "Documento normal" "Carta" "CIENCIA" "Cancelar"
+ select choice in "Documento normal" "Carta" "Ciencia" "Cancelar"
  do
 	 case $choice in
-		 "Documento normal") cat "$directorio_templates/document_latex_template" > $nombre_final && break
-			 ;;
-		 "Carta") cat "$directorio_templates/carta_latex_template" > $nombre_final && break
-			 ;;
-		 "Ciencia") cat "$directorio_templates/ciencia_latex_template" > $nombre_final && break
-			 ;;
-		 "Cancelar") echo "No se hizo nada" && exit 0
-			 ;;
+		 "Documento normal") cat "$directorio_templates/document_latex_template" > $nombre_final && break ;;
+		 "Carta") cat "$directorio_templates/carta_latex_template" > $nombre_final && break ;;
+		 "Ciencia") cat "$directorio_templates/ciencia_latex_template" > $nombre_final && break ;;
+		 "Cancelar") echo "No se hizo nada" && exit 0 ;;
 	 esac
  done
 nvim "$nombre_final"

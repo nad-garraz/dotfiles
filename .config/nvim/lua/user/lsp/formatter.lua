@@ -86,12 +86,20 @@ formatter.setup({
 		rust = {
 			require("formatter.filetypes.rust").rustfmt,
 		},
+		haskell = { -- Los formatters no tiene que ser necesariamente los que están en la página del formatter
+			function()
+				return {
+					exe = "/home/nad/.local/share/nvim/mason/bin/fourmolu",
+					args = { "--mode inplace", "--indentation=4", "--let-style=newline", "--in-style=left-align" },
+				}
+			end,
+		},
 		cpp = { -- PARA ENCONTRAR PARAMETROS --> https://clang.llvm.org/docs/ClangFormatStyleOptions.html
 			require("formatter.filetypes.cpp").clangformat,
 			function()
 				local multiLinesStyle = [[ --style="{
-                                      AlignConsecutiveAssignments: {Enabled: true, AlignCompound: true, AcrossEmptyLines: false, AcrossComments: false},
-                                      AlignConsecutiveDeclarations: {Enabled: true, AcrossEmptyLines: false, AcrossComments: false},
+                                      AlignConsecutiveAssignment: {Enabled: true, AlignCompound: true, AcrossEmptyLines: false, AcrossComments: false},
+                                       AlignConsecutiveDeclarations: {Enabled: true, AcrossEmptyLines: false, AcrossComments: false},
                                       AllowShortCaseLabelsOnASingleLine: true,
                                       AllowShortFunctionsOnASingleLine: true,
                                       AllowShortIfStatementsOnASingleLine: Always,

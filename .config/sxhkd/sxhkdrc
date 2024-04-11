@@ -77,7 +77,7 @@ super + p
 
 # Terminal apps, ncmpcpp, lf, wyrd, notes, pulsemixer, guita
 alt + shift + t ; {m,f,w,n,v,g,t}
-	{tx ncmpcpp, tx lf ~, tx wyrd 180, tx notes, tx pulsemixer, tx guita_exe, falacritty}
+	{tx ncmpcpp, tx lf, tx wyrd 165 35, tx notes, tx pulsemixer, tx guita_exe, falacritty}
 
 # FFMPEG related:
 

@@ -5,5 +5,6 @@ require('lint').linters_by_ft = {
   javascript = {'quick-lint-js', 'tsserver'},
   json = {'jsonlint'},
   rust = {'ast-grep','rust_analyzer'},
-  makefile = {'checkmake'}
+  makefile = {'checkmake'},
+  haskell = {'formolu'}
 }

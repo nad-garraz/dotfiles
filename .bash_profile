@@ -118,3 +118,7 @@ PATH="$HOME_CARGO/bin:$PATH"
 
 # C++ path
 export CPLUS_INCLUDE_PATH=/usr/include/SDL2:$CPLUS_INCLUDE_PATH
+
+# Haskell ghcup
+export GHCUP_INSTALL_BASE_PREFIX="$HOME_CONFIG/haskell"
+PATH="$HOME/.cabal/bin:$GHCUP_INSTALL_BASE_PREFIX/.ghcup/bin:$PATH" #en los executables de cabal

@@ -6,9 +6,11 @@ map gpe cd ~/peliculas
 map gcv cd ~/documents/cv/nad_cv
 map gto cd /data/torrents/torrent_files
 map gda cd /data
+map gal cd ~/algebra1
+map gin cd ~/aed1
 
-map S toggle
-
+# toggle selection
+map <tab> toggle 
 
 # cmd open ${{
 #     case $(file --mime-type "$f" -bL) in
@@ -22,14 +24,14 @@ map S toggle
 
 cmd open ${{
     case "$f" in
-        *.vim) alacritty -e nvim -S "$f";;
-        *.mp4|*.mp3|*.opus|*.mkv) mpv --title=mpvfloat "$f" & disown;;
-        *.pdf) zathura "$f";;
-        *.jpg|*.jpeg) sxiv "$f";;
-        *) alacritty -e $EDITOR "$f";;
+        *.vim) alacritty -e nvim -S "$f" & disown -h &;;
+        *.mp4|*.mp3|*.opus|*.mkv) mpv --title=mpvfloat "$f" & disown -h &;;
+        *.pdf) zathura "$f" & disown -h &;;
+        *.jpg|*.jpeg) sxiv "$f" & disown -h &;;
+        *) alacritty -e $EDITOR "$f" & disown -h &;;
     esac
 }}
 
 cmd share ${{
-        parallel dragon -x '{/}' ::: "$fs"
+        dragon-drop -x "$f"
         }}

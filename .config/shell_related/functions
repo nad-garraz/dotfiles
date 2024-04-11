@@ -77,11 +77,13 @@ qr() {
 }
 
 #RSYNC
-
-function cpr() {
+syncfiles(){
+  rsync -av --update --partial --info=stats1,progress2 --times "$@"
+}
+cpr() {
   rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 "$@"
 }
 
-function mvr() {
+mvr() {
   rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 --remove-source-files "$@"
 }

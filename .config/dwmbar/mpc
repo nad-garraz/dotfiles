@@ -1,4 +1,5 @@
 #!/bin/sh
+#
 icon="󰋋"
 icon2='󰟎'
 
@@ -10,38 +11,39 @@ musicOn () {
     fi
 }
 
-dancingMan () {
+dancingMan() {
     STATUS=$(mpc status | sed -n 2p | awk '{print $1;}')
-    [ "$STATUS" = "[playing]" ] &&
-    # Dancing in its purest form.
-    if [ $(expr $1 % 2 ) -eq 0 ]; then
-        echo "   ♪╔(・o･)╝♪♫  ♩♩♫~(◠o◠)~♫ \n" "======================================"
-    else
-        echo " ♫♪ ╚(･o・)╗ ♪  ♩~(◠0◠)~♫ ♩♫\n" "======================================"
+    if [ "$STATUS" = "[playing]" ]; then
+        if [ $(($1 % 2)) -eq 0 ]; then
+            echo -e "   ♪╔(・o･)╝♪♫  ♩♩♫~(◠o◠)~♫\n======================================"
+        else
+            echo -e " ♫♪ ╚(･o・)╗ ♪  ♩~(◠0◠)~♫ ♩♫\n======================================"
+        fi
     fi
 }
 
-notifyInfo () {
+notifyInfo() {
     local -i i=8
-    while [ $i -gt 0 ];
-    do
+    local ARTIST TRACK REPEAT SH NEXT NOW
+
+    while [ $i -gt 0 ]; do
         ARTIST=$(mpc current -f %artist%)
         TRACK=$(mpc current -f %title%)
         REPEAT=$(mpc status %repeat%)
-        sh=$(mpc status %random%)
-        read NEXT <<< $(mpc queued)
-        read now <<< $(mpc status | awk '/^\[/ { printf $3 "\t" $4}')
+        SH=$(mpc status %random%)
+        NEXT=$(mpc queued)
+        read NOW <<< $(mpc status | awk '/^\[/ { printf $3 "\t" $4}')
         dunstify -r 213 -t 1500 "🎶$ARTIST
-  $TRACK " " $now
+  $TRACK " " $NOW
 $(dancingMan $i)
 Next song: $NEXT
  ======================================
-        random: "$sh"   repeat: "$REPEAT""
+        random: "$SH"   repeat: "$REPEAT""
         sleep 0.8
-        i=$(( i-1 ));
+        ((i--))
     done
-    unset i;
 }
+
 
 STATUS=$(mpc status | sed -n 2p | awk '{print $1;}')
 

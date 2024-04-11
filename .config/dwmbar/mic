@@ -1,11 +1,19 @@
 #!/bin/bash
 
-# Micrófono y Monitor en dwmbar
+# micen dwmbar
 icon=""
 icon_mute="" 
-mic_volume="$(pamixer --source 3 --get-volume)%"
 
-mic_muted=$(pamixer --source 3 --get-mute | tr -d "\n")
+command(){
+  pamixer --source 5 "$1";
+}
+killCommand(){
+  pkill -RTMIN+17 dwmblocks;
+}
+
+mic_volume="$(command --get-volume)%"
+
+mic_muted=$(command --get-mute | tr -d "\n")
 
 if [ "$mic_muted" == "true" ]
 then
@@ -15,13 +23,8 @@ else
 fi
 
 case $BUTTON in
-	1) pamixer --source 3 -t && pkill -RTMIN+17 dwmblocks;
-		;;
-	4) pamixer --source 3 -i 2 && pkill -RTMIN+17 dwmblocks;
-		;;
-	5) pamixer --source 3 -d 2 && pkill -RTMIN+17 dwmblocks;
-		;;
-	6) "$TERMINAL" -e "$EDITOR" "$0"
-		;;
+	1) command -t && killCommand;;
+	4) command -i 2 && killCommand;;
+	5) command -d 2 && killCommand;;
+	6) "$TERMINAL" -e "$EDITOR" "$0";;
 esac
-

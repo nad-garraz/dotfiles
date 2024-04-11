@@ -1,41 +1,40 @@
 #!/bin/bash
 #
-PLUG_icon='󰚥'
+PLUG_ICON='󰚥'
 # Battery percentage
 CHARGE=$(cat /sys/class/power_supply/BAT0/capacity)
 # Charging status
 STATUS=$(cat /sys/class/power_supply/BAT0/status)
 # Battery icon
 battery_icon() {
-    if (( CHARGE == 100 )); then printf '%s' "󰂃";
-    elif (( CHARGE >= 90 )); then printf '%s' "󰂂"
-    elif (( CHARGE >= 80 )); then printf '%s' "󰂁"
-    elif (( CHARGE >= 70 )); then printf '%s' "󰂀"
-    elif (( CHARGE >= 60 )); then printf '%s' "󰁿"
-    elif (( CHARGE >= 50 )); then printf '%s' "󰁾"
-    elif (( CHARGE >= 40 )); then printf '%s' "󰁽"
-    elif (( CHARGE >= 30 )); then printf '%s' "󰁼"
-    elif (( CHARGE >= 20 )); then printf '%s' "󰁻"
-    else printf '%s' "󰁺";
-    fi
+  case $CHARGE in
+  100) printf '%s' "󰂃" ;;
+  9[0-9]) printf '%s' "󰂂" ;;
+  8[0-9]) printf '%s' "󰂁" ;;
+  7[0-9]) printf '%s' "󰂀" ;;
+  6[0-9]) printf '%s' "󰁿" ;;
+  5[0-9]) printf '%s' "󰁾" ;;
+  4[0-9]) printf '%s' "󰁽" ;;
+  3[0-9]) printf '%s' "󰁼" ;;
+  2[0-9]) printf '%s' "󰁻" ;;
+  *) printf '%s' "󰁺" ;;
+  esac
 }
-
 
 batt_life=$(acpi -V | sed '2q;d')
 
-
 case $BUTTON in
-    1) notify-send -t 15000 "Info batería $(battery_icon)" "Estado: $STATUS
+1)
+  notify-send -t 15000 "Info batería $(battery_icon)" "Estado: $STATUS
 Carga: $CHARGE%
 Time: $(acpi | cut -d"," -f3 | sed 's/^ //')
 Vida Útil: $(echo "$batt_life" | cut -d" " -f13 | tr -d " ")"
-;;
-    6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+  ;;
+6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-
 if [ ! "$STATUS" = "Discharging" ]; then
-    printf "%s%s " "$PLUG_icon" "$CHARGE"
+  printf "%s%s " "$PLUG_ICON" "$CHARGE"
 else
-    printf "%s%s " "$(battery_icon)" "$CHARGE";
+  printf "%s%s " "$(battery_icon)" "$CHARGE"
 fi

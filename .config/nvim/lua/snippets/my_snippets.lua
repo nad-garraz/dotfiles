@@ -33,10 +33,20 @@ ls.add_snippets(nil, {
 			i(0, "<Sigo por aquí>"),
 		}),
 	},
+	latex = {
+		s({
+			trig = "cases",
+			name = "cases",
+			desc = "\\begin{cases} \n \\end{cases}",
+		}, fmt("\\begin{{cases}} \n {iNode1} \n \\end{{cases}}", { iNode1 = i(1, "<+ acá se escribe +>") })),
+	},
 	javascriptreact = {
 		s(
 			{ trig = "aff", name = "Little Arrow Func", desc = "Just produces a const $1 ($2) => {\n$3\n}$0" },
-      fmt("const {iNode1} = ({iNode2}) => {{{iNode0}\n}}", { iNode0 = i(0, "body"), iNode1 = i(1, "FuncName"), iNode2 = i(2,"args") })
+			fmt(
+				"const {iNode1} = ({iNode2}) => {{{iNode0}\n}}",
+				{ iNode0 = i(0, "body"), iNode1 = i(1, "FuncName"), iNode2 = i(2, "args") }
+			)
 		),
 		s({
 			trig = "div",

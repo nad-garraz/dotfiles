@@ -23,7 +23,6 @@ require "user.rainbow-delimiters"
 require "user.colorizer"
 require "user.indentline" -- After colorscheme
 require "user.harpoon"
-require "user.registers"
 -- require "user.luasnip"
 -- require "user.bufferline" -- para borrar
 

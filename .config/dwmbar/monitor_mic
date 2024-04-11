@@ -4,19 +4,16 @@
 icon=""
 icon_mute="" 
 
-monitor_volume="$(pamixer --source 3 --get-volume)%"
-case $BUTTON in
-	1) pamixer --source 3 -t && pkill -RTMIN+18 dwmblocks
-		;;
-	4) pamixer --source 3 -i 2 && pkill -RTMIN+18 dwmblocks
-		;;
-	5) pamixer --source 3 -d 2 && pkill -RTMIN+18 dwmblocks
-		;;
-	6) "$TERMINAL" -e "$EDITOR" "$0"
-		;;
-esac
+command(){
+  pamixer --source 3 "$1";
+}
+killCommand(){
+  pkill -RTMIN+18 dwmblocks;
+}
 
-monitor_muted=$(pamixer --source 3 --get-mute | tr -d "\n")
+monitor_volume="$(command --get-volume)%"
+
+monitor_muted=$(command --get-mute | tr -d "\n")
 
 if [ "$monitor_muted" == "true" ]
 then
@@ -24,3 +21,10 @@ then
 else
 	printf "%s%s " "$icon" "$monitor_volume"
 fi
+
+case $BUTTON in
+	1) command -t && killCommand;;
+	4) command -i 2 && killCommand;;
+	5) command -d 2 && killCommand;;
+	6) "$TERMINAL" -e "$EDITOR" "$0";;
+esac

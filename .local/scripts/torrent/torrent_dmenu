@@ -8,11 +8,29 @@ log_file=$LOGS/transmission_dmenu.log
 
 # Filas de los torrents encolados para determinar tamaño de
 # la terminal
-pgrep transmission-da >/dev/null && rows=$(transmission-remote -l | wc -l)
+pgrep transmission-da >/dev/null && ROWS=$(transmission-remote -l | wc -l)
 
 # Primer menu para el dmenu
-CHOICE_ONE=$(echo -e "toggle-daemon\nstart-all\nstop-all\nstart-1\nstop-1\nremove-torrent\nlist-torrents\nmove-torrent\ninfo-torrent\nlist-files" |
-  dmenu -i -fn "$dmenu_font" -p "${icon} MINIMAL TC: ")
+# Define an array with the choices
+options=(
+  "toggle-daemon"
+  "start-all"
+  "stop-all"
+  "start-1"
+  "stop-1"
+  "remove-torrent"
+  "list-torrents"
+  "move-torrent"
+  "info-torrent"
+  "list-files"
+  "go-to-directory"
+)
+
+# Use printf to format the array elements with newlines
+CHOICE_ONE=$(printf "%s\n" "${options[@]}" | dmenu -i -fn "$dmenu_font" -p "${icon} MINIMAL TC: ")
+
+# CHOICE_ONE=$(echo -e "toggle-daemon\nstart-all\nstop-all\nstart-1\nstop-1\nremove-torrent\nlist-torrents\nmove-torrent\ninfo-torrent\nlist-files\n" |
+# dmenu -i -fn "$dmenu_font" -p "${icon} MINIMAL TC: ")
 
 seleccion_torrent() {
   grepping=${1:-"Downloading\|Idle\|Up & Down\|Stopped\|Seeding\|Finished\|Uploading"}
@@ -72,39 +90,35 @@ remove_torrent() {
   [ -z $ID ] && exit
   BORRAR="$(echo -e "No\nSí" | dmenu -i -fn "$dmenu_font" -p "$icon ¿Borrar datos también?")"
   case $BORRAR in
-  "Sí")
-    transmission-remote -t$ID -rad && echo "borrado?"
-    ;;
-  "No")
-    transmission-remote -t$ID -r
-    ;;
+  "Sí") transmission-remote -t$ID -rad && echo "borrado?" ;;
+  "No") transmission-remote -t$ID -r ;;
   esac
 }
 
 list_torrents() {
-  #pidof "watch" > /dev/null &&\
-  #killall watch ||\
-  setsid -f falacritty -o window.dimensions.columns=160 -o window.dimensions.lines="$rows" -e watch -d -n 1 -t -c transmission-remote -l
+  setsid -f falacritty -o window.dimensions.columns=170 -o window.dimensions.lines="$ROWS" \
+    -e watch -d -n 1 -t -c transmission-remote -l
 }
 
 list_files() {
   TORRENT_OBJETIVO=$(seleccion_torrent)
   ID=$(getId "$TORRENT_OBJETIVO")
-  setsid -f falacritty -o window.dimensions.columns=160 -o window.dimensions.lines="$rows" -e watch -d -n 1 -t -c transmission-remote -t"$ID" -f
+  setsid -f falacritty -o window.dimensions.columns=160 -o window.dimensions.lines="$ROWS" -e watch -d -n 1 -t -c transmission-remote -t"$ID" -f
 }
 
 info_torrent() {
   TORRENT_OBJETIVO="$(seleccion_torrent)"
   ID=$(getId "$TORRENT_OBJETIVO")
   [ -z $ID ] && exit
-  rows=$(transmission-remote -t $ID -i |
+  ROWS=$(transmission-remote -t $ID -i |
     grep -v Hash |
     grep -v Magnet |
     grep -v Labels |
     sed '/^[[:space:]]*$/d' |
     wc -l)
   pidof "watch" >/dev/null && killall watch
-  setsid -f falacritty -o window.dimensions.columns=140 -o window.dimensions.lines="$rows" -e watch -d -n 1 -t -c "transmission-remote -t $ID -i |\
+  setsid -f falacritty -o window.dimensions.columns=140 -o window.dimensions.lines="$ROWS" \
+    -e watch -d -n 1 -t -c "transmission-remote -t $ID -i |\
       grep -v Hash |\
       grep -v Magnet |\
       grep -v Labels |\
@@ -132,12 +146,16 @@ move_torrent() {
     notify-send "$icon torrent:$NAME" "☛ $DIRECTORIO_OBJETIVO"
 }
 
+go-to-directory() {
+  setsid -f falacritty -o window.dimensions.columns=140 -o window.dimensions.lines=30 --working-directory /data/torrents/torrent_files -e sh -c "ls --color; exec $SHELL"
+}
+
 case $CHOICE_ONE in
 "toggle-daemon") toggle_daemon ;;
 "start-all") transmission-remote -t all -s >/dev/null &&
-    notify-send "$icon   $icon   $icon    $icon" "All torrent started" ;;
+  notify-send "$icon   $icon   $icon    $icon" "All torrent started" ;;
 "stop-all") transmission-remote -t all -S >/dev/null &&
-    notify-send "$icon  $icon   $icon   $icon" "All torrent stopped" ;;
+  notify-send "$icon  $icon   $icon   $icon" "All torrent stopped" ;;
 "start-1") start_1 ;;
 "stop-1") stop_1 ;;
 "remove-torrent") remove_torrent ;;
@@ -145,4 +163,5 @@ case $CHOICE_ONE in
 "list-torrents") list_torrents ;;
 "info-torrent") info_torrent ;;
 "move-torrent") move_torrent ;;
+"go-to-directory") go-to-directory ;;
 esac
