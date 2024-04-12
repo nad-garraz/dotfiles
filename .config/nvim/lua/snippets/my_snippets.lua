@@ -33,12 +33,31 @@ ls.add_snippets(nil, {
 			i(0, "<Sigo por aquí>"),
 		}),
 	},
-	latex = {
-		s({
-			trig = "cases",
-			name = "cases",
-			desc = "\\begin{cases} \n \\end{cases}",
-		}, fmt("\\begin{{cases}} \n {iNode1} \n \\end{{cases}}", { iNode1 = i(1, "<+ acá se escribe +>") })),
+	tex = {
+		s(
+			{
+				trig = "enumLabel",
+				name = "enumerateLabel",
+				desc = "\\begin{enumerate}[label=<++>*)] \n \\end{enumerate}",
+			},
+			fmt(
+				"\\begin{{enumerate}}[label={iNode1}*)] \n \\item {iNode2} \n \\end{{enumerate}}",
+				{ iNode1 = i(1, "<+ label +>"),iNode2 = i(2, "<+ acá se escribe +>")  }
+			)
+		),
+
+		s(
+			{
+				trig = "llave",
+				name = "llave",
+				desc = "\\begin{{llave}{l}\n{ \n }",
+			},
+			fmt(
+				"\\llave{{ {iNode1} }}{{\n {iNode2} \n}}",
+				{ iNode1 = i(1, "<+ align +>"),iNode2 = i(2, "<+ acá se escribe +>")  }
+			)
+		),
+
 	},
 	javascriptreact = {
 		s(
