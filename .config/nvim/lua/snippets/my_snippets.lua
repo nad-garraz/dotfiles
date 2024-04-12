@@ -53,7 +53,7 @@ ls.add_snippets(nil, {
 				desc = "\\begin{{llave}{l}\n{ \n }",
 			},
 			fmt(
-				"\\llave{{ {iNode1} }}{{\n {iNode2} \n}}",
+				"\\llave{{{iNode1}}}{{\n {iNode2} \n}}",
 				{ iNode1 = i(1, "<+ align +>"),iNode2 = i(2, "<+ acá se escribe +>")  }
 			)
 		),

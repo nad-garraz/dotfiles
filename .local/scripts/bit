@@ -1,0 +1,43 @@
+#!/bin/sh
+
+#  _     _ _
+# | |__ (_) |_
+# | '_ \| | __|
+# | |_) | | |_
+# |_.__/|_|\__|
+#
+
+#
+
+FOLDER_DIR="/tmp/ai"
+ANSWERS_DIR="/tmp/ai/answers"
+ANSWERS_FILE="$ANSWERS_DIR/answers,txt"
+CONTEXT_FILE="$ANSWERS_DIR/context.txt"
+QUESTIONS_DIR="/tmp/ai/questions.txt"
+QUESTIONS_FILE="$QUESTIONS_DIR/questions"
+
+QUESTION="*"
+
+createDirectory() {
+  if [ ! -d "$1" ]; then
+    mkdir "$1"
+  fi
+}
+createFile() {
+  if [ ! -f "$1" ]; then
+    touch "$1"
+  fi
+}
+
+createFile "$ANSWERS_FILE"
+createFile "$CONTEXT_FILE"
+
+createDirectory "$FOLDER_DIR"
+createDirectory "$ANSWERS_DIR"
+createDirectory "$QUESTIONS_DIR"
+
+
+printf "%s\n\n" "$QUESTION" > "$QUESTIONS_FILE";
+bito -p "$QUESTIONS_FILE" -f "$ANSWERS_FILE" -c "$CONTEXT_FILE" 
+
+printf "%s\n\n" "$QUESTION" >> "$CONTEXT_FILE";
