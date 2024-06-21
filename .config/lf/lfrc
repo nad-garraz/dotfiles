@@ -8,6 +8,7 @@ map gto cd /data/torrents/torrent_files
 map gda cd /data
 map gal cd ~/algebra1
 map gin cd ~/aed1
+map gvi cd ~/.config/nvim
 
 # toggle selection
 map <tab> toggle 
@@ -25,10 +26,10 @@ map <tab> toggle
 cmd open ${{
     case "$f" in
         *.vim) alacritty -e nvim -S "$f" & disown -h &;;
-        *.mp4|*.mp3|*.opus|*.mkv) mpv --title=mpvfloat "$f" & disown -h &;;
-        *.pdf) zathura "$f" & disown -h &;;
-        *.jpg|*.jpeg) sxiv "$f" & disown -h &;;
-        *) alacritty -e $EDITOR "$f" & disown -h &;;
+        *.mp4|*.mp3|*.opus|*.mkv) mpv --title=mpvfloat "$f" &;;
+        *.pdf) zathura "$f" & ;;
+        *.jpg|*.jpeg) sxiv "$f" & ;;
+        *) alacritty -e $EDITOR "$f" &;;
     esac
 }}
 

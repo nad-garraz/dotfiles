@@ -72,7 +72,7 @@ ipif() {
 
 qr() {
 	# Toma un argumento y lo convierte en un código QR
-	arg=$1
+	arg="$1"
 	curl qrenco.de/"$arg"
 }
 
@@ -80,6 +80,7 @@ qr() {
 syncfiles(){
   rsync -av --update --partial --info=stats1,progress2 --times "$@"
 }
+
 cpr() {
   rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 "$@"
 }

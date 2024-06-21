@@ -70,6 +70,14 @@ formatter.setup({
 		},
 		python = {
 			require("formatter.filetypes.python").black,
+			function()
+				return {
+					exe = "/home/nad/.local/share/nvim/mason/bin/black",
+					args = {
+						"--line-length 120",
+					},
+				}
+			end,
 		},
 
 		tex = {
@@ -90,7 +98,16 @@ formatter.setup({
 			function()
 				return {
 					exe = "/home/nad/.local/share/nvim/mason/bin/fourmolu",
-					args = { "--mode inplace", "--indentation=4", "--let-style=newline", "--in-style=left-align" },
+					args = {
+						"--mode inplace",
+						"--indentation=4",
+						"--let-style=newline",
+						"--in-style=left-align",
+						"--comma-style=trailing",
+						"--column-limit=150",
+						"--indent-wheres=true",
+						"--import-export-style=diff-friendly",
+					},
 				}
 			end,
 		},
@@ -98,8 +115,8 @@ formatter.setup({
 			require("formatter.filetypes.cpp").clangformat,
 			function()
 				local multiLinesStyle = [[ --style="{
-                                      AlignConsecutiveAssignment: {Enabled: true, AlignCompound: true, AcrossEmptyLines: false, AcrossComments: false},
-                                       AlignConsecutiveDeclarations: {Enabled: true, AcrossEmptyLines: false, AcrossComments: false},
+                                      AlignConsecutiveAssignments: {Enabled: true, AlignCompound: true, AcrossEmptyLines: false, AcrossComments: false},
+                                      AlignConsecutiveDeclarations: {Enabled: true, AcrossEmptyLines: false, AcrossComments: false},
                                       AllowShortCaseLabelsOnASingleLine: true,
                                       AllowShortFunctionsOnASingleLine: true,
                                       AllowShortIfStatementsOnASingleLine: Always,
@@ -116,7 +133,7 @@ formatter.setup({
                                       }"
                                 ]]
 				return {
-					exe = "clang-format",
+					exe = "/usr/bin/clang-format",
 					args = {
 						multiLinesStyle,
 						-- util.escape_path(util.get_current_buffer_file_path()),

@@ -21,5 +21,5 @@ vim.g.rainbow_delimiters = {
 		"RainbowDelimiterViolet",
 		"RainbowDelimiterCyan",
 	},
-	disable = { "jsx", "cpp" },
+	blacklist = { "jsx", "cpp" },
 }

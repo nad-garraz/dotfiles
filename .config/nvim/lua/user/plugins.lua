@@ -44,18 +44,17 @@ packer.init({
 -- Install your plugins here
 return packer.startup(function(use)
 	-- My plugins here
-	use({ "wbthomason/packer.nvim", commit = "ea0cc3c59f67c440c5ff0bbe4fb9420f4350b9a3" }) -- Have packer manage itself
+	use({ "wbthomason/packer.nvim"}) -- Have packer manage itself
 	use({ "nvim-lua/plenary.nvim", commit = "4b7e52044bbb84242158d977a50c4cbcd85070c7" }) -- Useful lua functions used by lots of plugins
-	use({ "windwp/nvim-autopairs", commit = "ae5b41ce880a6d850055e262d6dfebd362bb276e" }) -- Autopairs, integrates with both cmp and treesitter
+	use({ "windwp/nvim-autopairs"}) -- Autopairs, integrates with both cmp and treesitter
 	use({ "numToStr/Comment.nvim", commit = "0236521ea582747b58869cb72f70ccfa967d2e89" })
-	use({ "JoosepAlviste/nvim-ts-context-commentstring", commit = "95e9ba9de4289d221666b66fd930d157c7ca08c6" })
-	use({ "kyazdani42/nvim-web-devicons", commit = "9ab9b0b894b2388a9dbcdee5f00ce72e25d85bf9" })
-	use({ "kyazdani42/nvim-tree.lua", commit = "a708bd2413d467929b5019ec1bce7b1f428438bc" })
+	use({ "JoosepAlviste/nvim-ts-context-commentstring" })
+	use({ "nvim-tree/nvim-web-devicons" })
+	use({ "nvim-tree/nvim-tree.lua"})
 
-	-- use({ "akinsho/bufferline.nvim", tag = "*", requires = "nvim-tree/nvim-web-devicons", commit = "9961d87bb3ec008213c46ba14b3f384a5f520eb",
 	-- })
 	use({ "moll/vim-bbye", commit = "25ef93ac5a87526111f43e5110675032dbcacf56" })
-	use({ "nvim-lualine/lualine.nvim", commit = "05d78e9fd0cdfb4545974a5aa14b1be95a86e9c9" })
+	use({ "nvim-lualine/lualine.nvim" })
 	use({ "akinsho/toggleterm.nvim", commit = "12cba0a1967b4f3f31903484dec72a6100dcf515" })
 	use({ "norcalli/nvim-colorizer.lua", commit = "36c610a9717cc9ec426a07c8e6bf3b3abcb139d6" })
 	use({ "ahmedkhalf/project.nvim", commit = "628de7e433dd503e782831fe150bb750e56e55d6" })
@@ -82,8 +81,6 @@ return packer.startup(function(use)
 
 	use({ "rafamadriz/friendly-snippets", commit = "43727c2ff84240e55d4069ec3e6158d74cb534b6" }) -- a bunch of snippets to use
 	use({ "honza/vim-snippets", commit = "ccc2fa1529d372f7ac16d5eb07a385a72b50e05d" }) -- snippet completions
-	-- use({ "quangnguyen30192/cmp-nvim-ultisnips", commit = "24bca5c3e137b28cd87442d4fc51a2b312dd99cc" }) -- snippet completions
-	-- use({ "SirVer/ultisnips", commit = "24a3ebb36687b6d59a19d63173713575b486d739" })
 
 	-- registers
 	use({ "tversteeg/registers.nvim", commit = "f7f7b8a55de10293e2af6002d4da98cbeffc6333" }) -- snippet completions
@@ -98,24 +95,25 @@ return packer.startup(function(use)
 	use({ "RRethy/vim-illuminate", commit = "6acf7d4a18255a3ddc43770866c8e148fe85af7b" })
 
 	-- Telescope
-	use({ "nvim-telescope/telescope.nvim", commit = "74ce793a60759e3db0d265174f137fb627430355" })
+	use({ "nvim-telescope/telescope.nvim" })
 
 	-- Treesitter
-	use({ "nvim-treesitter/nvim-treesitter", commit = "d94e1ad9575cc211b5726f09b28ca9454aba22fe", })
+	use({ "nvim-treesitter/nvim-treesitter"})
 
 	-- Git
-	use({ "lewis6991/gitsigns.nvim", commit = "f98c85e7c3d65a51f45863a34feb4849c82f240f" })
+	use({ "lewis6991/gitsigns.nvim"})
 
 	-- DAP
-	use({ "mfussenegger/nvim-dap", commit = "6b12294a57001d994022df8acbe2ef7327d30587" })
-	use({ "rcarriga/nvim-dap-ui", commit = "1cd4764221c91686dcf4d6b62d7a7b2d112e0b13" })
-	use({ "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" })
+	use({ "mfussenegger/nvim-dap"})
+  use({"leoluz/nvim-dap-go"})
+	use({ "rcarriga/nvim-dap-ui" })
+	use({ "nvim-telescope/telescope-dap.nvim" })
+	use({ "theHamsta/nvim-dap-virtual-text" })
 
 	-- rainbow-delimiters
-	use({ "HiPhish/rainbow-delimiters.nvim", commit = "8c6697b293d44b9bbbbdcf37e200cd01c9b66355" })
+	use({ "HiPhish/rainbow-delimiters.nvim" })
 
 	-- HOP
-	-- use({ "phaazon/hop.nvim", commit = "6591b3656b75ff313cc38dc662a7ee8f75f1c165" })
 	use({ "smoka7/hop.nvim", commit = "f2508f415b9fe34082696009574ca26f57a66531" })
 
 	-- Harpoon

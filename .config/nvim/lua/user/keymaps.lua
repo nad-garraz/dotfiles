@@ -16,7 +16,7 @@ vim.g.mapleader = " "
 
 -- Normal --
 -- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
+keymap("n", "<C-h>", "<C-w><C-h>", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
@@ -85,12 +85,17 @@ keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 keymap("n", "<c-\\>", ":ToggleTerm<CR>", opts)
 
 -- -- Telescope
-keymap("n", "<leader>tf", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>tg", ":Telescope live_grep<CR>", opts)
-keymap("n", "<leader>tp", ":Telescope projects<CR>", opts)
-keymap("n", "<leader>tb", ":Telescope buffers<CR>", opts)
-keymap("n", "<leader>tr", ":Telescope oldfiles<CR>", opts)
-keymap("n", "<leader>tkk", ":Telescope keymaps<CR>", opts)
+local builtin = require 'telescope.builtin'
+keymap('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
+keymap('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
+keymap('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
+keymap('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
+keymap('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
+keymap('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+keymap('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
+keymap('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
+keymap('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+keymap('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers'})
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
@@ -143,7 +148,7 @@ keymap("i", "<c-j>", "<esc>/<+.*+><enter>:noh<cr><esc>cf>", {silent = true, nore
 -- keymap("i", "<>", "<><++><Esc>F>i", opts)
 
 -- BackTilde
-keymap("i", "<leader>`", "```", opts)
+-- keymap("i", "<leader>`", "```", opts)
 
 -- Tildes
 keymap("n", "<leader>tt", "<cmd>lua require('tildes').ToggleTildes()<enter>", opts)

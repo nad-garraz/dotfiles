@@ -11,8 +11,8 @@
 
 # Menú que sirve para elegir como hacer un screencast. Opciones de audio y calidad de video.
 # opciones:
-input_mic="1"
-input_monitor="0"
+input_mic="5"
+input_monitor="2"
 
 verbosity="-hide_banner -loglevel warning -nostats"
 

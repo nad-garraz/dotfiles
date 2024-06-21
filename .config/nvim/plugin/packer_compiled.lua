@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/nad/.local/cache/nvim/packer_hererocks/2.1.1702233742/share/lua/5.1/?.lua;/home/nad/.local/cache/nvim/packer_hererocks/2.1.1702233742/share/lua/5.1/?/init.lua;/home/nad/.local/cache/nvim/packer_hererocks/2.1.1702233742/lib/luarocks/rocks-5.1/?.lua;/home/nad/.local/cache/nvim/packer_hererocks/2.1.1702233742/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/nad/.local/cache/nvim/packer_hererocks/2.1.1702233742/lib/lua/5.1/?.so"
+local package_path_str = "/home/nad/.local/cache/nvim/packer_hererocks/2.1.1716656478/share/lua/5.1/?.lua;/home/nad/.local/cache/nvim/packer_hererocks/2.1.1716656478/share/lua/5.1/?/init.lua;/home/nad/.local/cache/nvim/packer_hererocks/2.1.1716656478/lib/luarocks/rocks-5.1/?.lua;/home/nad/.local/cache/nvim/packer_hererocks/2.1.1716656478/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/nad/.local/cache/nvim/packer_hererocks/2.1.1716656478/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -78,11 +78,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/Comment.nvim",
     url = "https://github.com/numToStr/Comment.nvim"
-  },
-  ["DAPInstall.nvim"] = {
-    loaded = true,
-    path = "/home/nad/.local/share/nvim/site/pack/packer/start/DAPInstall.nvim",
-    url = "https://github.com/ravenxrz/DAPInstall.nvim"
   },
   LuaSnip = {
     loaded = true,
@@ -199,10 +194,20 @@ _G.packer_plugins = {
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/nvim-dap",
     url = "https://github.com/mfussenegger/nvim-dap"
   },
+  ["nvim-dap-go"] = {
+    loaded = true,
+    path = "/home/nad/.local/share/nvim/site/pack/packer/start/nvim-dap-go",
+    url = "https://github.com/leoluz/nvim-dap-go"
+  },
   ["nvim-dap-ui"] = {
     loaded = true,
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
     url = "https://github.com/rcarriga/nvim-dap-ui"
+  },
+  ["nvim-dap-virtual-text"] = {
+    loaded = true,
+    path = "/home/nad/.local/share/nvim/site/pack/packer/start/nvim-dap-virtual-text",
+    url = "https://github.com/theHamsta/nvim-dap-virtual-text"
   },
   ["nvim-lint"] = {
     loaded = true,
@@ -217,7 +222,7 @@ _G.packer_plugins = {
   ["nvim-tree.lua"] = {
     loaded = true,
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
-    url = "https://github.com/kyazdani42/nvim-tree.lua"
+    url = "https://github.com/nvim-tree/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     loaded = true,
@@ -232,7 +237,7 @@ _G.packer_plugins = {
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
-    url = "https://github.com/kyazdani42/nvim-web-devicons"
+    url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -258,6 +263,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/nad/.local/share/nvim/site/pack/packer/start/registers.nvim",
     url = "https://github.com/tversteeg/registers.nvim"
+  },
+  ["telescope-dap.nvim"] = {
+    loaded = true,
+    path = "/home/nad/.local/share/nvim/site/pack/packer/start/telescope-dap.nvim",
+    url = "https://github.com/nvim-telescope/telescope-dap.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,

@@ -108,3 +108,7 @@ alt + shift + i ; {i,c,e}
 # Dunstctl
 alt + shift + d; {9,0,c}
  {dunstctl close, dunstctl history-pop, dunstctl context}
+
+# Wacom Map to displays
+super + w
+ wacom-map
