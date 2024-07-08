@@ -22,6 +22,9 @@ dir="/data/ffmpeg"
 FILENAME="$(date '+%d-%m-%y--%H%M%S')-video"
 FINAL_NAME="$dir/$FILENAME"
 
+
+RESOLUTION="$(xrandr --query | grep '*+' | grep -E -o [0-9]{4}x[0-9]{4} | head -1)"
+
 # Es muy común querer mandar el video, por eso doy esta opción luego de terminar
 # la grabación.
 share () {
@@ -38,7 +41,7 @@ esac
 first=$(echo -e "Placa & Mic\nPlaca\nMic\nNo Audio\nPlaca & Mic(light)\nSección Particular\nStop Screencast" | dmenu -fn "$dmenu_font" -i -p "ScreenCasting: ")
 
 case $first in
-	"Placa & Mic") ffmpeg -f x11grab -video_size 1920x1080 -framerate 30 \
+  "Placa & Mic") ffmpeg -f x11grab -video_size "${RESOLUTION}" -framerate 30 \
     -i "$DISPLAY" -f alsa -i pulse:"${input_monitor}" -f alsa -i pulse:${input_mic} \
     -filter_complex "[0:v]hue=s=1[outv];[1:a][2:a]amerge=inputs=2[a]" -map '[outv]' -map "[a]" \
     -ac 2 -r 30 -c:a libopus -b:a 48k \
@@ -51,7 +54,7 @@ case $first in
     -c:a libopus -b:a 48k\
     "$FINAL_NAME.mkv"
 		;;
-	"Mic") ffmpeg -loglevel 0 -f x11grab -video_size 1920x1080 -framerate 30 -i "$DISPLAY"\
+	"Mic") ffmpeg -loglevel 0 -f x11grab -video_size "${RESOLUTION}" -framerate 30 -i "$DISPLAY"\
     -f alsa -i pulse:${input_mic} -r 30 -c:v libx264 -preset:v fast -b:v 2000k\
     -c:a libopus -b:a 48k "$FINAL_NAME.mkv"
 		;;

@@ -10,9 +10,13 @@
 # Map the tablet to one output
 #
 
-OUTPUT=$(xrandr | grep -e " connected " | cut -d" " -f1 | tr -d " " | tr " " "\n" | dmenu -fn "$dmenu_font" -p "Pantalla a usar:?")
+OUTPUT=$(xrandr | grep -e " connected " |
+  cut -d" " -f1 |
+  tr -d " " |
+  tr " " "\n" |
+  dmenu -fn "$dmenu_font" -p "Wacom - Pantalla a usar:?")
 
 if [ -n "$OUTPUT" ]; then
-  xsetwacom --set "Wacom Intuos S Pen stylus" MapToOutput "$OUTPUT" && \
+  xsetwacom --set "Wacom Intuos S Pen stylus" MapToOutput "$OUTPUT" &&
     dunstify "✏ Mapeado a " "✏ $OUTPUT"
 fi
