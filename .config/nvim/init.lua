@@ -1,41 +1,45 @@
--- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-require 'plugins'
+require 'user.launch'
+require 'user.keymaps'
+require 'user.options'
+require 'user.netrw'
+spec 'user.colorscheme'
+spec 'user.devicons'
+spec 'user.treesitter'
+spec 'user.mason'
+spec 'user.lspconfig'
+spec 'user.cmp'
+spec 'user.none-ls'
+spec 'user.whichkey'
+spec 'user.telescope'
 
-require 'config.options'
-require 'config.keymaps'
+-- Lazy installer
+require 'user.lazy'
 
-require 'utils.tildes'
-require 'utils.my'
-require 'snippets.latex_snips'
-
--- Set to true if you have a Nerd Font installed and selected in the terminal
+-- Nerd font
 vim.g.have_nerd_font = true
 
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
+-- Mis cosas
+require 'mis_cosas.tildes'
+require 'mis_cosas.toggleJumps'
+require 'mis_cosas.my'
+require 'snippets.latex_snips'
 
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+-- Load filetype-specific settings
+-- vim.cmd [[
+--   augroup filetypedetect
+--     au! BufRead,BufNewFile *.tex setfiletype tex
+--   augroup END
+-- ]]
+
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = '*.tex',
   callback = function()
-    vim.highlight.on_yank()
+    vim.bo.filetype = 'tex'
   end,
 })
 
--- Load filetype-specific settings
-vim.cmd [[
-  augroup filetypedetect
-    au! BufRead,BufNewFile *.tex setfiletype tex
-  augroup END
-]]
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
+-- color
+vim.cmd.colorscheme 'kanagawa-dragon'

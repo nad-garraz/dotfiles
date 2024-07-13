@@ -1,0 +1,14 @@
+--https://valentjn.github.io/ltex/settings.html
+-- return {
+-- 	settings = {
+-- 		ltex = {
+-- 			enabled = false,-- {'latex', 'markdown'},
+-- 			language = "es",
+-- 			disabledRules = { ["es"] = { "MORFOLOGIK_RULE_ES", "MORFOLOGIK_RULE" } },
+-- 			-- hiddenFalsePositives = {['es'] = {'MORFOLOGIK_RULE_ES','MORFOLOGIK_RULE'},
+-- 			-- 		},
+-- 			ltex_ls = { logLevel = "severe" },
+-- 			diagnosticSeverity = "hint",
+-- 		},
+-- 	},
+-- }
