@@ -90,6 +90,7 @@ alias megaget="megaget --config=$HOME_CONFIG/megarc"
 
 # VIM --> NVIM
 alias vim="nvim"
+alias v="nvim"
 
 # La platita
 alias guita="python /data/repos/control-guita/main.py"
@@ -99,10 +100,6 @@ alias tree="tree -C"
 
 # Ps que tanto uso
 alias pies="pstree -apC age | grep $1"
-
-# youtube-dl audio
-alias yt="youtube-dl -i --restrict-filenames"
-alias yta="youtube-dl -i --restrict-filenames --extract-audio --audio-format mp3 --audio-quality 48K"
 
 # Para ver la cantidad de filas que hay en el directorio
 alias archivos="ls -A | awk '{rows++} END {print \"Archivos: \" rows }'"
@@ -121,9 +118,6 @@ alias brutaldoom="gzdoom /data/games/doom/brutal-doom/brutalv21.pk3"
 
 # Watch
 alias watch="watch -d -n 1 -t -c"
-
-# Bandwhich usage
-alias bandwhich="sudo bandwhich -t"
 
 # SCID chess my database
 alias chess="scid /data/games/chess/my_games/mis_juegos.si4"

@@ -11,7 +11,6 @@ function M.config()
 		"pyright",
 		"clangd",
 		"marksman",
-		-- "ltex",
 		"texlab",
 		"bashls",
 	}

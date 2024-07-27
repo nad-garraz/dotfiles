@@ -115,26 +115,53 @@ function M.config()
 
   -- See `:help telescope.builtin`
   local builtin = require 'telescope.builtin'
+  local wk = require 'which-key'
 
-  vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-  vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-  vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
-  vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-  vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-  vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
-  vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-  vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-  vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-  vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+  -- vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
 
---Telescope colorscheme
-    vim.keymap.set('n', '<leader>sc', builtin.colorscheme, { desc = '[C]olorscheme'} )
-
--- Telesccpe git
-  vim.keymap.set('n', '<leader>sgs', builtin.git_status, { desc = '[g]it [s]tatus' })
-  vim.keymap.set('n', '<leader>sgf', builtin.git_files, { desc = '[g]it [f]iles' })
-  vim.keymap.set('n', '<leader>sgc', builtin.git_commits, { desc = '[g]it [c]ommits' })
-  vim.keymap.set('n', '<leader>sgb', builtin.git_branches, { desc = '[g]it [b]ranches checkout' })
+  wk.add {
+    {
+      '<leader>sh',
+      builtin.help_tags,
+      desc = '[S]earch [H]elp',
+    },
+    { '<leader>sk', builtin.keymaps, desc = '[S]earch [K]eymaps' },
+    { '<leader>sf', builtin.find_files, desc = '[S]earch [F]iles' },
+    { '<leader>ss', builtin.builtin, desc = '[S]earch [S]elect Telescope' },
+    { '<leader>sw', builtin.grep_string, desc = '[S]earch current [W]ord' },
+    { '<leader>sg', builtin.live_grep, desc = '[S]earch by [G]rep' },
+    { '<leader>sd', builtin.diagnostics, desc = '[S]earch [D]iagnostics' },
+    { '<leader>sr', builtin.resume, desc = '[S]earch [R]esume' },
+    { '<leader>s.', builtin.oldfiles, desc = '[S]earch Recent Files ("." for repeat)' },
+    { '<leader>sch', builtin.commands, desc = '[S]earch [C]ommands History' },
+    { '<leader><leader>', builtin.buffers, desc = '[ ] Find existing buffers' },
+    {
+      '<leader>sn',
+      function()
+        builtin.find_files { cwd = vim.fn.stdpath 'config' }
+      end,
+      desc = '[S]earch [N]eovim files',
+    },
+    -- Grep with current buffer's git root directory as CWD.
+    {
+      '<leader>sgr',
+      function()
+        local currentBufDir = require('mis_cosas.myUtils').get_buf_dir()
+        local original_cwd = vim.fn.getcwd() -- Directorio original para luego volver
+        vim.cmd.cd(currentBufDir) -- Cambio de directorio para ejecutar telescope
+        local git_root = vim.fn.systemlist('git rev-parse --show-toplevel')[1]
+        -- Si el comando no dio error entonces el directorio va a ser git root
+        local search_dir = (vim.v.shell_error == 0 and git_root) or original_cwd
+        builtin.live_grep { cwd = search_dir }
+        vim.cmd.cd(original_cwd) -- Cambio de directorio para volver
+      end,
+      desc = '[S]earch [G]rep Git [R]oot',
+    },
+    { '<leader>sc', builtin.colorscheme, desc = '[C]olorscheme' },
+    { '<leader>sgs', builtin.git_status, desc = '[g]it [s]tatus' },
+    { '<leader>sgf', builtin.git_files, desc = '[g]it [f]iles' },
+    { '<leader>sgc', builtin.git_commits, desc = '[g]it [c]ommits' },
+  }
 end
 
 return M

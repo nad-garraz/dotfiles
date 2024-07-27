@@ -31,29 +31,28 @@ end
 
 function M.config()
   local wk = require 'which-key'
-  wk.register {
-    ['<leader>la'] = { '<cmd>lua vim.lsp.buf.code_action()<cr>', 'Code Action' },
-    ['<leader>lf'] = {
-
+  local mappings = {
+    { '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<cr>', desc = 'Code Action' },
+    {
+      '<leader>lf',
       "<cmd>lua vim.lsp.buf.format({async = true, filter = function(client) return client.name ~= 'typescript-tools' end})<cr>",
-      -- "<cmd>lua vim.lsp.buf.format({async = true, filter = function(client) print(client.name) return client.name ~= 'typescript-tools' end})<cr>",
-      'Format',
+      desc = 'Format',
     },
-    ['<leader>li'] = { '<cmd>LspInfo<cr>', 'Info' },
-    ['<leader>lj'] = { '<cmd>lua vim.diagnostic.goto_next()<cr>', 'Next Diagnostic' },
-    ['<leader>lh'] = { "<cmd>lua require('user.lspconfig').toggle_inlay_hints()<cr>", 'Hints' },
-    ['<leader>lk'] = { '<cmd>lua vim.diagnostic.goto_prev()<cr>', 'Prev Diagnostic' },
-    ['<leader>ll'] = { '<cmd>lua vim.lsp.codelens.run()<cr>', 'CodeLens Action' },
-    ['<leader>lq'] = { '<cmd>lua vim.diagnostic.setloclist()<cr>', 'Quickfix' },
-    ['<leader>lr'] = { '<cmd>lua vim.lsp.buf.rename()<cr>', 'Rename' },
+    { '<leader>lh', "<cmd>lua require('user.lspconfig').toggle_inlay_hints()<cr>", desc = 'Hints' },
+    { '<leader>li', '<cmd>LspInfo<cr>', desc = 'Info' },
+    { '<leader>lj', '<cmd>lua vim.diagnostic.goto_next()<cr>', desc = 'Next Diagnostic' },
+    { '<leader>lk', '<cmd>lua vim.diagnostic.goto_prev()<cr>', desc = 'Prev Diagnostic' },
+    { '<leader>ll', '<cmd>lua vim.lsp.codelens.run()<cr>', desc = 'CodeLens Action' },
+    { '<leader>lq', '<cmd>lua vim.diagnostic.setloclist()<cr>', desc = 'Quickfix' },
+    { '<leader>lr', '<cmd>lua vim.lsp.buf.rename()<cr>', desc = 'Rename' },
   }
 
-  wk.register {
-    ['<leader>la'] = {
-      name = 'LSP',
-      a = { '<cmd>lua vim.lsp.buf.code_action()<cr>', 'Code Action', mode = 'v' },
-    },
+  local wkOpts = {
+    mode = 'n', -- NORMAL mode
+    prefix = '<leader>',
   }
+
+  wk.add(mappings, wkOpts)
 
   local lspconfig = require 'lspconfig'
   local icons = require 'user.icons'
@@ -64,7 +63,6 @@ function M.config()
     'clangd',
     'marksman',
     'texlab',
-    --"ltex",
     'bashls',
   }
 
@@ -119,6 +117,16 @@ function M.config()
 
     lspconfig[server].setup(opts)
   end
+  -- Para que clangd no joda en el formatting
+  -- porque parece que el clang colisiona con el none-ls
+  require('lspconfig').clangd.setup {
+    on_attach = function(client)
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
+      -- Set up the keymap here
+      vim.api.nvim_set_keymap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
+    end,
+  }
 end
 
 return M

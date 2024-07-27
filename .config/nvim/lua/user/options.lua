@@ -24,6 +24,7 @@ vim.opt.signcolumn = 'yes' -- Keep signcolumn on by default
 vim.opt.updatetime = 250 -- Decrease update time
 vim.opt.timeoutlen = 300 -- Decrease mapped sequence wait time. Displays which-key popup sooner
 vim.opt.wrap = false -- No wrap
+vim.opt.sidescrolloff=10
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true

@@ -97,9 +97,17 @@ mk_dir_file() {
   }
 }
 
+edit_Makefile () {
+        sed 's/myprogram/${ejercicio}/' makefile_cpp > $dir_cpp/Makefile 
+}
+
 select choice in "C++" "PYTHON" "LUA" "JavaScript" "exit"; do
   case $choice in
-  "C++") mk_dir_file "$dir_cpp" "$archivo_cpp" && [ -n "$makefile_cpp" ] && cp "$makefile_cpp" "$dir_cpp" && echo DONE! && "$EDITOR" "$archivo_cpp"  && break ;;
+  "C++") mk_dir_file "$dir_cpp" "$archivo_cpp" &&\
+          [ -n "$makefile_cpp" ] &&\
+          sed "s/myprogram/${ejercicio}/" "$makefile_cpp" > "$dir_cpp/Makefile"
+          echo DONE! && "$EDITOR" "$archivo_cpp"  &&\
+          break ;;
   "PYTHON") mk_dir_file "$dir_py" "$archivo_py" && "$EDITOR" "$archivo_py" && break ;;
   "LUA") mk_dir_file "$dir_lua" "$archivo_lua" && $EDITOR "$archivo_lua" && break ;;
   "JavaScript") mk_dir_file "$dir_js" "$archivo_js" && $EDITOR "$archivo_js" && break ;;

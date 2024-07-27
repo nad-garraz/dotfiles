@@ -25,10 +25,41 @@ local function find_main_tex_file(start_dir)
   return dfs_search(start_dir)
 end
 
--- Run pdflatex asynchronously
 local function async_compilation(file_name)
-  vim.system({ 'pdflatex', file_name })
+  local function compile()
+    local cmd = { 'pdflatex', '-interaction=nonstopmode', file_name }
+    vim.fn.jobstart(cmd, {
+      on_stderr = function(_, data)
+        if data then
+          vim.schedule(function()
+            vim.notify(table.concat(data, '\n'), vim.log.levels.ERROR)
+          end)
+        end
+      end,
+      on_exit = function(_, exit_code)
+        if exit_code ~= 0 then
+          vim.schedule(function()
+            vim.notify('PDF compilation successful', vim.log.levels.INFO)
+          end)
+        else
+          vim.schedule(function()
+            vim.notify('PDF compilation failed', vim.log.levels.ERROR)
+          end)
+        end
+      end,
+    })
+  end
+
+  -- Run compilation twice
+  compile()
+  vim.defer_fn(compile, 1000) -- Run second compilation after 1 second
 end
+
+-- -- Run pdflatex asynchronously
+-- local function async_compilation(file_name)
+--   vim.system { 'pdflatex', file_name }
+--   vim.system { 'pdflatex', file_name }
+-- end
 
 local function compile_latex()
   -- Save the current buffer
@@ -46,7 +77,6 @@ local function compile_latex()
     vim.cmd.lcd(main_dir) -- Voy al directorio a compilar
     local nombre_archivo = vim.fn.fnamemodify(main_file, ':t')
     async_compilation(nombre_archivo)
-                print('Done ✅')
   else
     print 'No encontré el TeX con \\begin{document}....'
   end
@@ -91,5 +121,55 @@ vim.keymap.set('n', '<leader>cc', compile_latex, {
 -- Set up the keymap
 vim.keymap.set('n', '<leader>rr', open_pdf, {
   buffer = true,
-  desc = 'Opening ' .. vim.fn.expand '%:r',
+  desc = 'Opening ' .. vim.fn.expand '%:b:r' .. '.pdf',
+})
+
+--
+vim.keymap.set('i', '$$', '$$<++><ESC>"9F$i', {
+  buffer = true,
+  silent = true,
+})
+
+-- Format Latex file with latexindent
+
+local CONFIG_FILE = vim.fn.expand '~/.config/nvim/.latexindent.yaml'
+local LATEXINDENT_CMD = '/usr/bin/latexindent'
+
+local function texFormat()
+  -- Check if latexindent is available
+  if vim.fn.executable(LATEXINDENT_CMD) ~= 1 then
+    vim.notify('latexindent is not available', vim.log.levels.ERROR)
+    return
+  end
+
+  -- Check if config file exists
+  if vim.fn.filereadable(CONFIG_FILE) ~= 1 then
+    vim.notify('latexindent config file not found', vim.log.levels.WARN)
+    -- Proceed anyway, latexindent will use default settings
+  end
+
+  -- Save the buffer
+  vim.cmd 'update'
+
+  -- Format the file
+  local formatCommand = string.format('%s -m -l %s -w "%s"', LATEXINDENT_CMD, CONFIG_FILE, vim.fn.expand '%:p')
+  local output = vim.fn.system(formatCommand)
+
+  if vim.v.shell_error == 2 then
+    vim.notify('Formatting failed: ' .. output, vim.log.levels.ERROR)
+  else
+    vim.notify('Formatting successful', vim.log.levels.INFO)
+    -- Reload the buffer to show changes
+    vim.cmd 'edit!'
+  end
+end
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'tex',
+  callback = function()
+    vim.keymap.set('n', '<leader>lf', texFormat, {
+      desc = '[L]atex [F]ormat',
+      buffer = true,
+    })
+  end,
 })

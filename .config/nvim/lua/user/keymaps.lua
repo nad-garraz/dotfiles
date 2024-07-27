@@ -46,11 +46,11 @@ vim.keymap.set('n', '\\esp', ':setlocal spell! spelllang=es_ar<CR>', { desc = 'E
 vim.keymap.set('n', '<leader>tt', '<CMD> lua Tildes.toggle() <CR>', { desc = 'Toggle tildes con "["  mode on' })
 
 -- Jumps mother fucker!
-vim.keymap.set('i', '<c-j>', '<esc>/<+.*+><cr>:noh<cr><esc>"9cf>', { desc = '[j]ump to <+ algo +>', silent = true, noremap = true })
+vim.keymap.set('i', '<c-j>', '<esc>/<+.*+><cr>:noh<cr><esc>"9cf>', { desc = '[j]ump to <+_+>', silent = true, noremap = true })
 vim.keymap.set('n', '<leader>jj', '<cmd> lua Jumps.toggle() <CR>',{ desc = '[j]umps toggle', silent = true})
 
 -- Yo mama
-vim.keymap.set('n', 'ym', '<cmd>lua print(My_shit.pete())<cr>', { desc = 'Yo - mama...!' })
+vim.keymap.set('n', 'ym', '<CMD>lua My_shit.pete()<CR>', { desc = 'Yo - mama...!' })
 
 -- Visual
 vim.keymap.set("v", "<", "<gv", {desc = "Stay in visual indentation"})

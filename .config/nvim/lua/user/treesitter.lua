@@ -1,11 +1,12 @@
 local M = {
   'nvim-treesitter/nvim-treesitter',
-  event = { 'BufReadPost', 'BufNewFile' },
+  event = { 'BufReadPost', 'BufNewFile', 'LazyFile', 'VeryLazy' },
+  lazy = vim.fn.argc(-1) ==0, -- load treesitter early when opening a file from the cmdline
   build = ':TSUpdate',
   dependencies = {
     'nvim-lua/plenary.nvim',
     { -- If encountering errors, see telescope-fzf-native README for installation instructions
-      'nvim-telescope/telescope-fzf-native.nvim',
+      'nvim-telecope/telescope-fzf-native.nvim',
 
       -- `build` is used to run some command when the plugin is installed/updated.
       -- This is only run then, not every time Neovim starts up.
@@ -18,9 +19,9 @@ local M = {
       end,
     },
   },
-      { 'nvim-telescope/telescope-ui-select.nvim' },
-      -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+  { 'nvim-telescope/telescope-ui-select.nvim' },
+  -- Useful for getting pretty icons, but requires a Nerd Font.
+  { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
 }
 
 function M.config()
@@ -46,7 +47,7 @@ function M.config()
       -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
       -- the name of the parser)
       -- list of language that will be disabled
-      disable = { 'c', 'rust' },
+      disable = { 'rust' },
       -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
       disable = function(lang, buf)
         local max_filesize = 100 * 1024 -- 100 KB
@@ -60,7 +61,7 @@ function M.config()
       -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
       -- Using this option may slow down your editor, and you may see some duplicate highlights.
       -- Instead of true it can also be a list of languages
-      additional_vim_regex_highlighting = false,
+      additional_vim_regex_highlighting = true,
     },
   }
 end

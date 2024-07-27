@@ -7,12 +7,12 @@ local jumpsOn = 0
 --Mapping keys
 local function jumps()
   jumpsOn = 1
-  vim.keymap.set('i', '()', '()<+ [J]ump +><ESC>F)i' )
-  vim.keymap.set('i', '[]', '[]<+ [J]ump +><ESC>F]F]i' )
-  vim.keymap.set('i', '{}', '{}<+ [J]ump +><ESC>F}i' )
-  vim.keymap.set('i', '""', '""<+ [J]ump +><ESC>F"i' )
-  vim.keymap.set('i', "''", "''<+ [J]ump +><ESC>F'i" )
-  vim.keymap.set('i', '<>', '<><+ [J]ump +><ESC>F>i' )
+  vim.keymap.set('i', '()', '()<++><ESC>F)i' )
+  vim.keymap.set('i', '[]', '[]<++><ESC>F]i' )
+  vim.keymap.set('i', '{}', '{}<++><ESC>F}i' )
+  vim.keymap.set('i', '""', '""<++><ESC>F"i' )
+  vim.keymap.set('i', "''", "''<++><ESC>F'i" )
+  vim.keymap.set('i', '<>', '<><++><ESC>F>i' )
 end
 
 -- Unmapping keys
