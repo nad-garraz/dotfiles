@@ -48,12 +48,12 @@ Next song: $NEXT
 STATUS=$(mpc status | sed -n 2p | awk '{print $1;}')
 
 case $BUTTON in
-    3) notifyInfo ;;
+        3) (notifyInfo &> /dev/null) & ;;
     1) mpc -q toggle && pkill -RTMIN+1 dwmblocks ;;
     4) [ "$STATUS" = "[playing]" ] && mpc -q next ;;
     5) [ "$STATUS" = "[playing]" ] && mpc -q prev ;;
-    2) setsid -f falacritty -o window.dimensions.columns=150 -o window.dimensions.lines=30 -e ncmpcpp ;;
-    6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
+    2) (setsid -f falacritty -o window.dimensions.columns=150 -o window.dimensions.lines=30 -e ncmpcpp &> /dev/null) & ;;
+    6) (setsid -f "$TERMINAL" -e "$EDITOR" "$0" &> /dev/null) & ;;
     7) mpc_dmenu ;;
 esac
 

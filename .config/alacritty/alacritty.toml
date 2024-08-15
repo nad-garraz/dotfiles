@@ -5,42 +5,23 @@ style = "Beam"
 TERM = "alacritty"
 
 [font]
-size = 9
+size = 10
+offset = {x = 0, y = 1}
+normal = {family = "Terminess Nerd Font Mono", style = "Regular"}
+bold = {family = "Terminess Nerd Font Mono", style = "Bold"}
+italic = {family = "Terminess Nerd Font Mono", style = "Italic"}
+bold_italic = {family = "Terminess Nerd Font Mono", style = "Bold Italic"}
 
-[font.bold]
-family = "FantasqueSansM Nerd Font Mono"
-style = "Bold"
-
-[font.bold_italic]
-family = "FantasqueSansM Nerd Font Mono"
-style = "Bold Italic"
-
-[font.italic]
-family = "JetBrainsMono Nerd Font Mono"
-style = "Italic"
-
-[font.normal]
-family = "DaddyTimeMono"
-style = "Regular"
-
-[font.offset]
-x = 0
-y = 0
-
-[[keyboard.bindings]]
-action = "ScrollPageUp"
-key = "K"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-action = "ScrollPageDown"
-key = "J"
-mods = "Alt|Shift"
-
-[[keyboard.bindings]]
-action = "Paste"
-key = "V"
-mods = "Alt"
+[keyboard]
+bindings = [
+{key = "K", mods = "Control|Shift", action = "ScrollPageUp"},
+{key = "J", mods = "Control|Shift", action = "ScrollPageDown"},
+{key = "V", mods = "Alt",action = "Paste"},
+]
 
 [window]
 opacity = 0.9
+
+[colors.primary]
+foreground = "#22ff22"
+background = "#052005"

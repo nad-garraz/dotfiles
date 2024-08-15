@@ -7,34 +7,33 @@ CHARGE=$(cat /sys/class/power_supply/BAT0/capacity)
 STATUS=$(cat /sys/class/power_supply/BAT0/status)
 # Battery icon
 battery_icon() {
-  case $CHARGE in
-  100) printf '%s' "󰂃" ;;
-  9[0-9]) printf '%s' "󰂂" ;;
-  8[0-9]) printf '%s' "󰂁" ;;
-  7[0-9]) printf '%s' "󰂀" ;;
-  6[0-9]) printf '%s' "󰁿" ;;
-  5[0-9]) printf '%s' "󰁾" ;;
-  4[0-9]) printf '%s' "󰁽" ;;
-  3[0-9]) printf '%s' "󰁼" ;;
-  2[0-9]) printf '%s' "󰁻" ;;
-  *) printf '%s' "󰁺" ;;
-  esac
+        case $CHARGE in
+        100) printf '%s' "󰂃" ;;
+        9[0-9]) printf '%s' "󰂂" ;;
+        8[0-9]) printf '%s' "󰂁" ;;
+        7[0-9]) printf '%s' "󰂀" ;;
+        6[0-9]) printf '%s' "󰁿" ;;
+        5[0-9]) printf '%s' "󰁾" ;;
+        4[0-9]) printf '%s' "󰁽" ;;
+        3[0-9]) printf '%s' "󰁼" ;;
+        2[0-9]) printf '%s' "󰁻" ;;
+        *) printf '%s' "󰁺" ;;
+        esac
 }
 
 batt_life=$(acpi -V | sed '2q;d')
 
 case $BUTTON in
-1)
-  notify-send -t 15000 "Info batería $(battery_icon)" "Estado: $STATUS
+1) notify-send -t 15000 "Info batería $(battery_icon)" "Estado: $STATUS
 Carga: $CHARGE%
 Time: $(acpi | cut -d"," -f3 | sed 's/^ //')
 Vida Útil: $(echo "$batt_life" | cut -d" " -f13 | tr -d " ")"
-  ;;
-6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+        ;;
+6) ("$TERMINAL" -e "$EDITOR" "$0" &>/dev/null &) & ;;
 esac
 
 if [ ! "$STATUS" = "Discharging" ]; then
-  printf "%s%s " "$PLUG_ICON" "$CHARGE"
+        printf "%s%s " "$PLUG_ICON" "$CHARGE"
 else
-  printf "%s%s " "$(battery_icon)" "$CHARGE"
+        printf "%s%s " "$(battery_icon)" "$CHARGE"
 fi

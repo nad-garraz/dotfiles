@@ -1,7 +1,6 @@
 #!/bin/sh
 
 # Used and total storage in /home (rounded to 1024B)
-USED=$(\du -chs --exclude="*.pyc" --exclude="$HOME/.local/cache/yay/*" "$HOME" /data | cut -f1 | tail -1)
 icon=""
 icon2="󰋊"
 
@@ -21,9 +20,10 @@ lsSizes () {
 }
 
 case $BUTTON in
-	3) setsid -f falacritty -o window.dimensions.columns=100 -o window.dimensions.lines=35 -e lf  ;;
-	1) setsid -f falacritty -o window.dimensions.columns=100 -o window.dimensions.lines=35  -e \ncdu --color dark /  & ;;
-	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+    3) (setsid -f falacritty -o window.dimensions.columns=100 -o window.dimensions.lines=35 -e lf &> /dev/null) & ;;
+    1) (setsid -f falacritty -o window.dimensions.columns=100 -o window.dimensions.lines=35  -e \ncdu --color dark /  &> /dev/null) & ;;
+    6) ("$TERMINAL" -e "$EDITOR" "$0" &>/dev/null) & ;;
 esac
 
+USED=$(\du -chs --exclude="*.pyc" --exclude="$HOME/.local/cache/yay/*" "$HOME" /data  | cut -f1 | tail -1 )
 printf "$icon%s " "$USED" | tr -d "\n"

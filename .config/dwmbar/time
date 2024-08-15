@@ -14,57 +14,62 @@ America/Miami;Miami;Miami;🇺🇸
 Europe/Madrid;Barcelona;Barcelona;🇪🇸
 NZ;Auckland;Auckland;🇳🇿"
 
-
 # Update interval in seconds
-update_interval=3600 
+update_interval=3600
 
 # If there is inet and the files are older than "update_interval"
 # then returs true ... or similar #bash
-areFilesOld () {
-  ping -q -c 1 1.1.1.1 > /dev/null && \
-    (( $(date "+%s") - $(stat -c %Y "$dir"/*temperature | head -1) >\
-    $update_interval ))
+areFilesOld() {
+        ping -q -c 1 1.1.1.1 >/dev/null &&
+                (($(date "+%s") - $(stat -c %Y "$dir"/*temperature | head -1) > \
+                $update_interval))
 }
 
 # Prints temperature to $2
 getTemp() {
-    curl --max-time 2 -sf "wttr.in/$1?format=%f\(%t\)" > "$2"
+        curl --max-time 2 -sf "wttr.in/$1?format=%f\(%t\)" >"$2"
 }
 
 # Update depending on "areFilesOld" result the .temperature files
 updateTemp() {
-  if areFilesOld; then
-        echo "$ciudades" |
-        while IFS=';' read -r tz location human icon
-        do
-            getTemp "${location}" "$dir/${location}.temperature"
-        done
-    fi
+        if areFilesOld; then
+                echo "$ciudades" |
+                        while IFS=';' read -r tz location human icon; do
+                                getTemp "${location}" "$dir/${location}.temperature"
+                        done
+        fi
 }
 
 # gets the time in the tz=$1
-getTime () {
-    TZ="$1" LANG=es_AR.UTF-8 date "+%A %_H:%M" | sed 's|^\(.\)|\u\1|1';
+getTime() {
+        TZ="$1" LANG=es_AR.UTF-8 date "+%A %_H:%M" | sed 's|^\(.\)|\u\1|1'
 }
 
 print() {
-    updateTemp; #update temp if necessary
-    echo "$ciudades" |
-    while IFS=';' read -r tz location human icon
-    do
-        time=$(getTime "$tz");
-        temp="$(cat "$dir/${location}.temperature")";
-        echo -e "$icon <b>$human</b>\n$time  $temp" > "$dir/$location";
-    done
-    dunstify -r 1 -t 10000 "Otros Horarios:" "$(cat $(find "$dir" -type f ! -name "*.temperature"))"
+        updateTemp #update temp if necessary
+        echo "$ciudades" |
+                while IFS=';' read -r tz location human icon; do
+                        time=$(getTime "$tz")
+                        temp="$(cat "$dir/${location}.temperature")"
+                        echo -e "$icon <b>$human</b>\n$time  $temp" >"$dir/$location"
+                done
+        dunstify -r 1 -t 10000 "Otros Horarios:" "$(cat $(find "$dir" -type f ! -name "*.temperature"))"
+}
+
+timer_on() {
+        if [ ! -f "$PIDS/timer_pid" ]; then
+                (
+                spt &>/dev/null &
+                echo $! > "$PIDS/timer_pid"
+                ) &
+                echo 1 > "/tmp/spt_running" && pkill -RTMIN+13 dwmblocks
+        fi
 }
 
 case $BUTTON in
-    1) print
-      ;;
-    6) "$TERMINAL" -e "$EDITOR" "$0"
-      ;;
+1) timer_on ;;
+3) print ;;
+6) ("$TERMINAL" -e "$EDITOR" "$0" &>/dev/null) & ;;
 esac
-
 # Texto para mostrar en la barra
 printf "%s%s " "$clock_icon" "$(date "+%-H:%M")"

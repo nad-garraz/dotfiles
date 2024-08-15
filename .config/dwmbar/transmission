@@ -15,7 +15,7 @@ toggle_list () {
 
 
 case $BUTTON in
-	1) toggle_list;;
+        1) (toggle_list &> /dev/null &) &;;
 	3) setsid -f torrent_dmenu;;
 	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0";;
 esac

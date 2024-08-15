@@ -17,8 +17,8 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagn
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Go to normal mode
-vim.keymap.set('i', 'jk', '<ESC>', { desc = 'Exit insert mode' , silent = true, noremap = true })
-vim.keymap.set('i', 'kj', '<ESC>', { desc = 'Exit insert mode' , silent = true, noremap = true })
+vim.keymap.set('i', 'jk', '<ESC>', { desc = 'Exit insert mode', silent = true, noremap = true })
+vim.keymap.set('i', 'kj', '<ESC>', { desc = 'Exit insert mode', silent = true, noremap = true })
 
 -- TIP: Disable arrow keys in normal mode
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -47,22 +47,28 @@ vim.keymap.set('n', '<leader>tt', '<CMD> lua Tildes.toggle() <CR>', { desc = 'To
 
 -- Jumps mother fucker!
 vim.keymap.set('i', '<c-j>', '<esc>/<+.*+><cr>:noh<cr><esc>"9cf>', { desc = '[j]ump to <+_+>', silent = true, noremap = true })
-vim.keymap.set('n', '<leader>jj', '<cmd> lua Jumps.toggle() <CR>',{ desc = '[j]umps toggle', silent = true})
+vim.keymap.set('n', '<leader>jj', '<cmd> lua Jumps.toggle() <CR>', { desc = '[j]umps toggle', silent = true })
 
 -- Yo mama
 vim.keymap.set('n', 'ym', '<CMD>lua My_shit.pete()<CR>', { desc = 'Yo - mama...!' })
 
 -- Visual
-vim.keymap.set("v", "<", "<gv", {desc = "Stay in visual indentation"})
-vim.keymap.set("v", ">", ">gv", {desc = "Stay in visual indentation"})
+vim.keymap.set('v', '<', '<gv', { desc = 'Stay in visual indentation' })
+vim.keymap.set('v', '>', '>gv', { desc = 'Stay in visual indentation' })
 
 -- Better paste
-vim.keymap.set('x', 'p', '[["_dP]]', { desc = 'Better Paste' , noremap = true })
+vim.keymap.set('x', 'p', '[["_dP]]', { desc = 'Better Paste', noremap = true })
 
 -- Substitute visual selected
 vim.keymap.set('v', '<leader>ss', '"hy:%s/<c-r>h//gc<left><left><left>', { desc = 'Substitute selected text' })
 vim.keymap.set('n', '<leader>sw', "viw\"hy:%s/<c-r>=expand('<cword>')<cr>//gc<left><left><left>", { desc = 'Substitute word under cursor text' })
 
+-- Set current buffer directory to CWD
+vim.keymap.set('n', '<leader>cd', '<CMD>lua vim.fn.chdir(require "mis_cosas.myUtils".get_buf_dir())<CR>', { desc = 'Buffer directory -> CWD' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 vim.keymap.set('t', '<ESC><ESC>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
+-- Neogit
+vim.keymap.set('n', '<leader>ng', '<CMD>Neogit<CR>', { desc = 'Open NeoGit' })
+

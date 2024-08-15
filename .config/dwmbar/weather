@@ -74,17 +74,17 @@ bar_icon=$(curl --max-time 3 -sf "wttr.in/$LOCATION?format=%c" | tr -d " ")
 
 case $BUTTON in
 1)
-  getData
-  show
+  (getData
+  show &> /dev/null) &
   ;;
 2)
   find "$temp_data" "$weatherReport" -delete
   ;;
 3)
-  getWeatherReport
-  showWeatherReport
+  (getWeatherReport
+  showWeatherReport &> /dev/null ) &
   ;;
-6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
+6) (setsid -f "$TERMINAL" -e "$EDITOR" "$0" &> /dev/null ) & ;;
 esac
 
 # [[ ! -e "$weatherReport" ]] && getWeatherReport

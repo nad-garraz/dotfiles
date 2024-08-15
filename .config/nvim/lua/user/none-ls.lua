@@ -19,6 +19,7 @@ function M.config()
       formatting.stylua,
       formatting.prettier,
       formatting.black,
+      formatting.shfmt,
       formatting.clang_format.with {
         command = 'clang-format',
         extra_args = {

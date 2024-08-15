@@ -47,6 +47,7 @@ export HOME_SCRIPTS="$HOME_LOCAL/scripts"
 export HOME_ICONS="$HOME_LOCAL/icons"
 export DWMBAR="$HOME_CONFIG/dwmbar"
 export LOGS="$HOME_LOCAL/my_logs"
+export PIDS="$HOME_LOCAL/my_pids"
 
 # Wise
 source $HOME/documents/tokens
